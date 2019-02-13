@@ -26,6 +26,11 @@ class RegisterForm(Form):
     
 @app.route('/register', methods=['GET', 'POST'])
 
+def register():
+    #setting a variable equal to the RegisterForm class
+    form = RegisterForm
+
+
 if __name__ == "__main__":
     app.run(host=os.environ.get('IP'),
         port=int(os.environ.get('PORT')),
