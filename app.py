@@ -1,4 +1,5 @@
 import os
+import pymysql
 from flask import Flask, redirect, render_template, request, url_for, flash, session, logging
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
@@ -8,11 +9,18 @@ from passlib.hash import sha256_crypt
 
 
 app = Flask(__name__)
-app.secret_key = os.getenv("SECRET", "1403goagl")
-app.config["MONGO_DBNAME"] = "recipes"
-app.config["MONGO_URI"] = "mongodb://goagl:3markHero@ds145923.mlab.com:45923/recipes"
 
-mongo = PyMongo(app)
+
+#Get Username from Cloud9 Workspace
+username = os.getenv('C9_USER')
+
+#Connect to the database
+connection = pymysql.connect(host = 'localhost',
+                            user = username,
+                            password = '',
+                            db = 'flaskapp')
+
+app.secret_key = os.getenv("SECRET", "1403goagl")
     
 """ RegisterForm class with fields and validators"""
 
@@ -33,8 +41,24 @@ def register():
     #setting a variable equal to the RegisterForm class
     form = RegisterForm(request.form)
     if request.method == 'POST' and form.validate():
-        return render_template('register.html')
-    
+        name = form.name.data
+        email = form.email.data
+        username = form.username.data
+        password = sha256_crypt.encrypt(str(form.password.data))
+        
+        #Create cursor
+        with connection.cursor() as cursor:
+            sql = "INSERT INTO users(name, email, username, password) VALUES(%s, %s, %s, %s)", (name, email, username, password)
+            cursor.execute(sql)
+            
+        #Commit to the database
+        connection.commit()
+        #Close the connection
+        cursor.close()
+        
+        flash("You can now login to the website", "success")
+        
+        redirect(url_for('index'))
     return render_template('register.html', form=form)
         
 
