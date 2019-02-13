@@ -13,28 +13,6 @@ app.config["MONGO_DBNAME"] = "recipes"
 app.config["MONGO_URI"] = "mongodb://goagl:3markHero@ds145923.mlab.com:45923/recipes"
 
 mongo = PyMongo(app)
-
-@app.route('/', methods = ["GET", "POST"])
-def index():
-    """Main page with instructions"""
-    
-    if request.method == "POST":
-        session["username"] = request.form["username"]
-        
-    if "username" in session:
-        return redirect(url_for("user", username = session["username"]))
-        
-    return render_template("user.html")
-    
-@app.route('/index.html/<username>', methods = ["GET", "POST"])
-def user(username):
-    """Login for user"""
-    
-    if request.method == "POST":
-        username = session["username"]
-        return redirect(url_for("user", username = session["username"]))
-        
-    return render_template("index.html", username = username)
     
 class RegisterForm(Form):
     name = StringField('Name', [validators.Length(min=1, max=50)])
@@ -45,6 +23,8 @@ class RegisterForm(Form):
         validators.EqualTo('confirm', message='Passwords do not match')
         ])
     confirm = PasswordField('Confirm Password')
+    
+@app.route('/register', methods=['GET', 'POST'])
 
 if __name__ == "__main__":
     app.run(host=os.environ.get('IP'),
