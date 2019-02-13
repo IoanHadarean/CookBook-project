@@ -28,7 +28,7 @@ class RegisterForm(Form):
     
 """Route for new user registering to the website"""
 
-@app.route('/register', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def register():
     #setting a variable equal to the RegisterForm class
     form = RegisterForm(request.form)
