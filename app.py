@@ -3,7 +3,6 @@ import pymysql
 from flask import Flask, redirect, render_template, request, url_for, flash, session, logging
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
-from flask_mysqldb import MySQL
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 from passlib.hash import sha256_crypt
 
@@ -18,7 +17,8 @@ username = os.getenv('C9_USER')
 connection = pymysql.connect(host = 'localhost',
                             user = username,
                             password = '',
-                            db = 'flaskapp')
+                            db = 'flaskapp',
+                            cursorclass = pymysql.cursors.DictCursor)
 
 app.secret_key = os.getenv("SECRET", "1403goagl")
     
@@ -47,18 +47,16 @@ def register():
         password = sha256_crypt.encrypt(str(form.password.data))
         
         #Create cursor
-        with connection.cursor() as cursor:
-            sql = "INSERT INTO users(name, email, username, password) VALUES(%s, %s, %s, %s)", (name, email, username, password)
-            cursor.execute(sql)
-            
-        #Commit to the database
-        connection.commit()
-        #Close the connection
-        cursor.close()
+        cur = connection.cursor()
+        cur.execute("INSERT INTO users(name, email, username, password) VALUES(%s, %s, %s, %s)", (name, email, username, password))
         
+        connection.commit()
+        cur.close()
+        
+            
         flash("You can now login to the website", "success")
         
-        redirect(url_for('index'))
+        redirect(url_for('register'))
     return render_template('register.html', form=form)
         
 
