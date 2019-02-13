@@ -20,8 +20,18 @@ def index():
     if "username" in session:
         return redirect(url_for("user", username = session["username"]))
         
-    return render_template("index.html")
-
+    return render_template("user.html")
+    
+@app.route('/index.html/<username>', methods = ["GET", "POST"])
+def user(username):
+    """Add and display chat messages"""
+    
+    if request.method == "POST":
+        username = session["username"]
+        return redirect(url_for("user", username = session["username"]))
+        
+    return render_template("index.html", username = username)
+   
 if __name__ == "__main__":
     app.run(host=os.environ.get('IP'),
         port=int(os.environ.get('PORT')),
