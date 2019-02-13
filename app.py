@@ -14,6 +14,8 @@ app.config["MONGO_URI"] = "mongodb://goagl:3markHero@ds145923.mlab.com:45923/rec
 
 mongo = PyMongo(app)
     
+""" RegisterForm class with fields and validators"""
+
 class RegisterForm(Form):
     name = StringField('Name', [validators.Length(min=1, max=50)])
     username = StringField('Username', [validators.Length(min=4, max=25)])
@@ -24,11 +26,16 @@ class RegisterForm(Form):
         ])
     confirm = PasswordField('Confirm Password')
     
-@app.route('/register', methods=['GET', 'POST'])
+"""Route for new user registering to the website"""
 
+@app.route('/register', methods=['GET', 'POST'])
 def register():
     #setting a variable equal to the RegisterForm class
-    form = RegisterForm
+    form = RegisterForm(request.form)
+    if request.method == 'POST' and form.validate():
+        return render_template('register.html')
+    return render_template('register.html', form=form)
+        
 
 
 if __name__ == "__main__":
