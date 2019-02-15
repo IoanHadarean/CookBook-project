@@ -82,10 +82,10 @@ def login():
             
             #Compare passwords
             if sha256_crypt.verify(password_candidate, password):
-                app.logger.info('PASSWORD MATCHED')
+                app.logger.inf('PASSWORD MATCHED')
         
         else:
-            app.logger.info('NO USER')
+            app.logger.inf('NO USER')
             
             
     return render_template('login.html')
