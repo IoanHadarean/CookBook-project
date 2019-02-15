@@ -1,13 +1,14 @@
 import os
 import pymysql
+from flask.logging import create_logger
 from flask import Flask, redirect, render_template, request, url_for, flash, session, logging
-from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 from passlib.hash import sha256_crypt
 
 
 app = Flask(__name__)
+LOG = create_logger(app)
 
 #Get Username from Cloud9 Workspace
 username = os.getenv('C9_USER')
@@ -82,10 +83,12 @@ def login():
             
             #Compare passwords
             if sha256_crypt.verify(password_candidate, password):
-                app.logger.info('PASSWORD MATCHED')
+                LOG.error('PASSWORD MATCHED')
+            else:
+                LOG.error("PASSWORD NOT MATCHED")
         
         else:
-            app.logger.info('NO USER')
+            LOG.error('NO USER')
             
             
     return render_template('login.html')
