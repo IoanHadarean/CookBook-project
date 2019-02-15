@@ -83,11 +83,16 @@ def login():
             
             #Compare passwords
             if sha256_crypt.verify(password_candidate, password):
-                LOG.error('PASSWORD MATCHED')
+                session['logged in'] = True
+                sesion['username'] = username
+                
+                flash('You are now logged in', 'success')
+                return redirect(url_for('dashboard'))
             else:
                 error = 'Invalid login'
                 return render_template('login.html', error=error)
-        
+            # Close connection
+            cur.close()
         else:
             error = 'Username not found'
             return render_template('login.html', error=error)
