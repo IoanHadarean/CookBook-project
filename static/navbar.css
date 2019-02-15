@@ -1,0 +1,14 @@
+#navbar {
+    background-color: white;
+    margin-bottom: 100px;
+}
+
+.navbar-header a {
+    color: purple;
+    font-size: 24px;
+}
+
+#navbar a {
+    color: purple;
+    font-size: 20px;
+}
