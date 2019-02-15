@@ -23,7 +23,7 @@ connection = pymysql.connect(host = 'localhost',
 app.secret_key = os.getenv("SECRET", "1403goagl")
 
     
-""" RegisterForm class with fields and validators"""
+""" RegisterForm class with fields and validators """
 
 class RegisterForm(Form):
     name = StringField('Name', [validators.Length(min=1, max=50)])
@@ -36,7 +36,7 @@ class RegisterForm(Form):
     confirm = PasswordField('Confirm Password')
     
     
-"""Route for new user registering to the website"""
+""" Route for new user registering to the website """
 
 @app.route('/', methods=['GET', 'POST'])
 def register():
@@ -62,7 +62,7 @@ def register():
         redirect(url_for('register'))
     return render_template('register.html', form=form)
     
-"""Login for user already registered to the website"""
+""" Login for user already registered to the website """
 
 @app.route('/login', methods=['GET', 'POST'])
 def login():
@@ -85,7 +85,7 @@ def login():
             #Compare passwords
             if sha256_crypt.verify(password_candidate, password):
                 session['logged in'] = True
-                sesion['username'] = username
+                session['username'] = username
                 
                 flash('You are now logged in', 'success')
                 return redirect(url_for('dashboard'))
@@ -100,14 +100,21 @@ def login():
             
     return render_template('login.html')
     
-"""User dashboard"""
+""" Logout """
+@app.route('/logout')
+def logout():
+    session.clear()
+    flash('You are now logged out', 'success')
+    return redirect(url_for('login'))
+    
+""" User dashboard """
 
 @app.route('/dashboard')
 def dashboard():
     return render_template('dashboard.html')
   
   
-"""Main function for running the app"""      
+""" Main function for running the app """      
 
 if __name__ == "__main__":
     app.run(host=os.environ.get('IP'),
