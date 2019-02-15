@@ -1,14 +1,16 @@
 #navbar {
-    background-color: white;
+    background-color: #80ff80;
     margin-bottom: 100px;
 }
 
 .navbar-header a {
-    color: purple;
+    color: black;
     font-size: 24px;
+    font-family: "Playfair Display";
 }
 
 #navbar a {
-    color: purple;
+    color: black;
     font-size: 20px;
+    font-family: "Playfair Display";
 }
