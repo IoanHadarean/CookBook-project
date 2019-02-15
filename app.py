@@ -62,7 +62,8 @@ def register():
         redirect(url_for('register'))
     return render_template('register.html', form=form)
     
-#Login
+"""Login for user already registered to the website"""
+
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     if request.method == 'POST':
@@ -97,8 +98,13 @@ def login():
             error = 'Username not found'
             return render_template('login.html', error=error)
             
-            
     return render_template('login.html')
+    
+"""User dashboard"""
+
+@app.route('/dashboard')
+def dashboard():
+    return render_template('dashboard.html')
   
   
 """Main function for running the app"""      
