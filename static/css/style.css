@@ -16,10 +16,9 @@
  #navbar {
      background-color: #90E5E1;
      margin-bottom: 100px;
-     position: fixed;
  }
- 
-  .container--nav {
+
+ .container--nav {
      padding-right: 0px;
      padding-left: 0px;
  }
@@ -36,11 +35,37 @@
      font-family: "Playfair Display";
  }
 
- /* -------------------------------------------Map */
+ /* -------------------------------------------Buttons */
+ 
+ .btn {
+     padding-left: 0px;
+     padding-right: 0px;
+ }
 
  /* ------------------------------------------------Colors */
 
- /* -----------------------------------------------jQuery */
+ /* -----------------------------------------------Register */
+
+ .form-group--responsive {
+     width: 40vw;
+     margin-left: 25vw;
+     margin-right: 25vw;
+ }
+ 
+input[type = "submit"], p {
+    width: 40vw;
+}
+ 
+ .form-row {
+     display: flex;
+     text-align: center;
+ }
+ 
+ 
+ h3 {
+     text-align: center;
+ }
+ 
 
  /* -------------------------------------------------------------Images */
 
