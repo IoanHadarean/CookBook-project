@@ -1,11 +1,18 @@
  /* --------------------------Special paddings, margins and styling */
 
- body {
-     background: url("../images/cookbook.jpg") no-repeat center center fixed;
-     -webkit-background-size: cover;
-     -moz-background-size: cover;
-     -o-background-size: cover;
-     background-size: cover;
+ .container-fluid {
+  background: url("../images/cookbook.jpg") no-repeat fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  padding-left: 0px;
+  padding-right: 0px;
+ }
+ 
+ form {
+  margin-top: 150px;
+  margin-bottom: 150px;
  }
 
 
@@ -14,62 +21,75 @@
  /*-----------------------------------------------Navbar*/
 
  #navbar {
-     background-color: #90E5E1;
-     margin-bottom: 100px;
+  background-color: #90E5E1;
+  position: fixed;
+  width: 100%;
+ }
+
+ .navbar-toggle .icon-bar {
+  background-color: black;
  }
 
  .container--nav {
-     padding-right: 0px;
-     padding-left: 0px;
+  padding-right: 0px;
+  padding-left: 0px;
  }
 
  .navbar-header a {
-     color: black;
-     font-size: 24px;
-     font-family: "Playfair Display";
+  color: black;
+  font-size: 24px;
+  font-family: "Playfair Display";
  }
 
  #navbar a {
-     color: black;
-     font-size: 20px;
-     font-family: "Playfair Display";
+  color: black;
+  font-size: 20px;
+  font-family: "Playfair Display";
  }
 
  /* -------------------------------------------Buttons */
- 
+
  .btn {
-     padding-left: 0px;
-     padding-right: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
  }
 
  /* ------------------------------------------------Colors */
-
+.footer-bg {
+  background-color: grey;
+ }
  /* -----------------------------------------------Register */
 
  .form-group--responsive {
-     width: 40vw;
-     margin-left: 25vw;
-     margin-right: 25vw;
+  width: 28vw;
+  margin-left: 36vw;
+  margin-right: 36vw;
  }
- 
-input[type = "submit"] {
-    width: 40vw;
-}
 
-button[type = "submit"] {
-    width: 40vw;
-    margin-top: 15px;
-}
- 
- .form-row {
-     display: flex;
-     text-align: center;
+ button[type="submit"] {
+  width: 28vw;
+  margin-top: 15px;
  }
- 
+
+ .form-row {
+  display: flex;
+  text-align: center;
+ }
+
 
  /* -------------------------------------------------------------Images */
 
  /* -------------------------------------------------Footer */
+ #footer {
+  margin-top: 200px;
+  width: 100%;
+  color: black;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+ }
+ 
 
  /* -------------------------------------------------------------------------------Media Queries */
  
