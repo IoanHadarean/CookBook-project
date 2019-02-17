@@ -52,17 +52,17 @@
      margin-right: 25vw;
  }
  
-input[type = "submit"], p {
+input[type = "submit"] {
     width: 40vw;
+}
+
+button[type = "submit"] {
+    width: 40vw;
+    margin-top: 15px;
 }
  
  .form-row {
      display: flex;
-     text-align: center;
- }
- 
- 
- h3 {
      text-align: center;
  }
  
