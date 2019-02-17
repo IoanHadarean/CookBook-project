@@ -12,19 +12,19 @@
 </head>
 
 <body>
-    {% include 'includes/_navbar.html' %}
-    <div class="container-fluid">
+    {% include 'includes/_navbar.html' %} 
+    <div class = "container-fluid">
         {% block content %}{% endblock %}
     </div>
-    <div class = "container-fluid">
-        <footer class="footer-bg container-fluid">
-            <div id="footer">
-                <div class="col-lg-12">
-                    <span>©Ioan-Dumitru Hadarean. All rights reserved.</span>
-                </div>
+    <footer class="footer-bg container-fluid">
+        <h2 class="hidden">Footer</h2>
+        <div id="footer">
+            <div class="col-lg-12">
+                <span class="footer-span">©Ioan-Dumitru Hadarean. All rights reserved.</span>
             </div>
-        </footer>
-    </div>
+        </div>
+    </footer>
+
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script type="text/javascript" src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>

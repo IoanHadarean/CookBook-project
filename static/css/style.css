@@ -1,5 +1,10 @@
  /* --------------------------Special paddings, margins and styling */
 
+ html,
+ body {
+  overflow-y: hidden;
+ }
+
  .container-fluid {
   background: url("../images/cookbook.jpg") no-repeat fixed;
   -webkit-background-size: cover;
@@ -9,10 +14,12 @@
   padding-left: 0px;
   padding-right: 0px;
  }
- 
+
  form {
-  margin-top: 150px;
-  margin-bottom: 150px;
+  position: absolute;
+  margin-top: 100px;
+  margin-bottom: 200px;
+  z-index: 3;
  }
 
 
@@ -24,6 +31,8 @@
   background-color: #90E5E1;
   position: fixed;
   width: 100%;
+  margin: 0px;
+  z-index: 4;
  }
 
  .navbar-toggle .icon-bar {
@@ -55,9 +64,8 @@
  }
 
  /* ------------------------------------------------Colors */
-.footer-bg {
-  background-color: grey;
- }
+
+
  /* -----------------------------------------------Register */
 
  .form-group--responsive {
@@ -80,16 +88,22 @@
  /* -------------------------------------------------------------Images */
 
  /* -------------------------------------------------Footer */
- #footer {
-  margin-top: 200px;
+
+#footer {
   width: 100%;
-  color: black;
+  background-color: black;
   height: 100px;
   display: flex;
   justify-content: center;
   text-align: center;
+  position: absolute;
+  bottom: 0;
  }
  
+ .footer-span {
+  color: white;
+ }
+
 
  /* -------------------------------------------------------------------------------Media Queries */
  

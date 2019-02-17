@@ -1,5 +1,5 @@
 {% extends 'base.html' %} {% block content %} {% from "includes/_formhelpers.html" import render_field %} {% include 'includes/_messages.html' %}
-<form method="POST" action="">
+<form class = "container-fluid" method="POST" action="">
     <div class="form-group form-group--responsive">
         <div class="row col-lg-12">
             <h4>{{render_field(form.name, class_="form-control")}}</h4>
@@ -31,4 +31,5 @@
         </div>
     </div>
 </form>
+</div>
 {% endblock %}
