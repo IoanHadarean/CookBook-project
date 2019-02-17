@@ -3,10 +3,14 @@
  html,
  body {
   overflow-y: hidden;
+  background: url("../images/cookbook.jpg") no-repeat fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
  }
 
  .container-fluid {
-  background: url("../images/cookbook.jpg") no-repeat fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -17,8 +21,7 @@
 
  form {
   position: absolute;
-  margin-top: 100px;
-  margin-bottom: 200px;
+  margin-top: 150px;
   z-index: 3;
  }
 
@@ -92,16 +95,20 @@
 #footer {
   width: 100%;
   background-color: black;
-  height: 100px;
+  height: 200px;
   display: flex;
   justify-content: center;
   text-align: center;
-  position: absolute;
   bottom: 0;
+  position: absolute;
+  line-height: 200px;
  }
  
  .footer-span {
+  vertical-align: middle;
+  display: inline-block;
   color: white;
+  line-height: 200px;
  }
 
 
