@@ -35,6 +35,12 @@ class RegisterForm(Form):
         ])
     confirm = PasswordField('Confirm Password')
     
+"""Route when first accessing the page"""
+
+@app.route('/')
+def index():
+    return redirect(url_for('register'))
+    
 """ Route for new user registering to the website """
 
 @app.route('/register', methods=['GET', 'POST'])

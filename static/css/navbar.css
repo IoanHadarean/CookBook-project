@@ -1,3 +1,7 @@
+body {
+    background: url("../images/cookbook.jpg") no-repeat fixed;
+}
+
 #navbar {
     background-color: #90E5E1;
     margin-bottom: 100px;
