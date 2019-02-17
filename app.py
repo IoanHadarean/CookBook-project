@@ -1,4 +1,4 @@
-import os, pymysql, unirest, json
+import os, pymysql, json, unirest, requests
 from flask.logging import create_logger
 from flask import Flask, redirect, render_template, request, url_for, flash, session, logging
 from bson.objectid import ObjectId
@@ -123,15 +123,6 @@ def logout():
 @is_logged_in
 def dashboard():
     return render_template('dashboard.html')
-  
-response = unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/quickAnswer?q=How+much+vitamin+c+is+in+2+apples%3F",
-  headers={
-    "X-RapidAPI-Key": "1d1ad0f17bmsh910b03dff3024c4p19b931jsn64ec8acd1c09"
-  }
-)
-print(response)
-
-
 
   
 """ Main function for running the app """      
