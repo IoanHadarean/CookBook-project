@@ -1,0 +1,50 @@
+ /* --------------------------Special paddings, margins and styling */
+
+ body {
+     background: url("../images/cookbook.jpg") no-repeat center center fixed;
+     -webkit-background-size: cover;
+     -moz-background-size: cover;
+     -o-background-size: cover;
+     background-size: cover;
+ }
+
+
+ /* -------------------------------------------Navigation */
+
+ /*-----------------------------------------------Navbar*/
+
+ #navbar {
+     background-color: #90E5E1;
+     margin-bottom: 100px;
+     position: fixed;
+ }
+ 
+  .container--nav {
+     padding-right: 0px;
+     padding-left: 0px;
+ }
+
+ .navbar-header a {
+     color: black;
+     font-size: 24px;
+     font-family: "Playfair Display";
+ }
+
+ #navbar a {
+     color: black;
+     font-size: 20px;
+     font-family: "Playfair Display";
+ }
+
+ /* -------------------------------------------Map */
+
+ /* ------------------------------------------------Colors */
+
+ /* -----------------------------------------------jQuery */
+
+ /* -------------------------------------------------------------Images */
+
+ /* -------------------------------------------------Footer */
+
+ /* -------------------------------------------------------------------------------Media Queries */
+ 
