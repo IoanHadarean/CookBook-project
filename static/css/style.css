@@ -27,6 +27,9 @@
   margin-bottom: 15vw;
  }
 
+ h4 {
+  color: #40E0D0;
+ }
 
  /* -------------------------------------------Navigation */
 
@@ -70,15 +73,19 @@
 
  /* ------------------------------------------------Colors */
 
-
  /* -----------------------------------------------Register */
 
  .form-group--responsive {
   width: 70vw;
-  margin-bottom: -5%;
-  color: #DE5D83;
+  margin-bottom: -2%;
   margin-left: 15vw;
   margin-right: 15vw;
+ }
+
+ form {
+  position: absolute;
+  margin-top: 5%;
+  z-index: 3;
  }
 
  button[type="submit"] {
@@ -96,7 +103,7 @@
 
  /* -------------------------------------------------Footer */
 
-.footer {
+ .footer {
   width: 100%;
   background-color: black;
   height: 10%;
@@ -105,7 +112,7 @@
   text-align: center;
   line-height: 10%;
  }
- 
+
  .footer__span {
   color: white;
   line-height: 4;
@@ -115,4 +122,40 @@
 
 
  /* -------------------------------------------------------------------------------Media Queries */
+
+ @media (min-width: 480px) and (max-width: 767px) {
+  .form-group--responsive {
+   width: 40vw;
+   margin-left: 30vw;
+   margin-right: 30vw;
+  }
+ }
+ @media (min-width: 768px) and (max-width: 1080px) {
+  form {
+   margin-top: 10%;
+  }
+
+  .form-group--responsive {
+   width: 30vw;
+   margin-left: 35vw;
+   margin-right: 35vw;
+  }
+
+ }
+
+ @media (min-width: 1081px) and (max-width: 1920px) {
+  .form-group--responsive {
+   margin-top: 1%;
+  }
+
+  button[type="submit"] {
+   margin-top: 5%;
+  }
+
+  .form-group--responsive {
+   width: 30vw;
+   margin-left: 35vw;
+   margin-right: 35vw;
+  }
+ }
  
