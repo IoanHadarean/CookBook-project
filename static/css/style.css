@@ -21,8 +21,9 @@
 
  form {
   position: absolute;
-  margin-top: 150px;
+  margin-top: 5vw;
   z-index: 3;
+  margin-bottom: 40vw;
  }
 
 
@@ -72,13 +73,11 @@
  /* -----------------------------------------------Register */
 
  .form-group--responsive {
-  width: 28vw;
-  margin-left: 36vw;
-  margin-right: 36vw;
+  width: 100%;
  }
 
  button[type="submit"] {
-  width: 28vw;
+  width: 100%;
   margin-top: 15px;
  }
 
@@ -92,23 +91,21 @@
 
  /* -------------------------------------------------Footer */
 
-#footer {
+.footer {
   width: 100%;
   background-color: black;
-  height: 200px;
-  display: flex;
-  justify-content: center;
-  text-align: center;
+  height: 10%;
   bottom: 0;
   position: absolute;
-  line-height: 200px;
+  text-align: center;
+  line-height: 10%;
  }
  
- .footer-span {
-  vertical-align: middle;
-  display: inline-block;
+ .footer__span {
   color: white;
-  line-height: 200px;
+  line-height: 4;
+  display: inline-block;
+  vertical-align: middle;
  }
 
 
