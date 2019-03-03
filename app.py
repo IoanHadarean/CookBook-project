@@ -1,4 +1,5 @@
 import os, pymysql, json, unirest, requests
+import pygal
 from flask.logging import create_logger
 from flask import Flask, redirect, render_template, request, url_for, flash, session, logging
 from bson.objectid import ObjectId
@@ -129,7 +130,12 @@ def logout():
 @is_logged_in
 def dashboard():
     return render_template('dashboard.html')
-
+    
+# """Recipe statistics """
+# @app.route('/statistics')
+# @is_logged_in
+# def statistics():
+#     return render_template('statistics.html')
   
 """ Main function for running the app """      
 
