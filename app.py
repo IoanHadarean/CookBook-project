@@ -1,4 +1,4 @@
-import os, pymysql, json, unirest, requests
+import os, pymysql, json, requests
 import pygal
 from flask.logging import create_logger
 from flask import Flask, redirect, render_template, request, url_for, flash, session, logging
@@ -131,11 +131,14 @@ def logout():
 def dashboard():
     return render_template('dashboard.html')
     
-# """Recipe statistics """
-# @app.route('/statistics')
-# @is_logged_in
-# def statistics():
-#     return render_template('statistics.html')
+""" Recipe statistics """
+@app.route('/statistics')
+@is_logged_in
+def charts():
+   chart = pygal.Line()
+   chart = chart.render_data_uri()
+
+   return render_template('statistics.html', chart = chart)
   
 """ Main function for running the app """      
 

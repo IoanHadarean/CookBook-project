@@ -8,19 +8,22 @@
     <title>Recipe Cookbook</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Playfair+Display" />
 </head>
 
 <body>
-    {% include 'includes/_navbar.html' %} 
-    <div class = "container-fluid">
+    {% include 'includes/_navbar.html' %}
+    <div class="container-fluid">
         {% block content %}{% endblock %}
     </div>
-    <footer>
-        <div class="footer">
-            <div class="footer__span">©Ioan-Dumitru Hadarean. All rights reserved.</div>
-        </div>
-    </footer>
+    <div class="container-fluid">
+        <footer>
+            <div class="footer">
+                <div class="footer__span">©Ioan-Dumitru Hadarean. All rights reserved.</div>
+            </div>
+        </footer>
+    </div>
+
+
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
