@@ -1,0 +1,27 @@
+@media only screen and (max-width: 768px) {
+ .form-group--responsive {
+  margin-bottom: 10px;
+ }
+}
+
+
+@media (min-width: 768px) and (max-width: 2560px) {
+ .form-control {
+   margin-bottom: 40px;
+ }
+ 
+ button[type = "submit"] {
+  width: 30vw;
+ }
+}
+
+@media screen and (max-height: 768px) and (min-width: 768px) {
+ label {
+    margin-left: -100px;
+ }
+ 
+ form {
+  top: 30vh;
+  left: 10vh;
+ }
+}

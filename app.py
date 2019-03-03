@@ -134,11 +134,18 @@ def dashboard():
 """ Recipe statistics """
 @app.route('/statistics')
 @is_logged_in
-def charts():
-   chart = pygal.Line()
-   chart = chart.render_data_uri()
-
-   return render_template('statistics.html', chart = chart)
+def test():
+    dot_chart = pygal.Dot(x_label_rotation=30)
+    dot_chart.title = 'Recipe Ingredients Statistics by Cuisine'
+    dot_chart.x_labels = ['milk', 'egg', 'sugar', 'flour', 'salt', 'water']
+    dot_chart.add('Indian', [6395, 8212, 7520, 7218, 12464, 1660, 2123, 8607])
+    dot_chart.add('Mexican', [7473, 8099, 11700, 2651, 6361, 1044, 3797, 9450])
+    dot_chart.add('Greek', [3472, 2933, 4203, 5229, 5810, 1828, 9013, 4669])
+    dot_chart.add('Engish', [43, 41, 59, 79, 144, 136, 34, 102])
+    dot_chart.add('Asian', [43, 41, 59, 79, 144, 136, 34, 102])
+    dot_chart = dot_chart.render(is_unicode=True)
+    
+    return render_template('statistics.html', dot_chart=dot_chart)
   
 """ Main function for running the app """      
 

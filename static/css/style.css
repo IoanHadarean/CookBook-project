@@ -157,7 +157,7 @@
 
  }
 
- @media (min-width: 1080px) and (max-width: 1920px) {
+ @media (min-width: 1080px) and (max-width: 2560px) {
   .form-group--responsive {
    margin-top: 1%;
   }
@@ -173,12 +173,6 @@
   }
  }
  
- @media (min-width: 768px) and (max-width: 1920px) {
-  .alert {
-   margin-top: 50px;
-  }
- }
-
 @media screen and (max-height: 768px) and (min-width: 768px) {
  label {
   position: absolute;
