@@ -23,9 +23,10 @@ recipes = [{ "_id" : 1, "recipe_name" : "Rich and Simple French Onion Soup", "re
 ct = 0
 for i in recipes:
     if i["cuisine_name"] == "French":
-        if "2 eggs" in i["ingredients"]:
-            ct += 1
-            print(ct)
+        for k in i["ingredients"]:
+            if "eggs" in k:
+                ct += 1
+print(ct)
     
 
     

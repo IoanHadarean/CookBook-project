@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% block content %}
 <!-- Don't forget the "|safe"! -->
 <div id="pie_chart">
-    {{ dot_chart|safe }}
+    <embed type="image/svg+xml" {{ dot_chart|safe }}></embed>
 </div>
 {% endblock %}
