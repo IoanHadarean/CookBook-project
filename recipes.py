@@ -11,7 +11,7 @@ recipes = [{ "_id" : 1, "recipe_name" : "Rich and Simple French Onion Soup", "re
 { "_id" : 11, "recipe_name" : "Lemon Madeleines", "recipe_image" : "https://images.media-allrecipes.com/userphotos/560x315/3890788.jpg", "cuisine_name" : "French", "course_name" : "dessert", "ingredients" : [ "2 eggs", "1/2 cup white sugar", "5 tablespoons unsalted butter", "3/4 cup all-purpose flour", "1 teaspoon baking powder", "1/4 teaspoon vanilla extract", "1/2 lemon, juiced and zested", "1/3 cup confectioners' sugar for decoration" ], "cooking_direction" : [ "In a large bowl blend eggs and sugar add butter and blend well. On low speed, blend in flour, baking powder, lemon, vanilla.", "Cover bowl with towel and let sit for one hour.", "Preheat oven to 375 degrees F (190 degrees C) and butter and flour madeleine molds. Whisk batter then spoon into molds 3/4 full. Bake 10 minutes. Remove from molds and cool. Dust with confectioners' sugar." ], "allergen_name" : "egg", "author_name" : "Kevin Ashley", "preparation_time" : "20 min", "cooking_time" : "40 min", "likes" : "0", "servings" : "12", "calories" : "129 cals" },
 { "_id" : 12, "recipe_name" : "Lemon Madeleines", "recipe_image" : "https://images.media-allrecipes.com/userphotos/560x315/3890788.jpg", "cuisine_name" : "French", "course_name" : "dessert", "ingredients" : [ "2 eggs", "1/2 cup white sugar", "5 tablespoons unsalted butter", "3/4 cup all-purpose flour", "1 teaspoon baking powder", "1/4 teaspoon vanilla extract", "1/2 lemon, juiced and zested", "1/3 cup confectioners' sugar for decoration" ], "cooking_direction" : [ "In a large bowl blend eggs and sugar add butter and blend well. On low speed, blend in flour, baking powder, lemon, vanilla.", "Cover bowl with towel and let sit for one hour.", "Preheat oven to 375 degrees F (190 degrees C) and butter and flour madeleine molds. Whisk batter then spoon into molds 3/4 full. Bake 10 minutes. Remove from molds and cool. Dust with confectioners' sugar." ], "allergen_name" : "egg", "author_name" : "Kevin Ashley", "preparation_time" : "20 min", "cooking_time" : "40 min", "likes" : "0", "servings" : "12", "calories" : "129 cals" },
 { "_id" : 13, "recipe_name" : "Lemon Madeleines", "recipe_image" : "https://images.media-allrecipes.com/userphotos/560x315/3890788.jpg", "cuisine_name" : "French", "course_name" : "dessert", "ingredients" : [ "2 eggs", "1/2 cup white sugar", "5 tablespoons unsalted butter", "3/4 cup all-purpose flour", "1 teaspoon baking powder", "1/4 teaspoon vanilla extract", "1/2 lemon, juiced and zested", "1/3 cup confectioners' sugar for decoration" ], "cooking_direction" : [ "In a large bowl blend eggs and sugar add butter and blend well. On low speed, blend in flour, baking powder, lemon, vanilla.", "Cover bowl with towel and let sit for one hour.", "Preheat oven to 375 degrees F (190 degrees C) and butter and flour madeleine molds. Whisk batter then spoon into molds 3/4 full. Bake 10 minutes. Remove from molds and cool. Dust with confectioners' sugar." ], "allergen_name" : "egg", "author_name" : "Kevin Ashley", "preparation_time" : "20 min", "cooking_time" : "40 min", "likes" : "0", "servings" : "12", "calories" : "129 cals" },
-{ "_id" : 14, "recipe_name" : "Lemon Madeleines", "recipe_image" : "https://images.media-allrecipes.com/userphotos/560x315/3890788.jpg", "cuisine_name" : "French", "course_name" : "dessert", "ingredients" : [ "2 eggs", "1/2 cup white sugar", "5 tablespoons unsalted butter", "3/4 cup all-purpose flour", "1 teaspoon baking powder", "1/4 teaspoon vanilla extract", "1/2 lemon, juiced and zested", "1/3 cup confectioners' sugar for decoration" ], "cooking_direction" : [ "In a large bowl blend eggs and sugar add butter and blend well. On low speed, blend in flour, baking powder, lemon, vanilla.", "Cover bowl with towel and let sit for one hour.", "Preheat oven to 375 degrees F (190 degrees C) and butter and flour madeleine molds. Whisk batter then spoon into molds 3/4 full. Bake 10 minutes. Remove from molds and cool. Dust with confectioners' sugar." ], "allergen_name" : "egg", "author_name" : "Kevin Ashley", "preparation_time" : "20 min", "cooking_time" : "40 min", "likes" : "0", "servings" : "12", "calories" : "129 cals" },
+{ "_id" : 14, "recipe_name" : "Lemon Madeleines", "recipe_image" : "https://images.media-allrecipes.com/userphotos/560x315/3890788.jpg", "cuisine_name" : "French", "course_name" : "dessert", "ingredients" : [ "2 egg", "1/2 cup white sugar", "5 tablespoons unsalted butter", "3/4 cup all-purpose flour", "1 teaspoon baking powder", "1/4 teaspoon vanilla extract", "1/2 lemon, juiced and zested", "1/3 cup confectioners' sugar for decoration" ], "cooking_direction" : [ "In a large bowl blend eggs and sugar add butter and blend well. On low speed, blend in flour, baking powder, lemon, vanilla.", "Cover bowl with towel and let sit for one hour.", "Preheat oven to 375 degrees F (190 degrees C) and butter and flour madeleine molds. Whisk batter then spoon into molds 3/4 full. Bake 10 minutes. Remove from molds and cool. Dust with confectioners' sugar." ], "allergen_name" : "egg", "author_name" : "Kevin Ashley", "preparation_time" : "20 min", "cooking_time" : "40 min", "likes" : "0", "servings" : "12", "calories" : "129 cals" },
 { "_id" : 15, "recipe_name" : "Lemon Madeleines", "recipe_image" : "https://images.media-allrecipes.com/userphotos/560x315/3890788.jpg", "cuisine_name" : "French", "course_name" : "dessert", "ingredients" : [ "2 eggs", "1/2 cup white sugar", "5 tablespoons unsalted butter", "3/4 cup all-purpose flour", "1 teaspoon baking powder", "1/4 teaspoon vanilla extract", "1/2 lemon, juiced and zested", "1/3 cup confectioners' sugar for decoration" ], "cooking_direction" : [ "In a large bowl blend eggs and sugar add butter and blend well. On low speed, blend in flour, baking powder, lemon, vanilla.", "Cover bowl with towel and let sit for one hour.", "Preheat oven to 375 degrees F (190 degrees C) and butter and flour madeleine molds. Whisk batter then spoon into molds 3/4 full. Bake 10 minutes. Remove from molds and cool. Dust with confectioners' sugar." ], "allergen_name" : "egg", "author_name" : "Kevin Ashley", "preparation_time" : "20 min", "cooking_time" : "40 min", "likes" : "0", "servings" : "12", "calories" : "129 cals" },
 { "_id" : 16, "recipe_name" : "Lemon Madeleines", "recipe_image" : "https://images.media-allrecipes.com/userphotos/560x315/3890788.jpg", "cuisine_name" : "French", "course_name" : "dessert", "ingredients" : [ "2 eggs", "1/2 cup white sugar", "5 tablespoons unsalted butter", "3/4 cup all-purpose flour", "1 teaspoon baking powder", "1/4 teaspoon vanilla extract", "1/2 lemon, juiced and zested", "1/3 cup confectioners' sugar for decoration" ], "cooking_direction" : [ "In a large bowl blend eggs and sugar add butter and blend well. On low speed, blend in flour, baking powder, lemon, vanilla.", "Cover bowl with towel and let sit for one hour.", "Preheat oven to 375 degrees F (190 degrees C) and butter and flour madeleine molds. Whisk batter then spoon into molds 3/4 full. Bake 10 minutes. Remove from molds and cool. Dust with confectioners' sugar." ], "allergen_name" : "egg", "author_name" : "Kevin Ashley", "preparation_time" : "20 min", "cooking_time" : "40 min", "likes" : "0", "servings" : "12", "calories" : "129 cals" },
 { "_id" : 17, "recipe_name" : "Lemon Madeleines", "recipe_image" : "https://images.media-allrecipes.com/userphotos/560x315/3890788.jpg", "cuisine_name" : "French", "course_name" : "dessert", "ingredients" : [ "2 eggs", "1/2 cup white sugar", "5 tablespoons unsalted butter", "3/4 cup all-purpose flour", "1 teaspoon baking powder", "1/4 teaspoon vanilla extract", "1/2 lemon, juiced and zested", "1/3 cup confectioners' sugar for decoration" ], "cooking_direction" : [ "In a large bowl blend eggs and sugar add butter and blend well. On low speed, blend in flour, baking powder, lemon, vanilla.", "Cover bowl with towel and let sit for one hour.", "Preheat oven to 375 degrees F (190 degrees C) and butter and flour madeleine molds. Whisk batter then spoon into molds 3/4 full. Bake 10 minutes. Remove from molds and cool. Dust with confectioners' sugar." ], "allergen_name" : "egg", "author_name" : "Kevin Ashley", "preparation_time" : "20 min", "cooking_time" : "40 min", "likes" : "0", "servings" : "12", "calories" : "129 cals" },
@@ -23,54 +23,77 @@ recipes = [{ "_id" : 1, "recipe_name" : "Rich and Simple French Onion Soup", "re
 """ Find ingredients by cuisine
     (Demo is provided below) """
 
-ct = 0
-for i in recipes:
-    if i["cuisine_name"] == "French":  # Change the name of the cuisine to look for other cuisines
-        for k in i["ingredients"]:
-            if "eggs" in k:   #Change the name of the ingredient to search for another ingredient
-                ct += 1
-print(ct)
-
-
-count_water = 0
-for i in recipes:
-    if i["cuisine_name"] == "French":
-        for k in i["ingredients"]:
-            if "water" in k:
-                ct += 1
-print(count_water)
-
-count_milk = 0
-for i in recipes:
-    if i["cuisine_name"] == "French":
-        for k in i["ingredients"]:
-            if "milk" in k:
-                ct += 1
-print(count_milk)
-
-count_flour = 0
-for i in recipes:
-    if i["cuisine_name"] == "French":
-        for k in i["ingredients"]:
-            if "flour" in k:
-                ct += 1
-print(count_flour)
-
 count_sugar = 0
-for i in recipes:
-    if i["cuisine_name"] == "French":
-        for k in i["ingredients"]:
-            if "sugar" in k:
-                ct += 1
-print(count_sugar)
+items = []
+removedDuplicates = []
+def mergeIngredients():
+    count_sugar = 0
+    for i in recipes:
+        if i["cuisine_name"] == "French":  # Change the name of the cuisine to look for other cuisines
+            for k in i["ingredients"]:
+                itemSplit = k.split(",")
+                itemSplitAtSpace = itemSplit[0].split(" ")
+                items.append(itemSplitAtSpace)
+            mergedItems = []
+            for item in items:
+                mergedItems += item
+            # print(mergedItems)
+            for mergedItem in mergedItems:
+                if mergedItem not in removedDuplicates:
+                    removedDuplicates.append(mergedItem)
+            print(removedDuplicates)
+            if "sugar" in removedDuplicates:  #Change the name of the ingredient to search for another ingredient
+                count_sugar += 1
+            print(count_sugar)
+                
+mergeIngredients()
 
-count_salt = 0
-for i in recipes:
-    if i["cuisine_name"] == "French":
-        for k in i["ingredients"]:
-            if "salt" in k:
-                ct += 1
-print(count_salt)
+
+
+#             if "sugar" in k and i["ingredients"].count("sugar"):   #Change the name of the ingredient to search for another ingredient
+#                 count_sugar += 1
+# print(count_sugar)
+
+
+# count_water = 0
+# for i in recipes:
+#     if i["cuisine_name"] == "French":
+#         for k in i["ingredients"]:
+#             if "water" in k:
+#                 count_water += 1
+# print(count_water)
+
+# count_milk = 0
+# for i in recipes:
+#     if i["cuisine_name"] == "French":
+#         for k in i["ingredients"]:
+#             if "milk" in k:
+#                 count_milk += 1
+# print(count_milk)
+
+# count_flour = 0
+# for i in recipes:
+#     if i["cuisine_name"] == "French":
+#         for k in i["ingredients"]:
+#             if "flour" in k:
+#                 count_flour += 1
+# print(count_flour)
+
+# count_sugar = 0
+# for i in recipes:
+#     if i["cuisine_name"] == "French":
+#         for k in i["ingredients"]:
+#             if "sugar" in k:
+#                 count_sugar += 1
+# print(count_sugar)
+
+# count_salt = 0
+# for i in recipes:
+#     if i["cuisine_name"] == "French":
+#         for k in i["ingredients"]:
+#             if "salt" in k:
+#                 count_salt += 1
+# print(count_salt)
 
 
     
