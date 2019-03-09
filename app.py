@@ -141,7 +141,10 @@ def dashboard():
 def charts():
     dot_chart = pygal.Dot(x_label_rotation=30)
     dot_chart.title = 'Recipe Ingredients Statistics by Cuisine'
+    dot_chart.x_title = 'Ingredients'
+    dot_chart.y_title = 'Cuisines'
     dot_chart.x_labels = ['milk', 'egg', 'sugar', 'flour', 'salt', 'water', 'garlic', 'vanilla', 'butter']
+    dot_chart.y_labels = ['12000', '6000', '6000', '6000', '12000', '9000', '6000']
     dot_chart.add('French', [3000, 6000, 6000, 6000, 6000, 0, 0, 6000, 9000])
     dot_chart.add('Mexican', [0, 0, 0, 3000, 3000, 0, 0, 0, 0, 0])
     dot_chart.add('Greek', [0, 3000, 0, 0, 6000, 0, 6000, 0, 0])
