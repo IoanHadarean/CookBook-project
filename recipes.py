@@ -8,7 +8,7 @@ recipes = [{ "_id" : "5c7ad2bffb6fc072012c83cc", "id" : "1", "recipe_name" : "Ri
 { "_id" : "5c7b94b7fb6fc072012cbee3", "id" : "8", "recipe_name" : "Main Dish Macaroni Salad", "recipe_image" : "https://images.media-allrecipes.com/userphotos/250x250/126834.jpg", "cuisine_name" : "Italian", "course_name" : "main dish", "ingredients" : [ "1 cup mayonnaise", "1/4 cup grated Parmesan cheese", "1/4 cup chopped parsley", "2 tablespoons milk", "1 clove garlic, minced", "2 cups corkscrew pasta", "1 1/2 cups diced ham", "2 cups halved cherry tomatoes" ], "cooking_directions" : [ "Cook pasta in a large pot of boiling water until al dente. Drain, rinse, and drain once more. Set aside.", "In a large bowl, combine mayonnaise, grated cheese, parsley, milk, and garlic. Mix well. Stir in pasta, ham, and tomatoes. Chill several hours." ], "allergen_name" : "milk and garlic", "author_name" : "Jill M.", "preparation_time" : "15 min", "cooking_time" : "10 min", "views" : "2894", "servings" : "7", "calories" : "342 cals" },
 { "_id" : "5c7b94c0fb6fc072012cbee4", "id" : "9", "recipe_name" : "Asian Mushroom Soup", "recipe_image" : "https://images.media-allrecipes.com/userphotos/560x315/4296.jpg", "cuisine_name" : "Asian", "course_name" : "soup", "ingredients" : [ "4 cups fat-free, reduced-sodium chicken broth", "3 tablespoons reduced-sodium soy sauce", "2 teaspoons grated fresh ginger", "3 garlic cloves, crushed", "3 cups assorted mushrooms, sliced", "3 cups white cabbage, cut in wedges", "1 cup thinly sliced carrots", "2 cups chicken breast, shredded", "2 cups fresh udon noodles", "1 cup thinly sliced green onions, with some of the green tops", "2 cups shredded raw spinach or whole baby spinach leaves", "freshly ground black pepper to taste" ], "cooking_directions" : [ "In a large pot, combine broth, soy sauce, ginger, garlic, mushrooms, cabbage, carrots and chicken. Cover. Bring to a boil; simmer until mushrooms are soft, about 5 minutes. Stir in noodles, green onions and spinach; simmer until greens are wilted, about 2 minutes. Season." ], "allergen_name" : "garlic", "author_name" : "Jean", "preparation_time" : "25 min", "cooking_time" : "45 min", "views" : "3004", "servings" : "6", "calories" : "192 cals" },
 { "_id" : "5c7b94cafb6fc072012cbeec", "id" : "10", "recipe_name" : "Greek Artichoke Appetizer", "recipe_image" : "https://images.media-allrecipes.com/userphotos/250x250/855793.jpg", "cuisine_name" : "Greek", "course_name" : "appetizer", "ingredients" : [ "2 (6 ounce) jars marinated artichoke hearts, divided", "1 small onion, finely chopped", "1 1/2 cloves garlic, minced", "4 large eggs, beaten", "1/4 cup dry bread crumbs", "1/4 teaspoon salt", "1/8 teaspoon ground black pepper", "1/4 teaspoon dried oregano", "1/2 teaspoon hot pepper sauce", "3/4 pound sharp Cheddar cheese, shredded", "2 tablespoons minced fresh parsley", "1 teaspoon grated Parmesan cheese" ], "cooking_directions" : [ "Preheat oven to 325 degrees F (165 degrees C).", "Grease a 10x7x2-inch baking dish.", "Drain marinade from one jar of artichoke hearts into a skillet.", "Pour artichoke hearts from drained jar and the entire second jar (marinade and artichoke hearts) into a food processor. Blend until artichoke hearts are coarsely chopped and set aside.", "Cook and stir onion and garlic in the skillet with marinade over medium-low heat until onions are light brown, 5 to 7 minutes. Remove from heat and transfer to a large bowl.", "Stir onion mixture, eggs, bread crumbs, salt, black pepper, oregano, and hot pepper sauce together until well mixed.", "Stir sharp Cheddar cheese, parsley, Parmesan cheese, and chopped artichoke heart mixture into the onion mixture. Pour mixture into prepared baking dish.", "Bake in preheated oven until top is golden, 25 to 30 minutes. Cut into 1-inch squares and serve warm or cold." ], "allergen_name" : "egg and garlic", "author_name" : "Bret Gentry", "preparation_time" : "30 min", "cooking_time" : "30 min", "views" : "5389", "servings" : "36", "calories" : "59 cals" },
-{ "_id" : "5c7b94d4fb6fc072012cbeed", "id" : "11", "recipe_name" : "Irish Cocktail Cupcakes", "recipe_image" : "https://images.media-allrecipes.com/userphotos/560x315/6382465.jpg", "cuisine_name" : "Irish", "course_name" : "dessert", "ingredients" : [ "1 cup Irish stout beer", "9 tablespoons unsalted butter, cut into 1-inch pieces", "2 cups dark brown sugar", "3/4 cup unsweetened cocoa powder", "3/4 cup sour cream", "2 eggs1 tablespoon vanilla extract", "2 cups all-purpose flour", "2 1/2 teaspoons baking soda", "1 stick unsalted butter, at room temperature", "2 tablespoons Irish cream liqueur, or more to taste", "2 teaspoons Irish whiskey, or to taste", "3 cups confectioners' sugar" ], "cooking_directions" : [ "Preheat the oven to 350 degrees F (175 degrees C). Line a muffin tin with paper liners.", "Combine stout beer and butter in a large saucepan over low heat. Heat until butter melts, about 5 minutes. Remove from heat and whisk in brown sugar and cocoa.", "Whisk sour cream, eggs, and vanilla extract in a bowl; pour into the saucepan and mix until a smooth batter forms.", "Stir flour and baking soda together. Fold into the batter. Divide batter evenly among the prepared muffin cups.", "Bake in the preheated oven until a toothpick inserted into the center comes out clean, about 25 minutes. Leave in the tin for 10 minutes, then transfer to a wire rack to cool completely.", "Make frosting while the cupcakes cool. Place butter in a large mixing bowl and beat with an electric mixer on medium-high speed for 2 to 3 minutes. Mix in Irish cream and whiskey on low speed. Gradually spoon in confectioners' sugar, mixing on low speed until frosting is smooth and creamy.", "Spread frosting over cupcakes." ], "allergen_name" : "egg", "author_name" : "Inskydiamonds", "preparation_time" : "15 min", "cooking_time" : "30 min", "views" : "643", "servings" : "18", "calories" : "370 cals" },
+{ "_id" : "5c7b94d4fb6fc072012cbeed", "id" : "11", "recipe_name" : "Irish Cocktail Cupcakes", "recipe_image" : "https://images.media-allrecipes.com/userphotos/560x315/6382465.jpg", "cuisine_name" : "Irish", "course_name" : "dessert", "ingredients" : [ "1 cup Irish stout beer", "9 tablespoons unsalted butter, cut into 1-inch pieces", "2 cups dark brown sugar", "3/4 cup unsweetened cocoa powder", "3/4 cup sour cream", "2 eggs", "1 tablespoon vanilla extract", "2 cups all-purpose flour", "2 1/2 teaspoons baking soda", "1 stick unsalted butter, at room temperature", "2 tablespoons Irish cream liqueur, or more to taste", "2 teaspoons Irish whiskey, or to taste", "3 cups confectioners' sugar" ], "cooking_directions" : [ "Preheat the oven to 350 degrees F (175 degrees C). Line a muffin tin with paper liners.", "Combine stout beer and butter in a large saucepan over low heat. Heat until butter melts, about 5 minutes. Remove from heat and whisk in brown sugar and cocoa.", "Whisk sour cream, eggs, and vanilla extract in a bowl; pour into the saucepan and mix until a smooth batter forms.", "Stir flour and baking soda together. Fold into the batter. Divide batter evenly among the prepared muffin cups.", "Bake in the preheated oven until a toothpick inserted into the center comes out clean, about 25 minutes. Leave in the tin for 10 minutes, then transfer to a wire rack to cool completely.", "Make frosting while the cupcakes cool. Place butter in a large mixing bowl and beat with an electric mixer on medium-high speed for 2 to 3 minutes. Mix in Irish cream and whiskey on low speed. Gradually spoon in confectioners' sugar, mixing on low speed until frosting is smooth and creamy.", "Spread frosting over cupcakes." ], "allergen_name" : "egg", "author_name" : "Inskydiamonds", "preparation_time" : "15 min", "cooking_time" : "30 min", "views" : "643", "servings" : "18", "calories" : "370 cals" },
 { "_id" : "5c7b94defb6fc072012cbeef", "id" : "12", "recipe_name" : "Curry Stand Chicken Tikka Masala Sauce", "recipe_image" : "https://images.media-allrecipes.com/userphotos/560x315/5504832.jpg", "cuisine_name" : "Indian", "course_name" : "main dish", "ingredients" : [ "2 tablespoons ghee (clarified butter)", "1 onion, finely chopped", "4 cloves garlic, minced", "1 tablespoon ground cumin", "1 teaspoon salt", "1 teaspoon ground ginger", "1 teaspoon cayenne pepper", "1/2 teaspoon ground cinnamon", "1/4 teaspoon ground turmeric", "1 (14 ounce) can tomato sauce", "1 cup heavy whipping cream", "2 teaspoons paprika", "1 tablespoon white sugar", "1 tablespoon vegetable oil", "4 skinless, boneless chicken breast halves, cut into bite-size pieces", "1/2 teaspoon curry powder" ], "cooking_directions" : [ "Heat ghee in a large skillet over medium heat and cook and stir onion until translucent, about 5 minutes. Stir in garlic; cook and stir just until fragrant, about 1 minute. Stir cumin, 1 teaspoon salt, ginger, cayenne pepper, cinnamon, and turmeric into the onion mixture; fry until fragrant, about 2 minutes.", "Stir tomato sauce into the onion and spice mixture, bring to a boil, and reduce heat to low. Simmer sauce for 10 minutes, then mix in cream, paprika, and 1 tablespoon sugar. Bring sauce back to a simmer and cook, stirring often, until sauce is thickened, 10 to 15 minutes.", "Heat vegetable oil in a separate skillet over medium heat. Stir chicken into the hot oil, sprinkle with curry powder, and sear chicken until lightly browned but still pink inside, about 3 minutes; stir often. Transfer chicken and any pan juices into the sauce. Simmer chicken in sauce until no longer pink, about 30 minutes; adjust salt and sugar to taste." ], "allergen_name" : "garlic", "author_name" : "Chris Bellers", "preparation_time" : "15 min", "cooking_time" : "1h 5 min", "views" : "14178", "servings" : "6", "calories" : "328 cals" },
 { "_id" : "5c7b94e8fb6fc072012cbef3", "id" : "13", "recipe_name" : "Quick Fish Tacos", "recipe_image" : "https://images.media-allrecipes.com/userphotos/560x315/1017268.jpg", "cuisine_name" : "Mexican", "course_name" : "dinner", "ingredients" : [ "1/4 cup reduced-fat sour cream", "2 tablespoons lime juicesalt and ground black pepper to taste", "1 jalapeno pepper, halved lengthwise", "2 1/2 cups shredded red cabbage", "4 green onions, thinly sliced", "2 tablespoons olive oil1 pound tilapia fillets, cut into strips", "8 (6 inch) flour tortillas", "1/2 cup chopped fresh cilantro" ], "cooking_directions" : [ "Mix sour cream and lime juice together in a large bowl; season with salt and black pepper. Reserve about half the mixture in another bowl for serving. Mince half the jalapeno pepper; save other half for later. Toss cabbage, green onions, and minced jalapeno half in remaining sour cream mixture until slaw is well mixed.", "Heat olive oil and remaining jalapeno half in a large skillet over medium heat; swirl oil to coat skillet evenly. Season tilapia fillets with salt and pepper. Pan-fry fish strips in the skillet in 2 batches until fish is golden brown and easily flaked with a fork, 5 to 6 minutes. Discard jalapeno half.", "Heat tortillas in the microwave on high until warm, 20 to 30 seconds.", "Serve fish in warmed tortillas topped with cabbage slaw, reserved sour cream mixture, and cilantro." ], "author_name" : "Huge", "preparation_time" : "20 min", "cooking_time" : "15 min", "views" : "3276", "servings" : "4", "calories" : "416 cals" },
 { "_id" : "5c7b94f2fb6fc072012cbef7", "id" : "14", "recipe_name" : "Indian Relish", "recipe_image" : "https://images.media-allrecipes.com/userphotos/250x250/86389.jpg", "cuisine_name" : "Indian", "course_name" : "dessert", "ingredients" : [ "2 red bell peppers, chopped", "1 sweet onion, peeled and chopped", "1 cup white wine vinegar", "1 cup white sugar", "1 tablespoon crushed red pepper flakes" ], "cooking_directions" : [ "In a medium saucepan over medium heat, mix together red bell peppers, onion, white wine vinegar, sugar and crushed red pepper flakes. Bring to a boil, then reduce heat to simmer. Stirring occasionally, cook 30 minutes, or until thickened. Refrigerate 4 hours or overnight before serving." ], "author_name" : "Cyndylee65", "preparation_time" : "5 min", "cooking_time" : "30 min", "views" : "473", "servings" : "24", "calories" : "38 cals" },
@@ -28,10 +28,26 @@ recipes = [{ "_id" : "5c7ad2bffb6fc072012c83cc", "id" : "1", "recipe_name" : "Ri
     (Demo is provided below) """
 
 count_sugar = 0 #Change the name of this variable in case you want to look for another ingredient
+count_milk = 0
+count_egg = 0
+count_flour = 0
+count_salt = 0
+count_water = 0
+count_garlic = 0
+count_vanilla = 0
+count_butter = 0
 def mergeIngredients():
     count_sugar = 0
+    count_milk = 0
+    count_egg = 0
+    count_flour = 0
+    count_salt = 0
+    count_water = 0
+    count_garlic = 0
+    count_vanilla = 0
+    count_butter = 0
     for i in recipes:
-        if i["cuisine_name"] == "French":  # Change the name of the cuisine to look for other cuisines
+        if i["cuisine_name"] == "English":  # Change the name of the cuisine to look for other cuisines
             items = []
             for k in i["ingredients"]:
                 itemSplit = k.split(",")
@@ -48,18 +64,58 @@ def mergeIngredients():
             # print(mergedItems)
             print(removedDuplicates)
             """Change the name of the ingredient to search for another ingredient"""
-            if "butter" in removedDuplicates: # if the ingredient is egg change it to -----if ("egg" in removedDuplicates) | ("eggs" in removedDuplicates)----
+            if "milk" in removedDuplicates: # if the ingredient is egg change it to -----if ("egg" in removedDuplicates) | ("eggs" in removedDuplicates)----
+                count_milk += 1
+            else:
+                count_milk += 0
+            print(count_milk)
+            if ("egg" in removedDuplicates) | ("eggs" in removedDuplicates):
+                count_egg += 1
+            else:
+                count_egg += 0
+            print(count_egg)
+            if "sugar" in removedDuplicates:
                 count_sugar += 1
             else:
                 count_sugar += 0
             print(count_sugar)
+            if "flour" in removedDuplicates:
+                count_flour += 1
+            else:
+                count_flour += 0
+            print(count_flour)
+            if "salt" in removedDuplicates:
+                count_salt += 1
+            else:
+                count_salt += 0
+            print(count_salt)
+            if "water" in removedDuplicates:
+                count_water += 1
+            else:
+                count_water += 0
+            print(count_water)
+            if "garlic" in removedDuplicates:
+                count_garlic += 1
+            else:
+                count_garlic += 0
+            print(count_garlic)
+            if "vanilla" in removedDuplicates:
+                count_vanilla += 1
+            else:
+                count_vanilla += 0
+            print(count_vanilla)
+            if "butter" in removedDuplicates:
+                count_butter += 1
+            else:
+                count_butter += 0
+            print(count_butter)
 mergeIngredients()
 
 # count_sugar = 0 #Change the name of this variable in case you want to look for another ingredient
 # def mergeIngredients():
 #     count_sugar = 0
 #     for i in recipes:
-#         if i["cuisine_name"] == "French":  # Change the name of the cuisine to look for other cuisines
+#         if i["cuisine_name"] == "Irish":  # Change the name of the cuisine to look for other cuisines
 #             items = []
 #             for k in i["ingredients"]:
 #                 itemSplit = k.split(",")

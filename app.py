@@ -134,7 +134,7 @@ def dashboard():
     
     
 """ Recipe ingredients statistics by cuisine
-    (Note: all values have been multiplied by 1000
+    (Note: all values have been multiplied by 3000
     to better reflect the statistics)"""
 @app.route('/statistics')
 @is_logged_in
@@ -143,10 +143,12 @@ def charts():
     dot_chart.title = 'Recipe Ingredients Statistics by Cuisine'
     dot_chart.x_labels = ['milk', 'egg', 'sugar', 'flour', 'salt', 'water', 'garlic', 'vanilla', 'butter']
     dot_chart.add('French', [1000, 2000, 2000, 2000, 2000, 0, 0, 2000, 3000])
-    dot_chart.add('Mexican', [7473, 8099, 11700, 2651, 6361, 1044, 3797, 9450])
-    dot_chart.add('Greek', [3472, 2933, 4203, 5229, 5810, 1828, 9013, 4669])
-    dot_chart.add('English', [43, 41, 59, 79, 144, 136, 34, 102])
-    dot_chart.add('Asian', [43, 41, 59, 79, 144, 136, 34, 102])
+    dot_chart.add('Mexican', [0, 0, 0, 3000, 3000, 0, 0, 0, 0, 0])
+    dot_chart.add('Greek', [0, 3000, 0, 0, 6000, 0, 6000, 0, 0])
+    dot_chart.add('English', [0, 3000, 59, 79, 144, 136, 34, 102])
+    dot_chart.add('Asian', [0, 3000, 59, 79, 144, 136, 34, 102])
+    dot_chart.add('Indian', [0, 0, 59, 79, 144, 136, 34, 102])
+    dot_chart.add('Irish', [0, 6000, 59, 79, 144, 136, 34, 102])
     dot_chart = dot_chart.render(is_unicode=True)
     
     return render_template('statistics.html', dot_chart=dot_chart)
