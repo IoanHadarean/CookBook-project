@@ -36,7 +36,7 @@ count_water = 0
 count_garlic = 0
 count_vanilla = 0
 count_butter = 0
-def mergeIngredients():
+def countIngredients():
     count_sugar = 0
     count_milk = 0
     count_egg = 0
@@ -46,11 +46,11 @@ def mergeIngredients():
     count_garlic = 0
     count_vanilla = 0
     count_butter = 0
-    for i in recipes:
-        if i["cuisine_name"] == "Irish":  # Change the name of the cuisine to look for other cuisines
+    for recipe in recipes:
+        if recipe["cuisine_name"] == "Irish":  # Change the name of the cuisine to look for other cuisines
             items = []
-            for k in i["ingredients"]:
-                itemSplit = k.split(",")
+            for ingredient in recipe["ingredients"]:
+                itemSplit = ingredient.split(",")
                 itemSplitAtSpace = itemSplit[0].split(" ")
                 items.append(itemSplitAtSpace)
             # print(items)
@@ -109,35 +109,20 @@ def mergeIngredients():
             else:
                 count_butter += 0
             print(count_butter)
-mergeIngredients()
+countIngredients()
 
-# count_sugar = 0 #Change the name of this variable in case you want to look for another ingredient
-# def mergeIngredients():
-#     count_sugar = 0
-#     for i in recipes:
-#         if i["cuisine_name"] == "Irish":  # Change the name of the cuisine to look for other cuisines
-#             items = []
-#             for k in i["ingredients"]:
-#                 itemSplit = k.split(",")
-#                 itemSplitAtSpace = itemSplit[0].split(" ")
-#                 items.append(itemSplitAtSpace)
-#             # print(items)
-#                 mergedItems = []
-#                 removedDuplicates = []
-#                 for item in items:
-#                     mergedItems += item
-#                     for mergedItem in mergedItems:
-#                         if mergedItem not in removedDuplicates:
-#                             removedDuplicates.append(mergedItem)
-#             # print(mergedItems)
-#             print(removedDuplicates)
-#             """Change the name of the ingredient to search for another ingredient"""
-#             if ("egg" in removedDuplicates) | ("eggs" in removedDuplicates): # if the ingredient is egg change it to -----if ("egg" in removedDuplicates) | ("eggs" in removedDuplicates)----
-#                 count_sugar += 1
-#             else:
-#                 count_sugar += 0
-#             print(count_sugar)
-# mergeIngredients()
+"""Count recipes by cuisine
+    (Demo is provided below)"""
+    
+# count_cuisines = 0  
+# def countCuisines():
+#     count_cuisines = 0
+#     for recipe in recipes:
+#         count_cuisines += 1
+#         print(count_cuisines)
+        
+# countCuisines()
+    
 
 
 

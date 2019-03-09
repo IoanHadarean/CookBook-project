@@ -139,6 +139,8 @@ def dashboard():
 @app.route('/statistics')
 @is_logged_in
 def charts():
+    """Recipe ingredients statistics by cuisine"""
+    
     dot_chart = pygal.Dot(x_label_rotation=30)
     dot_chart.title = 'Recipe Ingredients Statistics by Cuisine'
     dot_chart.x_title = 'Ingredients'
@@ -154,7 +156,19 @@ def charts():
     dot_chart.add('Irish', [0, 6000, 6000, 6000, 0, 0, 0, 3000, 6000])
     dot_chart = dot_chart.render(is_unicode=True)
     
-    return render_template('statistics.html', dot_chart=dot_chart)
+    """Recipes by cuisine"""
+    
+    pie_chart = pygal.Pie()
+    pie_chart.title = 'Browser usage in February 2012 (in %)'
+    pie_chart.add('IE', 19.5)
+    pie_chart.add('Firefox', 36.6)
+    pie_chart.add('Chrome', 36.3)
+    pie_chart.add('Safari', 4.5)
+    pie_chart.add('Opera', 2.3)
+    pie_chart = pie_chart.render(is_unicode=True)
+    
+    return render_template('statistics.html', dot_chart=dot_chart, pie_chart=pie_chart)
+    
   
 """ Main function for running the app """      
 
