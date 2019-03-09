@@ -47,7 +47,7 @@ def mergeIngredients():
     count_vanilla = 0
     count_butter = 0
     for i in recipes:
-        if i["cuisine_name"] == "English":  # Change the name of the cuisine to look for other cuisines
+        if i["cuisine_name"] == "Irish":  # Change the name of the cuisine to look for other cuisines
             items = []
             for k in i["ingredients"]:
                 itemSplit = k.split(",")
