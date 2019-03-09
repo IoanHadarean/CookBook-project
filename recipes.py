@@ -27,7 +27,7 @@ recipes = [{ "_id" : "5c7ad2bffb6fc072012c83cc", "id" : "1", "recipe_name" : "Ri
 """ Find ingredients by cuisine
     (Demo is provided below) """
 
-count_sugar = 0
+count_sugar = 0 #Change the name of this variable in case you want to look for a different ingredient
 items = []
 removedDuplicates = []
 def mergeIngredients():
@@ -45,10 +45,10 @@ def mergeIngredients():
             for mergedItem in mergedItems:
                 if mergedItem not in removedDuplicates:
                     removedDuplicates.append(mergedItem)
-            print(removedDuplicates)
-            if "egg" in removedDuplicates:  #Change the name of the ingredient to search for another ingredient
-                count_sugar += 1
-            print(count_sugar)
+            # print(removedDuplicates)
+    if "milk" in removedDuplicates:  #Change the name of the ingredient to search for another ingredient
+        count_sugar += 1
+    print(count_sugar)
                 
 mergeIngredients()
 

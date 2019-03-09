@@ -133,7 +133,9 @@ def dashboard():
     return render_template('dashboard.html')
     
     
-""" Recipe statistics """
+""" Recipe ingredients statistics by cuisine
+    (Note: all values have been multiplied by 1000
+    to better reflect the statistics)"""
 @app.route('/statistics')
 @is_logged_in
 def charts():
