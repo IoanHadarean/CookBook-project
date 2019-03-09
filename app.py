@@ -139,11 +139,11 @@ def dashboard():
 def charts():
     dot_chart = pygal.Dot(x_label_rotation=30)
     dot_chart.title = 'Recipe Ingredients Statistics by Cuisine'
-    dot_chart.x_labels = ['milk', 'egg', 'sugar', 'flour', 'salt', 'water']
+    dot_chart.x_labels = ['milk', 'egg', 'sugar', 'flour', 'salt', 'water', 'garlic', 'vanilla']
     dot_chart.add('French', [6395, 8212, 7520, 7218, 12464, 1660, 2123, 8607])
     dot_chart.add('Mexican', [7473, 8099, 11700, 2651, 6361, 1044, 3797, 9450])
     dot_chart.add('Greek', [3472, 2933, 4203, 5229, 5810, 1828, 9013, 4669])
-    dot_chart.add('Engish', [43, 41, 59, 79, 144, 136, 34, 102])
+    dot_chart.add('English', [43, 41, 59, 79, 144, 136, 34, 102])
     dot_chart.add('Asian', [43, 41, 59, 79, 144, 136, 34, 102])
     dot_chart = dot_chart.render(is_unicode=True)
     
