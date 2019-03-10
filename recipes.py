@@ -24,9 +24,7 @@ recipes = [{ "_id" : "5c7ad2bffb6fc072012c83cc", "id" : "1", "recipe_name" : "Ri
 { "_id" : "5c7b954afb6fc072012cbf04", "id" : "22", "recipe_name" : "Cider-Braised Pork Shoulder", "recipe_image" : "https://images.media-allrecipes.com/userphotos/560x315/4565575.jpg", "cuisine_name" : "English", "course_name" : "main dish", "ingredients" : [ "1 (3 pound) pork shoulder roast, cut into 3- or 4-inch chunks", "Kosher salt to generously season pork", "1 tablespoon vegetable oil", "1 large onion, chopped", "1 teaspoon salt, plus more to taste", "1/2 teaspoon freshly ground black pepper", "1/4 cup fresh sage leaves, torn", "1 (750 milliliter) bottle hard apple cider", "1/3 cup apple cider vinegar", "1/2 cup creme fraiche or heavy cream", "1 pinch cayenne pepper", "Creme fraiche for garnish", "Chopped fresh chives for garnish" ], "cooking_directions" : [ "Generously salt all sides of the pork shoulder chunks. Heat oil in a heavy pot over high heat. Brown pork shoulder pieces until surface is seared and crusty, about 3 or 4 minutes per side. Transfer browned pork to a plate. Add onions to oil and reduce heat to medium and season with a pinch of salt and pepper. Cook and stir about 2 minutes. Add torn sage leaves; cook until onions soften and begin to brown, stirring frequently. Pour cider into pot; stir to deglaze bottom. Raise heat to high and bring to a boil. Stir in cider vinegar. Reduce heat to low.", "Transfer pork shoulder pieces to cider mixture. Cover; simmer gently on low 1 hour. Remove lid and turn pieces over. Cover; simmer on low until meat is fork tender, 1 to 2 more hours. Transfer pork to a bowl with a slotted spoon.", "Raise heat to high and bring sauce to a simmer. Whisk in creme fraiche. Simmer until liquid is reduced by half and is slightly thickened, 8 to 10 minutes. Stir in a pinch of cayenne. Transfer pork back to pot; reduce heat to low. Baste pork with sauce while it heats through and becomes perfectly tender, and the sauce is as thick as you want it, about 15 more minutes." ], "author_name" : "Chef John", "preparation_time" : "10 min", "cooking_time" : "2h 15 min", "views" : "8490", "servings" : "4", "calories" : "696 cals" }]
 
 
-""" Find ingredients by cuisine
-    (Demo is provided below) """
-
+""" Find ingredients by cuisine """
 
 # def count_ingredients():
 #     count_sugar = 0
@@ -103,61 +101,81 @@ recipes = [{ "_id" : "5c7ad2bffb6fc072012c83cc", "id" : "1", "recipe_name" : "Ri
 #             print(count_butter)
 # count_ingredients()
 
-"""Count recipes by cuisine
-    (Demo is provided below)"""
+""" Percentage of allergens (from all recipes) """
     
-allergens = []
-def count_allergens():
-    count_recipes = 0
-    count_none = 0
-    count_egg_allergen = 0
-    count_garlic_allergen = 0
-    count_nuts_allergen = 0
-    count_milk_allergen = 0
-    for recipe in recipes:
-        count_recipes += 1
-        # print(count_recipes)
-        if recipe.get('allergen_name') == None:
-            count_none += 1
-            # print(count_none)
-        else:
-            allergens.append(recipe["allergen_name"])
-    # print(allergens)
-    mergedAllergens = []
-    for allergen in allergens:
-        allergenSplit = allergen.split(" ")
-        # print(allergenSplit)
-        mergedAllergens.append(allergenSplit)
-    # print(mergedAllergens)
-    splitAllergens = []
-    for item in mergedAllergens:
-        splitAllergens += item
-    print(splitAllergens)
-    for word in splitAllergens:
-        if word == "egg":
-            count_egg_allergen += 1
-            # print(count_egg_allergen)
-        elif word == "garlic":
-            count_garlic_allergen += 1
-            print(count_garlic_allergen)
-        elif word == "nuts":
-            count_nuts_allergen += 1
-            # print(count_nuts_allergen)
-        elif word == "milk":
-            count_milk_allergen += 1
-            # print(count_milk_allergen)
-    percent_egg = (count_egg_allergen / count_recipes) * 100
-    print(percent_egg)
-    percent_milk = (count_milk_allergen / count_recipes) * 100
-    print(percent_milk)
-    percent_nuts = (count_nuts_allergen / count_recipes) * 100
-    print(percent_nuts)
-    percent_garlic = (count_garlic_allergen / count_recipes) * 100
-    print(percent_garlic)
-    percent_no_allergens = (count_none / count_recipes) * 100
-    print(percent_no_allergens)
+# allergens = []
+# def percent_allergens():
+#     count_recipes = 0
+#     count_none = 0
+#     count_egg_allergen = 0
+#     count_garlic_allergen = 0
+#     count_nuts_allergen = 0
+#     count_milk_allergen = 0
+#     for recipe in recipes:
+#         count_recipes += 1
+#         # print(count_recipes)
+#         if recipe.get('allergen_name') == None:
+#             count_none += 1
+#             # print(count_none)
+#         else:
+#             allergens.append(recipe["allergen_name"])
+#     # print(allergens)
+#     mergedAllergens = []
+#     for allergen in allergens:
+#         allergenSplit = allergen.split(" ")
+#         # print(allergenSplit)
+#         mergedAllergens.append(allergenSplit)
+#     # print(mergedAllergens)
+#     splitAllergens = []
+#     for item in mergedAllergens:
+#         splitAllergens += item
+#     print(splitAllergens)
+#     for word in splitAllergens:
+#         if word == "egg":
+#             count_egg_allergen += 1
+#             # print(count_egg_allergen)
+#         elif word == "garlic":
+#             count_garlic_allergen += 1
+#             print(count_garlic_allergen)
+#         elif word == "nuts":
+#             count_nuts_allergen += 1
+#             # print(count_nuts_allergen)
+#         elif word == "milk":
+#             count_milk_allergen += 1
+#             # print(count_milk_allergen)
+#     percent_egg = (count_egg_allergen / count_recipes) * 100
+#     print(percent_egg)
+#     percent_milk = (count_milk_allergen / count_recipes) * 100
+#     print(percent_milk)
+#     percent_nuts = (count_nuts_allergen / count_recipes) * 100
+#     print(percent_nuts)
+#     percent_garlic = (count_garlic_allergen / count_recipes) * 100
+#     print(percent_garlic)
+#     percent_no_allergens = (count_none / count_recipes) * 100
+#     print(percent_no_allergens)
             
-count_allergens()
+# percent_allergens()
+
+
+""" Calories by recipe and cuisine statistics """
+
+
+def find_calories():
+    calories_total = 0
+    count_recipes_by_cuisine = 0
+    for recipe in recipes:
+        if recipe["cuisine_name"] == "French": #Change the name of cuisine to search for calories by another cuisine
+            count_recipes_by_cuisine += 1
+            wordSplit = recipe["calories"].split(" ")
+            # print(wordSplit)
+            calories = int(wordSplit[0])
+            calories_total += calories
+            # print(calories_total)
+            average_calories = calories_total / count_recipes_by_cuisine
+            print(average_calories)
+            
+find_calories()
+
 
 
     

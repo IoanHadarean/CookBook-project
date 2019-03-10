@@ -158,20 +158,36 @@ def charts():
     
     """ Recipe allergens statistics (in %) """
     
-    gauge_chart = pygal.SolidGauge(inner_radius=0.70)
-    gauge_chart.title = 'Recipe Allergens Statistics (in %)'
-    gauge_chart.y_title = 'Allergens'
+    solid_gauge_chart = pygal.SolidGauge(inner_radius=0.70)
+    solid_gauge_chart.title = 'Recipe Allergens Statistics (in %)'
+    solid_gauge_chart.y_title = 'Allergens'
     percent_formatter = lambda x: '{:.10g}%'.format(x)
-    gauge_chart.value_formatter = percent_formatter
+    solid_gauge_chart.value_formatter = percent_formatter
 
-    gauge_chart.add('Egg', [{'value': 37.5, 'max_value': 100}])
-    gauge_chart.add('Milk', [{'value': 8.33, 'max_value': 100}])
-    gauge_chart.add('Nuts', [{'value': 4.16, 'max_value': 100}])
-    gauge_chart.add('Garlic', [{'value': 41.66, 'max_value': 100}])
-    gauge_chart.add('No allergens', [{'value': 25, 'max_value': 100}])
+    solid_gauge_chart.add('Egg', [{'value': 37.5, 'max_value': 100}])
+    solid_gauge_chart.add('Milk', [{'value': 8.33, 'max_value': 100}])
+    solid_gauge_chart.add('Nuts', [{'value': 4.16, 'max_value': 100}])
+    solid_gauge_chart.add('Garlic', [{'value': 41.66, 'max_value': 100}])
+    solid_gauge_chart.add('No allergens', [{'value': 25, 'max_value': 100}])
+    solid_gauge_chart = solid_gauge_chart.render(is_unicode=True)
+    
+    """ Average calories by cuisine """
+    
+    gauge_chart = pygal.Gauge(human_readable=True)
+    gauge_chart.title = 'Average calories by cuisine'
+    gauge_chart.range = [0, 1000]
+    gauge_chart.add('French', 393.5)
+    gauge_chart.add('Mexican', 8099)
+    gauge_chart.add('Greek', 2933)
+    gauge_chart.add('English', 41)
+    gauge_chart.add('Asian', 41)
+    gauge_chart.add('Indian', 41)
+    gauge_chart.add('Irish', 41)
     gauge_chart = gauge_chart.render(is_unicode=True)
     
-    return render_template('statistics.html', dot_chart=dot_chart, gauge_chart=gauge_chart)
+    
+    return render_template('statistics.html', dot_chart=dot_chart, solid_gauge_chart=solid_gauge_chart, gauge_chart = gauge_chart)
+
     
   
 """ Main function for running the app """      

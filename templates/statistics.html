@@ -1,9 +1,12 @@
 {% extends 'base.html' %} {% block content %}
 <!-- Don't forget the "|safe"! -->
 <div id="dot_chart">
-    {{ dot_chart|safe }}>
+    {{ dot_chart|safe }}
+</div>
+<div id="solid_gauge_chart">
+    {{ solid_gauge_chart|safe }}
 </div>
 <div id="gauge_chart">
-    {{ gauge_chart|safe }}>
+    {{ gauge_chart|safe }}
 </div>
 {% endblock %}
