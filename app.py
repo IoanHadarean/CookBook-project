@@ -141,7 +141,8 @@ def dashboard():
 def charts():
     """ Recipe ingredients statistics by cuisine """
     
-    dot_chart = pygal.Dot(x_label_rotation=30)
+    dot_chart = pygal.Dot(x_label_rotation=30, style=pygal.style.styles['default'](value_font_size=30, title_font_size=30, 
+                         legend_font_size=30, tooltip_font_size=30, label_font_size=22))
     dot_chart.title = 'Recipe Ingredients Statistics by Cuisine'
     dot_chart.x_title = 'Ingredients'
     dot_chart.y_title = 'Recipes by cuisine (multiplied by 3000)'
@@ -158,7 +159,8 @@ def charts():
     
     """ Recipe allergens statistics (in %) """
     
-    solid_gauge_chart = pygal.SolidGauge(inner_radius=0.70)
+    solid_gauge_chart = pygal.SolidGauge(inner_radius=0.70, style=pygal.style.styles['default'](value_font_size=30, title_font_size=30,
+                                        legend_font_size=30, tooltip_font_size=30))
     solid_gauge_chart.title = 'Recipe Allergens Statistics (in %)'
     percent_formatter = lambda x: '{:.10g}%'.format(x)
     solid_gauge_chart.value_formatter = percent_formatter
@@ -172,8 +174,8 @@ def charts():
     
     """ Average calories by cuisine """
     
-    gauge_chart = pygal.Gauge(human_readable=True)
-    gauge_chart.title = 'Average calories by cuisine'
+    gauge_chart = pygal.Gauge(human_readable=True, style=pygal.style.styles['default'](value_font_size=30, title_font_size=30, 
+                                legend_font_size=30, tooltip_font_size=30, label_font_size=30))
     gauge_chart.range = [0, 1000]
     gauge_chart.add('French', 393.5)
     gauge_chart.add('Mexican', 296)

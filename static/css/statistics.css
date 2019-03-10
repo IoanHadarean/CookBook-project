@@ -1,44 +1,43 @@
  /* --------------------------Special paddings, margins and styling------------------------- */
 
  footer {
-     position: relative;
+  position: relative;
  }
 
  nav {
-     position: fixed;
-     width: 100%;
+  position: fixed;
+  width: 100%;
  }
 
  /* ----------------------------Charts-------------------------------*/
+ #dot_chart {
+  margin-top: 100px;
+ }
 
- #dot_chart,
+ #gauge_chart {
+  margin-bottom: 50px;
+ }
+
  #gauge_chart,
  #solid_gauge_chart {
-     margin-left: 5vw;
-     margin-right: 5vw;
+  margin-top: 25px;
  }
-
- #dot_chart {
-     margin-top: 100px;
- }
- 
- #gauge_chart {
-     margin-bottom: 50px;
- }
- 
- #gauge_chart,
-     #solid_gauge_chart {
-         margin-top: 25px;
-     }
 
  /* ----------------------------Media Queries-------------------------------*/
 
  @media (min-width: 768px) and (max-width: 2560px) {
-     #dot_chart,
-     #gauge_chart,
-     #solid_gauge_chart {
-         margin-left: 10vw;
-         margin-right: 10vw;
-     }
+  #dot_chart,
+  #gauge_chart,
+  #solid_gauge_chart {
+   margin-left: 10vw;
+   margin-right: 10vw;
+  }
+
+  #dot_chart,
+  #gauge_chart,
+  #solid_gauge_chart {
+   margin-left: 5vw;
+   margin-right: 5vw;
+  }
  }
  
