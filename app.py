@@ -139,7 +139,7 @@ def dashboard():
 @app.route('/statistics')
 @is_logged_in
 def charts():
-    """Recipe ingredients statistics by cuisine"""
+    """ Recipe ingredients statistics by cuisine """
     
     dot_chart = pygal.Dot(x_label_rotation=30)
     dot_chart.title = 'Recipe Ingredients Statistics by Cuisine'
@@ -156,17 +156,19 @@ def charts():
     dot_chart.add('Irish', [0, 6000, 6000, 6000, 0, 0, 0, 3000, 6000])
     dot_chart = dot_chart.render(is_unicode=True)
     
-    """Recipe allergens statistics by cuisine"""
+    """ Recipe allergens statistics (in %) """
     
     gauge_chart = pygal.SolidGauge(inner_radius=0.70)
+    gauge_chart.title = 'Recipe Allergens Statistics (in %)'
+    gauge_chart.y_title = 'Allergens'
     percent_formatter = lambda x: '{:.10g}%'.format(x)
     gauge_chart.value_formatter = percent_formatter
 
-    gauge_chart.add('Egg', [{'value': 9, 'max_value': 24}])
-    gauge_chart.add('Milk', [{'value': 2, 'max_value': 24}])
-    gauge_chart.add('Nuts', [{'value': 1, 'max_value': 24}])
-    gauge_chart.add('Garlic', [{'value': 10, 'max_value': 24}])
-    gauge_chart.add('No allergens', [{'value': 79, 'max_value': 100}])
+    gauge_chart.add('Egg', [{'value': 37.5, 'max_value': 100}])
+    gauge_chart.add('Milk', [{'value': 8.33, 'max_value': 100}])
+    gauge_chart.add('Nuts', [{'value': 4.16, 'max_value': 100}])
+    gauge_chart.add('Garlic', [{'value': 41.66, 'max_value': 100}])
+    gauge_chart.add('No allergens', [{'value': 25, 'max_value': 100}])
     gauge_chart = gauge_chart.render(is_unicode=True)
     
     return render_template('statistics.html', dot_chart=dot_chart, gauge_chart=gauge_chart)

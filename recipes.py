@@ -27,15 +27,7 @@ recipes = [{ "_id" : "5c7ad2bffb6fc072012c83cc", "id" : "1", "recipe_name" : "Ri
 """ Find ingredients by cuisine
     (Demo is provided below) """
 
-# count_sugar = 0 #Change the name of this variable in case you want to look for another ingredient
-# count_milk = 0
-# count_egg = 0
-# count_flour = 0
-# count_salt = 0
-# count_water = 0
-# count_garlic = 0
-# count_vanilla = 0
-# count_butter = 0
+
 # def count_ingredients():
 #     count_sugar = 0
 #     count_milk = 0
@@ -114,12 +106,6 @@ recipes = [{ "_id" : "5c7ad2bffb6fc072012c83cc", "id" : "1", "recipe_name" : "Ri
 """Count recipes by cuisine
     (Demo is provided below)"""
     
-count_recipes = 0
-count_none = 0
-count_egg_allergen = 0
-count_garlic_allergen = 0
-count_nuts_allergen = 0
-count_milk_allergen = 0
 allergens = []
 def count_allergens():
     count_recipes = 0
@@ -133,7 +119,7 @@ def count_allergens():
         # print(count_recipes)
         if recipe.get('allergen_name') == None:
             count_none += 1
-        # print(count_none)
+            # print(count_none)
         else:
             allergens.append(recipe["allergen_name"])
     # print(allergens)
@@ -153,15 +139,27 @@ def count_allergens():
             # print(count_egg_allergen)
         elif word == "garlic":
             count_garlic_allergen += 1
-            # print(count_garlic_allergen)
+            print(count_garlic_allergen)
         elif word == "nuts":
             count_nuts_allergen += 1
-            print(count_nuts_allergen)
+            # print(count_nuts_allergen)
         elif word == "milk":
             count_milk_allergen += 1
             # print(count_milk_allergen)
+    percent_egg = (count_egg_allergen / count_recipes) * 100
+    print(percent_egg)
+    percent_milk = (count_milk_allergen / count_recipes) * 100
+    print(percent_milk)
+    percent_nuts = (count_nuts_allergen / count_recipes) * 100
+    print(percent_nuts)
+    percent_garlic = (count_garlic_allergen / count_recipes) * 100
+    print(percent_garlic)
+    percent_no_allergens = (count_none / count_recipes) * 100
+    print(percent_no_allergens)
             
 count_allergens()
+
+
     
 
 
