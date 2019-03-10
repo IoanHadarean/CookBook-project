@@ -1,12 +1,15 @@
 {% extends 'base.html' %} {% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename = 'css/statistics.css') }}" type="text/css" />
 <!-- Don't forget the "|safe"! -->
-<div id="dot_chart">
-    {{ dot_chart|safe }}
-</div>
-<div id="solid_gauge_chart">
-    {{ solid_gauge_chart|safe }}
-</div>
-<div id="gauge_chart">
-    {{ gauge_chart|safe }}
+<div class="container_fluid">
+    <div id="dot_chart">
+        {{ dot_chart|safe }}
+    </div>
+    <div id="solid_gauge_chart">
+        {{ solid_gauge_chart|safe }}
+    </div>
+    <div id="gauge_chart">
+        {{ gauge_chart|safe }}
+    </div>
 </div>
 {% endblock %}

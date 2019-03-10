@@ -11,15 +11,15 @@
 </head>
 
 <body>
-    {% include 'includes/_navbar.html' %}
     <div class="container-fluid">
-        {% block content %}{% endblock %}
+        {% include 'includes/_navbar.html' %} {% block content %}{% endblock %}
         <footer>
             <div class="footer">
                 <div class="footer__span">©Ioan-Dumitru Hadarean. All rights reserved.</div>
             </div>
         </footer>
     </div>
+
 
 
 
