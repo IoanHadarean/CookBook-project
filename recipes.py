@@ -54,7 +54,7 @@ recipes = [{ "_id" : "5c7ad2bffb6fc072012c83cc", "id" : "1", "recipe_name" : "Ri
 #             # print(mergedItems)
 #             print(removedDuplicates)
 #             """Change the name of the ingredient to search for another ingredient"""
-#             if "milk" in removedDuplicates: # if the ingredient is egg change it to -----if ("egg" in removedDuplicates) | ("eggs" in removedDuplicates)----
+#             if "milk" in removedDuplicates: 
 #                 count_milk += 1
 #             else:
 #                 count_milk += 0
@@ -157,10 +157,10 @@ recipes = [{ "_id" : "5c7ad2bffb6fc072012c83cc", "id" : "1", "recipe_name" : "Ri
 # percent_allergens()
 
 
-""" Calories by recipe and cuisine statistics """
+""" Average calories by cuisine """
 
 
-def find_calories():
+def average_calories():
     calories_total = 0
     count_recipes_by_cuisine = 0
     for recipe in recipes:
@@ -176,7 +176,7 @@ def find_calories():
             average_calories = calories_total / count_recipes_by_cuisine
     print(average_calories)
             
-find_calories()
+average_calories()
 
 
 
