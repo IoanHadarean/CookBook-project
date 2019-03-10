@@ -164,7 +164,9 @@ def find_calories():
     calories_total = 0
     count_recipes_by_cuisine = 0
     for recipe in recipes:
-        if recipe["cuisine_name"] == "French": #Change the name of cuisine to search for calories by another cuisine
+        """ Change the name of cuisine to search for calories by another cuisine
+            (Note: comment this out to calculate average calories for all recipes) """
+        if recipe["cuisine_name"] == "Irish":
             count_recipes_by_cuisine += 1
             wordSplit = recipe["calories"].split(" ")
             # print(wordSplit)
@@ -172,7 +174,7 @@ def find_calories():
             calories_total += calories
             # print(calories_total)
             average_calories = calories_total / count_recipes_by_cuisine
-            print(average_calories)
+    print(average_calories)
             
 find_calories()
 

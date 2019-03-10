@@ -160,7 +160,6 @@ def charts():
     
     solid_gauge_chart = pygal.SolidGauge(inner_radius=0.70)
     solid_gauge_chart.title = 'Recipe Allergens Statistics (in %)'
-    solid_gauge_chart.y_title = 'Allergens'
     percent_formatter = lambda x: '{:.10g}%'.format(x)
     solid_gauge_chart.value_formatter = percent_formatter
 
@@ -177,12 +176,13 @@ def charts():
     gauge_chart.title = 'Average calories by cuisine'
     gauge_chart.range = [0, 1000]
     gauge_chart.add('French', 393.5)
-    gauge_chart.add('Mexican', 8099)
-    gauge_chart.add('Greek', 2933)
-    gauge_chart.add('English', 41)
-    gauge_chart.add('Asian', 41)
-    gauge_chart.add('Indian', 41)
-    gauge_chart.add('Irish', 41)
+    gauge_chart.add('Mexican', 296)
+    gauge_chart.add('Greek', 599)
+    gauge_chart.add('English', 476)
+    gauge_chart.add('Asian', 292)
+    gauge_chart.add('Indian', 204.66)
+    gauge_chart.add('Irish', 413.5)
+    gauge_chart.add('All', 344.91)
     gauge_chart = gauge_chart.render(is_unicode=True)
     
     
