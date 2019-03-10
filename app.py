@@ -156,18 +156,20 @@ def charts():
     dot_chart.add('Irish', [0, 6000, 6000, 6000, 0, 0, 0, 3000, 6000])
     dot_chart = dot_chart.render(is_unicode=True)
     
-    """Recipes by cuisine"""
+    """Recipe allergens statistics by cuisine"""
     
-    pie_chart = pygal.Pie()
-    pie_chart.title = 'Browser usage in February 2012 (in %)'
-    pie_chart.add('IE', 19.5)
-    pie_chart.add('Firefox', 36.6)
-    pie_chart.add('Chrome', 36.3)
-    pie_chart.add('Safari', 4.5)
-    pie_chart.add('Opera', 2.3)
-    pie_chart = pie_chart.render(is_unicode=True)
+    gauge_chart = pygal.SolidGauge(inner_radius=0.70)
+    percent_formatter = lambda x: '{:.10g}%'.format(x)
+    gauge_chart.value_formatter = percent_formatter
+
+    gauge_chart.add('Egg', [{'value': 9, 'max_value': 24}])
+    gauge_chart.add('Milk', [{'value': 2, 'max_value': 24}])
+    gauge_chart.add('Nuts', [{'value': 1, 'max_value': 24}])
+    gauge_chart.add('Garlic', [{'value': 10, 'max_value': 24}])
+    gauge_chart.add('No allergens', [{'value': 79, 'max_value': 100}])
+    gauge_chart = gauge_chart.render(is_unicode=True)
     
-    return render_template('statistics.html', dot_chart=dot_chart, pie_chart=pie_chart)
+    return render_template('statistics.html', dot_chart=dot_chart, gauge_chart=gauge_chart)
     
   
 """ Main function for running the app """      

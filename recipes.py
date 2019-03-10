@@ -18,7 +18,7 @@ recipes = [{ "_id" : "5c7ad2bffb6fc072012c83cc", "id" : "1", "recipe_name" : "Ri
 { "_id" : "5c7b951dfb6fc072012cbefd", "id" : "18", "recipe_name" : "Traditional Mexican Guacamole", "recipe_image" : "https://images.media-allrecipes.com/userphotos/560x315/848092.jpg", "cuisine_name" : "Mexican", "course_name" : "appetizer", "ingredients" : [ "2 avocados, peeled and pitted", "1 cup chopped tomatoes", "1/4 cup chopped onion", "1/4 cup chopped cilantro", "2 tablespoons lemon juice", "1 jalapeno pepper, seeded and minced", "salt and ground black pepper to taste" ], "cooking_directions" : [ "Mash avocados in a bowl until creamy.", "Mix tomatoes, onion, cilantro, lemon juice, and jalapeno pepper into mashed avocado until well combined; season with salt and black pepper." ], "author_name" : "Kaersten", "preparation_time" : "10 min", "cooking_time" : "10 min", "views" : "5532", "servings" : "4", "calories" : "176 cals" },
 { "_id" : "5c7b952bfb6fc072012cbeff", "id" : "19", "recipe_name" : "Chicken Cordon Bleu", "recipe_image" : "https://images.media-allrecipes.com/userphotos/560x315/4535588.jpg", "cuisine_name" : "French", "course_name" : "dinner", "ingredients" : [ "6 skinless, boneless chicken breast halves", "6 slices Swiss cheese", "6 slices ham", "3 tablespoons all-purpose flour", "1 teaspoon paprika", "6 tablespoons butter", "1/2 cup dry white wine", "1 teaspoon chicken bouillon granules", "1 tablespoon cornstarch", "1 cup heavy whipping cream" ], "cooking_directions" : [ "Pound chicken breasts if they are too thick. Place a cheese and ham slice on each breast within 1/2 inch of the edges. Fold the edges of the chicken over the filling, and secure with toothpicks. Mix the flour and paprika in a small bowl, and coat the chicken pieces.", "Heat the butter in a large skillet over medium-high heat, and cook the chicken until browned on all sides. Add the wine and bouillon. Reduce heat to low, cover, and simmer for 30 minutes, until chicken is no longer pink and juices run clear.", "Remove the toothpicks, and transfer the breasts to a warm platter. Blend the cornstarch with the cream in a small bowl, and whisk slowly into the skillet. Cook, stirring until thickened, and pour over the chicken. Serve warm." ], "author_name" : "Behr", "preparation_time" : "15 min", "cooking_time" : "45 min", "views" : "5426", "servings" : "6", "calories" : "584 cals" },
 { "_id" : "5c7b9535fb6fc072012cbf00", "id" : "20", "recipe_name" : "World's Best Lasagna", "recipe_image" : "https://images.media-allrecipes.com/userphotos/560x315/3359675.jpg", "cuisine_name" : "Italian", "course_name" : "main dish", "ingredients" : [ "1 pound sweet Italian sausage", "3/4 pound lean ground beef", "1/2 cup minced onion", "2 cloves garlic, crushed", "1 (28 ounce) can crushed tomatoes", "2 (6 ounce) cans tomato paste", "2 (6.5 ounce) cans canned tomato sauce", "1/2 cup water", "2 tablespoons white sugar", "1 1/2 teaspoons dried basil leaves", "1/2 teaspoon fennel seeds", "1 teaspoon Italian seasoning", "1 tablespoon salt", "1/4 teaspoon ground black pepper", "4 tablespoons chopped fresh parsley", "12 lasagna noodles", "16 ounces ricotta cheese", "1 egg", "1/2 teaspoon salt", "3/4 pound mozzarella cheese, sliced", "3/4 cup grated Parmesan cheese" ], "cooking_directions" : [ "In a large bowl blend eggs and sugar add butter and blend well. On low speed, blend in flour, baking powder, lemon, vanilla.", "Cover bowl with towel and let sit for one hour.", "Preheat oven to 375 degrees F (190 degrees C) and butter and flour madeleine molds. Whisk batter then spoon into molds 3/4 full. Bake 10 minutes. Remove from molds and cool. Dust with confectioners' sugar." ], "allergen_name" : "egg and garlic", "author_name" : "John Chandler", "preparation_time" : "30 min", "cooking_time" : "2h 30 min", "views" : "7045", "servings" : "12", "calories" : "448 cals" },
-{ "_id" : "5c7b9483fb6fc072012cbec9", "id" : "23", "recipe_name" : "California Roll Sushi", "recipe_image" : "https://images.media-allrecipes.com/userphotos/250x250/907484.jpg", "cuisine_name" : "Asian", "course_name" : "appetizer", "ingredients" : [ "1 cup uncooked short-grain white rice", "1 cup water", "1/4 cup rice vinegar", "1 tablespoon white sugar", "1/2 cup imitation crabmeat, finely chopped", "1/4 cup mayonnaise", "8 sheets nori (dry seaweed)", "2 1/2 tablespoons sesame seeds", "1 cucumber, cut into thin spears", "2 avocados - pitted, peeled, and sliced the long way" ], "cooking_directions" : [ "Wash the rice in several changes of water until the rinse water is no longer cloudy, drain well, and place in a covered pan or rice cooker with 1 cup water. Bring to a boil, reduce heat to a simmer, and cover the pan. Allow the rice to simmer until the top looks dry, about 15 minutes. Turn off the heat, and let stand for 10 minutes to absorb the rest of the water.", "Mix the rice vinegar and sugar in a small bowl until the sugar has dissolved, and stir the mixture into the cooked rice until well combined. Allow the rice to cool, and set aside.", "Mix the imitation crabmeat with mayonnaise in a bowl, and set aside. To roll the sushi, cover a bamboo rolling mat with plastic wrap. Lay a sheet of nori, shiny side down, on the plastic wrap. With wet fingers, firmly pat a thin, even layer of prepared rice over the nori, leaving 1/4 inch uncovered at the bottom edge of the sheet. Sprinkle the rice with about 1/2 teaspoon of sesame seeds, and gently press them into the rice. Carefully flip the nori sheet over so the seaweed side is up.", "Place 2 or 3 long cucumber spears, 2 or 3 slices of avocado, and about 1 tablespoon of imitation crab mixture in a line across the nori sheet, about 1/4 from the uncovered edge. Pick up the edge of the bamboo rolling sheet, fold the bottom edge of the sheet up, enclosing the filling, and tightly roll the sushi into a cylinder about 1 1/2 inch in diameter. Once the sushi is rolled, wrap it in the mat and gently squeeze to compact it tightly.", "Cut each roll into 1 inch pieces with a very sharp knife dipped in water." ], "allergen_name" : "rice", "author_name" : "Erin", "preparation_time" : "45 min", "cooking_time" : "15 min", "likes" : "0", "servings" : "8", "calories" : "232 cals" },
+{ "_id" : "5c7b9483fb6fc072012cbec9", "id" : "23", "recipe_name" : "California Roll Sushi", "recipe_image" : "https://images.media-allrecipes.com/userphotos/250x250/907484.jpg", "cuisine_name" : "Asian", "course_name" : "appetizer", "ingredients" : [ "1 cup uncooked short-grain white rice", "1 cup water", "1/4 cup rice vinegar", "1 tablespoon white sugar", "1/2 cup imitation crabmeat, finely chopped", "1/4 cup mayonnaise", "8 sheets nori (dry seaweed)", "2 1/2 tablespoons sesame seeds", "1 cucumber, cut into thin spears", "2 avocados - pitted, peeled, and sliced the long way" ], "cooking_directions" : [ "Wash the rice in several changes of water until the rinse water is no longer cloudy, drain well, and place in a covered pan or rice cooker with 1 cup water. Bring to a boil, reduce heat to a simmer, and cover the pan. Allow the rice to simmer until the top looks dry, about 15 minutes. Turn off the heat, and let stand for 10 minutes to absorb the rest of the water.", "Mix the rice vinegar and sugar in a small bowl until the sugar has dissolved, and stir the mixture into the cooked rice until well combined. Allow the rice to cool, and set aside.", "Mix the imitation crabmeat with mayonnaise in a bowl, and set aside. To roll the sushi, cover a bamboo rolling mat with plastic wrap. Lay a sheet of nori, shiny side down, on the plastic wrap. With wet fingers, firmly pat a thin, even layer of prepared rice over the nori, leaving 1/4 inch uncovered at the bottom edge of the sheet. Sprinkle the rice with about 1/2 teaspoon of sesame seeds, and gently press them into the rice. Carefully flip the nori sheet over so the seaweed side is up.", "Place 2 or 3 long cucumber spears, 2 or 3 slices of avocado, and about 1 tablespoon of imitation crab mixture in a line across the nori sheet, about 1/4 from the uncovered edge. Pick up the edge of the bamboo rolling sheet, fold the bottom edge of the sheet up, enclosing the filling, and tightly roll the sushi into a cylinder about 1 1/2 inch in diameter. Once the sushi is rolled, wrap it in the mat and gently squeeze to compact it tightly.", "Cut each roll into 1 inch pieces with a very sharp knife dipped in water." ], "author_name" : "Erin", "preparation_time" : "45 min", "cooking_time" : "15 min", "likes" : "0", "servings" : "8", "calories" : "232 cals" },
 { "_id" : "5c7b948dfb6fc072012cbecc", "id" : "24", "recipe_name" : "Greek Lemon Chicken and Potatoes", "recipe_image" : "https://images.media-allrecipes.com/userphotos/560x315/4539284.jpg", "cuisine_name" : "Greek", "course_name" : "dinner", "ingredients" : [ "4 pounds skin-on, bone-in chicken thighs", "1 tablespoon kosher salt", "1 tablespoon dried oregano", "1 teaspoon freshly ground black pepper", "1 teaspoon dried rosemary", "1 pinch cayenne pepper", "1/2 cup fresh lemon juice", "1/2 cup olive oil", "6 cloves garlic, minced", "3 russet potatoes, peeled and quartered", "2/3 cup chicken broth, plus splash to deglaze panchopped fresh oregano for garnish" ], "cooking_directions" : [ "Preheat oven to 425 degrees F (220 degrees C). Lightly oil a large roasting pan.", "Place chicken pieces in large bowl. Season with salt, oregano, pepper, rosemary, and cayenne pepper. Add fresh lemon juice, olive oil, and garlic. Place potatoes in bowl with the chicken; stir together until chicken and potatoes are evenly coated with marinade.", "Transfer chicken pieces, skin side up, to prepared roasting pan, reserving marinade. Distribute potato pieces among chicken thighs. Drizzle with 2/3 cup chicken broth. Spoon remainder of marinade over chicken and potatoes.", "Place in preheated oven. Bake in the preheated oven for 20 minutes. Toss chicken and potatoes, keeping chicken skin side up; continue baking until chicken is browned and cooked through, about 25 minutes more. An instant-read thermometer inserted near the bone should read 165 degrees F (74 degrees C). Transfer chicken to serving platter and keep warm.", "Set oven to broil or highest heat setting. Toss potatoes once again in pan juices. Place pan under broiler and broil until potatoes are caramelized, about 3 minutes. Transfer potatoes to serving platter with chicken.", "Place roasting pan on stove over medium heat. Add a splash of broth and stir up browned bits from the bottom of the pan. Strain; spoon juices over chicken and potatoes. Top with chopped oregano." ], "allergen_name" : "garlic", "author_name" : "Chef John", "preparation_time" : "10 min", "cooking_time" : "50 min", "views" : "696", "servings" : "4", "calories" : "1139 cals" },
 { "_id" : "5c7b9540fb6fc072012cbf01", "id" : "21", "recipe_name" : "Easy English Muffins", "recipe_image" : "https://images.media-allrecipes.com/userphotos/560x315/3345383.jpg", "cuisine_name" : "English", "course_name" : "dessert", "ingredients" : [ "1 1/2 teaspoons active dry yeast, divided", "2 cups all-purpose flour, divided, plus more for rolling", "3/4 cup warm water, divided", "2 teaspoons vegetable oil", "1 teaspoon kosher salt", "1 egg white", "2 tablespoons cornmeal, or as needed", "1/4 cup clarified butter (ghee)" ], "cooking_directions" : [ "Place 1/4 cup flour, yeast, and 1/2 cup water in a mixing bowl. Whisk together and set aside for about 10 minutes to see if thin layer of foam develops to ensure yeast is active. Drizzle in vegetable oil; add salt, egg white, remaining 1 3/4 cup flour, and remaining 1/4 cup warm water. Mix together until dough is very wet and sticky. Cover. Set in a warm spot and let rise until doubled, about 2 hours.", "Pull dough gently from sides of bowl, stirring slightly, and turn out onto a well-floured rolling surface. Work in just enough flour until dough is easily handled and can be cut into 6 pieces, about 1 minute. Cut dough into 6 equal portions. Form a seamless ball of dough, adding a pinch of flour to keep it from sticking. Flatten to make thick disks. Transfer dough onto a lined baking sheet sprinkled generously with cornmeal. Let rise until doubled, about 1 to 1 1/2 hours.", "Add clarified butter to skillet over medium heat. Carefully transfer muffin disks to skillet. Cook in batches to avoid overcrowding. Brown on one side, 5 or 6 minutes. Turn, and brown the other side, 5 or 6 minutes. Continue turning to get muffins evenly browned and cooked through, 7 or 8 minutes total per side. Transfer to a cooking rack and cool completely (this is key as you can't split the muffins unless they are cooled).", "Split cooled muffins with a fork, inserting tines all the way around edges so the 2 sides can be pulled apart. Toast and serve with jam." ], "allergen_name" : "egg", "author_name" : "Chef John", "preparation_time" : "10 min", "cooking_time" : "14 min", "views" : "6553", "servings" : "6", "calories" : "256 cals" },
 { "_id" : "5c7b954afb6fc072012cbf04", "id" : "22", "recipe_name" : "Cider-Braised Pork Shoulder", "recipe_image" : "https://images.media-allrecipes.com/userphotos/560x315/4565575.jpg", "cuisine_name" : "English", "course_name" : "main dish", "ingredients" : [ "1 (3 pound) pork shoulder roast, cut into 3- or 4-inch chunks", "Kosher salt to generously season pork", "1 tablespoon vegetable oil", "1 large onion, chopped", "1 teaspoon salt, plus more to taste", "1/2 teaspoon freshly ground black pepper", "1/4 cup fresh sage leaves, torn", "1 (750 milliliter) bottle hard apple cider", "1/3 cup apple cider vinegar", "1/2 cup creme fraiche or heavy cream", "1 pinch cayenne pepper", "Creme fraiche for garnish", "Chopped fresh chives for garnish" ], "cooking_directions" : [ "Generously salt all sides of the pork shoulder chunks. Heat oil in a heavy pot over high heat. Brown pork shoulder pieces until surface is seared and crusty, about 3 or 4 minutes per side. Transfer browned pork to a plate. Add onions to oil and reduce heat to medium and season with a pinch of salt and pepper. Cook and stir about 2 minutes. Add torn sage leaves; cook until onions soften and begin to brown, stirring frequently. Pour cider into pot; stir to deglaze bottom. Raise heat to high and bring to a boil. Stir in cider vinegar. Reduce heat to low.", "Transfer pork shoulder pieces to cider mixture. Cover; simmer gently on low 1 hour. Remove lid and turn pieces over. Cover; simmer on low until meat is fork tender, 1 to 2 more hours. Transfer pork to a bowl with a slotted spoon.", "Raise heat to high and bring sauce to a simmer. Whisk in creme fraiche. Simmer until liquid is reduced by half and is slightly thickened, 8 to 10 minutes. Stir in a pinch of cayenne. Transfer pork back to pot; reduce heat to low. Baste pork with sauce while it heats through and becomes perfectly tender, and the sauce is as thick as you want it, about 15 more minutes." ], "author_name" : "Chef John", "preparation_time" : "10 min", "cooking_time" : "2h 15 min", "views" : "8490", "servings" : "4", "calories" : "696 cals" }]
@@ -27,101 +27,141 @@ recipes = [{ "_id" : "5c7ad2bffb6fc072012c83cc", "id" : "1", "recipe_name" : "Ri
 """ Find ingredients by cuisine
     (Demo is provided below) """
 
-count_sugar = 0 #Change the name of this variable in case you want to look for another ingredient
-count_milk = 0
-count_egg = 0
-count_flour = 0
-count_salt = 0
-count_water = 0
-count_garlic = 0
-count_vanilla = 0
-count_butter = 0
-def countIngredients():
-    count_sugar = 0
-    count_milk = 0
-    count_egg = 0
-    count_flour = 0
-    count_salt = 0
-    count_water = 0
-    count_garlic = 0
-    count_vanilla = 0
-    count_butter = 0
-    for recipe in recipes:
-        if recipe["cuisine_name"] == "Irish":  # Change the name of the cuisine to look for other cuisines
-            items = []
-            for ingredient in recipe["ingredients"]:
-                itemSplit = ingredient.split(",")
-                itemSplitAtSpace = itemSplit[0].split(" ")
-                items.append(itemSplitAtSpace)
-            # print(items)
-                mergedItems = []
-                removedDuplicates = []
-                for item in items:
-                    mergedItems += item
-                    for mergedItem in mergedItems:
-                        if mergedItem not in removedDuplicates:
-                            removedDuplicates.append(mergedItem)
-            # print(mergedItems)
-            print(removedDuplicates)
-            """Change the name of the ingredient to search for another ingredient"""
-            if "milk" in removedDuplicates: # if the ingredient is egg change it to -----if ("egg" in removedDuplicates) | ("eggs" in removedDuplicates)----
-                count_milk += 1
-            else:
-                count_milk += 0
-            print(count_milk)
-            if ("egg" in removedDuplicates) | ("eggs" in removedDuplicates):
-                count_egg += 1
-            else:
-                count_egg += 0
-            print(count_egg)
-            if "sugar" in removedDuplicates:
-                count_sugar += 1
-            else:
-                count_sugar += 0
-            print(count_sugar)
-            if "flour" in removedDuplicates:
-                count_flour += 1
-            else:
-                count_flour += 0
-            print(count_flour)
-            if "salt" in removedDuplicates:
-                count_salt += 1
-            else:
-                count_salt += 0
-            print(count_salt)
-            if "water" in removedDuplicates:
-                count_water += 1
-            else:
-                count_water += 0
-            print(count_water)
-            if "garlic" in removedDuplicates:
-                count_garlic += 1
-            else:
-                count_garlic += 0
-            print(count_garlic)
-            if "vanilla" in removedDuplicates:
-                count_vanilla += 1
-            else:
-                count_vanilla += 0
-            print(count_vanilla)
-            if "butter" in removedDuplicates:
-                count_butter += 1
-            else:
-                count_butter += 0
-            print(count_butter)
-countIngredients()
+# count_sugar = 0 #Change the name of this variable in case you want to look for another ingredient
+# count_milk = 0
+# count_egg = 0
+# count_flour = 0
+# count_salt = 0
+# count_water = 0
+# count_garlic = 0
+# count_vanilla = 0
+# count_butter = 0
+# def count_ingredients():
+#     count_sugar = 0
+#     count_milk = 0
+#     count_egg = 0
+#     count_flour = 0
+#     count_salt = 0
+#     count_water = 0
+#     count_garlic = 0
+#     count_vanilla = 0
+#     count_butter = 0
+#     for recipe in recipes:
+#         if recipe["cuisine_name"] == "Irish":  # Change the name of the cuisine to look for other cuisines
+#             items = []
+#             for ingredient in recipe["ingredients"]:
+#                 itemSplit = ingredient.split(",")
+#                 itemSplitAtSpace = itemSplit[0].split(" ")
+#                 items.append(itemSplitAtSpace)
+#             # print(items)
+#                 mergedItems = []
+#                 removedDuplicates = []
+#                 for item in items:
+#                     mergedItems += item
+#                     for mergedItem in mergedItems:
+#                         if mergedItem not in removedDuplicates:
+#                             removedDuplicates.append(mergedItem)
+#             # print(mergedItems)
+#             print(removedDuplicates)
+#             """Change the name of the ingredient to search for another ingredient"""
+#             if "milk" in removedDuplicates: # if the ingredient is egg change it to -----if ("egg" in removedDuplicates) | ("eggs" in removedDuplicates)----
+#                 count_milk += 1
+#             else:
+#                 count_milk += 0
+#             print(count_milk)
+#             if ("egg" in removedDuplicates) | ("eggs" in removedDuplicates):
+#                 count_egg += 1
+#             else:
+#                 count_egg += 0
+#             print(count_egg)
+#             if "sugar" in removedDuplicates:
+#                 count_sugar += 1
+#             else:
+#                 count_sugar += 0
+#             print(count_sugar)
+#             if "flour" in removedDuplicates:
+#                 count_flour += 1
+#             else:
+#                 count_flour += 0
+#             print(count_flour)
+#             if "salt" in removedDuplicates:
+#                 count_salt += 1
+#             else:
+#                 count_salt += 0
+#             print(count_salt)
+#             if "water" in removedDuplicates:
+#                 count_water += 1
+#             else:
+#                 count_water += 0
+#             print(count_water)
+#             if "garlic" in removedDuplicates:
+#                 count_garlic += 1
+#             else:
+#                 count_garlic += 0
+#             print(count_garlic)
+#             if "vanilla" in removedDuplicates:
+#                 count_vanilla += 1
+#             else:
+#                 count_vanilla += 0
+#             print(count_vanilla)
+#             if "butter" in removedDuplicates:
+#                 count_butter += 1
+#             else:
+#                 count_butter += 0
+#             print(count_butter)
+# count_ingredients()
 
 """Count recipes by cuisine
     (Demo is provided below)"""
     
-# count_cuisines = 0  
-# def countCuisines():
-#     count_cuisines = 0
-#     for recipe in recipes:
-#         count_cuisines += 1
-#         print(count_cuisines)
-        
-# countCuisines()
+count_recipes = 0
+count_none = 0
+count_egg_allergen = 0
+count_garlic_allergen = 0
+count_nuts_allergen = 0
+count_milk_allergen = 0
+allergens = []
+def count_allergens():
+    count_recipes = 0
+    count_none = 0
+    count_egg_allergen = 0
+    count_garlic_allergen = 0
+    count_nuts_allergen = 0
+    count_milk_allergen = 0
+    for recipe in recipes:
+        count_recipes += 1
+        # print(count_recipes)
+        if recipe.get('allergen_name') == None:
+            count_none += 1
+        # print(count_none)
+        else:
+            allergens.append(recipe["allergen_name"])
+    # print(allergens)
+    mergedAllergens = []
+    for allergen in allergens:
+        allergenSplit = allergen.split(" ")
+        # print(allergenSplit)
+        mergedAllergens.append(allergenSplit)
+    # print(mergedAllergens)
+    splitAllergens = []
+    for item in mergedAllergens:
+        splitAllergens += item
+    print(splitAllergens)
+    for word in splitAllergens:
+        if word == "egg":
+            count_egg_allergen += 1
+            # print(count_egg_allergen)
+        elif word == "garlic":
+            count_garlic_allergen += 1
+            # print(count_garlic_allergen)
+        elif word == "nuts":
+            count_nuts_allergen += 1
+            print(count_nuts_allergen)
+        elif word == "milk":
+            count_milk_allergen += 1
+            # print(count_milk_allergen)
+            
+count_allergens()
     
 
 
