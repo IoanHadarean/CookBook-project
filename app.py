@@ -159,7 +159,7 @@ def charts():
     
     """ Recipe allergens statistics (in %) """
     
-    solid_gauge_chart = pygal.SolidGauge(inner_radius=0.70, style=pygal.style.styles['default'](value_font_size=30, title_font_size=30,
+    solid_gauge_chart = pygal.SolidGauge(inner_radius=0.70, style=pygal.style.styles['default'](value_font_size=25, title_font_size=30,
                                         legend_font_size=30, tooltip_font_size=30))
     solid_gauge_chart.title = 'Recipe Allergens Statistics (in %)'
     percent_formatter = lambda x: '{:.10g}%'.format(x)
@@ -175,7 +175,7 @@ def charts():
     """ Average calories by cuisine """
     
     gauge_chart = pygal.Gauge(human_readable=True, style=pygal.style.styles['default'](value_font_size=30, title_font_size=30, 
-                                legend_font_size=30, tooltip_font_size=30, label_font_size=30))
+                                legend_font_size=30, tooltip_font_size=30, label_font_size=25))
     gauge_chart.range = [0, 1000]
     gauge_chart.add('French', 393.5)
     gauge_chart.add('Mexican', 296)
