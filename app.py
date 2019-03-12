@@ -1,8 +1,8 @@
 import os, pymysql, json, requests
 import pygal
 from flask.logging import create_logger
-from flask_pymongo import PyMongo
-from flask import Flask, redirect, render_template, request, url_for, flash, session, logging
+from flask_pymongo import PyMongo, pymongo
+from flask import Flask, redirect, render_template, request, url_for, flash, session, logging, jsonify
 from bson.objectid import ObjectId
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 from passlib.hash import sha256_crypt
@@ -135,10 +135,26 @@ def logout():
     
 """ User dashboard """
 
-@app.route('/dashboard')
+@app.route('/dashboard', methods = ['GET'])
 @is_logged_in
 def dashboard():
-    return render_template('dashboard.html', recipes = mongo.db.recipes.find())
+    
+    recipe = mongo.db.recipes
+    
+    offset = 18
+    limit = 6
+    
+    starting_id = recipe.find().sort('_id', pymongo.ASCENDING)
+    last_id = starting_id[offset]['_id']
+    
+    recipes_sorted = recipe.find({'_id': {'$gte' : last_id}}).sort('_id', pymongo.ASCENDING).limit(limit)
+    
+    output = []
+    
+    for i in recipes_sorted:
+        output.append({'number': i['id']})
+        
+    return jsonify({'result': output, 'prev_url': '', 'next_url': ''})
     
     
 """ Recipe ingredients statistics by cuisine
