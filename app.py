@@ -141,8 +141,8 @@ def dashboard():
     
     recipe = mongo.db.recipes
     
-    offset = 18
-    limit = 6
+    offset = int(request.args['offset'])
+    limit = int(request.args['limit'])
     
     starting_id = recipe.find().sort('_id', pymongo.ASCENDING)
     last_id = starting_id[offset]['_id']
@@ -152,9 +152,12 @@ def dashboard():
     output = []
     
     for i in recipes_sorted:
-        output.append({'number': i['id']})
+        output.append({'id': i['id']})
         
-    return jsonify({'result': output, 'prev_url': '', 'next_url': ''})
+    next_url = '/dashboard?limit=' + str(limit) + '&offset=' + str(offset + limit)
+    prev_url = '/dashboard?limit=' + str(limit) + '&offset=' + str(offset - limit)
+        
+    return render_template('dashboard.html', recipes=mongo.db.recipes.find(), next_url=next_url, prev_url=prev_url)
     
     
 """ Recipe ingredients statistics by cuisine
