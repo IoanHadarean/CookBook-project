@@ -138,7 +138,7 @@ def logout():
 @app.route('/dashboard')
 @is_logged_in
 def dashboard():
-    return render_template('dashboard.html', recipes = mongo.db.recipes.find())
+    return render_template('dashboard.html')
     
     
 """ Recipe ingredients statistics by cuisine

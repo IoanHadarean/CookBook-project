@@ -2,4 +2,11 @@
 
 {% block content %}
     <h1>Welcome {{session.username}}</h1>
+    <div class = "recipe">
+        <ul class = "recipe__list">
+            {% for recipe in recipes %}
+            <h1>{{ recipe.id }}</h1>
+            {% endfor %}
+        </ul>
+    </div>
 {% endblock %}
