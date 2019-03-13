@@ -149,15 +149,18 @@ def dashboard():
     
     recipes_sorted = recipe.find({'_id': {'$gte' : last_id}}).sort('_id', pymongo.ASCENDING).limit(limit)
     
-    output = []
+    calories = []
+    images = []
     
-    for i in recipes_sorted:
-        output.append({'id': i['id']})
-        
+    for item in recipes_sorted:
+        calories.append({'calories': item['calories']})
+        images.append(item['recipe_image'])
+    
     next_url = '/dashboard?limit=' + str(limit) + '&offset=' + str(offset + limit)
     prev_url = '/dashboard?limit=' + str(limit) + '&offset=' + str(offset - limit)
     
-    return render_template('dashboard.html', recipes = mongo.db.recipes.find(), next_url=next_url, prev_url=prev_url)
+    return render_template('dashboard.html', recipes = mongo.db.recipes.find(), item=item, recipes_sorted= recipes_sorted, calories=calories, next_url=next_url, 
+    prev_url=prev_url, limit=limit, offset=offset)
     
     
 """ Recipe ingredients statistics by cuisine

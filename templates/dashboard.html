@@ -2,10 +2,14 @@
 
 {% block content %}
     <h1>Welcome {{session.username}}</h1>
-    <div class = "recipe">
-        <ul class = "recipe__list">
-            <a href = "{{next_url}}">Next</a>
-            <a href = "{{prev_url}}">Prev</a>
+    <div class = "navigation">
+        <ul class = "navigation__list">
+            {% if offset > 0 %}
+		        <a href="{{prev_url}}">Prev</a>
+		    {% endif %}
+		    {% if offset + limit < 24 %} 
+		        <a href="{{next_url}}">Next</a>
+			{% endif %}
         </ul>
     </div>
 {% endblock %}
