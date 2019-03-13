@@ -4,9 +4,8 @@
     <h1>Welcome {{session.username}}</h1>
     <div class = "recipe">
         <ul class = "recipe__list">
-            {% for recipe in recipes %}
-            <h1>{{ recipe.calories }}</h1>
-            {% endfor %}
+            <a href = "{{next_url}}">Next</a>
+            <a href = "{{prev_url}}">Prev</a>
         </ul>
     </div>
 {% endblock %}

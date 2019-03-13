@@ -156,8 +156,8 @@ def dashboard():
         
     next_url = '/dashboard?limit=' + str(limit) + '&offset=' + str(offset + limit)
     prev_url = '/dashboard?limit=' + str(limit) + '&offset=' + str(offset - limit)
-        
-    return render_template('dashboard.html', recipes=mongo.db.recipes.find(), next_url=next_url, prev_url=prev_url)
+    
+    return render_template('dashboard.html', recipes = mongo.db.recipes.find(), next_url=next_url, prev_url=prev_url)
     
     
 """ Recipe ingredients statistics by cuisine
