@@ -139,15 +139,15 @@ def logout():
 @is_logged_in
 def dashboard():
     
-    recipe = mongo.db.recipes
+    all_recipes = mongo.db.recipes
     
     offset = int(request.args['offset'])
     limit = int(request.args['limit'])
     
-    starting_id = recipe.find().sort('_id', pymongo.ASCENDING)
+    starting_id = all_recipes.find().sort('_id', pymongo.ASCENDING)
     last_id = starting_id[offset]['_id']
     
-    recipes_sorted = recipe.find({'_id': {'$gte' : last_id}}).sort('_id', pymongo.ASCENDING).limit(limit)
+    recipes_sorted = all_recipes.find({'_id': {'$gte' : last_id}}).sort('_id', pymongo.ASCENDING).limit(limit)
     
     calories = []
     images = []

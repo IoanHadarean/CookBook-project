@@ -2,13 +2,17 @@
 
 {% block content %}
     <h1>Welcome {{session.username}}</h1>
-    <div class = "navigation">
-        <ul class = "navigation__list">
+    <div class = "pagination">
+        <ul class = "pagination__list">
             {% if offset > 0 %}
-		        <a href="{{prev_url}}">Prev</a>
+            <li class = "list__prev">
+                <a href="{{prev_url}}">Prev</a>
+            </li>
 		    {% endif %}
-		    {% if offset + limit < 24 %} 
+		    {% if offset + limit < 24 %}
+		    <li class = "list__next">
 		        <a href="{{next_url}}">Next</a>
+		    </li>
 			{% endif %}
         </ul>
     </div>
