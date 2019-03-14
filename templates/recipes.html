@@ -2,17 +2,17 @@
 
 {% block content %}
     <h1>Welcome {{session.username}}</h1>
-    {% if total_results > limit %}
+    {% if 24 > args.limit %}
     <div class = "pagination">
         <ul class = "pagination__list">
-            {% if offset > 0 %}
+            {% if args.offset > 0 %}
             <li class = "list__prev">
-                <a href="{{prev_url}}">Prev</a>
+                <a href="{{args.prev_url}}">Prev</a>
             </li>
 		    {% endif %}
-		    {% if offset + limit < total_results %}
+		    {% if args.offset + args.limit < 24 %}
 		    <li class = "list__next">
-		        <a href="{{next_url}}">Next</a>
+		        <a href="{{args.next_url}}">Next</a>
 		    </li>
 			{% endif %}
         </ul>

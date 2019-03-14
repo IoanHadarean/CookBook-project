@@ -139,20 +139,27 @@ def logout():
 @app.route('/recipes', methods = ['GET'])
 def recipes():
     
-    total_results = 0
-    
-    all_recipes = mongo.db.recipes
-    
-    for recipe in all_recipes.find():
-        total_results += 1
-    
     offset = int(request.args['offset'])
     limit = int(request.args['limit'])
-    
-    starting_id = all_recipes.find().sort('_id', pymongo.ASCENDING)
+    recipe = mongo.db.recipes
+    recipes = mongo.db.recipes.find()
+    starting_id = recipe.find().sort('_id', pymongo.ASCENDING)
     last_id = starting_id[offset]['_id']
+    recipes_sorted = recipe.find({'_id': {'$gte' : last_id}}).sort('_id', pymongo.ASCENDING).limit(limit)
+    total_results = 0
+    for x in recipes:
+        total_results +=1
+    print(total_results)
     
-    recipes_sorted = all_recipes.find({'_id': {'$gte' : last_id}}).sort('_id', pymongo.ASCENDING).limit(limit)
+    args = {
+        "offset": offset,
+        "limit": limit,
+        "next_url": '/recipes?limit=' + str(limit) + '&offset=' + str(offset + limit),
+        "prev_url": '/recipes?limit=' + str(limit) + '&offset=' + str(offset - limit),
+        "recipes": recipes,
+        "total_results": total_results
+    }
+    
     
     calories = []
     images = []
@@ -161,13 +168,9 @@ def recipes():
         calories.append({'calories': item['calories']})
         images.append(item['recipe_image'])
     
-    next_url = '/recipes?limit=' + str(limit) + '&offset=' + str(offset + limit)
-    prev_url = '/recipes?limit=' + str(limit) + '&offset=' + str(offset - limit)
-    
-    return render_template('recipes.html', recipes = mongo.db.recipes.find(), item=item, recipes_sorted= recipes_sorted, calories=calories, next_url=next_url, 
-    prev_url=prev_url, limit=limit, offset=offset, total_results = total_results)
-    
-    
+    return render_template('recipes.html', item=item, recipes_sorted=recipes_sorted, calories=calories, 
+                            args=args)
+
 """ Recipe ingredients statistics by cuisine
     (Note: all values have been multiplied by 3000
     to better reflect the statistics)"""
