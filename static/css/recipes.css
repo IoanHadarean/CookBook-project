@@ -1,0 +1,12 @@
+.name__inline {
+  display: grid;
+  text-align: center;
+  width: 40vw;
+}
+
+.recipes__name {
+    display: inline-block;
+    width: 40vw;
+    padding-left: 10vw;
+    padding-bottom: 25vh;
+}

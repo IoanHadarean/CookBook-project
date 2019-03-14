@@ -1,16 +1,20 @@
-{% extends 'base.html' %}
-
-{% block content %}
+{% extends 'base.html' %} {% block content %}
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/recipes.css') }}" type="text/css" />
     <h1>Welcome {{session.username}}</h1>
-    {% if 24 > args.limit %}
-    <div class = "pagination">
+    {% for recipe in args.recipes_sorted %}
+        <div class = "recipes__name">
+            <h3 class = "name__inline">{{ recipe.recipe_name }}</h3>
+        </div>
+    {% endfor %}
+    {% if args.total_results > args.limit %}
+    <div class = "recipes__pagination">
         <ul class = "pagination__list">
             {% if args.offset > 0 %}
             <li class = "list__prev">
                 <a href="{{args.prev_url}}">Prev</a>
             </li>
 		    {% endif %}
-		    {% if args.offset + args.limit < 24 %}
+		    {% if args.offset + args.limit < args.total_results %}
 		    <li class = "list__next">
 		        <a href="{{args.next_url}}">Next</a>
 		    </li>

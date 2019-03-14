@@ -133,47 +133,37 @@ def logout():
     flash('You are now logged out', 'success')
     return redirect(url_for('login'))
     
-""" User recipes """
-
+""" All recipes """
 
 @app.route('/recipes', methods = ['GET'])
 def recipes():
     
     offset = int(request.args['offset'])
     limit = int(request.args['limit'])
+
     recipe = mongo.db.recipes
     recipes = mongo.db.recipes.find()
     starting_id = recipe.find().sort('_id', pymongo.ASCENDING)
     last_id = starting_id[offset]['_id']
-    recipes_sorted = recipe.find({'_id': {'$gte' : last_id}}).sort('_id', pymongo.ASCENDING).limit(limit)
     total_results = 0
     for x in recipes:
         total_results +=1
-    print(total_results)
     
     args = {
-        "offset": offset,
         "limit": limit,
+        "offset": offset,
+        "recipes_sorted": recipe.find({'_id': {'$gte' : last_id}}).sort('_id', pymongo.ASCENDING).limit(limit),
         "next_url": '/recipes?limit=' + str(limit) + '&offset=' + str(offset + limit),
         "prev_url": '/recipes?limit=' + str(limit) + '&offset=' + str(offset - limit),
         "recipes": recipes,
         "total_results": total_results
     }
     
-    
-    calories = []
-    images = []
-    
-    for item in recipes_sorted:
-        calories.append({'calories': item['calories']})
-        images.append(item['recipe_image'])
-    
-    return render_template('recipes.html', item=item, recipes_sorted=recipes_sorted, calories=calories, 
-                            args=args)
+    return render_template('recipes.html', args=args)
 
 """ Recipe ingredients statistics by cuisine
     (Note: all values have been multiplied by 3000
-    to better reflect the statistics)"""
+    to better reflect the statistics) """
 @app.route('/statistics')
 def charts():
     """ Recipe ingredients statistics by cuisine """
