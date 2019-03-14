@@ -74,7 +74,7 @@ def register():
             
         flash("You can now login to the website", "success")
         
-        redirect(url_for('register'))
+        return redirect(url_for('register'))
     return render_template('register.html', form=form)
     
 """ Login for user already registered to the website """
@@ -103,7 +103,7 @@ def login():
                 session['username'] = username
                 
                 flash('You are now logged in', 'success')
-                return redirect(url_for('dashboard'))
+                return redirect(url_for('recipes', limit=6, offset=0))
             else:
                 error = 'Invalid login'
                 return render_template('login.html', error=error)
@@ -133,13 +133,18 @@ def logout():
     flash('You are now logged out', 'success')
     return redirect(url_for('login'))
     
-""" User dashboard """
+""" User recipes """
 
-@app.route('/dashboard', methods = ['GET'])
-@is_logged_in
-def dashboard():
+
+@app.route('/recipes', methods = ['GET'])
+def recipes():
+    
+    total_results = 0
     
     all_recipes = mongo.db.recipes
+    
+    for recipe in all_recipes.find():
+        total_results += 1
     
     offset = int(request.args['offset'])
     limit = int(request.args['limit'])
@@ -156,18 +161,17 @@ def dashboard():
         calories.append({'calories': item['calories']})
         images.append(item['recipe_image'])
     
-    next_url = '/dashboard?limit=' + str(limit) + '&offset=' + str(offset + limit)
-    prev_url = '/dashboard?limit=' + str(limit) + '&offset=' + str(offset - limit)
+    next_url = '/recipes?limit=' + str(limit) + '&offset=' + str(offset + limit)
+    prev_url = '/recipes?limit=' + str(limit) + '&offset=' + str(offset - limit)
     
-    return render_template('dashboard.html', recipes = mongo.db.recipes.find(), item=item, recipes_sorted= recipes_sorted, calories=calories, next_url=next_url, 
-    prev_url=prev_url, limit=limit, offset=offset)
+    return render_template('recipes.html', recipes = mongo.db.recipes.find(), item=item, recipes_sorted= recipes_sorted, calories=calories, next_url=next_url, 
+    prev_url=prev_url, limit=limit, offset=offset, total_results = total_results)
     
     
 """ Recipe ingredients statistics by cuisine
     (Note: all values have been multiplied by 3000
     to better reflect the statistics)"""
 @app.route('/statistics')
-@is_logged_in
 def charts():
     """ Recipe ingredients statistics by cuisine """
     
