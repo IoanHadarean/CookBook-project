@@ -8,16 +8,13 @@ body, html {
     background: none;
 }
 
-p {
-    margin-block-end: 0;
-}
-
 /*---------------------------Recipes---------------------*/
 
 .name__inline, .author__inline {
   display: grid;
   text-align: center;
   width: 35vw;
+  margin-top: 10px;
 }
 
 .recipes {
@@ -25,7 +22,11 @@ p {
     width: 35vw;
     margin-left: 10vw;
     margin-bottom: 100px;
-    border: 1px solid black;
+    border: 1px solid #DCDCDC;
+}
+
+.recipes:hover {
+    background: #F5F5F5;
 }
 
 .recipes__image {
