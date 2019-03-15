@@ -1,12 +1,29 @@
+/*------------------Special margins and styling--------------- */
+
+footer {
+    position: relative;
+}
+
+/*---------------------------Recipes---------------------*/
+
 .name__inline {
   display: grid;
   text-align: center;
   width: 40vw;
 }
 
-.recipes__name {
+.recipes {
     display: inline-block;
     width: 40vw;
-    padding-left: 10vw;
     padding-bottom: 25vh;
+}
+
+.recipes__image {
+    width: 40vw;
+    height: 400px;
+}
+
+.recipes__image img {
+    width: 100%;
+    height: 100%;
 }
