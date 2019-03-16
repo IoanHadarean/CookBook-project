@@ -49,7 +49,7 @@ class RegisterForm(Form):
 
 @app.route('/')
 def index():
-    return redirect(url_for('register'))
+    return redirect(url_for('recipes', limit=6, offset=0))
     
 """ Route for new user registering to the website """
 

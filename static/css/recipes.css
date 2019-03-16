@@ -79,18 +79,28 @@ body, html {
 
 .list__prev, .list__next {
     display: inline-block;
+    text-align: center;
+    margin-top: 16px;
+}
+
+.list__prev > a, .list__next > a {
+    color: darkblue;
 }
 
 .list__prev {
     float: left;
-    margin-left: 20px;
-    margin-bottom: 50px;
-    margin-top: -50px;
+    margin-left: 10vw;
 }
 
 .list__next {
     float: right;
-    margin-right: 20px;
-    margin-bottom: 50px;
+    margin-right: 10vw;
+}
+
+.pagination__list, .recipes__pagination {
+    height: 50px;
+    padding: 0;
     margin-top: -50px;
+    margin-bottom: 16px;
+    font-size: 20px;
 }
