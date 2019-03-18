@@ -46,7 +46,7 @@ html {
     width: 25vw;
     margin-left: 6vw;
     margin-bottom: 100px;
-    border: 1px solid #DCDCDC;
+    border: 2px solid #000;;
     border-radius: 20px;
 }
 
@@ -85,7 +85,7 @@ html {
     align-items: center;
     justify-content: center;
     text-align: center;
-    border: 1px solid #0892D0;
+    border: 2px solid #000;;
     font-size: 25px;
     border-radius: 50px;
 }
@@ -134,13 +134,37 @@ html {
 
 @media (min-width: 320px) and (max-width: 560px) {
     .recipes {
-        width: 80vw;
-        margin-left: 10vw;
+        width: 100vw;
+        margin-bottom: 50px;
+        margin-left: 0;
+        border-radius: 0;
+        border-left: 0;
+        border-right: 0;
+        z-index: 2;
+        background: white;
+    }
+    
+    .recipes:hover {
+        background: lightblue;
+    }
+    
+    .random-message {
+        border-radius: 0;
+        border-left: 0;
+        border-right: 0;
+        width: 100vw;
+        margin-left: 0;
+        margin-right: 0;
+    }
+    
+    section {
+        background: #F5F5F5;
+        z-index: 1;
     }
 }
 
 @media (min-width: 560px)and (max-width: 768px) {
-     .recipes {
+    .recipes {
         width: 60vw;
         margin-left: 20vw;
     }
@@ -157,20 +181,17 @@ html {
         width: 80%;
         margin-left: 10%;
     }
-}
 
+    .recipes__separator-large,
+    .recipes__separator-medium {
+        display: none;
+    }
+}
 
 @media (min-width: 768px) and (max-width: 900px) {
     .recipes__image,
     .recipes__image img {
         height: 180px;
-    }
-}
-
-@media (min-width: 320px) and (max-width: 768px) {
-    .recipes__separator-large,
-    .recipes__separator-medium {
-        display: none;
     }
 }
 
@@ -196,12 +217,27 @@ html {
     .recipes__separator-medium {
         display: none;
     }
-    
+
     .recipes {
         margin-left: 11vw;
     }
-    
-    .recipes, .recipes__image, .author__inline, .name__inline {
-       width: 20vw;
+
+    .recipes,
+    .recipes__image,
+    .author__inline,
+    .name__inline {
+        width: 20vw;
+    }
+}
+
+@media (min-height: 1200px) and (max-height: 2560px) {
+    footer {
+        position: absolute;
+    }
+}
+
+@media (min-height: 1300px) and (max-height: 1400px) {
+    section {
+        margin-top: 10vh;
     }
 }
