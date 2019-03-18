@@ -132,13 +132,49 @@ html {
 
 /* ---------------------------------------Media Queries ------------------------------ */
 
+@media (min-width: 320px) and (max-width: 560px) {
+    .recipes {
+        width: 80vw;
+        margin-left: 10vw;
+    }
+}
+
+@media (min-width: 560px)and (max-width: 768px) {
+     .recipes {
+        width: 60vw;
+        margin-left: 20vw;
+    }
+}
+
+@media (min-width: 320px) and (max-width: 768px) {
+    .recipes__image,
+    .author__inline,
+    .name__inline {
+        width: 100%;
+    }
+
+    .recipes__image img {
+        width: 80%;
+        margin-left: 10%;
+    }
+}
+
+
 @media (min-width: 768px) and (max-width: 900px) {
-    .recipes__image, .recipes__image img {
+    .recipes__image,
+    .recipes__image img {
         height: 180px;
     }
 }
 
-@media (min-width: 560px) and (max-width: 1000px) {
+@media (min-width: 320px) and (max-width: 768px) {
+    .recipes__separator-large,
+    .recipes__separator-medium {
+        display: none;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1000px) {
     .recipes,
     .recipes__image,
     .name__inline,
@@ -159,5 +195,13 @@ html {
 @media (min-width: 1000px) and (max-width: 2560px) {
     .recipes__separator-medium {
         display: none;
+    }
+    
+    .recipes {
+        margin-left: 11vw;
+    }
+    
+    .recipes, .recipes__image, .author__inline, .name__inline {
+       width: 20vw;
     }
 }
