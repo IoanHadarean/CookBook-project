@@ -2,6 +2,7 @@
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/recipes.css') }}" type="text/css" />
 <section>
     <h1 class="random-message"></h1>
+    <div class="message-separator"></div>
     <div class="container">
         {% for recipe in args.recipes_sorted %}
         <div class="recipes">
@@ -17,7 +18,10 @@
                 <p class="author__inline">Recipe by {{ recipe.author_name }}</p>
             </div>
         </div>
-        {% endfor %} 
+        {% if recipe.id| int % 2 == 0 %}
+            <div class = "recipes__separator"></div>
+        {% endif %}
+        {% endfor %}
         {% if args.total_results > args.limit %}
             <div class="recipes__pagination">
                 <ul class="pagination__list">
@@ -37,7 +41,4 @@
     {% endif %}
 </section>
 <script type="text/javascript" src="static/js/welcome.js"></script>
-<script type="text/javascript">
-    window.suggestmeyes_loaded = true;
-</script>
 {% endblock %}

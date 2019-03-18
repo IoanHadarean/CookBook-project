@@ -7,8 +7,16 @@ window.onload = function() {
         "How are you going to resist? The answer is, you cannot",
         "For people that love to cook and try new things out"
     ];
+    
+    const colors = ["#00FFFF", "#FFA57D", "#FFC0CB"];
 
-    const randomIndex = Math.floor(Math.random() * messages.length);
+    const randomIndexMessages = Math.floor(Math.random() * messages.length);
+    const randomIndexColors = Math.floor(Math.random() * colors.length);
+    
+    let welcomeHeader = document.getElementsByClassName("random-message")[0];
 
-    document.getElementsByClassName("random-message")[0].innerHTML = messages[randomIndex];
+    welcomeHeader.innerHTML = messages[randomIndexMessages];
+    welcomeHeader.style.backgroundColor = colors[randomIndexColors];
 };
+
+

@@ -4,7 +4,8 @@ footer {
     position: relative;
 }
 
-body, html {
+body,
+html {
     background: none;
 }
 
@@ -16,22 +17,33 @@ body, html {
 
 /*---------------------------Recipes---------------------*/
 
-.name__inline, .author__inline {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  width: 35vw;
-  margin-top: 10px;
+.name__inline,
+.author__inline {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 25vw;
+    margin-top: 10px;
 }
 
 .name__inline {
     font-size: 20px;
 }
 
+.message-separator {
+    margin-bottom: 50px;
+    border: 1px solid #DCDCDC;
+    width: 80vw;
+    margin-left: 10vw;
+     -moz-box-shadow : 3px 3px 5px 6px #ccc;
+     -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+     box-shadow : 3px 3px 5px 6px #ccc;
+}
+
 .recipes {
     display: inline-block;
-    width: 35vw;
+    width: 25vw;
     margin-left: 10vw;
     margin-bottom: 100px;
     border: 1px solid #DCDCDC;
@@ -48,8 +60,8 @@ body, html {
 }
 
 .recipes__image {
-    width: 34.8vw;
-    height: 300px;
+    width: 24.8vw;
+    height: 250px;
 }
 
 .recipes__image img {
@@ -72,18 +84,29 @@ body, html {
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
     border: 1px solid #0892D0;
     font-size: 25px;
     border-radius: 50px;
 }
 
-.list__prev, .list__next {
+.recipes__separator {
+    margin-top: -50px;
+    margin-bottom: 50px;
+    border: 1px solid #DCDCDC;
+    width: 80vw;
+    margin-left: 10vw;
+}
+
+.list__prev,
+.list__next {
     display: inline-block;
     text-align: center;
     margin-top: 16px;
 }
 
-.list__prev > a, .list__next > a {
+.list__prev>a,
+.list__next>a {
     color: darkblue;
 }
 
@@ -97,7 +120,8 @@ body, html {
     margin-right: 10vw;
 }
 
-.pagination__list, .recipes__pagination {
+.pagination__list,
+.recipes__pagination {
     height: 50px;
     padding: 0;
     margin-top: -50px;
