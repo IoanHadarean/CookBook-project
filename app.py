@@ -5,7 +5,7 @@ from flask_pymongo import PyMongo, pymongo
 from flask import Flask, redirect, render_template, request, url_for, flash, session, logging, jsonify
 from bson.objectid import ObjectId
 from wtforms import Form, StringField, TextAreaField, PasswordField
-from wtforms.validators import DataRequired, Length, Email, EqualTo
+from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from passlib.hash import sha256_crypt
 from functools import wraps
 
@@ -43,7 +43,7 @@ class RegisterForm(Form):
     password = PasswordField('Password', validators = [DataRequired()])
     confirm = PasswordField('Confirm Password', validators = [DataRequired(), EqualTo('password',
                 message = 'Passwords do not match')])
-    
+            
 """Route when first accessing the page"""
 
 @app.route('/')
@@ -64,14 +64,21 @@ def register():
         
         #Create cursor
         cur = connection.cursor()
-        cur.execute("INSERT INTO users(name, email, username, password) VALUES(%s, %s, %s, %s)", (name, email, username, password))
+        
+        get_db_username = cur.execute("SELECT username FROM users WHERE username = %s", form.username.data)
+        get_db_email = cur.execute("SELECT email FROM users WHERE email = %s", form.email.data)
+        
+        if get_db_username > 0:
+            flash("That username is already taken. Please choose a different one.")
+        elif get_db_email > 0:
+            flash("That email is already taken. Please choose a different one.")
+        else:
+            cur.execute("INSERT INTO users(name, email, username, password) VALUES(%s, %s, %s, %s)", (name, email, username, password))
+            flash("You can now login to the website", "success")
         
         # Save and close the connection
         connection.commit()
         cur.close()
-        
-            
-        flash("You can now login to the website", "success")
         
         return redirect(url_for('register'))
     return render_template('register.html', form=form)

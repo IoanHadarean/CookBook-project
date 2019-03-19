@@ -44,6 +44,16 @@
   width: 100%;
   z-index: 99;
  }
+ 
+ .alert-success {
+  margin-top: 50px;
+ }
+ 
+ .alert-message {
+  margin-top: 50px;
+  color: #721c24;
+  background: #b29966;
+ }
 
  /* -------------------------------------------Navigation------------------------------------- */
 
@@ -251,6 +261,10 @@
   footer {
    bottom: -65vh;
   }
+  
+  form {
+   top: 15vh;
+  }
  }
 
 
@@ -260,7 +274,7 @@
   }
 
   form {
-   top: 15vh;
+   top: 25vh;
   }
 
   .form-control {
