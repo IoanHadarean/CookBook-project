@@ -45,7 +45,7 @@
   z-index: 99;
  }
  
- .alert-success {
+ .alert-success, .alert-danger {
   margin-top: 50px;
  }
  
