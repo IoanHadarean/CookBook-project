@@ -83,12 +83,6 @@
   padding: 0;
  }
 
- .navbar-middle {
-  display: flex;
-  align-items: center;
-  justify-content: center;
- }
-
  /* -------------------------------------------Buttons--------------------------------------- */
 
  .btn {
@@ -213,6 +207,14 @@
    width: 30vw;
    margin-left: 40vw;
    margin-right: 30vw;
+  }
+ }
+
+ @media (min-width: 768px) and (max-width: 2560px) {
+  .navbar-middle {
+   display: flex;
+   align-items: center;
+   justify-content: center;
   }
  }
 

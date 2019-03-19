@@ -7,12 +7,17 @@ footer {
 body,
 html {
     background: none;
+    height: 100%;
 }
 
 .container {
     width: 100%;
     margin-top: 100px;
     padding: 0;
+}
+
+section {
+    margin-top: 100px;
 }
 
 /*---------------------------Recipes---------------------*/
@@ -239,14 +244,16 @@ html {
     }
 }
 
+@media only screen and (max-height: 768px) {
+    footer {
+        position: relative;
+        bottom: 0;
+    }
+}
+
 @media (min-height: 1200px) and (max-height: 2560px) {
     footer {
         position: absolute;
     }
 }
 
-@media (min-height: 1300px) and (max-height: 1400px) {
-    section {
-        margin-top: 10vh;
-    }
-}
