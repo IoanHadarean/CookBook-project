@@ -4,7 +4,8 @@ from flask.logging import create_logger
 from flask_pymongo import PyMongo, pymongo
 from flask import Flask, redirect, render_template, request, url_for, flash, session, logging, jsonify
 from bson.objectid import ObjectId
-from wtforms import Form, StringField, TextAreaField, PasswordField, validators
+from wtforms import Form, StringField, TextAreaField, PasswordField
+from wtforms.validators import DataRequired, Length, Email, EqualTo
 from passlib.hash import sha256_crypt
 from functools import wraps
 
@@ -36,14 +37,12 @@ mongo = PyMongo(app)
 """ RegisterForm class with fields and validators """
 
 class RegisterForm(Form):
-    name = StringField('Name', [validators.Length(min=1, max=50)])
-    username = StringField('Username', [validators.Length(min=4, max=25)])
-    email = StringField('Email', [validators.Length(min=6, max=50)])
-    password = PasswordField('Password', [
-        validators.DataRequired(),
-        validators.EqualTo('confirm', message='Passwords do not match')
-        ])
-    confirm = PasswordField('Confirm Password')
+    name = StringField('Name', validators = [DataRequired(), Length(min=6, max=50)])
+    username = StringField('Username', validators = [DataRequired(), Length(min=6, max=25)])
+    email = StringField('Email', validators = [DataRequired(), Email(), Length(min=15, max=50)])
+    password = PasswordField('Password', validators = [DataRequired()])
+    confirm = PasswordField('Confirm Password', validators = [DataRequired(), EqualTo('password',
+                message = 'Passwords do not match')])
     
 """Route when first accessing the page"""
 
