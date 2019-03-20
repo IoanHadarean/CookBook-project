@@ -1,13 +1,13 @@
 // Load the content
 
 window.onload = function() {
-    
+
     // Get all links
     let navLinks = document.querySelectorAll('li a');
-    
+
     // Iterate through links
     for (let i = 0; i < navLinks.length; i++) {
-        
+
         // Customize login link
         if (navLinks[i].textContent == 'Login') {
             navLinks[i].style.backgroundColor = '#f26226';
@@ -18,7 +18,7 @@ window.onload = function() {
             navLinks[i].style.alignItems = 'center';
             navLinks[i].style.justifyContent = 'center';
         }
-        
+
         // Customize register link
         else if (navLinks[i].textContent == 'Register') {
             navLinks[i].style.backgroundColor = 'white';
@@ -29,10 +29,10 @@ window.onload = function() {
             navLinks[i].style.alignItems = 'center';
             navLinks[i].style.justifyContent = 'center';
         }
-        
-        
+
+
         //Customize other links
-        
+
         else {
             navLinks[i].style.display = 'flex';
             navLinks[i].style.alignItems = 'center';
@@ -40,7 +40,12 @@ window.onload = function() {
         }
     }
     
-        const messages = ["WorldWide CookBook is super excited to have you onboard", "Doesn't that seem delicious? Try it out",
+    
+    // Added random welcome messages and colors array
+    // Added randomIndex to each of the messages and colors
+    // Colors array changes depending on the device width
+    
+    const messages = ["WorldWide CookBook is super excited to have you onboard", "Doesn't that seem delicious? Try it out",
         "We predict that in the next minute you will go get something to eat", "There you go, welcome to our food fiesta!",
         "Take a look at these delicious recipes and get that frying pan out of the cupboard",
         "Is creativity your number one trait? Then you got the perfect matching recipes",
@@ -49,7 +54,7 @@ window.onload = function() {
         "For people that love to cook and try new things out"
     ];
 
-    let colors = ["#00FFFF", "#FFA57D", "#FFC0CB", "#8A2BE2","#ADD8E6"];
+    let colors = ["#00FFFF", "#FFA57D", "#FFC0CB", "#8A2BE2", "#ADD8E6"];
     const randomIndexMessages = Math.floor(Math.random() * messages.length);
     const randomIndexColors = Math.floor(Math.random() * colors.length);
 
@@ -57,12 +62,14 @@ window.onload = function() {
 
     welcomeHeader.innerHTML = messages[randomIndexMessages];
     welcomeHeader.style.backgroundColor = colors[randomIndexColors];
+    
+    // Added random colors and welcome messages on window resize
 
     window.addEventListener('resize', randomColors);
 
     function randomColors() {
         if (screen.width <= 560) {
-            let colorsMobile = ["#8A2BE2","#ADD8E6"];
+            let colorsMobile = ["#8A2BE2", "#ADD8E6"];
             let welcomeHeaderMobile = document.getElementsByClassName("random-message")[0];
             const randomIndexMessagesMobile = Math.floor(Math.random() * messages.length);
             const randomIndexColorsMobile = Math.floor(Math.random() * colorsMobile.length);

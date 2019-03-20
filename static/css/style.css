@@ -86,10 +86,13 @@
  }
  
  .navbar-middle li a {
-  background: #F0FFFF;
   margin-right: 20px;
   height: 30px;
   margin-top: 10px;
+ }
+ 
+ .navbar-middle li a:hover {
+  background: #E8E8E8;
  }
 
  .navbar-brand {
