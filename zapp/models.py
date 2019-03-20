@@ -178,8 +178,11 @@ recipes = [{ "_id" : "5c7ad2bffb6fc072012c83cc", "id" : "1", "recipe_name" : "Ri
             
 # average_calories()
 
+total_array = []
+total = 0
+
 def ready_time():
-    total_array = []
+    global total_array 
     for recipe in recipes:
         cooking_time = recipe["cooking_time"].split(" ")
         preparation_time = recipe["preparation_time"].split(" ")
@@ -188,7 +191,7 @@ def ready_time():
         final_hours = 0
         ready_time_cooking = 0
         ready_time_preparation = 0
-        total = 0
+        global total
         if "h" not in cooking_time[0]:
             minutes_cooking_time = int(cooking_time[0])
             ready_time_cooking += minutes_cooking_time
@@ -215,7 +218,7 @@ def ready_time():
         else:
             total = {"{}h {}min".format(final_hours, final_minutes)}
         total_array.append(total)
-    omega = print(total_array)
+    # print(total_array)
         
 ready_time()
 

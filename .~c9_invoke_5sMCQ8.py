@@ -1,6 +1,6 @@
 import os, pymysql, json, requests
-from zapp import models
-from zapp.models import *
+# from zapp import models
+# from zapp.models import *
 import pygal
 from flask.logging import create_logger
 from flask_pymongo import PyMongo, pymongo
@@ -179,12 +179,43 @@ def recipes():
 """ View details of a recipe """
 @app.route('/get_recipe/<recipe_id>', methods = ['GET', 'POST'])
 def get_recipe(recipe_id):
-    for item in omega:
-        print(item)
-        
+    
     the_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     
-    return render_template('get_recipe.html', recipe=the_recipe)
+    cooking_time = the_recipe["cooking_time"].split(" ")
+    preparation_time = the_recipe["preparation_time"].split(" ")
+    minutes_total = 0
+    final_minutes = 0
+    final_hours = 0
+    ready_time_cooking = 0
+    ready_time_preparation = 0
+    if "h" not in cooking_time[0]:
+        minutes_cooking_time = int(cooking_time[0])
+        ready_time_cooking += minutes_cooking_time
+    else:
+        hours_cooking_time = int(cooking_time[0][0])
+        minutes_cooking_time = int(cooking_time[1])
+        hours_to_minutes = hours_cooking_time * 60
+        ready_time_cooking = hours_to_minutes + minutes_cooking_time
+    if "h" not in preparation_time[0]:
+        minutes_preparation_time = int(preparation_time[0])
+        ready_time_preparation += minutes_preparation_time
+    else:
+        hours_preparation_time = preparation_time[0][0]
+        minutes_preparation_time = preparation_time[1]
+        hours_to_minutes = hours_preparation_time * 60
+        ready_time_preparation = hours_to_minutes + minutes_preparation_time
+    minutes_total = ready_time_cooking + ready_time_preparation
+    final_hours = minutes_total // 60
+    final_minutes = minutes_total % 60
+    if final_hours == 0:
+        total = {"{}min".format(final_minutes)}
+    elif final_minutes == 0:
+        total = {"{}h".format(final_hours)}
+    else:
+        total = {"{}h {}min".format(final_hours, final_minutes)}
+    
+    return render_template('get_recipe.html', recipe=the_recipe, total = total)
     
 
 """ Recipe ingredients statistics by cuisine
