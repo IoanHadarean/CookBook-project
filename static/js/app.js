@@ -1,6 +1,28 @@
 window.onload = function() {
-
-    const messages = ["WorldWide CookBook is super excited to have you onboard", "Doesn't that seem delicious? Try it out",
+    let navList = document.querySelectorAll('li a');
+    for (let i = 0; i < navList.length; i++) {
+        if (navList[i].textContent == 'Login') {
+            navList[i].style.backgroundColor = '#f26226';
+            navList[i].style.height = '30px';
+            navList[i].style.marginTop = '10px';
+            navList[i].style.color = 'white';
+            navList[i].style.display = 'flex';
+            navList[i].style.alignItems = 'center';
+            navList[i].style.justifyContent = 'center';
+        }
+        else if (navList[i].textContent == 'Register') {
+            navList[i].style.backgroundColor = 'white';
+            navList[i].style.height = '30px';
+            navList[i].style.marginTop = '10px';
+            navList[i].style.color = 'black';
+            navList[i].style.display = 'flex';
+            navList[i].style.alignItems = 'center';
+            navList[i].style.justifyContent = 'center';
+            navList[i].style.marginRight = '30px';
+        }
+    }
+    
+        const messages = ["WorldWide CookBook is super excited to have you onboard", "Doesn't that seem delicious? Try it out",
         "We predict that in the next minute you will go get something to eat", "There you go, welcome to our food fiesta!",
         "Take a look at these delicious recipes and get that frying pan out of the cupboard",
         "Is creativity your number one trait? Then you got the perfect matching recipes",
@@ -40,5 +62,4 @@ window.onload = function() {
             welcomeHeaderDesktop.style.backgroundColor = colorsDesktop[randomIndexColorsDesktop];
         }
     }
-
 };
