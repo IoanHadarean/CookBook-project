@@ -176,7 +176,9 @@ def recipes():
     return render_template('recipes.html', args=args)
     
     
-""" View details of a recipe """
+""" View details of a recipe
+    and add functionality for getting the
+    final ready time for each recipe """
 @app.route('/get_recipe/<recipe_id>', methods = ['GET', 'POST'])
 def get_recipe(recipe_id):
     
