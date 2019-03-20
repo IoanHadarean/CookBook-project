@@ -1,35 +1,35 @@
 {% extends 'base.html' %} {% block content %} {% from "includes/_formhelpers.html" import render_field %} {% include 'includes/_messages.html' %}
-    <form method="POST" action="">
-        <div class="form-group form-group--responsive">
-            <div class="row col-lg-12">
-                <h4>{{render_field(form.name, class_="form-control")}}</h4>
-            </div>
+<form method="POST" action="">
+    <div class="form-group form-group--responsive">
+        <div class="row col-lg-12">
+            <h4>{{render_field(form.name, class_="form-control")}}</h4>
         </div>
-        <div class="form-group form-group--responsive">
-            <div class="row col-lg-12">
-                <h4>{{render_field(form.email, class_="form-control")}}</h4>
-            </div>
+    </div>
+    <div class="form-group form-group--responsive">
+        <div class="row col-lg-12">
+            <h4>{{render_field(form.email, class_="form-control")}}</h4>
         </div>
-        <div class="form-group form-group--responsive">
-            <div class="row col-lg-12">
-                <h4>{{render_field(form.username, class_="form-control")}}</h4>
-            </div>
+    </div>
+    <div class="form-group form-group--responsive">
+        <div class="row col-lg-12">
+            <h4>{{render_field(form.username, class_="form-control")}}</h4>
         </div>
-        <div class="form-group form-group--responsive">
-            <div class="row col-lg-12">
-                <h4>{{render_field(form.password, class_="form-control")}}</h4>
-            </div>
+    </div>
+    <div class="form-group form-group--responsive">
+        <div class="row col-lg-12">
+            <h4>{{render_field(form.password, class_="form-control")}}</h4>
         </div>
-        <div class="form-group form-group--responsive">
-            <div class="row col-lg-12">
-                <h4>{{render_field(form.confirm, class_="form-control")}}</h4>
-            </div>
+    </div>
+    <div class="form-group form-group--responsive">
+        <div class="row col-lg-12">
+            <h4>{{render_field(form.confirm, class_="form-control")}}</h4>
         </div>
-        <div class="form-group form-group--responsive">
-            <div class="row col-lg-12">
-                <button type="submit" class="btn btn-primary">Register</button>
-            </div>
+    </div>
+    <div class="form-group form-group--responsive">
+        <div class="row col-lg-12">
+            <button type="submit" class="btn btn-primary">Register</button>
         </div>
-    </form>
-    <script type="text/javascript" src="static/js/help_inline.js"></script>
+    </div>
+</form>
+<script type="text/javascript" src="{{ url_for('static', filename = 'js/help_inline.js') }}" async></script>
 {% endblock %}

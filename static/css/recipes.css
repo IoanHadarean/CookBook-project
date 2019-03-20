@@ -50,7 +50,6 @@ section {
     display: inline-block;
     width: 25vw;
     margin-left: 6vw;
-    margin-bottom: 50px;
     border-top: 2px solid #000;
 }
 
@@ -90,7 +89,7 @@ section {
     justify-content: center;
     text-align: center;
     border: 2px solid #000;
-    font-size: 25px;
+    font-size: 20px;
     border-radius: 20px;
 }
 
@@ -145,7 +144,7 @@ section {
 .recipes__pagination {
     height: 50px;
     padding: 0;
-    margin-top: -50px;
+    margin-top: 50px;
     margin-bottom: 16px;
     font-size: 20px;
 }

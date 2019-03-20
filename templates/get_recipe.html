@@ -1,0 +1,8 @@
+{% extends 'base.html' %} {% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename = 'css/get_recipe.css') }}" type="text/css" />
+<section>
+    <div class = "recipe__title">
+        <h1>{{ recipe.recipe_name }}</h1>
+    </div>
+</section>
+{% endblock %}
