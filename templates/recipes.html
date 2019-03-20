@@ -18,7 +18,7 @@
                 <p class="author__inline">Recipe by {{ recipe.author_name }}</p>
             </div>
             <div class="recipes__view">
-                <a class="view__details" href="">View Recipe</a>
+                <a class="view__details" href="{{ url_for('get_recipe', recipe_id=recipe._id) }}">View Recipe</a>
             </div>
         </div>
         {% if (recipe.id| int % 3 == 0) and (recipe.id| int % 6 != 0) %}

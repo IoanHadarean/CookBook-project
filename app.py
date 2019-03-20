@@ -139,7 +139,7 @@ def logout():
     flash('You are now logged out', 'success')
     return redirect(url_for('login'))
     
-""" All recipes """
+""" Get all recipes """
 
 @app.route('/recipes', methods = ['GET'])
 def recipes():
@@ -152,7 +152,7 @@ def recipes():
     starting_id = recipe.find().sort('_id', pymongo.ASCENDING)
     last_id = starting_id[offset]['_id']
     total_results = 0
-    for x in recipes:
+    for item in recipes:
         total_results +=1
     
     args = {
@@ -166,6 +166,22 @@ def recipes():
     }
     
     return render_template('recipes.html', args=args)
+    
+""" View details of a recipe """
+@app.route('/get_recipe/<recipe_id>', methods = ['GET', 'POST'])
+def get_recipe(recipe_id):
+    the_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    return render_template('recipe.html', recipe=the_recipe)
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
 """ Recipe ingredients statistics by cuisine
     (Note: all values have been multiplied by 3000
