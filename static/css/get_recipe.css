@@ -7,5 +7,23 @@ html {
 }
 
 section {
-    margin-top: 100px;
+    margin-top: 50px;
 }
+
+/*------------------------------------- Recipe ----------------------- */
+
+.recipe__info, .recipe__image {
+    width: 100vw;
+}
+
+.image__inline {
+    width: 100%;
+}
+
+.title__description {
+    font-size: 25px;
+    margin-left: 3vw;
+    margin-right: 3vw;
+    font-weight: bold;
+}
+
