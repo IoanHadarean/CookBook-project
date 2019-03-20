@@ -226,6 +226,10 @@
    align-items: center;
    justify-content: center;
   }
+  
+  .navbar-right {
+   margin-right: 15px;
+  }
  }
 
 

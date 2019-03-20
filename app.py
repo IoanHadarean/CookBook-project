@@ -43,12 +43,14 @@ class RegisterForm(Form):
     password = PasswordField('Password', validators = [DataRequired()])
     confirm = PasswordField('Confirm Password', validators = [DataRequired(), EqualTo('password',
                 message = 'Passwords do not match')])
+                
             
 """Route when first accessing the page"""
 
 @app.route('/')
 def index():
     return redirect(url_for('recipes', limit=6, offset=0))
+    
     
 """ Route for new user registering to the website """
 
@@ -82,6 +84,7 @@ def register():
         
         return redirect(url_for('register'))
     return render_template('register.html', form=form)
+    
     
 """ Login for user already registered to the website """
 
@@ -121,6 +124,7 @@ def login():
             
     return render_template('login.html')
     
+    
 """ Check if user is logged in """
 def is_logged_in(f):
     @wraps(f)
@@ -132,12 +136,14 @@ def is_logged_in(f):
             return redirect(url_for('login'))
     return wrap
     
+    
 """ Logout """
 @app.route('/logout')
 def logout():
     session.clear()
     flash('You are now logged out', 'success')
     return redirect(url_for('login'))
+    
     
 """ Get all recipes """
 
@@ -167,20 +173,12 @@ def recipes():
     
     return render_template('recipes.html', args=args)
     
+    
 """ View details of a recipe """
 @app.route('/get_recipe/<recipe_id>', methods = ['GET', 'POST'])
 def get_recipe(recipe_id):
     the_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
     return render_template('recipe.html', recipe=the_recipe)
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
 
 """ Recipe ingredients statistics by cuisine
