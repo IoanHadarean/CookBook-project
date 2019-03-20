@@ -58,7 +58,7 @@
  /* -------------------------------------------Navigation------------------------------------- */
 
  #navbar {
-  background-color: #90E5E1;
+  background-color: #E8E8E8;
   width: 100%;
   margin: 0px;
   z-index: 4;
@@ -83,6 +83,13 @@
   color: black;
   font-size: 20px;
   font-family: "Arial";
+ }
+ 
+ .navbar-middle li a {
+  background: #F0FFFF;
+  margin-right: 20px;
+  height: 30px;
+  margin-top: 10px;
  }
 
  .navbar-brand {
@@ -142,6 +149,23 @@
 
 
  /* --------------------------------------------------Media Queries------------------------------- */
+
+@media only screen and (max-width: 768px) {
+ .navbar-middle, .navbar-right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ }
+ 
+ .navbar-middle {
+  margin-top: 23px;
+ }
+ 
+ .navbar-right {
+  margin-bottom: 23px;
+ }
+}
+
 
  @media screen and (max-width: 500px) {
   .form-control {
@@ -230,8 +254,8 @@
   .navbar-right {
    margin-right: 15px;
   }
+  
  }
-
 
  @media (min-width: 1920px) and (max-width: 2560px) {
   .form-group--responsive {

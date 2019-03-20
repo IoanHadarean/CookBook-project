@@ -1,24 +1,42 @@
+// Load the content
+
 window.onload = function() {
-    let navList = document.querySelectorAll('li a');
-    for (let i = 0; i < navList.length; i++) {
-        if (navList[i].textContent == 'Login') {
-            navList[i].style.backgroundColor = '#f26226';
-            navList[i].style.height = '30px';
-            navList[i].style.marginTop = '10px';
-            navList[i].style.color = 'white';
-            navList[i].style.display = 'flex';
-            navList[i].style.alignItems = 'center';
-            navList[i].style.justifyContent = 'center';
+    
+    // Get all links
+    let navLinks = document.querySelectorAll('li a');
+    
+    // Iterate through links
+    for (let i = 0; i < navLinks.length; i++) {
+        
+        // Customize login link
+        if (navLinks[i].textContent == 'Login') {
+            navLinks[i].style.backgroundColor = '#f26226';
+            navLinks[i].style.height = '30px';
+            navLinks[i].style.marginTop = '10px';
+            navLinks[i].style.color = 'white';
+            navLinks[i].style.display = 'flex';
+            navLinks[i].style.alignItems = 'center';
+            navLinks[i].style.justifyContent = 'center';
         }
-        else if (navList[i].textContent == 'Register') {
-            navList[i].style.backgroundColor = 'white';
-            navList[i].style.height = '30px';
-            navList[i].style.marginTop = '10px';
-            navList[i].style.color = 'black';
-            navList[i].style.display = 'flex';
-            navList[i].style.alignItems = 'center';
-            navList[i].style.justifyContent = 'center';
-            navList[i].style.marginRight = '30px';
+        
+        // Customize register link
+        else if (navLinks[i].textContent == 'Register') {
+            navLinks[i].style.backgroundColor = 'white';
+            navLinks[i].style.height = '30px';
+            navLinks[i].style.marginTop = '10px';
+            navLinks[i].style.color = 'black';
+            navLinks[i].style.display = 'flex';
+            navLinks[i].style.alignItems = 'center';
+            navLinks[i].style.justifyContent = 'center';
+        }
+        
+        
+        //Customize other links
+        
+        else {
+            navLinks[i].style.display = 'flex';
+            navLinks[i].style.alignItems = 'center';
+            navLinks[i].style.justifyContent = 'center';
         }
     }
     

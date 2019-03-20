@@ -232,6 +232,8 @@ section {
     .recipes__image img {
         height: 180px;
     }
+    
+    
 }
 
 @media (min-width: 768px) and (max-width: 1000px) {
