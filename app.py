@@ -1,6 +1,4 @@
 import os, pymysql, json, requests
-# from zapp import models
-# from zapp.models import *
 import pygal
 from flask.logging import create_logger
 from flask_pymongo import PyMongo, pymongo
@@ -211,11 +209,11 @@ def get_recipe(recipe_id):
     final_hours = minutes_total // 60
     final_minutes = minutes_total % 60
     if final_hours == 0:
-        total = {"{}min".format(final_minutes)}
+        total = "%smin" % final_minutes
     elif final_minutes == 0:
-        total = {"{}h".format(final_hours)}
+        total = "%sh" % final_hours
     else:
-        total = {"{}h {}min".format(final_hours, final_minutes)}
+        total = "%sh %smin" % (final_hours, final_minutes)
     
     return render_template('get_recipe.html', recipe=the_recipe, total = total)
     
