@@ -15,7 +15,7 @@
                 </a>
             </div>
             <div class="recipes__author">
-                <p class="author__inline">Recipe by {{ recipe.author_name }}</p>
+                <p class="author__inline">By {{ recipe.author_name }}</p>
             </div>
             <div class="recipes__view">
                 <a class="view__details" href="{{ url_for('get_recipe', recipe_id=recipe._id) }}">View Recipe</a>

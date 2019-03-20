@@ -21,9 +21,26 @@ section {
 }
 
 .title__description {
-    font-size: 25px;
-    margin-left: 3vw;
-    margin-right: 3vw;
+    font-size: 30px;
+    margin-left: 5vw;
+    margin-right: 5vw;
     font-weight: bold;
+}
+
+.author__description {
+    font-size: 16px;
+    margin-left: 5vw;
+}
+
+.recipe-separator {
+    margin-left: 5vw;
+    margin-right: 5vw;
+    border: 1px solid gray;
+}
+
+.info__time {
+    text-align: center;
+    font-size: 40px;
+    margin-top: 15px;
 }
 

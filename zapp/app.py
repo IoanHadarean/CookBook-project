@@ -1,4 +1,6 @@
 import os, pymysql, json, requests
+from zapp import models
+from zapp.models import *
 import pygal
 from flask.logging import create_logger
 from flask_pymongo import PyMongo, pymongo
@@ -177,7 +179,11 @@ def recipes():
 """ View details of a recipe """
 @app.route('/get_recipe/<recipe_id>', methods = ['GET', 'POST'])
 def get_recipe(recipe_id):
+    for item in omega:
+        print(item)
+        
     the_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    
     return render_template('get_recipe.html', recipe=the_recipe)
     
 

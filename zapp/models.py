@@ -160,25 +160,64 @@ recipes = [{ "_id" : "5c7ad2bffb6fc072012c83cc", "id" : "1", "recipe_name" : "Ri
 """ Average calories by cuisine """
 
 
-def average_calories():
-    calories_total = 0
-    count_recipes_by_cuisine = 0
-    for recipe in recipes:
-        """ Change the name of cuisine to search for calories by another cuisine
-            (Note: comment this out to calculate average calories for all recipes) """
-        if recipe["cuisine_name"] == "Irish":
-            count_recipes_by_cuisine += 1
-            wordSplit = recipe["calories"].split(" ")
-            # print(wordSplit)
-            calories = int(wordSplit[0])
-            calories_total += calories
-            # print(calories_total)
-            average_calories = calories_total / count_recipes_by_cuisine
-    print(average_calories)
+# def average_calories():
+#     calories_total = 0
+#     count_recipes_by_cuisine = 0
+#     for recipe in recipes:
+#         """ Change the name of cuisine to search for calories by another cuisine
+#             (Note: comment this out to calculate average calories for all recipes) """
+#         if recipe["cuisine_name"] == "Irish":
+#             count_recipes_by_cuisine += 1
+#             wordSplit = recipe["calories"].split(" ")
+#             # print(wordSplit)
+#             calories = int(wordSplit[0])
+#             calories_total += calories
+#             # print(calories_total)
+#             average_calories = calories_total / count_recipes_by_cuisine
+#     print(average_calories)
             
-average_calories()
+# average_calories()
 
-
+def ready_time():
+    total_array = []
+    for recipe in recipes:
+        cooking_time = recipe["cooking_time"].split(" ")
+        preparation_time = recipe["preparation_time"].split(" ")
+        minutes_total = 0
+        final_minutes = 0
+        final_hours = 0
+        ready_time_cooking = 0
+        ready_time_preparation = 0
+        total = 0
+        if "h" not in cooking_time[0]:
+            minutes_cooking_time = int(cooking_time[0])
+            ready_time_cooking += minutes_cooking_time
+        else:
+            hours_cooking_time = int(cooking_time[0][0])
+            minutes_cooking_time = int(cooking_time[1])
+            hours_to_minutes = hours_cooking_time * 60
+            ready_time_cooking = hours_to_minutes + minutes_cooking_time
+        if "h" not in preparation_time[0]:
+            minutes_preparation_time = int(preparation_time[0])
+            ready_time_preparation += minutes_preparation_time
+        else:
+            hours_preparation_time = preparation_time[0][0]
+            minutes_preparation_time = preparation_time[1]
+            hours_to_minutes = hours_preparation_time * 60
+            ready_time_preparation = hours_to_minutes + minutes_preparation_time
+        minutes_total = ready_time_cooking + ready_time_preparation
+        final_hours = minutes_total // 60
+        final_minutes = minutes_total % 60
+        if final_hours == 0:
+            total = {"{}min".format(final_minutes)}
+        elif final_minutes == 0:
+            total = {"{}h".format(final_hours)}
+        else:
+            total = {"{}h {}min".format(final_hours, final_minutes)}
+        total_array.append(total)
+    omega = print(total_array)
+        
+ready_time()
 
     
 
