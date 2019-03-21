@@ -194,22 +194,19 @@ def get_quantities():
         full_quantities = []
         # print(quantities)
         for ingredient in ingredients:
-            quantities = []
             concatenated_quantity = ''
             ingredientSplit = ingredient.split(" ")
             i = 0
-            j = 0
             # print(ingredientSplit)
             while i < len(ingredientSplit):
                 firstElement = ingredientSplit[i]
                 regex = re.findall("(^(clove|cup|teaspoon|tablespoon|\d|ounce|pound|pinch|slice)|.\d)", firstElement)
                 if regex:
                     concatenated_quantity += "{} ".format(ingredientSplit[i])
-                    print(concatenated_quantity)
                 i += 1
                 
-        #     full_quantities.append(quantities)
-        # print(full_quantities)
+            full_quantities.append(concatenated_quantity)
+        print(full_quantities)
                     
 get_quantities()
             
