@@ -16,9 +16,18 @@
         <div class="recipe-separator"></div>
         <div class="info__time">
             <i class="far fa-clock"></i>
-            <div class="time__cooking">{{ recipe.cooking_time }}</div>
-            <div class="time__preparation">{{ recipe.preparation_time }}</div>
-            <div class="time__ready">{{ total }}</div>
+            <div class="time__cooking">
+                <span>Cooking Time</span>
+                <span>{{ recipe.cooking_time }}</span>
+            </div>
+            <div class="time__preparation">
+                <span>Preparation Time</span>
+                <span>{{ recipe.preparation_time }}</span>
+            </div>
+            <div class="time__ready">
+                <span>Ready In</span>
+                <span>{{ total }}</span>
+            </div>
         </div>
     </div>
 </section>

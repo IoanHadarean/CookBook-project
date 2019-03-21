@@ -173,6 +173,7 @@ def recipes():
     
     return render_template('recipes.html', args=args)
     
+
     
 """ View details of a recipe
     and add functionality for getting the
@@ -209,11 +210,11 @@ def get_recipe(recipe_id):
     final_hours = minutes_total // 60
     final_minutes = minutes_total % 60
     if final_hours == 0:
-        total = "%smin" % final_minutes
+        total = "%s min" % final_minutes
     elif final_minutes == 0:
         total = "%sh" % final_hours
     else:
-        total = "%sh %smin" % (final_hours, final_minutes)
+        total = "%sh %s min" % (final_hours, final_minutes)
     
     return render_template('get_recipe.html', recipe=the_recipe, total = total)
     

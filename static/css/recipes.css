@@ -224,6 +224,10 @@ section {
     .recipes__separator-medium {
         display: none;
     }
+    
+    .recipes {
+        margin-bottom: 50px;
+    }
 }
 
 @media (min-width: 768px) and (max-width: 900px) {

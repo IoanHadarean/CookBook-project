@@ -4,6 +4,7 @@ body,
 html {
     background: none;
     height: 100%;
+    margin: 0;
 }
 
 section {
@@ -12,7 +13,8 @@ section {
 
 /*------------------------------------- Recipe ----------------------- */
 
-.recipe__info, .recipe__image {
+.recipe__info,
+.recipe__image {
     width: 100vw;
 }
 
@@ -44,3 +46,28 @@ section {
     margin-top: 15px;
 }
 
+.time__cooking,
+.time__preparation,
+.time__ready {
+    height: 100px;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+}
+
+.time__cooking {
+    margin-left: 2.5%;
+    width: 30%;
+}
+
+.time__preparation {
+    margin-left: 32.5%;
+    width: 40%;
+}
+
+.time__ready {
+    margin-left: 72.5%;
+    margin-right: 2.5%;
+    width: 25%;
+}
