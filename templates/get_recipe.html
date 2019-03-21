@@ -18,17 +18,18 @@
             <i class="far fa-clock"></i>
             <div class="time__cooking">
                 <span>Cooking Time</span>
-                <span>{{ recipe.cooking_time }}</span>
+                <span class = "is-time-1">{{ recipe.cooking_time }}</span>
             </div>
             <div class="time__preparation">
                 <span>Preparation Time</span>
-                <span>{{ recipe.preparation_time }}</span>
+                <span class = "is-time-1">{{ recipe.preparation_time }}</span>
             </div>
             <div class="time__ready">
                 <span>Ready In</span>
-                <span>{{ total }}</span>
+                <span class = "is-time-2">{{ total }}</span>
             </div>
         </div>
+        <div class="recipe-separator"></div>
     </div>
 </section>
 {% endblock %}
