@@ -7,7 +7,6 @@ html {
     background: none;
     height: 100%;
     margin: 0;
-    overflow-x: hidden;
 }
 
 section {
@@ -72,7 +71,45 @@ section {
 }
 
 .time__ready {
-    margin-left: 72.5%;
+    margin-left: 77.5%;
     margin-right: 2.5%;
-    width: 25%;
+    width: 20%;
+}
+
+.is-time {
+    margin-top: 10px;
+    color: #009978;
+    font-size: 16px;
+}
+
+.recipe__alert {
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+    height: 100px;
+}
+
+.alert__description {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.alert__box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50px;
+    margin-bottom: 20px;
+    background: #f26226;
+    width: 50%;
+    margin-left: 25%;
+}
+
+.box__link {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
 }

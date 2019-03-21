@@ -1,8 +1,8 @@
-$margins: 10px, 38px;
+$margins: 10px, 10px, 10px;
 
 @each $margin in $margins {
     $i: index($margins, $margin);
-    .is-time-#{$i} {
+    .is-time-mobile-#{$i} {
         margin-top: $margin;
         color: #009978;
         font-size: 16px;
