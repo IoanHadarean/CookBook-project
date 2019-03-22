@@ -5,7 +5,6 @@
 html,
 body {
     background: none;
-    margin: 0;
 }
 
 section {
@@ -14,10 +13,10 @@ section {
 
 /*------------------------------------- Recipe ----------------------- */
 
-.recipe__info,
-.recipe__image {
-    width: 100vw;
-}
+/*.recipe__info,*/
+/*.recipe__image {*/
+/*    width: 100vw;*/
+/*}*/
 
 .image__inline {
     width: 100%;
@@ -25,19 +24,20 @@ section {
 
 .title__description {
     font-size: 30px;
-    margin-left: 5%;
-    margin-right: 5%;
+    margin-left: 5vw;
+    margin-right: 5vw;
     font-weight: bold;
 }
 
 .author__description {
     font-size: 16px;
-    margin-left: 5%;
+    margin-left: 5vw;
 }
 
 .recipe-separator {
-    margin-left: 5%;
-    margin-right: 5%;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    width: 90vw;
     border: 1px solid gray;
 }
 
@@ -60,19 +60,19 @@ section {
 }
 
 .time__cooking {
-    margin-left: 2.5%;
-    width: 30%;
+    margin-left: 2.5vw;
+    width: 30vw;
 }
 
 .time__preparation {
-    margin-left: 32.5%;
-    width: 40%;
+    margin-left: 32.5vw;
+    width: 40vw;
 }
 
 .time__ready {
-    margin-left: 77.5%;
-    margin-right: 2.5%;
-    width: 20%;
+    margin-left: 77.5vw;
+    margin-right: 2.5vw;
+    width: 20vw;
 }
 
 .is-time {
@@ -82,8 +82,9 @@ section {
 }
 
 .recipe__alert {
-    margin-left: 2.5%;
-    margin-right: 2.5%;
+    margin-left: 2.5vw;
+    margin-right: 2.5vw;
+    width: 95vw;
     height: 100px;
 }
 
@@ -103,8 +104,8 @@ section {
     height: 50px;
     margin-bottom: 20px;
     background: #f26226;
-    width: 50%;
-    margin-left: 25%;
+    width: 50vw;
+    margin-left: 25vw;
 }
 
 .box__link {
@@ -113,10 +114,15 @@ section {
     font-size: 16px;
 }
 
+.recipe__quantities {
+    margin-top: 50px;
+}
+
 /* ---------------------------------------Media Queries ------------------------------ */
 
-@media (max-height: 667px) and (min-height: 360px) {
+@media only screen and (max-width: 768px) {
     footer {
-        bottom: -600px;
-    }
+        bottom: 0;
+        position: relative;
+    } 
 }

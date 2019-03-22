@@ -7,7 +7,6 @@ footer {
 body,
 html {
     background: none;
-    margin: 0;
 }
 
 .container {
@@ -144,7 +143,6 @@ section {
 .recipes__pagination {
     height: 50px;
     padding: 0;
-    margin-top: 50px;
     margin-bottom: 16px;
     font-size: 20px;
 }
