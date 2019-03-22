@@ -307,8 +307,9 @@ section {
     }
 }
 
-@media (min-height: 1200px) and (max-height: 2560px) {
+@media (min-height: 1281px) and (max-height: 2560px) {
     footer {
         position: absolute;
+        width: 100vw;
     }
 }

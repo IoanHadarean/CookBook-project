@@ -33,19 +33,6 @@
  h4 {
   color: #40E0D0;
  }
-
- footer {
-  position: absolute;
-  width: auto;
-  bottom: 0;
- }
-
- nav {
-  background: wheat;
-  position: fixed;
-  width: 100%;
-  z-index: 99;
- }
  
  .alert-success, .alert-danger {
   margin-top: 50px;
@@ -64,6 +51,13 @@
   width: 100vw;
   margin: 0px;
   z-index: 4;
+ }
+ 
+  nav {
+  background: wheat;
+  position: fixed;
+  width: 100%;
+  z-index: 99;
  }
 
  .navbar-toggle .icon-bar {
@@ -133,7 +127,7 @@
  /* -------------------------------------------------Footer------------------------------------------------- */
 
  .footer {
-  width: 100%;
+  width: auto;
   background-color: black;
   height: 10%;
   bottom: 0;
@@ -151,6 +145,11 @@
   justify-content: center;
  }
 
+ footer {
+  position: absolute;
+  width: auto;
+  bottom: 0;
+ }
 
  /* --------------------------------------------------Media Queries------------------------------- */
 
