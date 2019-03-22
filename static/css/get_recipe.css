@@ -2,10 +2,9 @@
 
 /*------------------Special margins and styling--------------- */
 
-body,
-html {
+html,
+body {
     background: none;
-    height: 100%;
     margin: 0;
 }
 
@@ -112,4 +111,12 @@ section {
     text-decoration: none;
     color: white;
     font-size: 16px;
+}
+
+/* ---------------------------------------Media Queries ------------------------------ */
+
+@media (max-height: 667px) and (min-height: 360px) {
+    footer {
+        bottom: -600px;
+    }
 }

@@ -1,5 +1,4 @@
-import os, pymysql, json, requests
-import pygal
+import os, pymysql, json, requests, pygal, re
 from flask.logging import create_logger
 from flask_pymongo import PyMongo, pymongo
 from flask import Flask, redirect, render_template, request, url_for, flash, session, logging, jsonify
@@ -174,12 +173,12 @@ def recipes():
     return render_template('recipes.html', args=args)
     
 
-    
 """ View details of a recipe """
 @app.route('/get_recipe/<recipe_id>', methods = ['GET', 'POST'])
 def get_recipe(recipe_id):
     
     the_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    
     
     """ Add ready time for each recipe (cooking time + preparation time) """
     
@@ -215,8 +214,26 @@ def get_recipe(recipe_id):
         total = "%sh" % final_hours
     else:
         total = "%sh %s min" % (final_hours, final_minutes)
+        
+        
+    """ Added quantities for each recipe using regex """
     
-    return render_template('get_recipe.html', recipe=the_recipe, total = total)
+    ingredients = the_recipe["ingredients"]
+    full_quantities = []
+    for ingredient in ingredients:
+        concatenated_quantity = ''
+        ingredientSplit = ingredient.split(" ")
+        i = 0
+        while i < len(ingredientSplit):
+            firstElement = ingredientSplit[i]
+            regex = re.findall("(^(clove|cup|teaspoon|tablespoon|\d|ounce|pound|pinch|slice)|.\d)", firstElement)
+            if regex:
+                concatenated_quantity += "{} ".format(ingredientSplit[i])
+            i += 1
+        full_quantities.append(concatenated_quantity)
+                    
+            
+    return render_template('get_recipe.html', recipe=the_recipe, total = total, full_quantities = full_quantities)
     
 
 """ Recipe ingredients statistics by cuisine
