@@ -13,7 +13,7 @@ const messages = ["WorldWide CookBook is super excited to have you onboard", "Do
 ];
 
 if (screen.width <= 560) {
-    let colorsMobile = ["#FFFFFF", "#ADD8E6"];
+    let colorsMobile = ["#f26226", "#ADD8E6", "#009978"];
     let welcomeHeaderMobile = document.getElementsByClassName("random-message")[0];
     const randomIndexMessagesMobile = Math.floor(Math.random() * messages.length);
     const randomIndexColorsMobile = Math.floor(Math.random() * colorsMobile.length);
@@ -21,7 +21,7 @@ if (screen.width <= 560) {
     welcomeHeaderMobile.style.backgroundColor = colorsMobile[randomIndexColorsMobile];
 }
 else if (screen.width > 560) {
-    let colorsDesktop = ["#E8E8E8", "#FFFFFF", "#ADD8E6"];
+    let colorsDesktop = ["#009978", "#ADD8E6"];
     const randomIndexMessagesDesktop = Math.floor(Math.random() * messages.length);
     const randomIndexColorsDesktop = Math.floor(Math.random() * colorsDesktop.length);
 

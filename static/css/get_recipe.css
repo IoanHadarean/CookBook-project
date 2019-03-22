@@ -30,9 +30,7 @@ section {
 }
 
 .recipe-separator {
-    margin-left: 5vw;
-    margin-right: 5vw;
-    width: 90vw;
+    width: 100vw;
     border: 1px solid gray;
 }
 
@@ -111,6 +109,9 @@ section {
 
 .recipe__quantities {
     margin-top: 50px;
+    margin-left: 5vw;
+    list-style-type: none;
+    margin-bottom: 20px;
 }
 
 /* ---------------------------------------Media Queries ------------------------------ */
