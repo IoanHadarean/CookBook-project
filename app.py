@@ -1,5 +1,7 @@
 import os, pymysql, json, requests, pygal, re
 from flask.logging import create_logger
+from zapp import values
+from zapp.values import French_values, Mexican_values, Greek_values, English_values, Asian_values, Indian_values, Irish_values, Italian_values
 from flask_pymongo import PyMongo, pymongo
 from flask import Flask, redirect, render_template, request, url_for, flash, session, logging, jsonify
 from bson.objectid import ObjectId
@@ -236,9 +238,7 @@ def get_recipe(recipe_id):
     return render_template('get_recipe.html', recipe=the_recipe, total = total, full_quantities = full_quantities)
     
 
-""" Recipe ingredients statistics by cuisine
-    (Note: all values have been multiplied by 3000
-    to better reflect the statistics) """
+""" Recipe ingredients statistics by cuisine """
 @app.route('/statistics')
 def charts():
     """ Recipe ingredients statistics by cuisine """
@@ -246,17 +246,17 @@ def charts():
     dot_chart = pygal.Dot(x_label_rotation=30, print_values = False, show_legend = False, style=pygal.style.styles['default'](value_font_size=30, title_font_size=30, 
                          legend_font_size=30, dots_size=3000, tooltip_font_size=30, label_font_size=22))
     dot_chart.title = 'Recipe Ingredients Statistics by Cuisine'
-    dot_chart.x_title = 'Cuisine name: Number of recipes'
     dot_chart.y_title = 'Recipes by cuisine'
-    # dot_chart.x_labels = ['milk', 'egg', 'sugar', 'flour', 'salt', 'water', 'garlic', 'vanilla', 'butter']
-    dot_chart.y_labels = ['French', 'Mexican', 'Greek', 'English', 'Asian', 'Indian', 'Irish', '']
-    dot_chart.add('French', [{'value': 1}, 6000, 6000, 6000, 6000, 0, 0, 6000, 9000])
-    dot_chart.add('Mexican', [0, 0, 0, 3000, 3000, 0, 0, 0, 0, 0])
-    dot_chart.add('Greek', [0, 3000, 0, 0, 6000, 0, 6000, 0, 0])
-    dot_chart.add('English', [0, 3000, 0, 3000, 6000, 3000, 0, 0, 3000])
-    dot_chart.add('Asian', [0, 3000, 3000, 0, 0, 6000, 6000, 0, 3000])
-    dot_chart.add('Indian', [0, 0, 6000, 0, 3000, 3000, 6000, 0, 0])
-    dot_chart.add('Irish', [0, 6000, 6000, 6000, 0, 0, 0, 3000, 6000])
+    dot_chart.x_labels = ['milk', 'egg', 'sugar', 'flour', 'salt', 'water', 'garlic', 'vanilla', 'butter']
+    dot_chart.y_labels = ['French', 'Mexican', 'Greek', 'English', 'Asian', 'Indian', 'Irish', 'Italian']
+    dot_chart.add('French', French_values)
+    dot_chart.add('Mexican', Mexican_values)
+    dot_chart.add('Greek', Greek_values)
+    dot_chart.add('English', English_values)
+    dot_chart.add('Asian', Asian_values)
+    dot_chart.add('Indian', Indian_values)
+    dot_chart.add('Irish', Irish_values)
+    dot_chart.add('Italian', Italian_values)
     dot_chart = dot_chart.render(is_unicode=True)
     
     """ Recipe allergens statistics (in %) """
