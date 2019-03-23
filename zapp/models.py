@@ -180,34 +180,6 @@
             
 # average_calories()
 
-# import re
-
-# recipe = {"_id" : "5c7b9540fb6fc072012cbf01", "id" : "21", "recipe_name" : "Easy English Muffins", "recipe_image" : "https://images.media-allrecipes.com/userphotos/560x315/3345383.jpg", "cuisine_name" : "English", "course_name" : "dessert", "ingredients" : [ "1 1/2 teaspoons active dry yeast, divided", "2 cups all-purpose flour, divided, plus more for rolling", "3/4 (10.5 ounce) cup warm water, divided", "2 teaspoons vegetable oil", "1 teaspoon kosher salt", "1 egg white", "2 tablespoons cornmeal, or as needed", "1/4 cup clarified butter (ghee)", "salt" ], "cooking_directions" : [ "Place 1/4 cup flour, yeast, and 1/2 cup water in a mixing bowl. Whisk together and set aside for about 10 minutes to see if thin layer of foam develops to ensure yeast is active. Drizzle in vegetable oil; add salt, egg white, remaining 1 3/4 cup flour, and remaining 1/4 cup warm water. Mix together until dough is very wet and sticky. Cover. Set in a warm spot and let rise until doubled, about 2 hours.", "Pull dough gently from sides of bowl, stirring slightly, and turn out onto a well-floured rolling surface. Work in just enough flour until dough is easily handled and can be cut into 6 pieces, about 1 minute. Cut dough into 6 equal portions. Form a seamless ball of dough, adding a pinch of flour to keep it from sticking. Flatten to make thick disks. Transfer dough onto a lined baking sheet sprinkled generously with cornmeal. Let rise until doubled, about 1 to 1 1/2 hours.", "Add clarified butter to skillet over medium heat. Carefully transfer muffin disks to skillet. Cook in batches to avoid overcrowding. Brown on one side, 5 or 6 minutes. Turn, and brown the other side, 5 or 6 minutes. Continue turning to get muffins evenly browned and cooked through, 7 or 8 minutes total per side. Transfer to a cooking rack and cool completely (this is key as you can't split the muffins unless they are cooled).", "Split cooled muffins with a fork, inserting tines all the way around edges so the 2 sides can be pulled apart. Toast and serve with jam." ], "allergen_name" : "egg", "author_name" : "Chef John", "preparation_time" : "10 min", "cooking_time" : "14 min", "views" : "6553", "servings" : "6", "calories" : "256 cals" }
-
-
-# digits = ["1","2","3","4","5","6","7","8","9"]
-
-# def get_quantities():
-#         global digits
-#         ingredients = recipe["ingredients"]
-#         full_quantities = []
-#         # print(quantities)
-#         for ingredient in ingredients:
-#             concatenated_quantity = ''
-#             ingredientSplit = ingredient.split(" ")
-#             i = 0
-#             # print(ingredientSplit)
-#             while i < len(ingredientSplit):
-#                 firstElement = ingredientSplit[i]
-#                 regex = re.findall("(^(clove|cup|teaspoon|tablespoon|\d|ounce|pound|pinch|slice)|.\d)", firstElement)
-#                 if regex:
-#                     concatenated_quantity += "{} ".format(ingredientSplit[i])
-#                 i += 1
-                
-#         full_quantities.append(concatenated_quantity)
-#         print(full_quantities)
-                    
-# get_quantities()
             
             
 

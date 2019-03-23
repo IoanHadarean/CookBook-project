@@ -11,6 +11,10 @@ section {
     margin-top: 50px;
 }
 
+
+footer {
+    width: auto;
+}
 /*------------------------------------- Recipe ----------------------- */
 
 .image__inline {
@@ -40,6 +44,7 @@ section {
     margin-top: 15px;
     height: 140px;
     margin-bottom: 20px;
+    position: relative;
 }
 
 .time__cooking,
@@ -110,8 +115,13 @@ section {
 .recipe__quantities {
     margin-top: 50px;
     margin-left: 5vw;
+    width: 30vw;
     list-style-type: none;
     margin-bottom: 20px;
+}
+
+.recipe__quantities li {
+    text-align: right;
 }
 
 /* ---------------------------------------Media Queries ------------------------------ */
