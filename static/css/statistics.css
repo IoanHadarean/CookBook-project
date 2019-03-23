@@ -4,11 +4,6 @@
   position: relative;
  }
 
- nav {
-  position: fixed;
-  width: 100%;
- }
-
  /* ----------------------------Charts-------------------------------*/
  #dot_chart {
   margin-top: 100px;

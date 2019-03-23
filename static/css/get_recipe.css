@@ -13,8 +13,10 @@ section {
 
 
 footer {
-    width: auto;
+    position: relative;
+    bottom: 0;
 }
+
 /*------------------------------------- Recipe ----------------------- */
 
 .image__inline {
@@ -34,7 +36,8 @@ footer {
 }
 
 .recipe-separator {
-    width: 100vw;
+    width: 95vw;
+    margin-left: 2.5vw;
     border: 1px solid gray;
 }
 
@@ -44,7 +47,7 @@ footer {
     margin-top: 15px;
     height: 140px;
     margin-bottom: 20px;
-    position: relative;
+    position: sticky;
 }
 
 .time__cooking,
@@ -84,6 +87,7 @@ footer {
     margin-right: 2.5vw;
     width: 95vw;
     height: 100px;
+    margin-bottom: 20px;
 }
 
 .alert__description {
@@ -100,7 +104,6 @@ footer {
     align-items: center;
     justify-content: center;
     height: 50px;
-    margin-bottom: 20px;
     background: #f26226;
     width: 50vw;
     margin-left: 25vw;
@@ -126,9 +129,3 @@ footer {
 
 /* ---------------------------------------Media Queries ------------------------------ */
 
-@media only screen and (max-width: 768px) {
-    footer {
-        bottom: 0;
-        position: relative;
-    } 
-}
