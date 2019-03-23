@@ -180,9 +180,6 @@
             
 # average_calories()
 
-            
-            
-
     
 
 

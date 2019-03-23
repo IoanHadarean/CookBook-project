@@ -243,14 +243,14 @@ def get_recipe(recipe_id):
 def charts():
     """ Recipe ingredients statistics by cuisine """
     
-    dot_chart = pygal.Dot(x_label_rotation=30, style=pygal.style.styles['default'](value_font_size=30, title_font_size=30, 
-                         legend_font_size=30, tooltip_font_size=30, label_font_size=22))
+    dot_chart = pygal.Dot(x_label_rotation=30, print_values = False, show_legend = False, style=pygal.style.styles['default'](value_font_size=30, title_font_size=30, 
+                         legend_font_size=30, dots_size=3000, tooltip_font_size=30, label_font_size=22))
     dot_chart.title = 'Recipe Ingredients Statistics by Cuisine'
-    dot_chart.x_title = 'Ingredients'
+    dot_chart.x_title = 'Cuisine name: Number of recipes'
     dot_chart.y_title = 'Recipes by cuisine'
-    dot_chart.x_labels = ['milk', 'egg', 'sugar', 'flour', 'salt', 'water', 'garlic', 'vanilla', 'butter']
-    dot_chart.y_labels = ['12000', '6000', '6000', '6000', '12000', '9000', '6000']
-    dot_chart.add('French', [3000, 6000, 6000, 6000, 6000, 0, 0, 6000, 9000])
+    # dot_chart.x_labels = ['milk', 'egg', 'sugar', 'flour', 'salt', 'water', 'garlic', 'vanilla', 'butter']
+    dot_chart.y_labels = ['French', 'Mexican', 'Greek', 'English', 'Asian', 'Indian', 'Irish', '']
+    dot_chart.add('French', [{'value': 1}, 6000, 6000, 6000, 6000, 0, 0, 6000, 9000])
     dot_chart.add('Mexican', [0, 0, 0, 3000, 3000, 0, 0, 0, 0, 0])
     dot_chart.add('Greek', [0, 3000, 0, 0, 6000, 0, 6000, 0, 0])
     dot_chart.add('English', [0, 3000, 0, 3000, 6000, 3000, 0, 0, 3000])
