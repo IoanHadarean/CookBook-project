@@ -44,6 +44,12 @@
   color: #721c24;
   background: #b29966;
  }
+ 
+ /* ----------------------------------------- JavaScript classes ------------------------------- */
+ 
+ .is-hidden {
+  display: none;
+ }
 
  /* -------------------------------------------Navigation------------------------------------- */
 
@@ -85,6 +91,9 @@
  .navbar-middle li a {
   height: 30px;
   margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
  }
  
  .navbar-middle li a:hover {

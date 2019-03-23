@@ -10,6 +10,18 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css" />
     <link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}" type="text/css" />
     <link rel="shortcut icon" href="#">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <style type="text/css">
+        .hidden {
+            display: none;
+        }
+    </style>
+    <script type="text/javascript">
+        document.getElementsByTagName('html')[0].classList.add('hidden');
+        window.addEventListener('load', function() { 
+            document.getElementsByTagName('html')[0].classList.remove('hidden'); 
+        });
+    </script>
 </head>
 
 <body>
@@ -21,11 +33,11 @@
             </div>
         </footer>
     </div>
-    
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="http://kozea.github.com/pygal.js/latest/pygal-tooltips.min.js" async></script>
     <script src="{{ url_for('static', filename = 'js/navbar.js') }}" async></script>
+
 </body>
 
 </html>

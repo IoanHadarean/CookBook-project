@@ -1,6 +1,3 @@
-// Load the content
-
-
 // Get all links
 let navLinks = document.querySelectorAll('li a');
 
@@ -24,15 +21,6 @@ for (let i = 0; i < navLinks.length; i++) {
         navLinks[i].style.height = '30px';
         navLinks[i].style.marginTop = '10px';
         navLinks[i].style.color = 'black';
-        navLinks[i].style.display = 'flex';
-        navLinks[i].style.alignItems = 'center';
-        navLinks[i].style.justifyContent = 'center';
-    }
-
-
-    //Customize other links
-
-    else {
         navLinks[i].style.display = 'flex';
         navLinks[i].style.alignItems = 'center';
         navLinks[i].style.justifyContent = 'center';
