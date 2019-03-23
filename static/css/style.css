@@ -49,7 +49,7 @@
  /* -------------------------------------------Navigation------------------------------------- */
 
  #navbar {
-  background-color: #E8E8E8;
+  background-color: #F5F5F5;
   width: 100%;
   margin: 0px;
   z-index: 4;
@@ -89,10 +89,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
- }
- 
- .navbar-middle li a:hover {
-  background: #E8E8E8;
  }
 
  .navbar-brand {

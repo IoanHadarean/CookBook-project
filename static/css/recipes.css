@@ -50,6 +50,7 @@ section {
     width: 25vw;
     margin-left: 6vw;
     border-top: 2px solid #000;
+    background: #E8E8E8;
 }
 
 .recipes__name {
@@ -151,24 +152,14 @@ section {
 /* ---------------------------------------Media Queries ------------------------------ */
 
 @media (min-width: 320px) and (max-width: 560px) {
-    html,
-    body {
-        background: #F5F5F5;
-    }
-
     .recipes {
         width: 100vw;
         margin-left: 0;
         z-index: 2;
-        background: white;
     }
 
     .message-separator {
         display: none;
-    }
-
-    .recipes:hover {
-        background: none;
     }
 
     .random-message {
