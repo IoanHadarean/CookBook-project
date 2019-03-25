@@ -44,6 +44,11 @@
                 <li>{{ quantity }}</li>
             {% endfor %}
         </div>
+        <div class = "recipe__ingredients">
+            {% for ingredient in full_ingredients %}
+                <li>{{ ingredient }}</li>
+            {% endfor %}
+        </div>
     </div>
 </section>
 {% endblock %}
