@@ -129,13 +129,24 @@ footer {
 .recipe__quantities {
     margin-top: 50px;
     margin-left: 5vw;
+    margin-right: 5vw;
     width: 30vw;
     list-style-type: none;
     margin-bottom: 20px;
+    display: inline-block;
 }
 
 .recipe__quantities li {
     text-align: right;
+}
+
+.recipe__ingredients {
+    margin-top: 50px;
+    margin-left: 5vw;
+    width: 50vw;
+    list-style-type: none;
+    margin-bottom: 20px;
+    display: inline-block;
 }
 
 /* ---------------------------------------Media Queries ------------------------------ */
