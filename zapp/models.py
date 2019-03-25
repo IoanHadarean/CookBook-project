@@ -180,9 +180,6 @@ recipes = [{ "_id" : "5c7ad2bffb6fc072012c83cc", "id" : "1", "recipe_name" : "Ri
             
 # average_calories()
 
-    
-
-
 
 
     

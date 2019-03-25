@@ -222,8 +222,10 @@ def get_recipe(recipe_id):
     
     ingredients = the_recipe["ingredients"]
     full_quantities = []
+    full_ingredients = []
     for ingredient in ingredients:
         concatenated_quantity = ''
+        concatenated_ingredient = ''
         ingredientSplit = ingredient.split(" ")
         i = 0
         while i < len(ingredientSplit):
@@ -231,11 +233,15 @@ def get_recipe(recipe_id):
             regex = re.findall("(^(clove|cup|teaspoon|tablespoon|\d|ounce|pound|pinch|slice)|.\d)", firstElement)
             if regex:
                 concatenated_quantity += "{} ".format(ingredientSplit[i])
+            else:
+                concatenated_ingredient += "{} ".format(ingredientSplit[i])
             i += 1
         full_quantities.append(concatenated_quantity)
+        full_ingredients.append(concatenated_ingredient)
                     
             
-    return render_template('get_recipe.html', recipe=the_recipe, total = total, full_quantities = full_quantities)
+    return render_template('get_recipe.html', recipe=the_recipe, total = total, full_quantities = full_quantities,
+                            full_ingredients = full_ingredients)
     
 
 """ Recipe ingredients statistics by cuisine """
