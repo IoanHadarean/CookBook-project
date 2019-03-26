@@ -166,7 +166,7 @@ section {
 .recipe__quantities li {
     text-align: left;
     font-style: italic;
-    font-size: 12px;
+    color: gray;
 }
 
 .recipe__ingredients li {
@@ -186,3 +186,14 @@ section {
 }
 
 /* ---------------------------------------Media Queries ------------------------------ */
+
+@media (min-width: 480px) and (max-width: 1024px) {
+    .recipe__ingredients {
+        width: 60vw;
+        margin-left: 5vw;
+    }
+    
+    .recipe__quantities li {
+        text-align: right;
+    }
+}
