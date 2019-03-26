@@ -187,12 +187,26 @@ section {
 
 /* ---------------------------------------Media Queries ------------------------------ */
 
-@media (min-width: 480px) and (max-width: 1024px) {
+@media (min-width: 480px) and (max-width: 768px) {
     .recipe__ingredients {
         width: 60vw;
-        margin-left: 5vw;
+        margin-left: 5vw;;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 2560px) {
+    .recipe__ingredients {
+        width: 50vw;
+        margin-left: 3.35vw;
     }
     
+    .recipe__quantities {
+        margin-left: 35vw;
+        width: 10vw;
+    }
+}
+
+@media (min-width: 480px) and (max-width: 2560px) {
     .recipe__quantities li {
         text-align: right;
     }

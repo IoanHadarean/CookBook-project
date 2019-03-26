@@ -146,7 +146,7 @@ def logout():
     return redirect(url_for('login'))
     
     
-""" Get all recipes """
+""" Get all recipes and implement pagination """
 
 @app.route('/recipes', methods = ['GET'])
 def recipes():
@@ -154,9 +154,9 @@ def recipes():
     offset = int(request.args['offset'])
     limit = int(request.args['limit'])
 
-    recipe = mongo.db.recipes
-    recipes = mongo.db.recipes.find()
-    starting_id = recipe.find().sort('_id', pymongo.ASCENDING)
+    recipe_collection = mongo.db.recipes
+    recipes = recipe_collection.find()
+    starting_id = recipe_collection.find().sort('_id', pymongo.ASCENDING)
     last_id = starting_id[offset]['_id']
     total_results = 0
     for item in recipes:
@@ -165,7 +165,7 @@ def recipes():
     args = {
         "limit": limit,
         "offset": offset,
-        "recipes_sorted": recipe.find({'_id': {'$gte' : last_id}}).sort('_id', pymongo.ASCENDING).limit(limit),
+        "recipes_sorted": recipe_collection.find({'_id': {'$gte' : last_id}}).sort('_id', pymongo.ASCENDING).limit(limit),
         "next_url": '/recipes?limit=' + str(limit) + '&offset=' + str(offset + limit),
         "prev_url": '/recipes?limit=' + str(limit) + '&offset=' + str(offset - limit),
         "recipes": recipes,

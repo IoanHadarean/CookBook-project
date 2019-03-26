@@ -53,6 +53,14 @@
                 {% endfor %}
             </ul>
         </div>
+        <div class="recipe-separator"></div>
+        <div class="recipe__instructions">
+                <ul class="instructions__container">
+                    {% for instruction in recipe.cooking_directions %}
+                        <li><span class = "instructions__index">{{ loop.index }}</span>{{ instruction }}</li>
+                    {% endfor %}
+                </ul>
+        </div>
     </div>
 </section>
 {% endblock %}

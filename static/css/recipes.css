@@ -6,7 +6,7 @@ footer {
 
 body,
 html {
-    background: #F5F5F5;
+    background: white;
 }
 
 .container {
@@ -76,12 +76,12 @@ section {
 
 .author__inline {
     font-size: 16px;
-    color: #009978;
+    color: black;
 }
 
 .random-message {
     width: 80vw;
-    height: 80px;
+    height: 60px;
     margin-left: 10vw;
     margin-right: 10vw;
     margin-top: 50px;
@@ -137,7 +137,7 @@ section {
 
 .list__prev>a,
 .list__next>a {
-    color: darkblue;
+    color: #009978;
     text-decoration: none;
 }
 
