@@ -1,17 +1,19 @@
  /* --------------------------Special paddings, margins and styling------------------------------------------ */
 
- html,
+ 
  body {
   background: url("../images/cookbook.jpg") no-repeat fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  max-width: 100%;
+  width: 100vw;
   height: 100%;
   margin: 0;
   overflow-x: hidden;
+  overflow-y: visible;
  }
+
 
  .container-fluid {
   -webkit-background-size: cover;
@@ -34,11 +36,12 @@
  h4 {
   color: #40E0D0;
  }
- 
- .alert-success, .alert-danger {
+
+ .alert-success,
+ .alert-danger {
   margin-top: 50px;
  }
- 
+
  .alert-message {
   margin-top: 50px;
   color: #721c24;
@@ -54,8 +57,8 @@
   margin: 0px;
   z-index: 4;
  }
- 
-  nav {
+
+ nav {
   background: wheat;
   position: fixed;
   width: 100%;
@@ -82,7 +85,7 @@
   font-size: 20px;
   font-family: "Arial";
  }
- 
+
  .navbar-middle li a {
   height: 30px;
   margin-top: 10px;
@@ -148,38 +151,39 @@
 
  footer {
   position: absolute;
-  width: 100vw;
   bottom: 0;
+  width: 100%;
  }
 
  /* --------------------------------------------------Media Queries------------------------------- */
 
-@media only screen and (max-width: 360px) {
- .navbar-toggle {
-  margin-right: 5px;
+ @media only screen and (max-width: 360px) {
+  .navbar-toggle {
+   margin-right: 5px;
+  }
+
+  #navbar a {
+   font-size: 17.5px;
+  }
  }
- 
- #navbar a {
-  font-size: 17.5px;
- }
-}
 
 
-@media only screen and (max-width: 767px) {
- .navbar-middle, .navbar-right {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+ @media only screen and (max-width: 767px) {
+  .navbar-middle,
+  .navbar-right {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+  }
+
+  .navbar-middle {
+   margin-top: 23px;
+  }
+
+  .navbar-right {
+   margin-bottom: 23px;
+  }
  }
- 
- .navbar-middle {
-  margin-top: 23px;
- }
- 
- .navbar-right {
-  margin-bottom: 23px;
- }
-}
 
 
  @media screen and (max-width: 500px) {
@@ -265,11 +269,11 @@
    align-items: center;
    justify-content: center;
   }
-  
+
   .navbar-right {
    margin-right: 15px;
   }
-  
+
  }
 
  @media (min-width: 1920px) and (max-width: 2560px) {
@@ -304,7 +308,7 @@
   footer {
    bottom: -65vh;
   }
-  
+
   form {
    top: 15vh;
   }
