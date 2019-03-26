@@ -15,10 +15,15 @@ section {
 footer {
     position: relative;
     bottom: 0;
+    width: 100%;
 }
 
 ul {
     display: inline;
+}
+
+section {
+    overflow: hidden;
 }
 
 /*------------------------------------- Recipe ----------------------- */
@@ -53,8 +58,8 @@ ul {
 }
 
 .recipe-separator {
-    width: 95vw;
-    margin-left: 2.5vw;
+    width: 95%;
+    margin-left: 2.5%;
     border: 1px solid gray;
 }
 
