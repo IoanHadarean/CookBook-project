@@ -17,6 +17,7 @@ html {
 
 section {
     margin-top: 100px;
+    overflow: hidden;
 }
 
 /*---------------------------Recipes---------------------*/
@@ -137,6 +138,7 @@ section {
 .list__prev>a,
 .list__next>a {
     color: darkblue;
+    text-decoration: none;
 }
 
 .list__prev {
@@ -155,6 +157,10 @@ section {
     padding: 0;
     margin-bottom: 16px;
     font-size: 20px;
+}
+
+.recipes__view a {
+    text-decoration: none;
 }
 
 /* ---------------------------------------Media Queries ------------------------------ */

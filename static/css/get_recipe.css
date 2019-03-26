@@ -43,6 +43,7 @@ section {
     margin-left: 5vw;
     margin-right: 5vw;
     font-weight: bold;
+    text-align: center;
 }
 
 .author__description {
@@ -101,9 +102,9 @@ section {
 }
 
 .time__ready {
-    margin-left: 77.5vw;
+    margin-left: 75.5vw;
     margin-right: 2.5vw;
-    width: 20vw;
+    width: 22vw;
 }
 
 .is-time {
@@ -127,6 +128,8 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
+    width: 95vw;
+    margin-left: 2.5vw;
 }
 
 .alert__box {
@@ -135,13 +138,9 @@ section {
     justify-content: center;
     height: 50px;
     background: #f26226;
-
-}
-
-.alert__box,
-.alert__description {
     width: 50vw;
     margin-left: 25vw;
+
 }
 
 .box__link {
@@ -153,21 +152,30 @@ section {
 .recipe__quantities {
     margin-top: 50px;
     margin-left: 5vw;
-    margin-right: 5vw;
     width: 30vw;
     margin-bottom: 20px;
     display: inline-block;
+    float: left;
+}
+
+.recipe__quantities li,
+.recipe__ingredients li{
+    min-height: 40px;
 }
 
 .recipe__quantities li {
-    text-align: right;
-    min-height: 20px;
+    text-align: left;
+    font-style: italic;
+    font-size: 12px;
+}
+
+.recipe__ingredients li {
+    color: #009978;
 }
 
 .recipe__ingredients {
     margin-top: 50px;
-    margin-left: 5vw;
-    width: 50vw;
+    width: 65vw;
     margin-bottom: 20px;
     display: inline-block;
 }
