@@ -1,0 +1,9 @@
+/*------------------------------------Special stylings and margins-------------------------------- */
+
+html, body {
+ overflow-x: hidden;
+}
+
+footer {
+ width: 100%;
+}
