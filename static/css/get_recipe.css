@@ -17,6 +17,10 @@ footer {
     bottom: 0;
 }
 
+ul {
+    display: inline;
+}
+
 /*------------------------------------- Recipe ----------------------- */
 
 .image__inline {
@@ -146,7 +150,6 @@ footer {
     margin-left: 5vw;
     margin-right: 5vw;
     width: 30vw;
-    list-style-type: none;
     margin-bottom: 20px;
     display: inline-block;
 }
@@ -160,9 +163,13 @@ footer {
     margin-top: 50px;
     margin-left: 5vw;
     width: 50vw;
-    list-style-type: none;
     margin-bottom: 20px;
     display: inline-block;
+}
+
+.ingredients__container,
+.quantities__container {
+    list-style-type: none;
 }
 
 /* ---------------------------------------Media Queries ------------------------------ */

@@ -15,39 +15,43 @@
         </div>
         <div class="recipe-separator"></div>
         <div class="info__time">
-            <div class = "time__clock">
+            <div class="time__clock">
                 <i class="far fa-clock"></i>
             </div>
             <div class="time__cooking">
                 <span>Cooking Time</span>
-                <span class = "is-time">{{ recipe.cooking_time }}</span>
+                <span class="is-time">{{ recipe.cooking_time }}</span>
             </div>
             <div class="time__preparation">
                 <span>Preparation Time</span>
-                <span class = "is-time">{{ recipe.preparation_time }}</span>
+                <span class="is-time">{{ recipe.preparation_time }}</span>
             </div>
             <div class="time__ready">
                 <span>Ready In</span>
-                <span class = "is-time">{{ total }}</span>
+                <span class="is-time">{{ total }}</span>
             </div>
         </div>
         <div class="recipe-separator"></div>
-        <div class = "recipe__alert">
-            <h3 class = "alert__description">Add your own recipes</h3>
-            <div class = "alert__box">
-                <a class = "box__link" href = "">GET COOKING</a>
+        <div class="recipe__alert">
+            <h3 class="alert__description">Add your own recipes</h3>
+            <div class="alert__box">
+                <a class="box__link" href="">GET COOKING</a>
             </div>
         </div>
         <div class="recipe-separator"></div>
-        <div class = "recipe__quantities">
-            {% for quantity in full_quantities %}
-                <li>{{ quantity }}</li>
-            {% endfor %}
+        <div class="recipe__quantities">
+            <ul class="quantities__container">
+                {% for quantity in full_quantities %}
+                    <li>{{ quantity }}</li>
+                {% endfor %}
+            <ul>
         </div>
-        <div class = "recipe__ingredients">
-            {% for ingredient in full_ingredients %}
-                <li>{{ ingredient }}</li>
-            {% endfor %}
+        <div class="recipe__ingredients">
+            <ul class="ingredients__container">
+                {% for ingredient in full_ingredients %}
+                    <li>{{ ingredient }}</li>
+                {% endfor %}
+            </ul>
         </div>
     </div>
 </section>
