@@ -230,7 +230,7 @@ def get_recipe(recipe_id):
         i = 0
         while i < len(ingredientSplit):
             firstElement = ingredientSplit[i]
-            regex = re.findall("(^(clove|cup|teaspoon|tablespoon|\d|ounce|inch|pound|pinch|slices?(?<!d)$|milliliter)|.\d)", firstElement)
+            regex = re.findall("(^(clove|cup|teaspoon|tablespoon|\d(?<!-)$|ounce|inch|pound|pinch|slices?(?<!d)$|milliliter)|.\d)", firstElement)
             if regex:
                 concatenated_quantity += "{} ".format(ingredientSplit[i])
             else:
