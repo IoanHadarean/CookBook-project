@@ -1,7 +1,7 @@
  /* --------------------------Special paddings, margins and styling------------------------------------------ */
 
- 
- html, body {
+ html,
+ body {
   background: url("../images/cookbook.jpg") no-repeat fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -11,7 +11,6 @@
   height: 100%;
   margin: 0;
   padding: 0;
-  overflow-y: visible;
  }
 
  .container-fluid {
@@ -29,7 +28,6 @@
   position: absolute;
   z-index: 3;
   margin: 0;
-  /*margin-bottom: 15vw;*/
  }
 
  h4 {
@@ -51,7 +49,7 @@
  /* -------------------------------------------Navigation------------------------------------- */
 
  #navbar {
-  background-color: #F5F5F5;
+  background-color: #D3D3D3;
   width: 100%;
   margin: 0px;
   z-index: 4;
@@ -62,6 +60,10 @@
   position: fixed;
   width: 100%;
   z-index: 99;
+ }
+ 
+ .navbar-brand:hover {
+  background: #CFB178;
  }
 
  .navbar-toggle .icon-bar {
@@ -85,9 +87,12 @@
   font-family: "Arial";
  }
 
+ #navbar a:hover {
+  background: #808080;
+ }
+
  .navbar-middle li a {
-  height: 30px;
-  margin-top: 10px;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -97,8 +102,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 5vw;
-  padding: 0;
+  padding-left: 5vw;
  }
 
  /* -------------------------------------------Buttons--------------------------------------- */
@@ -182,7 +186,7 @@
   .navbar-right {
    margin-bottom: 23px;
   }
-  
+
  }
 
 
@@ -272,6 +276,14 @@
 
   .navbar-right {
    margin-right: 15px;
+  }
+
+  .navbar-brand {
+   padding-left: 2vw;
+  }
+
+  .navbar-brand:hover {
+   background: #808080;
   }
  }
 

@@ -1,4 +1,4 @@
-/*------------------------------------Special stylings and margins-------------------------------- */
+/* --------------------------------------- Stylings and margins---------------------------*/
 
 html, body {
  overflow-x: hidden;
@@ -7,6 +7,8 @@ html, body {
 footer {
  width: 100%;
 }
+
+
 /* --------------------------------------- Media Queries --------------------------------- */
 
 @media only screen and (max-width: 560px) {
