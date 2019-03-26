@@ -181,33 +181,6 @@ recipes = [{ "_id" : "5c7ad2bffb6fc072012c83cc", "id" : "1", "recipe_name" : "Ri
 # average_calories()
 
 
-import re
-
-def get_ingredients():
-    for recipe in recipes:
-        ingredients = recipe["ingredients"]
-        full_quantities = []
-        full_ingredients = []
-        for ingredient in ingredients:
-            concatenated_quantity = ''
-            concatenated_ingredient = ''
-            ingredientSplit = ingredient.split(" ")
-            i = 0
-            while i < len(ingredientSplit):
-                firstElement = ingredientSplit[i]
-                regex = re.findall("(^(clove|cup|teaspoon|tablespoon|\d|ounce|pound|pinch|slice)|.\d)", firstElement)
-                if regex:
-                    concatenated_quantity += "{} ".format(ingredientSplit[i])
-                else:
-                    concatenated_ingredient += "{} ".format(ingredientSplit[i])
-                i += 1
-            full_quantities.append(concatenated_quantity)
-            full_ingredients.append(concatenated_ingredient)
-        print(full_quantities)
-        print(full_ingredients)
-
-get_ingredients()
-
 
     
 

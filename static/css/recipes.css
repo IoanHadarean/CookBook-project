@@ -115,8 +115,16 @@ section {
     margin-top: 50px;
     margin-bottom: 50px;
     border: 1px solid #DCDCDC;
-    width: 88vw;
-    margin-left: 6vw;
+}
+
+.recipes__separator-medium {
+    width: 80vw;
+    margin-left: 10vw;
+}
+
+.recipes__separator-large {
+    width: 90vw;
+    margin-left: 5vw;
 }
 
 .list__prev,
@@ -156,6 +164,11 @@ section {
         width: 100vw;
         margin-left: 0;
         z-index: 2;
+        margin-bottom: 80px;
+    }
+    
+    .recipes__pagination {
+        margin-top: -30px;
     }
 
     .message-separator {
@@ -171,11 +184,6 @@ section {
         margin-right: 0;
         height: 90px;
     }
-
-    section {
-        background: #F5F5F5;
-        z-index: 1;
-    }
 }
 
 @media (min-width: 560px)and (max-width: 768px) {
@@ -186,6 +194,7 @@ section {
 
     .recipes {
         margin-left: 20vw;
+        margin-bottom: 50px;
     }
     
     .list__next {
@@ -213,10 +222,6 @@ section {
     .recipes__separator-large,
     .recipes__separator-medium {
         display: none;
-    }
-    
-    .recipes {
-        margin-bottom: 50px;
     }
 }
 
@@ -276,14 +281,14 @@ section {
     }
 
     .recipes {
-        margin-left: 10vw;
+        margin-left: 5vw;
     }
 
     .recipes,
     .recipes__image,
     .author__inline,
     .name__inline {
-        width: 20vw;
+        width: 26.66vw;
     }
 
     .recipes__image img {
