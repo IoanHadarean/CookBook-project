@@ -7,8 +7,9 @@
         </a>
     </div>
     <div class = "recipe__likes">
-        <a href ="/like/{{ recipe._id }}">Like</a>
         Likes {{ recipe.likes |int }}
+        <a href ="/like/{{ recipe._id }}">Like</a>
+        <a href ="/dislike/{{ recipe._id }}">Dislike</a>
         </div>
     <div class="recipe__info">
         <div class="recipe__title">
