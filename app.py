@@ -244,6 +244,22 @@ def get_recipe(recipe_id):
                             full_ingredients = full_ingredients)
     
 
+""" Like recipe """
+
+@app.route('/like/<recipe_id>', methods = ['GET'])
+def like(recipe_id):
+    recipes_collection = mongo.db.recipes
+    recipe = recipes_collection.find_one({"_id": ObjectId(recipe_id)})
+    likes = recipe["likes"]
+    likes = likes + 1
+    recipes_collection.update({'_id': ObjectId(recipe_id)}, {
+                                  "$set": {"likes": likes}})
+    return redirect(request.referrer)
+    
+    
+
+
+
 """ Recipe ingredients statistics by cuisine """
 @app.route('/statistics')
 def charts():
