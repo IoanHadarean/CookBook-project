@@ -42,24 +42,25 @@
         <div class="recipe__quantities">
             <ul class="quantities__container">
                 {% for quantity in full_quantities %}
-                    <li>{{ quantity }}</li>
+                <li>{{ quantity }}</li>
                 {% endfor %}
-            <ul>
+                <ul>
         </div>
         <div class="recipe__ingredients">
             <ul class="ingredients__container">
                 {% for ingredient in full_ingredients %}
-                    <li>{{ ingredient }}</li>
+                <li>{{ ingredient }}</li>
                 {% endfor %}
             </ul>
         </div>
         <div class="recipe-separator"></div>
         <div class="recipe__instructions">
-                <ul class="instructions__container">
-                    {% for instruction in recipe.cooking_directions %}
-                        <li><span class = "instructions__index">{{ loop.index }}</span>{{ instruction }}</li>
-                    {% endfor %}
-                </ul>
+            {% for instruction in recipe.cooking_directions %}
+            <div class="instructions__full">
+                <span class="instructions__index">{{ loop.index }}</span>
+                <li>{{ instruction }}</li>
+            </div>
+            {% endfor %}
         </div>
     </div>
 </section>
