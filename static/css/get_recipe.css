@@ -193,18 +193,21 @@ section {
 
 .instructions__full {
     width: 90vw;
-    margin-left: 2.5vw;
-    margin-top: 20px;
+    margin-left: 50px;
+    margin-top: 30px;
 }
 
 .instructions__full li {
-    display: inline-block;
+    list-style-type: none;
     margin-left: 50px;
     margin-top: -20px;
 }
 
 .recipe__instructions {
     margin-bottom: 50px;
+    margin-left: 2.5vw;
+    margin-right: 5vw;
+    width: 92.5vw;
 }
 
 /* ---------------------------------------Media Queries ------------------------------ */
