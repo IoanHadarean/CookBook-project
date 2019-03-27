@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} {% block content %} {% include 'includes/_messages.html' %}
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/get_recipe.css') }}" type="text/css" />
 <section>
     <div class="recipe__image">
@@ -7,10 +7,17 @@
         </a>
     </div>
     <div class = "recipe__likes">
-        Likes {{ recipe.likes |int }}
+        <span>Likes {{ recipe.likes |int }}</span>
         <a href ="/like/{{ recipe._id }}">Like</a>
         <a href ="/dislike/{{ recipe._id }}">Dislike</a>
+    </div>
+    <div class = "recipe__ratings">
+        <span class = "ratings__title">Rating</span>
+        <div class="stars-outer">
+            <div class="stars-inner"></div>
         </div>
+        <span class = "numbers-rating"></span>
+    </div>
     <div class="recipe__info">
         <div class="recipe__title">
             <h1 class="title__description">{{ recipe.recipe_name }}</h1>
@@ -49,7 +56,7 @@
                 {% for quantity in full_quantities %}
                 <li>{{ quantity }}</li>
                 {% endfor %}
-                <ul>
+            <ul>
         </div>
         <div class="recipe__ingredients">
             <ul class="ingredients__container">
@@ -69,4 +76,5 @@
         </div>
     </div>
 </section>
+<script src="{{ url_for('static', filename = 'js/ratings.js') }}" ></script>
 {% endblock %}

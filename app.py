@@ -248,25 +248,19 @@ def get_recipe(recipe_id):
 @app.route('/like/<recipe_id>', methods = ['GET'])
 @is_logged_in
 def like(recipe_id):
+    number_list = []
+    user_list = []
     recipe_collection = mongo.db.recipes
     recipe = recipe_collection.find_one({"_id": ObjectId(recipe_id)})
-    votes = []
-    if recipe_id in votes:
-        flash("You have already voted for this recipe")
-        return redirect(url_for('get_recipe', recipe = recipe))
-        
-    cur = connection.cursor()
     user = session['username']
-    
+    recipe_number = recipe["id"]
     likes = recipe["likes"]
     likes = likes + 1
+
     recipe_collection.update({'_id': ObjectId(recipe_id)}, {
                                   "$set": {"likes": likes}})
-    cur.execute("UPDATE users SET likes = %s WHERE username = %s", (likes, user))
-    connection.commit()
-    votes.append(recipe_id)
-    # connection.close()
     return redirect(request.referrer)
+    
     
     
     
@@ -275,24 +269,16 @@ def like(recipe_id):
 @is_logged_in
 def dislike(recipe_id):
     number_list = []
+    user_list = []
     recipe_collection = mongo.db.recipes
     recipe = recipe_collection.find_one({"_id": ObjectId(recipe_id)})
-    recipe_number = recipe["id"]
-    number_list.append(recipe_number)
-
     user = session['username']
-    
+    recipe_number = recipe["id"]
     likes = recipe["likes"]
-    if recipe_number not in number_list:
-        likes = likes - 1
-    else:
-        flash("You have already voted for this recipe")
+    likes = likes - 1
+
     recipe_collection.update({'_id': ObjectId(recipe_id)}, {
                                   "$set": {"likes": likes}})
-    cur = connection.cursor()
-    cur.execute("UPDATE users SET likes = %s WHERE username = %s", (recipe_number, user))
-    connection.commit()
-    # connection.close()
     return redirect(request.referrer)
     
 

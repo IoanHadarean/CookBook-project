@@ -5,7 +5,7 @@ let navLinks = document.querySelectorAll('li a');
 for (let i = 0; i < navLinks.length; i++) {
 
     // Customize login link
-    if (navLinks[i].textContent == 'Login') {
+    if (navLinks[i].textContent == 'Login' || navLinks[i].textContent == 'Logout') {
         navLinks[i].style.backgroundColor = '#f26226';
         navLinks[i].style.height = '30px';
         navLinks[i].style.marginTop = '10px';

@@ -20,7 +20,7 @@ section {
     overflow: hidden;
 }
 
-/*---------------------------Recipes---------------------*/
+/*--------------------------- Recipe Info ---------------------*/
 
 .name__inline,
 .author__inline {
@@ -34,16 +34,6 @@ section {
 
 .name__inline {
     font-size: 20px;
-}
-
-.message-separator {
-    margin-bottom: 50px;
-    border: 1px solid #DCDCDC;
-    width: 80vw;
-    margin-left: 10vw;
-    -moz-box-shadow: 3px 3px 5px 6px #ccc;
-    -webkit-box-shadow: 3px 3px 5px 6px #ccc;
-    box-shadow: 3px 3px 5px 6px #ccc;
 }
 
 .recipes {
@@ -107,9 +97,16 @@ section {
     justify-content: center;
 }
 
+.recipes__view a {
+    text-decoration: none;
+}
+
+
 .view__details {
     color: black;
 }
+
+/* -------------------------------------- Separators ------------------------- */
 
 .recipes__separator-large,
 .recipes__separator-medium {
@@ -127,6 +124,18 @@ section {
     width: 90vw;
     margin-left: 5vw;
 }
+
+.message-separator {
+    margin-bottom: 50px;
+    border: 1px solid #DCDCDC;
+    width: 80vw;
+    margin-left: 10vw;
+    -moz-box-shadow: 3px 3px 5px 6px #ccc;
+    -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+    box-shadow: 3px 3px 5px 6px #ccc;
+}
+
+/*  ------------------------------------Pagination ------------------------- */
 
 .list__prev,
 .list__next {
@@ -157,10 +166,6 @@ section {
     padding: 0;
     margin-bottom: 16px;
     font-size: 20px;
-}
-
-.recipes__view a {
-    text-decoration: none;
 }
 
 /* ---------------------------------------Media Queries ------------------------------ */

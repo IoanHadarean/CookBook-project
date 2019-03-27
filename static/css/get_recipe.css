@@ -26,7 +26,7 @@ section {
     overflow: hidden;
 }
 
-/*------------------------------------- Recipe ----------------------- */
+/*------------------------------------- Recipe Image ----------------------- */
 
 .image__inline {
     width: 100%;
@@ -37,6 +37,31 @@ section {
     margin-top: 30px;
     border-radius: 25%;
 }
+
+/* ------------------------------------- Recipe Ratings ---------------------------- */
+
+.stars-outer {
+    position: relative;
+    display: inline-block;
+}
+
+.stars-inner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    width: 0;
+}
+
+.stars-outer::before {
+    content: "\f005 \f005 \f005 \f005 \f005";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 900;
+    color: #cccccc;
+}
+
+/* -------------------------------------- Recipe Info ------------------------- */
 
 .title__description {
     font-size: 30px;
@@ -57,6 +82,8 @@ section {
     align-items: center;
     justify-content: center;
 }
+
+/* ----------------------------------- Recipe Cooking Time ---------------------------- */
 
 .recipe-separator {
     width: 95%;
@@ -113,6 +140,8 @@ section {
     font-size: 16px;
 }
 
+/* ------------------------------------------ Recipe Alert ----------------------------- */
+
 .recipe__alert {
     margin-left: 2.5vw;
     margin-right: 2.5vw;
@@ -149,6 +178,8 @@ section {
     font-size: 16px;
 }
 
+/* ------------------------------------------------ Recipe Ingredients ---------------------- */
+
 .recipe__quantities {
     margin-top: 20px;
     margin-left: 5vw;
@@ -184,6 +215,8 @@ section {
 .quantities__container {
     list-style-type: none;
 }
+
+/* ------------------------------------------Recipe instructions -------------------- */
 
 .instructions__index {
     padding: 5px 10px 5px 10px;
