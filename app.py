@@ -248,20 +248,24 @@ def get_recipe(recipe_id):
 @app.route('/like/<recipe_id>', methods = ['GET'])
 @is_logged_in
 def like(recipe_id):
-    
-    flag = True
-    
+    cur = connection.cursor()
     recipe_collection = mongo.db.recipes
     recipe = recipe_collection.find_one({"_id": ObjectId(recipe_id)})
+    
     user = session['username']
     recipe_number = recipe["id"]
     likes = recipe["likes"]
-    while flag != False:
-        flag = False
+    user_id = cur.execute("SELECT id FROM users WHERE username = %s", user)
+    result = cur.execute("SELECT recipeId FROM userlikes WHERE recipeId = %s", recipe_number)
+    if result > 0:
+        flash("Your vote has already been recorded")
+    else:
         likes = likes + 1
-
-    recipe_collection.update({'_id': ObjectId(recipe_id)}, {
+        cur.execute("INSERT INTO userlikes(userId, recipeId) VALUES(%s, %s)", (user_id, recipe_number))
+        connection.commit()
+        recipe_collection.update({'_id': ObjectId(recipe_id)}, {
                                   "$set": {"likes": likes}})
+
     return redirect(request.referrer)
     
     
@@ -269,17 +273,24 @@ def like(recipe_id):
 @app.route('/dislike/<recipe_id>', methods = ['GET'])
 @is_logged_in
 def dislike(recipe_id):
-    number_list = []
-    user_list = []
+    cur = connection.cursor()
     recipe_collection = mongo.db.recipes
     recipe = recipe_collection.find_one({"_id": ObjectId(recipe_id)})
+    
     user = session['username']
     recipe_number = recipe["id"]
     likes = recipe["likes"]
-    likes = likes - 1
-
-    recipe_collection.update({'_id': ObjectId(recipe_id)}, {
+    user_id = cur.execute("SELECT id FROM users WHERE username = %s", user)
+    result = cur.execute("SELECT recipeId FROM userlikes WHERE recipeId = %s", recipe_number)
+    if result > 0:
+        flash("Your vote has already been recorded")
+    else:
+        likes = likes + 1
+        cur.execute("INSERT INTO userlikes(userId, recipeId) VALUES(%s, %s)", (user_id, recipe_number))
+        connection.commit()
+        recipe_collection.update({'_id': ObjectId(recipe_id)}, {
                                   "$set": {"likes": likes}})
+
     return redirect(request.referrer)
     
 
