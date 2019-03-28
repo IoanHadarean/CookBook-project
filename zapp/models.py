@@ -181,23 +181,9 @@ recipes = [{ "_id" : "5c7ad2bffb6fc072012c83cc", "id" : "1", "recipe_name" : "Ri
 # average_calories()
 
 
-def likes():
-  likes = 0
-  flag = True
-  recipe_number = 1
-  while flag == True:
-    if recipe_number == 1:
-        likes = likes + 1
-        flag = False
-    print(likes)
 
 
         
       
 
-          
-          
-    
-likes()
-    
     
