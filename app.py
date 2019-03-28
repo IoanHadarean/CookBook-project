@@ -248,20 +248,21 @@ def get_recipe(recipe_id):
 @app.route('/like/<recipe_id>', methods = ['GET'])
 @is_logged_in
 def like(recipe_id):
-    number_list = []
-    user_list = []
+    
+    flag = True
+    
     recipe_collection = mongo.db.recipes
     recipe = recipe_collection.find_one({"_id": ObjectId(recipe_id)})
     user = session['username']
     recipe_number = recipe["id"]
     likes = recipe["likes"]
-    likes = likes + 1
+    while flag != False:
+        flag = False
+        likes = likes + 1
 
     recipe_collection.update({'_id': ObjectId(recipe_id)}, {
                                   "$set": {"likes": likes}})
     return redirect(request.referrer)
-    
-    
     
     
 """ Dislike recipe """

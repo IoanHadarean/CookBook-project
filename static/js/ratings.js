@@ -1,5 +1,10 @@
+/* global localStorage */
+/* global string */
+
 // Initial Rating
 let initialRating = 0;
+
+localStorage.setItem('initialRating', initialRating);
 
 // Total Stars
 const starsTotal = 5;
@@ -11,11 +16,11 @@ document.addEventListener('DOMContentLoaded', getRatings);
 const ratingControl = document.getElementById('rating-control');
 let input = document.querySelector('input[type = "number"]');
 let placeholder = input.getAttribute('placeholder');
-console.log(placeholder);
 
-// Rating Control Change
-ratingControl.addEventListener('blur', (e) => {
-    let rating = e.target.value;
+
+// Rating Control KeyUp
+ratingControl.addEventListener('keyup', (e) => {
+    const rating = e.target.value;
 
     // Make sure rating is 5 or under
     if (rating > 5) {
@@ -25,14 +30,30 @@ ratingControl.addEventListener('blur', (e) => {
 
     // Change Rating
     initialRating = rating;
+    
+    localStorage.setItem('rating', rating);
 
     getRatings();
 });
 
-function clearInput(val) {
-    
-}
 
+// Rating Control Change
+ratingControl.addEventListener('change', (e) => {
+    const rating = e.target.value;
+
+    // Make sure rating is 5 or under
+    if (rating > 5 || rating < 0) {
+        alert('Please rate the recipe from 1 to 5');
+        return;
+    }
+    
+    // Change Rating
+    initialRating = rating;
+    
+    localStorage.setItem('rating', rating);
+
+    getRatings();
+});
 
 
 // Get Ratings
@@ -45,5 +66,4 @@ function getRatings() {
 
     //Set width of stars inner to percentage
     document.querySelector('.stars-inner').style.width = starPercentageRounded;
-
 }

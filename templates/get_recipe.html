@@ -11,7 +11,7 @@
         <a href ="/like/{{ recipe._id }}">Like</a>
         <a href ="/dislike/{{ recipe._id }}">Dislike</a>
     </div>
-    <div class = "recipe__ratings">
+    <div class = "initialRating">
         <span class = "ratings__title">Rating</span>
         <div class="stars-outer">
             <div class="stars-inner"></div>
@@ -79,5 +79,5 @@
         </div>
     </div>
 </section>
-<script src="{{ url_for('static', filename = 'js/ratings.js') }}" ></script>
+<script src="{{ url_for('static', filename = 'js/ratings.js') }}" async></script>
 {% endblock %}
