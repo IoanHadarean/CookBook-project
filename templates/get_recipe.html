@@ -8,8 +8,8 @@
     </div>
     <div class = "recipe__likes">
         <span>Likes {{ recipe.likes |int }}</span>
-        <a href ="/like/{{ recipe._id }}">Like</a>
-        <a href ="/dislike/{{ recipe._id }}">Dislike</a>
+        <a class = "fa fa-thumbs-up" href ="/like/{{ recipe._id }}">Like</a>
+        <a class = "fa fa-thumbs-down" href ="/dislike/{{ recipe._id }}">Dislike</a>
     </div>
     <div class = "initialRating">
         <span class = "ratings__title">Rating</span>

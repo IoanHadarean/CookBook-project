@@ -38,6 +38,24 @@ section {
     border-radius: 25%;
 }
 
+/* ------------------------------------- Recipe Likes ------------------------------ */
+
+.recipe__likes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.recipe__likes span,
+.recipe__likes .fa-thumbs-up {
+    margin-right: 10px;
+}
+
+.recipe__likes a{
+    text-decoration: none;
+}
+
+
 /* ------------------------------------- Recipe Ratings ---------------------------- */
 
 .stars-outer {
@@ -176,7 +194,10 @@ section {
     background: #f26226;
     width: 50vw;
     margin-left: 25vw;
+}
 
+.alert__box a {
+    text-decoration: none;
 }
 
 .box__link {
