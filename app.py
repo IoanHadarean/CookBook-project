@@ -260,7 +260,7 @@ def like(recipe_id):
     cur.execute("SELECT id FROM users WHERE username = %s", user)
     user_id = cur.fetchall()[0]['id']
     print(user_id)
-    cur.execute("SELECT userId, recipeId FROM userlikes WHERE userId = %s AND recipeId = %s", (user_id, recipe_number))
+    cur.execute("SELECT userId, recipeId, liked, unliked FROM userlikes WHERE userId = %s AND recipeId = %s", (user_id, recipe_number))
     result = cur.fetchall()
     print(result)
     if len(result) > 0:
@@ -268,6 +268,8 @@ def like(recipe_id):
     else:
         likes = likes + 1
         cur.execute("INSERT INTO userlikes(userId, recipeId) VALUES(%s, %s)", (user_id, recipe_number))
+        cur.execute("UPDATE TABLE userlikes SET liked = '0' WHERE userId = %s AND recipeId = %s", (user_id, recipe_number))
+        cur.execute("UPDATE TABLE userlikes SET unliked = '1' WHERE userId = %s AND recipeId = %s", (user_id, recipe_number))
         connection.commit()
         recipe_collection.update({'_id': ObjectId(recipe_id)}, {
                                   "$set": {"likes": likes}})
@@ -288,13 +290,15 @@ def dislike(recipe_id):
     likes = recipe["likes"]
     cur.execute("SELECT id FROM users WHERE username = %s", user)
     user_id = cur.fetchall()[0]['id']
-    cur.execute("SELECT userId, recipeId FROM userlikes WHERE userId = %s AND recipeId = %s", (user_id, recipe_number))
+    cur.execute("SELECT userId, recipeId, liked, unliked FROM userlikes WHERE userId = %s AND recipeId = %s", (user_id, recipe_number))
     result = cur.fetchall()
     if len(result) > 0:
         flash("Your vote has already been recorded")
     else:
         likes = likes - 1
         cur.execute("INSERT INTO userlikes(userId, recipeId) VALUES(%s, %s)", (user_id, recipe_number))
+        cur.execute("UPDATE TABLE userlikes SET unliked = '0' WHERE userId = %s AND recipeId = %s", (user_id, recipe_number))
+        cur.execute("UPDATE TABLE userlikes SET liked = '1' WHERE userId = %s AND recipeId = %s", (user_id, recipe_number))
         connection.commit()
         recipe_collection.update({'_id': ObjectId(recipe_id)}, {
                                   "$set": {"likes": likes}})
