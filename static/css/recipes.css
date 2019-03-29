@@ -70,11 +70,12 @@ section {
 }
 
 .random-message {
-    width: 80vw;
+    width: 60vw;
     height: 60px;
-    margin-left: 10vw;
-    margin-right: 10vw;
-    margin-top: 50px;
+    margin-left: 20vw;
+    margin-right: 20vw;
+    margin-bottom: -50px;
+    position: relative;
     color: black;
     display: flex;
     align-items: center;
@@ -83,7 +84,51 @@ section {
     border: 2px solid #000;
     font-size: 20px;
     border-radius: 20px;
+    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
 }
+
+.random-message:before,
+.random-message:after {
+    content: "";
+    position: absolute;
+    z-index: -2;
+}
+
+.lifted {
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}
+
+.lifted:before,
+.lifted:after {
+    bottom: 15px;
+    left: 10px;
+    width: 50%;
+    height: 20%;
+    max-width: 300px;
+    max-height: 100px;
+    -webkit-box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
+    -moz-box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
+    box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
+    -webkit-transform: rotate(-3deg);
+    -moz-transform: rotate(-3deg);
+    -ms-transform: rotate(-3deg);
+    -o-transform: rotate(-3deg);
+    transform: rotate(-3deg);
+}
+
+.lifted:after {
+    right: 10px;
+    left: auto;
+    -webkit-transform: rotate(3deg);
+    -moz-transform: rotate(3deg);
+    -ms-transform: rotate(3deg);
+    -o-transform: rotate(3deg);
+    transform: rotate(3deg);
+}
+
 
 .recipes__view {
     height: 50px;
@@ -125,15 +170,6 @@ section {
     margin-left: 5vw;
 }
 
-.message-separator {
-    margin-bottom: 50px;
-    border: 1px solid #DCDCDC;
-    width: 80vw;
-    margin-left: 10vw;
-    -moz-box-shadow: 3px 3px 5px 6px #ccc;
-    -webkit-box-shadow: 3px 3px 5px 6px #ccc;
-    box-shadow: 3px 3px 5px 6px #ccc;
-}
 
 /*  ------------------------------------Pagination ------------------------- */
 
@@ -177,7 +213,7 @@ section {
         z-index: 2;
         margin-bottom: 80px;
     }
-    
+
     .recipes__pagination {
         margin-top: -30px;
     }
@@ -207,11 +243,11 @@ section {
         margin-left: 20vw;
         margin-bottom: 50px;
     }
-    
+
     .list__next {
         margin-right: 20vw;
     }
-    
+
     .list__prev {
         margin-left: 20vw;
     }
@@ -241,8 +277,8 @@ section {
     .recipes__image img {
         height: 180px;
     }
-    
-    
+
+
 }
 
 @media (min-width: 768px) and (max-width: 1000px) {

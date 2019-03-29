@@ -145,13 +145,18 @@
   line-height: 10%;
  }
 
- .footer__span {
+ .footer__copyright {
   color: white;
   line-height: 4;
   display: flex;
   height: 100%;
   align-items: center;
   justify-content: center;
+ }
+ 
+ .footer__copyright a {
+  color: white;
+  margin-left: 10px;
  }
 
  footer {
