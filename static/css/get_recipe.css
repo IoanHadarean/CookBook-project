@@ -41,6 +41,7 @@ section {
 /* ------------------------------------- Recipe Likes ------------------------------ */
 
 .recipe__likes {
+    margin-top: 10px;
     display: flex;
     align-items: center;
     justify-content: center;

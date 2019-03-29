@@ -33,6 +33,7 @@ app.config["MONGO_URI"] = "mongodb://me:1403Goagl@ds145923.mlab.com:45923/recipe
 
 mongo = PyMongo(app)
 
+recipe_collection = mongo.db.recipes
 
     
 """ RegisterForm class with fields and validators """
@@ -154,7 +155,6 @@ def recipes():
     offset = int(request.args['offset'])
     limit = int(request.args['limit'])
 
-    recipe_collection = mongo.db.recipes
     recipes = recipe_collection.find()
     starting_id = recipe_collection.find().sort('_id', pymongo.ASCENDING)
     last_id = starting_id[offset]['_id']
@@ -179,7 +179,7 @@ def recipes():
 @app.route('/get_recipe/<recipe_id>', methods = ['GET', 'POST'])
 def get_recipe(recipe_id):
     
-    the_recipe = mongo.db.recipes.find_one({"_id": ObjectId(recipe_id)})
+    the_recipe = recipe_collection.find_one({"_id": ObjectId(recipe_id)})
     
     
     """ Add ready time for each recipe (cooking time + preparation time) """
@@ -248,19 +248,25 @@ def get_recipe(recipe_id):
 @app.route('/like/<recipe_id>', methods = ['GET', 'POST'])
 @is_logged_in
 def like(recipe_id):
+    # Get connections
     cur = connection.cursor()
-    recipe_collection = mongo.db.recipes
     recipe = recipe_collection.find_one({"_id": ObjectId(recipe_id)})
     
+    #Get variables
     user = session['username']
     recipe_number = recipe["id"]
     likes = recipe["likes"]
+    
+    # Check if a record with the user and the recipe exists in the user likes table in the flaskapp database
+    # If it does not then insert the new record into the user likes table
+    # Get the liked flag and check if it's 0 or 1
+    # If it's 1 then update the number of likes
+    # Finally, set the liked flag to 0 so a recipe can not be liked anymore
+    # Commit to the database and redirect
     cur.execute("SELECT id FROM users WHERE username = %s", user)
     user_id = cur.fetchall()[0]['id']
     cur.execute("SELECT userId, recipeId, liked, unliked FROM userlikes WHERE userId = %s AND recipeId = %s", (user_id, recipe_number))
     result = cur.fetchall()
-    # cur.execute("SELECT userId, recipeId, liked, unliked FROM userlikes WHERE userId = %s AND recipeId = %s", (user_id, recipe_number))
-    # likedFlag = cur.fetchall()[0]['liked']
     if len(result) == 0:
         cur.execute("INSERT INTO userlikes(userId, recipeId) VALUES(%s, %s)", (user_id, recipe_number))
     cur.execute("SELECT userId, recipeId, liked, unliked FROM userlikes WHERE userId = %s AND recipeId = %s", (user_id, recipe_number))
@@ -280,13 +286,21 @@ def like(recipe_id):
 @app.route('/dislike/<recipe_id>', methods = ['GET'])
 @is_logged_in
 def dislike(recipe_id):
+    # Get connections
     cur = connection.cursor()
-    recipe_collection = mongo.db.recipes
     recipe = recipe_collection.find_one({"_id": ObjectId(recipe_id)})
     
+    #Get variables
     user = session['username']
     recipe_number = recipe["id"]
     likes = recipe["likes"]
+    
+    # Check if a record with the user and the recipe exists in the user likes table in the flaskapp database
+    # If it does not then insert the new record into the user likes table
+    # Get the unliked flag and check if it's 0 or 1
+    # If it's 1 then update the number of likes
+    # Finally, set the unliked flag to 0 so a recipe can not be disliked anymore
+    # Commit to the database and redirect
     cur.execute("SELECT id FROM users WHERE username = %s", user)
     user_id = cur.fetchall()[0]['id']
     cur.execute("SELECT userId, recipeId, liked, unliked FROM userlikes WHERE userId = %s AND recipeId = %s", (user_id, recipe_number))
@@ -317,7 +331,7 @@ def charts():
     dot_chart.title = 'Recipe Ingredients Statistics by Cuisine'
     dot_chart.y_title = 'Recipes by cuisine'
     dot_chart.x_labels = ['milk', 'egg', 'sugar', 'flour', 'salt', 'water', 'garlic', 'vanilla', 'butter']
-    dot_chart.y_labels = ['French', 'Mexican', 'Greek', 'English', 'Asian', 'Indian', 'Irish', 'Italian']
+    dot_chart.y_labels = ['French - 4', 'Mexican - 2', 'Greek - 2', 'English - 2', 'Asian - 4', 'Indian - 3', 'Irish - 2', 'Italian - 5']
     dot_chart.add('French', French_values)
     dot_chart.add('Mexican', Mexican_values)
     dot_chart.add('Greek', Greek_values)
