@@ -263,16 +263,19 @@ def like(recipe_id):
     cur.execute("SELECT userId, recipeId, liked, unliked FROM userlikes WHERE userId = %s AND recipeId = %s", (user_id, recipe_number))
     result = cur.fetchall()
     print(result)
-    if len(result) > 0:
-        flash("Your vote has already been recorded")
-    else:
-        likes = likes + 1
+    cur.execute("SELECT userId, recipeId, liked, unliked FROM userlikes WHERE userId = %s AND recipeId = %s", (user_id, recipe_number))
+    likedFlag = cur.fetchall()[0]['liked']
+    print(likedFlag)
+    if len(result) == 0:
         cur.execute("INSERT INTO userlikes(userId, recipeId) VALUES(%s, %s)", (user_id, recipe_number))
-        cur.execute("UPDATE TABLE userlikes SET liked = '0' WHERE userId = %s AND recipeId = %s", (user_id, recipe_number))
-        cur.execute("UPDATE TABLE userlikes SET unliked = '1' WHERE userId = %s AND recipeId = %s", (user_id, recipe_number))
-        connection.commit()
-        recipe_collection.update({'_id': ObjectId(recipe_id)}, {
+    else:
+        if (likedFlag != 0):
+            likes = likes + 1
+            recipe_collection.update({'_id': ObjectId(recipe_id)}, {
                                   "$set": {"likes": likes}})
+            cur.execute("UPDATE userlikes SET liked = '0' WHERE userId = %s AND recipeId = %s", (user_id, recipe_number))
+            cur.execute("UPDATE userlikes SET unliked = '1' WHERE userId = %s AND recipeId = %s", (user_id, recipe_number))
+            connection.commit()
 
     return redirect(request.referrer)
     
@@ -292,16 +295,18 @@ def dislike(recipe_id):
     user_id = cur.fetchall()[0]['id']
     cur.execute("SELECT userId, recipeId, liked, unliked FROM userlikes WHERE userId = %s AND recipeId = %s", (user_id, recipe_number))
     result = cur.fetchall()
-    if len(result) > 0:
-        flash("Your vote has already been recorded")
-    else:
-        likes = likes - 1
+    cur.execute("SELECT userId, recipeId, liked, unliked FROM userlikes WHERE userId = %s AND recipeId = %s", (user_id, recipe_number))
+    unlikedFlag = cur.fetchall()[0]['unliked']
+    if len(result) == 0:
         cur.execute("INSERT INTO userlikes(userId, recipeId) VALUES(%s, %s)", (user_id, recipe_number))
-        cur.execute("UPDATE TABLE userlikes SET unliked = '0' WHERE userId = %s AND recipeId = %s", (user_id, recipe_number))
-        cur.execute("UPDATE TABLE userlikes SET liked = '1' WHERE userId = %s AND recipeId = %s", (user_id, recipe_number))
-        connection.commit()
-        recipe_collection.update({'_id': ObjectId(recipe_id)}, {
+    else:
+        if (unlikedFlag != 0):
+            likes = likes - 1
+            recipe_collection.update({'_id': ObjectId(recipe_id)}, {
                                   "$set": {"likes": likes}})
+            cur.execute("UPDATE userlikes SET unliked = '0' WHERE userId = %s AND recipeId = %s", (user_id, recipe_number))
+            cur.execute("UPDATE userlikes SET liked = '1' WHERE userId = %s AND recipeId = %s", (user_id, recipe_number))
+            connection.commit()
 
     return redirect(request.referrer)
     
