@@ -34,6 +34,7 @@ app.config["MONGO_URI"] = "mongodb://me:1403Goagl@ds145923.mlab.com:45923/recipe
 mongo = PyMongo(app)
 
 recipe_collection = mongo.db.recipes
+ratings_collection = mongo.db.ratings
 
     
 """ RegisterForm class with fields and validators """
@@ -88,6 +89,11 @@ def register():
     return render_template('register.html', form=form)
     
     
+    
+    
+    
+    
+    
 """ Login for user already registered to the website """
 
 @app.route('/login', methods=['GET', 'POST'])
@@ -127,7 +133,10 @@ def login():
     return render_template('login.html')
     
     
+    
+    
 """ Check if user is logged in """
+
 def is_logged_in(f):
     @wraps(f)
     def wrap(*args, **kwargs):
@@ -139,12 +148,19 @@ def is_logged_in(f):
     return wrap
     
     
+    
+    
+    
+    
 """ Logout """
+
 @app.route('/logout')
 def logout():
     session.clear()
     flash('You are now logged out', 'success')
     return redirect(url_for('login'))
+    
+    
     
     
 """ Get all recipes and implement pagination """
@@ -174,8 +190,13 @@ def recipes():
     
     return render_template('recipes.html', args=args)
     
+    
+    
+    
+    
 
 """ View details of a recipe """
+
 @app.route('/get_recipe/<recipe_id>', methods = ['GET', 'POST'])
 def get_recipe(recipe_id):
     
@@ -243,17 +264,21 @@ def get_recipe(recipe_id):
     return render_template('get_recipe.html', recipe=the_recipe, total = total, full_quantities = full_quantities,
                             full_ingredients = full_ingredients)
     
+    
+    
+    
 
 """ Like recipe """
+
 @app.route('/like/<recipe_id>', methods = ['GET', 'POST'])
 @is_logged_in
 def like(recipe_id):
-    # Get connections
+    # Get MySQL connection
     cur = connection.cursor()
-    recipe = recipe_collection.find_one({"_id": ObjectId(recipe_id)})
     
     #Get variables
     user = session['username']
+    recipe = recipe_collection.find_one({"_id": ObjectId(recipe_id)})
     recipe_number = recipe["id"]
     likes = recipe["likes"]
     
@@ -283,16 +308,19 @@ def like(recipe_id):
     return redirect(request.referrer)
     
     
+    
+    
 """ Dislike recipe """
+
 @app.route('/dislike/<recipe_id>', methods = ['GET'])
 @is_logged_in
 def dislike(recipe_id):
-    # Get connections
+    # Get MySQL connection
     cur = connection.cursor()
-    recipe = recipe_collection.find_one({"_id": ObjectId(recipe_id)})
     
     #Get variables
     user = session['username']
+    recipe = recipe_collection.find_one({"_id": ObjectId(recipe_id)})
     recipe_number = recipe["id"]
     likes = recipe["likes"]
     
@@ -321,23 +349,51 @@ def dislike(recipe_id):
 
     return redirect(request.referrer)
     
+    
+    
+    
+    
 """  Get ratings from users and store them in the database
      then return the average rating for a recipe"""
+     
 @app.route('/update_rating/<recipe_id>', methods = ['GET', 'POST'])
+@is_logged_in
 def update_rating(recipe_id):
     if request.method == 'POST':
+        # Get MySQL connection
+        cur = connection.cursor()
+        
+        # Get variables
         rating = request.form.get('rating')
-        print(rating)
-        # user = session['username']
-        # print(user)
+        user = session['username']
         recipe = recipe_collection.find_one({"_id": ObjectId(recipe_id)})
-        recipe_collection.update({'_id': ObjectId(recipe_id)}, {
-                                  "$set": {"rating": rating}})
+        recipe_number = recipe["id"]
+        
+        cur.execute("SELECT id FROM users WHERE username = %s", user)
+        user_id = cur.fetchall()[0]['id']
+        print(user_id)
+        
+        instance_record = ratings_collection.find_one({"user_id": user_id, "recipe_id": recipe_number})
+        instance_user = ratings_collection.find_one({"user_id": user_id})
+        if instance_user == None:
+            recipe_collection.update({'_id': ObjectId(recipe_id)}, {
+                                  "$set": {"rating": 0}})
+        else:
+            if instance_record != None:
+                ratings_collection.update(
+                                    { "user_id": user_id, "recipe_id": recipe_number },
+                                    { "$set": { "ratings_user": rating }})
+            else:
+                ratings_collection.insert_one({"user_id": user_id, "recipe_id": recipe_number, "ratings_user": rating})
+            
     return redirect(url_for('get_recipe', recipe_id = recipe_id))
 
 
 
+
+
 """ Recipe ingredients statistics by cuisine """
+
 @app.route('/statistics')
 def charts():
     """ Recipe ingredients statistics by cuisine """
