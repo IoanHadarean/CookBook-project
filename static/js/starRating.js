@@ -22,20 +22,15 @@ class StarRating extends HTMLElement  {
         
         this.stars = [];
         this.value = this.value;
-        
-        
         let input = document.getElementById('rate');
-        console.log(input);
         
         
         // Create the div elements containing the stars
         for (let i = 0; i < 5; i++) {
             let star = document.createElement('div');
-            console.log(star);
             star.className = 'star';
             this.appendChild(star);
             this.stars.push(star);
-            console.log(this.stars);
         }
         
         // Add event listener for x-star-rating
@@ -52,7 +47,6 @@ class StarRating extends HTMLElement  {
         this.addEventListener('mouseout', () => {
             this.value = this.value;
             input.setAttribute('value', this.value);
-            console.log(input);
         });
         
         // When the rating stars are clicked, the rating stays
@@ -61,7 +55,7 @@ class StarRating extends HTMLElement  {
                 starIndex = Math.floor((e.pageX - box.left) / box.width * this.stars.length);
             
             this.value = starIndex + 1;
-            console.log(this.value);
+            input.setAttribute('value', this.value);
         });
     }
 }

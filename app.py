@@ -278,6 +278,7 @@ def like(recipe_id):
         cur.execute("UPDATE userlikes SET liked = '0' WHERE userId = %s AND recipeId = %s", (user_id, recipe_number))
         cur.execute("UPDATE userlikes SET unliked = '1' WHERE userId = %s AND recipeId = %s", (user_id, recipe_number))
         connection.commit()
+        cur.close()
 
     return redirect(request.referrer)
     
@@ -316,17 +317,23 @@ def dislike(recipe_id):
         cur.execute("UPDATE userlikes SET unliked = '0' WHERE userId = %s AND recipeId = %s", (user_id, recipe_number))
         cur.execute("UPDATE userlikes SET liked = '1' WHERE userId = %s AND recipeId = %s", (user_id, recipe_number))
         connection.commit()
+        cur.close()
 
     return redirect(request.referrer)
     
 """  Get ratings from users and store them in the database
      then return the average rating for a recipe"""
-@app.route('/input_value', methods = ['POST', 'GET'])
-def ratings():
+@app.route('/update_rating/<recipe_id>', methods = ['GET', 'POST'])
+def update_rating(recipe_id):
     if request.method == 'POST':
         rating = request.form.get('rating')
         print(rating)
-        return redirect(request.referrer)
+        # user = session['username']
+        # print(user)
+        recipe = recipe_collection.find_one({"_id": ObjectId(recipe_id)})
+        recipe_collection.update({'_id': ObjectId(recipe_id)}, {
+                                  "$set": {"rating": rating}})
+    return redirect(url_for('get_recipe', recipe_id = recipe_id))
 
 
 
