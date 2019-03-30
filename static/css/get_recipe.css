@@ -146,6 +146,12 @@ x-star-rating > .star:after {
     color: #cccccc;
 }
 
+x-star-rating > .star.full:after {
+    content: "\f2fc";
+    color: #fd0;
+}
+
+
 
 /* -------------------------------------- Recipe Info ------------------------- */
 
