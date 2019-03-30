@@ -28,9 +28,10 @@
                 <span class="close">&times;</span>
                 <h4 class = "modal__title">How would you rate this recipe ?</h4>
                 <p class = "modal__select">Select Rating</p>
-                <form action="" method="POST">
-                    <input type="hidden" name="rating" value ="0"/>
-                    <x-star-rating></x-star-rating>
+                <form action="/input_value" method="POST">
+                    <x-star-rating value="0" id = "rating"></x-star-rating>
+                    <input type="hidden" id ="rate" name="rating" value ="0"/>
+                    <button type="submit">Rate It</button>
                 </form>
             </div>
         </div>

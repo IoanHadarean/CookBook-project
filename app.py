@@ -149,7 +149,7 @@ def logout():
     
 """ Get all recipes and implement pagination """
 
-@app.route('/recipes', methods = ['GET'])
+@app.route('/recipes', methods = ['GET', 'POST'])
 def recipes():
     
     offset = int(request.args['offset'])
@@ -319,6 +319,15 @@ def dislike(recipe_id):
 
     return redirect(request.referrer)
     
+"""  Get ratings from users and store them in the database
+     then return the average rating for a recipe"""
+@app.route('/input_value', methods = ['POST', 'GET'])
+def ratings():
+    if request.method == 'POST':
+        rating = request.form.get('rating')
+        print(rating)
+        return redirect(request.referrer)
+
 
 
 """ Recipe ingredients statistics by cuisine """
