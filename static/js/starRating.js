@@ -2,8 +2,7 @@
 
 class StarRating extends HTMLElement  {
     
-    // highlight stars depending on index
-    
+    // Highlight the stars depending on index
     highlight(index) {
         this.stars.forEach((star, i) => {
             star.classList.toggle('full', i <= index);
@@ -16,7 +15,6 @@ class StarRating extends HTMLElement  {
         
         
         // Create the div elements containing the stars
-        
         for (let i = 0; i < 5; i++) {
             let star = document.createElement('div');
             console.log(star);
@@ -25,10 +23,16 @@ class StarRating extends HTMLElement  {
             this.stars.push(star);
             console.log(this.stars);
         }
-        this.highlight(4);
+        
+        // Add event listener for x-star-rating
+        // Calculate the starIndex for each star
+        this.addEventListener('mousemove', e => {
+            let box = this.getBoundingClientRect(),
+                starIndex = Math.floor((e.pageX - box.left) / box.width * this.stars.length);
+            console.log(starIndex);
+        });
     }
 }
 
 // register StarRating as an HTML element
-
 window.customElements.define('x-star-rating', StarRating);
