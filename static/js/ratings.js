@@ -2,7 +2,6 @@
 
 // Get Rating Value
 const numberRating = document.querySelector('.numbers-rating').innerHTML;
-console.log(numberRating);
 
 // Total Stars
 const starsTotal = 5;

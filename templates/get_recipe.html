@@ -31,7 +31,7 @@
                 <form action="/update_rating/{{ recipe._id }}" method="POST">
                     <x-star-rating value="0" name = "rating" id = "rating"></x-star-rating>
                     <input type="hidden" id ="rate" name="rating" value ="0"/>
-                    <button type="submit">Rate It</button>
+                    <button type="submit" disabled>Rate It</button>
                 </form>
             </div>
         </div>
