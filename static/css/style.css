@@ -43,6 +43,12 @@
   background: #b29966;
  }
 
+ .row-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+ }
+
 
  /* -------------------------------------------Navigation------------------------------------- */
 
@@ -51,10 +57,13 @@
   width: 100%;
   margin: 0px;
   z-index: 4;
+  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
  }
 
  nav {
-  background: wheat;
+  background: #62a5a1;
   position: fixed;
   width: 100%;
   z-index: 99;
@@ -75,19 +84,19 @@
   font-family: "Arial";
  }
 
+ .navbar-header a:hover {
+  color: white;
+ }
+
  #navbar a {
   color: black;
   font-size: 20px;
   font-family: "Arial";
  }
- 
- /*.navbar-middle a:hover {*/
- /* background-color: #62a5a1;*/
- /*}*/
- 
- .navbar-middle a:hover {
+
+ #navbar a:hover {
   color: white;
-  background-color: #62a5a1;
+  background: #62a5a1;
  }
 
  .navbar-middle li a {
@@ -103,17 +112,28 @@
   justify-content: center;
   padding-left: 5vw;
  }
- 
- .navbar-brand:hover {
-  background-color: #62a5a1;
-  color: white;
- }
 
  /* -------------------------------------------Buttons--------------------------------------- */
 
  .btn {
   padding-left: 0px;
   padding-right: 0px;
+ }
+
+ .btn-primary {
+  background-color: #62a5a1;
+  border-color: #62a5a1;
+  color: black;
+ }
+
+ .btn-primary:hover {
+  background-color: #62a5a1;
+  color: white;
+ }
+
+ .btn-success {
+  background-color: #f26226;
+  border-color: #f26226;
  }
 
  /* -----------------------------------------------Register Form-------------------------------------------- */
@@ -126,7 +146,7 @@
  }
 
  button[type="submit"] {
-  width: 100%;
+  width: 100px;
   margin-top: 10%;
  }
 
@@ -140,7 +160,7 @@
  .footer {
   width: auto;
   background-color: black;
-  height: 10%;
+  height: 100%;
   bottom: 0;
   position: relative;
   text-align: center;
@@ -155,7 +175,7 @@
   align-items: center;
   justify-content: center;
  }
- 
+
  .footer__copyright a {
   color: white;
   margin-left: 10px;
@@ -165,6 +185,7 @@
   position: absolute;
   bottom: 0;
   width: 100%;
+  height: 100px;
  }
 
  /* --------------------------------------------------Media Queries------------------------------- */
@@ -285,14 +306,15 @@
 
   .navbar-right {
    margin-right: 15px;
+   height: 50px;
   }
 
   .navbar-brand {
    padding-left: 2vw;
   }
-
-  .navbar-brand:hover {
-   background: #808080;
+  
+  .footer__copyright a {
+   font-size: 24px;
   }
  }
 
