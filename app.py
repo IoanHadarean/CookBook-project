@@ -374,7 +374,7 @@ def update_rating(recipe_id):
         print(user_id)
         
         instance_record = ratings_collection.find_one({"user_id": user_id, "recipe_id": recipe_number})
-        instance_user = ratings_collection.find_one({"user_id": user_id})
+        # instance_user = ratings_collection.find_one({"user_id": user_id})
         if instance_record != None:
             ratings_collection.update(
                                     { "user_id": user_id, "recipe_id": recipe_number },
@@ -382,9 +382,13 @@ def update_rating(recipe_id):
         else:
             ratings_collection.insert_one({"user_id": user_id, "recipe_id": recipe_number, "rating": rating})
         
-        recipe_collection.update({'_id': ObjectId(recipe_id)}, {
-                                  "$set": {"rating": rating}})
-    return redirect(url_for('get_recipe', recipe_id = recipe_id))
+        for item in ratings_collection.find():
+            if item["user_id"] == user_id and item["recipe_id"] == recipe_number:
+                rating_per_user = item["rating"]
+                print(rating_per_user)
+        # return redirect(url_for('get_recipe', recipe_id = recipe_id))
+    return render_template('get_recipe.html', recipe = recipe, recipe_id = recipe_id, rating_per_user = rating_per_user, 
+                            ratings_collection = ratings_collection, user_id = user_id, recipe_number = recipe_number)
 
 
 

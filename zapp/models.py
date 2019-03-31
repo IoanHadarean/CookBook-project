@@ -13,6 +13,7 @@ mongo = PyMongo(app)
 
 
 recipes_collection = mongo.db.recipes.find()
+ratings_collection = mongo.db.ratings.find()
 
 
 """ Find ingredients by cuisine """
@@ -173,6 +174,12 @@ recipes_collection = mongo.db.recipes.find()
 # average_calories()
 
 
+# user_id = 1
+# recipe_id = 1
+for rating in ratings_collection:
+    if rating["user_id"] == 78 and rating["recipe_id"] == "1":
+        print(rating["rating"])
+        
 
 
         
