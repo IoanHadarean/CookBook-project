@@ -9,6 +9,7 @@ from wtforms import Form, StringField, TextAreaField, PasswordField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from passlib.hash import sha256_crypt
 from functools import wraps
+from werkzeug.urls import url_parse
 
 
 app = Flask(__name__)
@@ -85,7 +86,7 @@ def register():
         connection.commit()
         cur.close()
         
-        return redirect(url_for('login'))
+        return redirect(url_for('recipes'))
     return render_template('register.html', form=form)
     
     
@@ -120,7 +121,10 @@ def login():
                 session['username'] = username
                 
                 flash('You are now logged in', 'success')
-                return redirect(url_for('recipes', limit=6, offset=0))
+                next_page = request.args.get('next')
+                if not next_page or url_parse(next_page).netloc != '':
+                    next_page = url_for('recipes', limit = 6, offset = 0)
+                return redirect(next_page)
             else:
                 error = 'Invalid login'
                 return render_template('login.html', error=error)
@@ -146,9 +150,6 @@ def is_logged_in(f):
             flash('Unauthorized, please login', 'danger')
             return redirect(url_for('login'))
     return wrap
-    
-    
-    
     
     
     
@@ -262,7 +263,7 @@ def get_recipe(recipe_id):
 
             
     return render_template('get_recipe.html', recipe=the_recipe, total = total, full_quantities = full_quantities,
-                            full_ingredients = full_ingredients)
+                            full_ingredients = full_ingredients, request=request)
     
     
     
@@ -371,10 +372,8 @@ def update_rating(recipe_id):
         
         cur.execute("SELECT id FROM users WHERE username = %s", user)
         user_id = cur.fetchall()[0]['id']
-        print(user_id)
         
         instance_record = ratings_collection.find_one({"user_id": user_id, "recipe_id": recipe_number})
-        # instance_user = ratings_collection.find_one({"user_id": user_id})
         if instance_record != None:
             ratings_collection.update(
                                     { "user_id": user_id, "recipe_id": recipe_number },
@@ -382,13 +381,20 @@ def update_rating(recipe_id):
         else:
             ratings_collection.insert_one({"user_id": user_id, "recipe_id": recipe_number, "rating": rating})
         
-        for item in ratings_collection.find():
-            if item["user_id"] == user_id and item["recipe_id"] == recipe_number:
-                rating_per_user = item["rating"]
-                print(rating_per_user)
-        # return redirect(url_for('get_recipe', recipe_id = recipe_id))
-    return render_template('get_recipe.html', recipe = recipe, recipe_id = recipe_id, rating_per_user = rating_per_user, 
-                            ratings_collection = ratings_collection, user_id = user_id, recipe_number = recipe_number)
+        
+        instance_recipe = ratings_collection.find({"recipe_id": recipe_number })
+        instance_count = ratings_collection.count_documents({"recipe_id": recipe_number })
+        sum_rating = 0
+        for doc in instance_recipe:
+            sum_rating = sum_rating + int(doc["rating"])
+        average_rating = sum_rating / instance_count
+        formated_average =  "{:.1f}".format(average_rating)
+            
+        
+        recipe_collection.update({"_id": ObjectId(recipe_id)},
+                                    { "$set": { "rating": formated_average}})
+        
+        return redirect(url_for('get_recipe', recipe_id = recipe_id))
 
 
 

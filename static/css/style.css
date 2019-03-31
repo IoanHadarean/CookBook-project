@@ -2,11 +2,7 @@
 
  html,
  body {
-  background: url("../images/cookbook.jpg") no-repeat fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
+  background: white;
   width: 100%;
   height: 100%;
   margin: 0;
@@ -51,7 +47,7 @@
  /* -------------------------------------------Navigation------------------------------------- */
 
  #navbar {
-  background-color: #D3D3D3;
+  background-color: #62a5a1;
   width: 100%;
   margin: 0px;
   z-index: 4;
@@ -62,10 +58,6 @@
   position: fixed;
   width: 100%;
   z-index: 99;
- }
- 
- .navbar-brand:hover {
-  background: #CFB178;
  }
 
  .navbar-toggle .icon-bar {
@@ -88,9 +80,14 @@
   font-size: 20px;
   font-family: "Arial";
  }
-
- #navbar a:hover {
-  background: #808080;
+ 
+ /*.navbar-middle a:hover {*/
+ /* background-color: #62a5a1;*/
+ /*}*/
+ 
+ .navbar-middle a:hover {
+  color: white;
+  background-color: #62a5a1;
  }
 
  .navbar-middle li a {
@@ -105,6 +102,11 @@
   align-items: center;
   justify-content: center;
   padding-left: 5vw;
+ }
+ 
+ .navbar-brand:hover {
+  background-color: #62a5a1;
+  color: white;
  }
 
  /* -------------------------------------------Buttons--------------------------------------- */

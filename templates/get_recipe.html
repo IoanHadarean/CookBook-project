@@ -21,7 +21,7 @@
         <div class="stars-outer">
             <div class="stars-inner"></div>
         </div>
-        <span class = "numbers-rating">{{ rating_per_user }}</span>
+        <span class = "numbers-rating">{{ recipe.rating }}</span>
         <button id = "rating__button">Rate this recipe</button>
         <div id = "rating__modal" class = "modal">
             <div class="modal-content">
@@ -72,7 +72,7 @@
         <div class="recipe__alert">
             <h3 class="alert__description">Add your own recipes</h3>
             <div class="alert__box">
-                <a class="box__link" href="/login">GET COOKING</a>
+                <a class="box__link" href="{{ url_for('login', next = request.path) }}">GET COOKING</a>
             </div>
         </div>
         

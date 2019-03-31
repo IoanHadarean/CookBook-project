@@ -10,16 +10,16 @@ let inputRating = document.getElementById('rate');
 buttonModal.addEventListener('click', (e) => {
     modal.style.display = 'block';
     html.style.overflowY = 'hidden';
-    xStarRating.value = 0;
-    inputRating.value = 0;
+    // xStarRating.value = 0;
+    // inputRating.value = 0;
 });
 
 // When the user clicks on span close modal
 closeSpan.addEventListener('click', (e) => {
     modal.style.display = 'none';
     html.style.overflowY = 'visible';
-    xStarRating.value = 0;
-    inputRating.value = 0;
+    // xStarRating.value = 0;
+    // inputRating.value = 0;
 });
 
 // When the user clicks anywhere outside of the modal, close it
@@ -27,7 +27,7 @@ window.onclick = function(event) {
   if (event.target == modal) {
     modal.style.display = "none";
     html.style.overflowY = 'visible';
-    xStarRating.value = 0;
-    inputRating.value = 0;
+    // xStarRating.value = 0;
+    // inputRating.value = 0;
   }
 };

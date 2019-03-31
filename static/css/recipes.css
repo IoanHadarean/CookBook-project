@@ -4,11 +4,6 @@ footer {
     position: relative;
 }
 
-body,
-html {
-    background: white;
-}
-
 .container {
     width: 100%;
     margin-top: 100px;
@@ -40,17 +35,13 @@ section {
     display: inline-block;
     width: 25vw;
     margin-left: 6vw;
-    border-top: 2px solid #000;
     background: #E8E8E8;
+    border-radius: 5%;
 }
 
 .recipes__name {
     min-height: 70px;
     display: flex;
-}
-
-.recipes:hover {
-    background: #F5F5F5;
 }
 
 .recipes__image {
@@ -81,7 +72,6 @@ section {
     align-items: center;
     justify-content: center;
     text-align: center;
-    border: 2px solid #000;
     font-size: 20px;
     border-radius: 20px;
     -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
@@ -134,8 +124,6 @@ section {
     height: 50px;
     font-size: 20px;
     width: 100vw;
-    border-bottom: 2px solid black;
-    border-top: 2px solid black;
     background: #f26226;
     display: inline-flex;
     align-items: center;
@@ -308,16 +296,8 @@ section {
     .recipes__view {
         margin-bottom: 0;
         margin-bottom: 30px;
-        border-left: 2px solid #000;
-        border-right: 2px solid #000;
         margin-left: 10%;
         width: 80%;
-    }
-
-    .recipes {
-        border-left: 2px solid #000;
-        border-right: 2px solid #000;
-        border-bottom: 2px solid #000;
     }
 }
 

@@ -29,11 +29,11 @@
             <ul class="pagination__list">
                 {% if args.offset > 0 %}
                 <li class="list__prev">
-                    <a href="{{args.prev_url}}">Back</a>
+                    <a href="{{args.prev_url}}">Previous</a>
                 </li>
                 {% endif %} {% if args.offset + args.limit
                 < args.total_results %} <li class="list__next">
-                    <a href="{{args.next_url}}">More</a>
+                    <a href="{{args.next_url}}">Next</a>
                     </li>
                     {% endif %}
             </ul>
