@@ -20,8 +20,7 @@
             <div class="stars-inner"></div>
         </div>
         <span class="numbers-rating">{{ recipe.rating }}</span>
-        {% if session.logged_in %}
-        <button id="rating__button">Rate Recipe</button>
+        <button id="rating__button">Rate Recipe</button> {% if session.logged_in %}
         <div id="rating__modal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
@@ -30,14 +29,20 @@
                 <form class="modal__rating" action="/update_rating/{{ recipe._id }}" method="POST">
                     <x-star-rating value="0" name="rating" id="rating"></x-star-rating>
                     <input type="hidden" id="rate" name="rating" value="0" />
-                    <button class = "modal__submit" type="submit" disabled>Rate It</button>
+                    <button class="modal__submit" type="submit" disabled>Rate It</button>
                 </form>
             </div>
         </div>
         {% else %}
-        <a href = "{{ url_for('login', next = request.path) }}">
-            <button id="rating__button">Rate Recipe</button>
-        </a>
+        <div id="rating__modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h4 class="modal__title">To rate this recipe please login</h4>
+                <a class = "modal__alert" href = "{{ url_for('login', next = request.path) }}">
+                    <button class="btn btn-success btn-styled">Login</button>
+                </a>
+            </div>
+        </div>
         {% endif %}
     </div>
 
@@ -77,9 +82,14 @@
             <h3 class="alert__description">Add your own recipes</h3>
             <div class="alert__box">
                 {% if session.logged_in %}
-                <a class="box__link" href="/add_recipe">ADD RECIPE</a>
-                {% else %}
-                <a class="box__link" href="{{ url_for('login', next = request.path) }}">GET COOKING</a>
+                <a class="box__link" href="/add_recipe">ADD RECIPE</a> {% else %}
+                <a class="box__link">ADD RECIPE</a>
+                <div id="rating__modal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <h4 class="modal__title">If you want to add a recipe please login</h4>
+                    </div>
+                </div>
                 {% endif %}
             </div>
         </div>

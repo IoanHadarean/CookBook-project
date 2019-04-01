@@ -150,11 +150,9 @@ def is_logged_in(f):
             flash('Unauthorized, please login', 'danger')
             return redirect(url_for('login'))
     return wrap
-    
-    
+
     
 """ Logout """
-
 @app.route('/logout')
 def logout():
     session.clear()
