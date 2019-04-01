@@ -1,8 +1,13 @@
 /*------------------Special margins and styling--------------- */
 
+html,
+body {
+    height: fit-content;
+}
 
 section {
     margin-top: 50px;
+    overflow: hidden;
 }
 
 
@@ -14,10 +19,6 @@ footer {
 
 ul {
     display: inline;
-}
-
-section {
-    overflow: hidden;
 }
 
 /*------------------------------------- Recipe Image ----------------------- */
@@ -53,9 +54,23 @@ section {
 
 /* ------------------------------------- Recipe Ratings ---------------------------- */
 
+.recipes__rating {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.ratings__title,
+.numbers-rating {
+    margin-right: 10px;
+}
+
+
 .stars-outer {
     position: relative;
     display: inline-block;
+    margin-right: 10px;
 }
 
 .stars-inner {
@@ -105,13 +120,38 @@ section {
 }
 
 .modal__title {
-    margin: 15% auto;
+    margin: 10% auto;
     text-align: center;
+    color: #009978;
 }
 
 .modal__select {
     text-align: center;
+}
+
+.modal__rating {
     margin: -10% auto;
+    align-items: center;
+    justify-content: center;
+    width: 90%;
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.modal__submit {
+    margin-top: 10px;
+}
+
+.modal__submit,
+#rating__button {
+    background-color: #009978;
+    color: black;
+}
+
+.modal__submit:hover,
+#rating__button:hover {
+    color: white;
+    opacity: 0.7;
 }
 
 .close {
@@ -135,17 +175,15 @@ x-star-rating {
     font-size: 30px;
 }
 
-x-star-rating > .star:after {
+x-star-rating>.star:after {
     content: "\f3ae";
     color: #cccccc;
 }
 
-x-star-rating > .star.full:after {
+x-star-rating>.star.full:after {
     content: "\f2fc";
     color: #fd0;
 }
-
-
 
 /* -------------------------------------- Recipe Info ------------------------- */
 
@@ -259,6 +297,11 @@ x-star-rating > .star.full:after {
 
 .alert__box a {
     text-decoration: none;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .box__link {
@@ -271,8 +314,8 @@ x-star-rating > .star.full:after {
 
 .recipe__quantities {
     margin-top: 20px;
-    margin-left: 5vw;
-    width: 30vw;
+    margin-left: 5%;
+    width: 30%;
     margin-bottom: 20px;
     display: inline-block;
     float: left;
@@ -326,30 +369,29 @@ x-star-rating > .star.full:after {
 
 .recipe__instructions {
     margin-bottom: 50px;
-    margin-left: 2.5vw;
-    margin-right: 5vw;
-    width: 92.5vw;
+    margin-left: 2.5%;
+    margin-right: 5%;
+    width: 92.5%;
 }
 
 /* ---------------------------------------Media Queries ------------------------------ */
 
 @media (min-width: 480px) and (max-width: 768px) {
     .recipe__ingredients {
-        width: 60vw;
-        margin-left: 5vw;
-        ;
+        width: 60%;
+        margin-left: 5%;
     }
 }
 
 @media (min-width: 768px) and (max-width: 2560px) {
     .recipe__ingredients {
-        width: 50vw;
-        margin-left: 3.35vw;
+        width: 50%;
+        margin-left: 3.35%;
     }
 
     .recipe__quantities {
-        margin-left: 35vw;
-        width: 10vw;
+        margin-left: 35%;
+        width: 10%;
     }
 }
 

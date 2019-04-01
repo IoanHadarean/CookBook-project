@@ -3,40 +3,44 @@
 <section>
     <!-- Recipe image -->
     <div class="recipe__image">
-        <a href="#">
-            <img class = "image__inline" src = {{ recipe.recipe_image }} alt = "recipe-image">
-        </a>
+        <img class="image__inline" src={{ recipe.recipe_image }} alt="recipe-image">
     </div>
-    
+
     <!-- Recipe likes -->
-    <div class = "recipe__likes">
+    <div class="recipe__likes">
         <span>Likes {{ recipe.likes |int }}</span>
-        <a class = "fa fa-thumbs-up" href ="/like/{{ recipe._id }}">Like</a>
-        <a class = "fa fa-thumbs-down" href ="/dislike/{{ recipe._id }}">Dislike</a>
+        <a class="fa fa-thumbs-up" href="/like/{{ recipe._id }}">Like</a>
+        <a class="fa fa-thumbs-down" href="/dislike/{{ recipe._id }}">Dislike</a>
     </div>
-    
+
     <!-- Recipe ratings -->
-    <div class = "initialRating">
-        <span class = "ratings__title">Rating</span>
+    <div class="recipes__rating">
+        <span class="ratings__title">Rating</span>
         <div class="stars-outer">
             <div class="stars-inner"></div>
         </div>
-        <span class = "numbers-rating">{{ recipe.rating }}</span>
-        <button id = "rating__button">Rate this recipe</button>
-        <div id = "rating__modal" class = "modal">
+        <span class="numbers-rating">{{ recipe.rating }}</span>
+        {% if session.logged_in %}
+        <button id="rating__button">Rate Recipe</button>
+        <div id="rating__modal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <h4 class = "modal__title">How would you rate this recipe ?</h4>
-                <p class = "modal__select">Select Rating</p>
-                <form action="/update_rating/{{ recipe._id }}" method="POST">
-                    <x-star-rating value="0" name = "rating" id = "rating"></x-star-rating>
-                    <input type="hidden" id ="rate" name="rating" value ="0"/>
-                    <button type="submit" disabled>Rate It</button>
+                <h4 class="modal__title">How does this taste?</h4>
+                <p class="modal__select">Select Rating</p>
+                <form class="modal__rating" action="/update_rating/{{ recipe._id }}" method="POST">
+                    <x-star-rating value="0" name="rating" id="rating"></x-star-rating>
+                    <input type="hidden" id="rate" name="rating" value="0" />
+                    <button class = "modal__submit" type="submit" disabled>Rate It</button>
                 </form>
             </div>
         </div>
+        {% else %}
+        <a href = "{{ url_for('login', next = request.path) }}">
+            <button id="rating__button">Rate Recipe</button>
+        </a>
+        {% endif %}
     </div>
-    
+
     <!-- Recipe Info -->
     <div class="recipe__info">
         <!-- Recipe description -->
@@ -46,7 +50,7 @@
         <div class="recipe__author">
             <p class="author__description">By {{ recipe.author_name }}</p>
         </div>
-        
+
         <!-- Recipe cooking time -->
         <div class="recipe-separator"></div>
         <div class="info__time">
@@ -66,16 +70,20 @@
                 <span class="is-time">{{ total }}</span>
             </div>
         </div>
-        
+
         <!-- Recipe alert -->
         <div class="recipe-separator"></div>
         <div class="recipe__alert">
             <h3 class="alert__description">Add your own recipes</h3>
             <div class="alert__box">
+                {% if session.logged_in %}
+                <a class="box__link" href="/add_recipe">ADD RECIPE</a>
+                {% else %}
                 <a class="box__link" href="{{ url_for('login', next = request.path) }}">GET COOKING</a>
+                {% endif %}
             </div>
         </div>
-        
+
         <!-- Recipe ingredients -->
         <div class="recipe-separator"></div>
         <div class="recipe__quantities">
@@ -83,7 +91,7 @@
                 {% for quantity in full_quantities %}
                 <li>{{ quantity }}</li>
                 {% endfor %}
-            <ul>
+                <ul>
         </div>
         <div class="recipe__ingredients">
             <ul class="ingredients__container">
@@ -93,7 +101,7 @@
             </ul>
         </div>
         <div class="recipe-separator"></div>
-        
+
         <!-- Recipe instructions -->
         <div class="recipe__instructions">
             {% for instruction in recipe.cooking_directions %}

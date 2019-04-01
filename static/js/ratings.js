@@ -1,5 +1,3 @@
-/* global localStorage */
-
 // Get Rating Value
 const numberRating = document.querySelector('.numbers-rating').innerHTML;
 

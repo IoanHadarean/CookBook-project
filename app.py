@@ -169,22 +169,22 @@ def logout():
 @app.route('/recipes', methods = ['GET', 'POST'])
 def recipes():
     
-    offset = int(request.args['offset'])
-    limit = int(request.args['limit'])
+    pagination_offset = int(request.args.get('offset', '0'))
+    pagination_limit = int(request.args.get('limit', '6'))
 
     recipes = recipe_collection.find()
     starting_id = recipe_collection.find().sort('_id', pymongo.ASCENDING)
-    last_id = starting_id[offset]['_id']
+    last_id = starting_id[pagination_offset]['_id']
     total_results = 0
     for item in recipes:
         total_results +=1
     
     args = {
-        "limit": limit,
-        "offset": offset,
-        "recipes_sorted": recipe_collection.find({'_id': {'$gte' : last_id}}).sort('_id', pymongo.ASCENDING).limit(limit),
-        "next_url": '/recipes?limit=' + str(limit) + '&offset=' + str(offset + limit),
-        "prev_url": '/recipes?limit=' + str(limit) + '&offset=' + str(offset - limit),
+        "limit": pagination_limit,
+        "offset": pagination_offset,
+        "recipes_sorted": recipe_collection.find({'_id': {'$gte' : last_id}}).sort('_id', pymongo.ASCENDING).limit(pagination_limit),
+        "next_url": '/recipes?limit=' + str(pagination_limit) + '&offset=' + str(pagination_offset + pagination_limit),
+        "prev_url": '/recipes?limit=' + str(pagination_limit) + '&offset=' + str(pagination_offset - pagination_limit),
         "recipes": recipes,
         "total_results": total_results
     }
@@ -351,14 +351,16 @@ def dislike(recipe_id):
     return redirect(request.referrer)
     
     
-    
+# @app.route('/must_login', methods = ['GET', 'POST'])
+# def must_login():
+#     if username not in session:
+#         return redirect(url_for('login', next = next))
     
     
 """  Get ratings from users and store them in the database
      then return the average rating for a recipe"""
      
 @app.route('/update_rating/<recipe_id>', methods = ['GET', 'POST'])
-@is_logged_in
 def update_rating(recipe_id):
     if request.method == 'POST':
         # Get MySQL connection

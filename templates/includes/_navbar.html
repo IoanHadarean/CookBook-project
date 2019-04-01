@@ -13,7 +13,7 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav navbar-middle">
-            <li><a href="{{ url_for('recipes', limit=6, offset=0 ) }}">Recipes</a></li>
+            <li><a href="{{ url_for('recipes', pagination_limit=6, pagination_offset=0 ) }}">Recipes</a></li>
             <li><a href="/add_recipe">Add Recipe</a></li>
             <li><a href="/statistics">Statistics</a></li>
           </ul>

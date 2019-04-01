@@ -1,4 +1,8 @@
  /* --------------------------Special paddings, margins and styling------------------------- */
+html,
+body {
+    height: fit-content;
+}
 
  footer {
   position: relative;
