@@ -9,8 +9,26 @@
     <!-- Recipe likes -->
     <div class="recipe__likes">
         <span>Likes {{ recipe.likes |int }}</span>
+        {% if session.logged_in %}
         <a class="fa fa-thumbs-up" href="/like/{{ recipe._id }}">Like</a>
         <a class="fa fa-thumbs-down" href="/dislike/{{ recipe._id }}">Dislike</a>
+        {% else %}
+        <a class="fa fa-thumbs-up" href="#">Like</a>
+        <a class="fa fa-thumbs-down" href="#">Dislike</a>
+        <div id="like__modal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p class="modal__title modal__title--margins-1">To like/dislike this recipe please register</p>
+                <a class = "modal__alert" href = "{{ url_for('register', next = request.path) }}">
+                    <button class="btn btn-primary btn-center btn-styled">Register</button>
+                </a>
+                <p class = "modal__title modal__title--margins-2"> or if you have already have an account please</p>
+                <a class = "modal__alert" href = "{{ url_for('login', next = request.path) }}">
+                    <button class="btn btn-success btn-styled">Login</button>
+                </a>
+            </div>
+        </div>
+        {% endif %}
     </div>
 
     <!-- Recipe ratings -->
@@ -37,7 +55,11 @@
         <div id="rating__modal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <h4 class="modal__title">To rate this recipe please login</h4>
+                <p class="modal__title modal__title--margins-1">To rate this recipe please register</p>
+                <a class = "modal__alert" href = "{{ url_for('register', next = request.path) }}">
+                    <button class="btn btn-primary btn-center btn-styled">Register</button>
+                </a>
+                <p class = "modal__title modal__title--margins-2"> or if you have already have an account please</p>
                 <a class = "modal__alert" href = "{{ url_for('login', next = request.path) }}">
                     <button class="btn btn-success btn-styled">Login</button>
                 </a>

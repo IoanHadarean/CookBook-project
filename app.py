@@ -80,13 +80,15 @@ def register():
             flash("That email is already taken. Please choose a different one.")
         else:
             cur.execute("INSERT INTO users(name, email, username, password) VALUES(%s, %s, %s, %s)", (name, email, username, password))
-            flash("You can now login to the website", "success")
         
         # Save and close the connection
         connection.commit()
         cur.close()
         
-        return redirect(url_for('recipes'))
+        next_page = request.args.get('next')
+        if not next_page or url_parse(next_page).netloc != '':
+            next_page = url_for('recipes', limit = 6, offset = 0)
+        return redirect(next_page)
     return render_template('register.html', form=form)
     
     
@@ -270,7 +272,6 @@ def get_recipe(recipe_id):
 """ Like recipe """
 
 @app.route('/like/<recipe_id>', methods = ['GET', 'POST'])
-@is_logged_in
 def like(recipe_id):
     # Get MySQL connection
     cur = connection.cursor()
@@ -312,7 +313,6 @@ def like(recipe_id):
 """ Dislike recipe """
 
 @app.route('/dislike/<recipe_id>', methods = ['GET'])
-@is_logged_in
 def dislike(recipe_id):
     # Get MySQL connection
     cur = connection.cursor()
