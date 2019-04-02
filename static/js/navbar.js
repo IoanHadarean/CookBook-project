@@ -8,6 +8,7 @@ for (let i = 0; i < navLinks.length; i++) {
     if (navLinks[i].textContent == 'Login' || navLinks[i].textContent == 'Logout') {
         navLinks[i].style.backgroundColor = '#f26226';
         navLinks[i].style.color = 'white';
+        navLinks[i].style.borderRadius = '4px';
         navLinks[i].style.marginTop = '10px';
         navLinks[i].style.height = '30px';
         navLinks[i].style.width = '80px';

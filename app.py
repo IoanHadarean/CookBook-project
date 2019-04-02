@@ -1,4 +1,4 @@
-import os, pymysql, json, requests, pygal, re
+import os, pymysql, requests, pygal, re
 from flask.logging import create_logger
 from zapp import values
 from zapp.values import French_values, Mexican_values, Greek_values, English_values, Asian_values, Indian_values, Irish_values, Italian_values
@@ -273,6 +273,7 @@ def get_recipe(recipe_id):
 
 @app.route('/like/<recipe_id>', methods = ['GET', 'POST'])
 def like(recipe_id):
+    
     # Get MySQL connection
     cur = connection.cursor()
     
@@ -304,15 +305,12 @@ def like(recipe_id):
         cur.execute("UPDATE userlikes SET unliked = '1' WHERE userId = %s AND recipeId = %s", (user_id, recipe_number))
         connection.commit()
         cur.close()
-
-    return redirect(request.referrer)
-    
-    
+    return jsonify(likes = likes, recipe_id = recipe_id)
     
     
 """ Dislike recipe """
 
-@app.route('/dislike/<recipe_id>', methods = ['GET'])
+@app.route('/dislike/<recipe_id>', methods = ['GET', 'POST'])
 def dislike(recipe_id):
     # Get MySQL connection
     cur = connection.cursor()
@@ -345,8 +343,7 @@ def dislike(recipe_id):
         cur.execute("UPDATE userlikes SET liked = '1' WHERE userId = %s AND recipeId = %s", (user_id, recipe_number))
         connection.commit()
         cur.close()
-
-    return redirect(request.referrer)
+    return jsonify(likes = likes, recipe_id = recipe_id)
     
     
 # @app.route('/must_login', methods = ['GET', 'POST'])

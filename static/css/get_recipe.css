@@ -157,6 +157,7 @@ ul {
 #rating__button {
     background-color: #009978;
     color: black;
+    border-radius: 4px;
 }
 
 .modal__submit:hover,
@@ -175,11 +176,16 @@ ul {
     margin-right: auto;
 }
 
+#recipe__modal {
+    position: fixed;
+}
+
 .close {
     color: #aaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
+    padding: 10px;
 }
 
 .close:hover,

@@ -1,28 +1,46 @@
 // Get modal elements
 let ratingModal = document.getElementById('rating__modal');
 let modal = document.getElementsByClassName('modal');
-console.log(modal);
 let likeModal = document.getElementById('like__modal');
+let recipeModal = document.getElementById('recipe__modal');
 let buttonModal = document.getElementById('rating__button');
 let closeSpans = document.getElementsByClassName('close');
-console.log(closeSpans);
-let html = document.getElementsByTagName('html')[0];
 let thumbsUp = document.getElementsByClassName('fa-thumbs-up')[0];
 let thumbsDown = document.getElementsByClassName('fa-thumbs-down')[0];
 let likeButtons = [thumbsDown, thumbsUp];
+let addRecipeButton = document.getElementsByClassName('box__link')[0];
+let html = document.getElementsByTagName('html')[0];
 
-// When the user clicks on the rate recipe button show modal
+
+// let likes_variable;
+// let recipe_variable;
+// let recipe_id;
+// let likes;
+//   $.ajax({
+//       url: "/like/" + recipe_id,
+//   }).done(function(res) {
+//       likes_variable = res.likes;
+//   });
+
+
+// When the user clicks on the like/dislike button show modal
 
 likeButtons.forEach(function(likeButton) {
   likeButton.addEventListener('click', (e) => {
     likeModal.style.display = 'block';
-    html.style.overflowY = 'hidden';
   });
 });
 
+// When the user clicks on add recipe button show modal
+addRecipeButton.addEventListener('click', (e) => {
+  recipeModal.style.display = 'block';
+  html.style.overflowY = 'hidden';
+});
+
+// When the user clicks on the rate recipe button show modal
+
 buttonModal.addEventListener('click', (e) => {
   ratingModal.style.display = 'block';
-  html.style.overflowY = 'hidden';
 });
 
 // When the user clicks on span close modal
@@ -48,3 +66,33 @@ window.onclick = function(event) {
     }
   }
 };
+
+
+thumbsUp.addEventListener('click', loadLike);
+thumbsDown.addEventListener('click', loadDislike);
+
+function loadLike(e) {
+  const xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      let response = JSON.parse(xhr.responseText);
+      document.getElementById('likes__number').innerHTML = "Likes " + response.likes;
+    }
+  };
+  xhr.open("POST", "/like/5c7ad43efb6fc072012c862f", true);
+  xhr.send();
+  e.preventDefault();
+}
+
+function loadDislike(e) {
+  const xhr = new XMLHttpRequest();
+  xhr.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+      let response = JSON.parse(xhr.responseText);
+      document.getElementById('likes__number').innerHTML = "Likes " + response.likes;
+    }
+  };
+  xhr.open("POST", "/dislike/5c7ad43efb6fc072012c862f", true);
+  xhr.send();
+  e.preventDefault();
+}
