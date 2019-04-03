@@ -24,28 +24,35 @@ window.onload = function() {
             }
             else if (span.innerHTML.indexOf('Invalid email address.') !== -1) {
                 parsedBottomValue -= 20;
-                console.log(parsedBottomValue);
                 styleBottomValue = String(parsedBottomValue + 'px');
                 footer.style.bottom = styleBottomValue;
             }
             else if (span.innerHTML.indexOf('Field must be between 15 and 50 characters long.') !== -1) {
                 parsedBottomValue -= 40;
-                console.log(parsedBottomValue);
                 styleBottomValue = String(parsedBottomValue + 'px');
                 footer.style.bottom = styleBottomValue;
             }
             else if (span.innerHTML.indexOf('Field must be between 6 and 25 characters long.') !== -1) {
                 parsedBottomValue -= 40;
-                console.log(parsedBottomValue);
                 styleBottomValue = String(parsedBottomValue + 'px');
                 footer.style.bottom = styleBottomValue;
             }
             else {
                 parsedBottomValue -= 40;
-                console.log(parsedBottomValue);
                 styleBottomValue = String(parsedBottomValue + 'px');
                 footer.style.bottom = styleBottomValue;
             }
         });
     }
+    
+    /* Custom box__link for alert so no interference with the alert modal is made */
+    let boxLink = document.getElementsByClassName('box__link');
+    console.log(boxLink);
+    boxLink.style.display = 'flex';
+    boxLink.style.height = '100%';
+    boxLink.style.width = '100%';
+    boxLink.style.alignItems = 'center';
+    boxLink.style.justifyContent = 'center';
 };
+
+

@@ -8,10 +8,9 @@
 
     <!-- Recipe likes -->
     <div class="recipe__likes">
-        <span id = "likes__number">Likes {{ recipe.likes |int }}</span> {% if session.logged_in %}
-        <a class="fa fa-thumbs-up" href="/like/{{ recipe._id }}" data-method = 'POST'>Like</a>
-        <a class="fa fa-thumbs-down" href="/dislike/{{ recipe._id }}" data-method = 'POST'>Dislike</a>
-        {% else %}
+        <span id="likes__number">Likes {{ recipe.likes |int }}</span> {% if session.logged_in %}
+        <a class="fa fa-thumbs-up" href="/like/{{ recipe._id }}" data-name = {{ recipe_id }}>Like</a>
+        <a class="fa fa-thumbs-down" href="/dislike/{{ recipe._id }}" data-name = {{ recipe_id }}>Dislike</a> {% else %}
         <a class="fa fa-thumbs-up" href="#">Like</a>
         <a class="fa fa-thumbs-down" href="#">Dislike</a>
         <div id="like__modal" class="modal">
@@ -21,7 +20,7 @@
                 <a class="modal__alert" href="{{ url_for('register', next = request.path) }}">
                     <button class="btn btn-primary btn-center btn-styled">Register</button>
                 </a>
-                <p class="modal__title modal__title--margins-2"> or if you have already have an account please</p>
+                <p class="modal__title modal__title--margins-2"> or if you already have an account please</p>
                 <a class="modal__alert" href="{{ url_for('login', next = request.path) }}">
                     <button class="btn btn-success btn-styled">Login</button>
                 </a>
@@ -41,7 +40,7 @@
         <div id="rating__modal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <h4 class="modal__title">How does this taste?</h4>
+                <h4 class="modal__title modal__title--question">How does this taste?</h4>
                 <p class="modal__select">Select Rating</p>
                 <form class="modal__rating" action="/update_rating/{{ recipe._id }}" method="POST">
                     <x-star-rating value="0" name="rating" id="rating"></x-star-rating>
@@ -58,7 +57,7 @@
                 <a class="modal__alert" href="{{ url_for('register', next = request.path) }}">
                     <button class="btn btn-primary btn-center btn-styled">Register</button>
                 </a>
-                <p class="modal__title modal__title--margins-2"> or if you have already have an account please</p>
+                <p class="modal__title modal__title--margins-2"> or if you already have an account please</p>
                 <a class="modal__alert" href="{{ url_for('login', next = request.path) }}">
                     <button class="btn btn-success btn-styled">Login</button>
                 </a>
@@ -103,17 +102,16 @@
             <h3 class="alert__description">Add your own recipes</h3>
             <div class="alert__box">
                 {% if session.logged_in %}
-                <a class="box__link" href="/add_recipe">ADD RECIPE</a> 
-                {% else %}
+                <a class="box__link" href="/add_recipe">ADD RECIPE</a> {% else %}
                 <a class="box__link" href="#">ADD RECIPE</a>
                 <div id="recipe__modal" class="modal">
                     <div class="modal-content">
                         <span class="close">&times;</span>
-                        <p class="modal__title modal__title--margins-1">To rate this recipe please register</p>
+                        <p class="modal__title modal__title--margins-1">To add a recipe please register</p>
                         <a class="modal__alert" href="{{ url_for('register', next = request.path) }}">
                             <button class="btn btn-primary btn-center btn-styled">Register</button>
                         </a>
-                        <p class="modal__title modal__title--margins-2"> or if you have already have an account please</p>
+                        <p class="modal__title modal__title--margins-2"> or if you already have an account please</p>
                         <a class="modal__alert" href="{{ url_for('login', next = request.path) }}">
                             <button class="btn btn-success btn-styled">Login</button>
                         </a>
@@ -155,4 +153,7 @@
 <script src="{{ url_for('static', filename = 'js/ratings.js') }}" async></script>
 <script src="{{ url_for('static', filename = 'js/modal.js') }}" async></script>
 <script src="{{ url_for('static', filename = 'js/starRating.js') }}" async></script>
+<script type="text/javascript">
+    var recipeId = '{{ recipe._id }}';
+</script>
 {% endblock %}

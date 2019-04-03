@@ -3,7 +3,7 @@ from flask.logging import create_logger
 from zapp import values
 from zapp.values import French_values, Mexican_values, Greek_values, English_values, Asian_values, Indian_values, Irish_values, Italian_values
 from flask_pymongo import PyMongo, pymongo
-from flask import Flask, redirect, render_template, request, url_for, flash, session, logging, jsonify
+from flask import Flask, redirect, render_template, request, url_for, flash, session, logging, json
 from bson.objectid import ObjectId
 from wtforms import Form, StringField, TextAreaField, PasswordField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
@@ -301,12 +301,14 @@ def like(recipe_id):
         likes = likes + 1
         recipe_collection.update({'_id': ObjectId(recipe_id)}, {
                                   "$set": {"likes": likes}})
+        ajax_likes = likes
         cur.execute("UPDATE userlikes SET liked = '0' WHERE userId = %s AND recipeId = %s", (user_id, recipe_number))
         cur.execute("UPDATE userlikes SET unliked = '1' WHERE userId = %s AND recipeId = %s", (user_id, recipe_number))
+        
         connection.commit()
         cur.close()
-    return jsonify(likes = likes, recipe_id = recipe_id)
-    
+        
+    return json.jsonify({'likes': likes, 'recipe_id': recipe_id})
     
 """ Dislike recipe """
 
@@ -343,14 +345,9 @@ def dislike(recipe_id):
         cur.execute("UPDATE userlikes SET liked = '1' WHERE userId = %s AND recipeId = %s", (user_id, recipe_number))
         connection.commit()
         cur.close()
-    return jsonify(likes = likes, recipe_id = recipe_id)
-    
-    
-# @app.route('/must_login', methods = ['GET', 'POST'])
-# def must_login():
-#     if username not in session:
-#         return redirect(url_for('login', next = next))
-    
+        
+    return json.jsonify({'likes': likes, 'recipe_id': recipe_id})
+
     
 """  Get ratings from users and store them in the database
      then return the average rating for a recipe"""

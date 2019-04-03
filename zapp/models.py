@@ -1,4 +1,4 @@
-import os
+import os, json
 from flask_pymongo import PyMongo, pymongo
 from flask import Flask
 
@@ -173,12 +173,14 @@ ratings_collection = mongo.db.ratings.find()
             
 # average_calories()
 
+full_recipeIds = []
+for recipe in recipes_collection:
+    recipeId = str(recipe["_id"])
+    full_recipeIds.append(recipeId)
+    print(full_recipeIds)
 
-# user_id = 1
-# recipe_id = 1
-for rating in ratings_collection:
-    if rating["user_id"] == 78 and rating["recipe_id"] == "1":
-        print(rating["rating"])
+with open("urls.json", 'w') as file:
+    json.dump(full_recipeIds, file)
         
 
 
