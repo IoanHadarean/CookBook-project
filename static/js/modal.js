@@ -12,33 +12,7 @@ let addRecipeButton = document.getElementsByClassName('box__link')[0];
 let html = document.getElementsByTagName('html')[0];
 
 
-// let recipe_id;
-// thumbsUp.addEventListener('click', loadLike);
-// thumbsDown.addEventListener('click', loadDislike);
-
-// function loadLike(e) {
-//   $.post({
-//       async: true,
-//       url: "/get_recipe/" + recipe_id,
-//   }).done(function(res) {
-//     document.getElementById('likes__number').innerHTML = "Likes " + res.likes;
-//   });
-// }
-
-// function loadDislike(e) {
-//   $.post({
-//       async: true,
-//       url: "/get_recipe/" + recipe_id,
-//   }).done(function(res) {
-//     document.getElementById('likes__number').innerHTML = "Likes " + res.likes;
-//     print("success");
-//   });
-// }
-
-
-
 // When the user clicks on the like/dislike button show modal
-
 likeButtons.forEach(function(likeButton) {
   likeButton.addEventListener('click', (e) => {
     likeModal.style.display = 'block';
@@ -52,12 +26,14 @@ addRecipeButton.addEventListener('click', (e) => {
   html.style.overflowY = 'hidden';
 });
 
+
 // When the user clicks on the rate recipe button show modal
 
 buttonModal.addEventListener('click', (e) => {
   ratingModal.style.display = 'block';
   html.style.overflowY = 'hidden';
 });
+
 
 // When the user clicks on span close modal
 
@@ -82,35 +58,3 @@ window.onclick = function(event) {
     }
   }
 };
-
-// thumbsUp.addEventListener('click', loadLike);
-// thumbsDown.addEventListener('click', loadDislike);
-
-// function loadLike(e) {
-//   let xhr = new XMLHttpRequest();
-//   xhr.onload = function() {
-//     if (this.readyState == 4 && this.status == 200) {
-//       let response = JSON.parse(xhr.responseText);
-//       console.log(response);
-//       document.getElementById('likes__number').innerHTML = "Likes " + response.likes;
-//     }
-//   };
-//   xhr.open("POST", "/like/5c7b948dfb6fc072012cbecc", true);
-//   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-//   xhr.send();
-//   e.preventDefault();
-// }
-
-// function loadDislike(e) {
-//   let xhr = new XMLHttpRequest();
-//   xhr.onload = function() {
-//     if (this.readyState == 4 && this.status == 200) {
-//       let response = JSON.parse(xhr.responseText);
-//       document.getElementById('likes__number').innerHTML = "Likes " + response.likes;
-//     }
-//   };
-//   xhr.open("POST", "/dislike/5c7b948dfb6fc072012cbecc", true);
-//   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-//   xhr.send();
-//   e.preventDefault();
-// }

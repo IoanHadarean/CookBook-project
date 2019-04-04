@@ -173,14 +173,17 @@ ratings_collection = mongo.db.ratings.find()
             
 # average_calories()
 
-full_recipeIds = []
-for recipe in recipes_collection:
-    recipeId = str(recipe["_id"])
-    full_recipeIds.append(recipeId)
-    print(full_recipeIds)
 
-with open("urls.json", 'w') as file:
-    json.dump(full_recipeIds, file)
+""" Script for dumping recipe ids into a JSON file"""
+
+# full_recipeIds = []
+# for recipe in recipes_collection:
+#     recipeId = str(recipe["_id"])
+#     full_recipeIds.append(recipeId)
+#     print(full_recipeIds)
+
+# with open("urls.json", 'w') as file:
+#     json.dump(full_recipeIds, file)
         
 
 

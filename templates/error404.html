@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Error 404</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/error.css') }}" type="text/css" />
+</head>
+
+<body>
+    <section class="error">
+        <div class="error__text">
+            <p><strong>404<i> Page not Found</i></strong></p>
+            <p>Houston, we have a problem ...</p>
+            <a class = "error__button" href = "{{ url_for('recipes', pagination_limit=6, pagination_offset=0 ) }}">Leave Neil alone, get back to cooking</a>
+        </div>
+    </section>
+
+</body>
+
+</html>
