@@ -378,12 +378,10 @@ def update_rating(recipe_id):
         if instance_record != None:
             ratings_collection.update({"user_id": user_id, "recipe_id": recipe_number},
                                     { "$set": { "rating": rating }})
-            ratings_collection.update(instance_record, { "$set": {"flag": 1} }, False, True)
             recipe_collection.update({"_id": ObjectId(recipe_id)},
                                     { "$set": { "rateText": "Edit Rating"}})
         else:
             ratings_collection.insert_one({"user_id": user_id, "recipe_id": recipe_number, "rating": rating })
-            ratings_collection.update({"user_id": user_id, "recipe_id": recipe_number}, { "$set": {"flag": 1} }, False, True)
         
         
         instance_recipe = ratings_collection.find({"recipe_id": recipe_number })

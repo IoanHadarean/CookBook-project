@@ -174,7 +174,7 @@ ratings_collection = mongo.db.ratings.find()
 # average_calories()
 
 
-""" Script for dumping recipe ids into a JSON file"""
+""" Script for dumping recipe ids into a JSON file """
 
 # full_recipeIds = []
 # for recipe in recipes_collection:
