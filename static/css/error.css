@@ -1,5 +1,7 @@
 html, body {
     margin: 0;
+    padding: 0;
+    overflow-x: hidden;
 }
 
 p {
@@ -12,6 +14,7 @@ p {
 a {
     text-decoration: none;
     color: blue;
+    text-align: center;
 }
 
 a:visited { 

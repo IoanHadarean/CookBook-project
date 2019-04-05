@@ -36,7 +36,8 @@
             <div class="stars-inner"></div>
         </div>
         <span class="numbers-rating">{{ recipe.rating }}</span>
-        <button id="rating__button">Rate Recipe</button> {% if session.logged_in %}
+        <button id="rating__button">{{ recipe.rateText }}</button>
+        {% if session.logged_in %}
         <div id="rating__modal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
@@ -44,7 +45,7 @@
                 <p class="modal__select">Select Rating</p>
                 <form class="modal__rating" action="/update_rating/{{ recipe._id }}" method="POST">
                     <x-star-rating value="0" name="rating" id="rating"></x-star-rating>
-                    <input type="hidden" id="rate" name="rating" value="0" />
+                    <input type="hidden" id="rate" name="rating" value= "0" />
                     <button class="modal__submit" type = "submit" disabled>Save and Continue</button>
                 </form>
             </div>

@@ -7,21 +7,10 @@ let url_array = ["5c7ad2bffb6fc072012c83cc", "5c7ad43efb6fc072012c862f", "5c7b94
 let thumbsUpButton = document.getElementsByClassName('fa-thumbs-up')[0];
 let thumbsDownButton = document.getElementsByClassName('fa-thumbs-down')[0];
 let likesSpan = document.getElementById('likes__number');
-// let ratingButton = document.getElementById('rating__button');
-// let modalSubmit = document.getElementsByClassName('modal__submit')[0];
-// let modalRating = document.getElementsByClassName('modal__rating')[0];
-
-// ratingButton.addEventListener('click', getButton);
-
-// function getButton() {
-//     let button = this;
-//     modalRating.addEventListener('submit', function(e) {
-//         return button.innerHTML = 'Edit Recipe';
-//     });
-// }
 
 // Get recipe id from Jinja template
 let url_string = recipeId;
+
 
 
 // Add event listeners
@@ -67,26 +56,3 @@ function loadDislike(e) {
     xhr.send();
     e.preventDefault();
 }
-
-
-// modalSubmit.addEventListener('click', changeButton);
-
-// function changeButton(e) {
-//     var xhr = new XMLHttpRequest();
-//     xhr.onload = function() {
-//         if (this.readyState === 4 && this.status === 200) {
-//             let response = JSON.parse(xhr.responseText);
-//             console.log(response);
-//             document.getElementById('rating__button').innerHTML = 'Edit Rating';
-//             document.getElementsByClassName('numbers-rating')[0].innerHTML = Number(response.formatted_average);
-//         }
-//     };
-//     url_array.forEach(function(url) {
-//         if (url === url_string) {
-//             xhr.open("POST", "/update_rating/" + url, true);
-//         }
-//     });
-//     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-//     xhr.send();
-//     e.preventDefault();
-// }

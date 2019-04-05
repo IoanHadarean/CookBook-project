@@ -26,7 +26,6 @@ class StarRating extends HTMLElement {
         let submitButton = document.getElementsByTagName('button')[2];
 
 
-
         // Create the div elements containing the stars
         for (let i = 0; i < 5; i++) {
             let star = document.createElement('div');
@@ -51,7 +50,7 @@ class StarRating extends HTMLElement {
             input.setAttribute('value', this.value);
         });
 
-        // When the rating stars are clicked, the rating stays
+        // When the rating stars are clicked, the rating is persisted
         this.addEventListener('click', e => {
             let box = this.getBoundingClientRect(),
                 starIndex = Math.floor((e.pageX - box.left) / box.width * this.stars.length);

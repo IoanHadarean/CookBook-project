@@ -1,6 +1,6 @@
 import os, pymysql, requests, pygal, re
 from flask.logging import create_logger
-from zapp import values
+from zapp import values, env
 from zapp.values import French_values, Mexican_values, Greek_values, English_values, Asian_values, Indian_values, Irish_values, Italian_values
 from flask_pymongo import PyMongo, pymongo
 from flask import Flask, redirect, render_template, request, url_for, flash, session, logging, json
@@ -30,7 +30,7 @@ app.secret_key = os.getenv("SECRET", "1403goagl")
 #Connect to MongoDB database
 
 app.config["MONGO_DBNAME"] = "recipes"
-app.config["MONGO_URI"] = "mongodb://me:1403Goagl@ds145923.mlab.com:45923/recipes"
+app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 
 mongo = PyMongo(app)
 
@@ -376,11 +376,14 @@ def update_rating(recipe_id):
         
         instance_record = ratings_collection.find_one({"user_id": user_id, "recipe_id": recipe_number})
         if instance_record != None:
-            ratings_collection.update(
-                                    { "user_id": user_id, "recipe_id": recipe_number },
+            ratings_collection.update({"user_id": user_id, "recipe_id": recipe_number},
                                     { "$set": { "rating": rating }})
+            ratings_collection.update(instance_record, { "$set": {"flag": 1} }, False, True)
+            recipe_collection.update({"_id": ObjectId(recipe_id)},
+                                    { "$set": { "rateText": "Edit Rating"}})
         else:
-            ratings_collection.insert_one({"user_id": user_id, "recipe_id": recipe_number, "rating": rating})
+            ratings_collection.insert_one({"user_id": user_id, "recipe_id": recipe_number, "rating": rating })
+            ratings_collection.update({"user_id": user_id, "recipe_id": recipe_number}, { "$set": {"flag": 1} }, False, True)
         
         
         instance_recipe = ratings_collection.find({"recipe_id": recipe_number })
@@ -396,7 +399,6 @@ def update_rating(recipe_id):
                                     { "$set": { "rating": formatted_average}})
         
     return redirect(url_for('get_recipe', recipe_id = recipe_id))
-
 
 
 
