@@ -4,14 +4,12 @@
 
 // Declare element variables
 let spans = document.getElementsByClassName('help-inline');
-console.log(spans);
 let footer = document.getElementsByTagName('footer')[0];
 
 // Get the footer bottom style and parse it to integer
 let footerStyle = window.getComputedStyle(footer, null);
 let styleBottomValue = footerStyle.getPropertyValue("bottom");
 let parsedBottomValue = parseInt(styleBottomValue, 10);
-console.log(parsedBottomValue);
 
 // Check for screen height and iterate through the spans
 // Check for innerHTML of help-inline messages and get footer 

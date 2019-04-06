@@ -162,48 +162,56 @@ def is_logged_in(f):
 
 
 
-
 @app.route('/profile', methods = ['GET', 'POST'])
 def profile():
     form = EditForm(request.form)
     
+    #Create cursor
+    cur = connection.cursor() 
+    
+    #Get session username
+    user = session['username']
+    
+    #Get current username and email from db
+    cur.execute("SELECT name FROM users  WHERE username = %s", user)
+    current_name = cur.fetchall()[0]['name']
+    cur.execute("SELECT email FROM users  WHERE username = %s", user)
+    current_email = cur.fetchall()[0]['email']
+    
     if request.method == 'POST' and form.validate():
-        
         name = form.name.data
-        print(form.name.data)
         email = form.email.data
         about_me = form.about_me.data
         
-         #Create cursor
-        cur = connection.cursor()
-        
+        #Create cursor
+        cur = connection.cursor() 
+    
         #Get session username
         user = session['username']
-        
+    
         #Get current username and email from db
         cur.execute("SELECT name FROM users  WHERE username = %s", user)
         current_name = cur.fetchall()[0]['name']
-        print(current_name)
         cur.execute("SELECT email FROM users  WHERE username = %s", user)
         current_email = cur.fetchall()[0]['email']
         
-        #Make the checks for the name and email that come from the form
+        #Check the name and email that come from the form to make sure everything is updated correctly
         
         get_db_name = cur.execute("SELECT name FROM users WHERE name = %s", form.name.data)
-        print(get_db_name)
         get_db_email = cur.execute("SELECT email FROM users WHERE email = %s", form.email.data)
-        print(get_db_email)
         
          
         if form.name.data != current_name:
             if get_db_name > 0:
                 flash("That name is already taken. Please choose a different one.", 'danger')
-            elif get_db_email > 0 and form.name.data != current_email:
+            elif (get_db_email > 0 and form.email.data != current_email):
                 flash("That email is already taken. Please choose a different one.", 'danger')
             else:
                 cur.execute("UPDATE users SET name = %s WHERE username = %s", (form.name.data, user))
                 cur.execute("UPDATE users set email = %s WHERE username = %s", (form.email.data, user))
                 connection.commit()
+                flash('Your profile has been updated successfully', 'success')
+                return redirect(url_for('profile'))
         elif form.email.data != current_email:
             if get_db_email > 0:
                 flash("That email is already taken. Please choose a different one.", 'danger')
@@ -213,27 +221,17 @@ def profile():
                 cur.execute("UPDATE users SET name = %s WHERE username = %s", (form.name.data, user))
                 cur.execute("UPDATE users set email = %s WHERE username = %s", (form.email.data, user))
                 connection.commit()
-        # else:
-        #     cur.execute("UPDATE users SET name = %s WHERE username = %s", (form.name.data, user))
-        #     cur.execute("UPDATE users set email = %s WHERE username = %s", (form.email.data, user))
-        #     connection.commit()
-        #     cur.close()
-            # if get_db_name > 0:
-            #     flash("That name is already taken. Please choose a different one.", 'danger')
-            # elif get_db_email > 0:
-            #     flash("That email is already taken. Please choose a different one.", 'danger')
-        # else:
-        #         cur.execute("UPDATE users SET name = %s WHERE username = %s", (form.name.data, user))
-        #         cur.execute("UPDATE users set email = %s WHERE username = %s", (form.email.data, user))
-        #         flash('Your profile has been updated successfully', 'success')
-        #         return redirect(url_for('profile'))
+                flash('Your profile has been updated successfully', 'success')
+                return redirect(url_for('profile'))
+        else:
+            flash('Your profile has been updated successfully', 'success')
+            return redirect(url_for('profile'))
 
-
-        # # Close the connection
-        # connection.commit()
-        # cur.close()
-        
-    return render_template('profile.html', form=form)
+        #Close the connection
+        cur.close()
+       
+    return render_template('profile.html', current_name = current_name,
+        current_email = current_email, form=form)
         
     
     
