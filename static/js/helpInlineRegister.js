@@ -1,4 +1,4 @@
-/* Custom js responsiveness for mobile devices */
+/* Custom js responsiveness for mobile devices for register*/
 
 window.onload = function() {
     

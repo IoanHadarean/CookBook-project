@@ -1,5 +1,6 @@
 import os, pymysql, requests, pygal, re
 from flask.logging import create_logger
+from flask_login import current_user
 from zapp import values, env
 from datetime import datetime
 from zapp.values import French_values, Mexican_values, Greek_values, English_values, Asian_values, Indian_values, Irish_values, Italian_values
@@ -53,8 +54,9 @@ class RegisterForm(Form):
 """ Edit Profile Form class with fields and validators """
 
 class EditForm(Form):
-    nickname = StringField('Nickname', validators=[DataRequired(), Length(min=6, max=25)])
-    about_me = TextAreaField('About Me', validators=[Length(min=0, max=140)])
+    name = StringField('Name', validators=[DataRequired(), Length(min=6, max=50)])
+    email = StringField('Email', validators = [DataRequired(), Email(), Length(min=15, max=50)])
+    about_me = TextAreaField('About Me', validators=[Length(min=12, max=140)])
                 
             
 """Route when first accessing the page"""
@@ -158,33 +160,57 @@ def is_logged_in(f):
             flash('Unauthorized, please login', 'danger')
             return redirect(url_for('login'))
     return wrap
-    
-    
-    
-    
+
+
+
+
+
 @app.route('/profile', methods = ['GET', 'POST'])
 def profile():
-    #Create cursor
-    cur = connection.cursor()
+    form = EditForm(request.form)
     
-    user = session['username']
+    if request.method == 'POST' and form.validate():
+        
+        name = form.name.data
+        email = form.email.data
+        about_me = form.about_me.data
+        
+         #Create cursor
+        cur = connection.cursor()
+        
+        #Get session username
+        user = session['username']
+        
+        #Get current username and email from db
+        cur.execute("SELECT name FROM users  WHERE username = %s", user)
+        current_name = cur.fetchall()[0]['name']
+        print(current_name)
+        cur.execute("SELECT email FROM users  WHERE username = %s", user)
+        current_email = cur.fetchall()[0]['email']
+        
+        #Make the checks for the name and email that come from the form
+        
+        get_db_name = cur.execute("SELECT name FROM users WHERE username = %s", form.name.data)
+        get_db_email = cur.execute("SELECT email FROM users WHERE email = %s", form.email.data)
+        
+        if form.name.data != current_name:
+            if get_db_name > 0:
+                flash("That name is already taken. Please choose a different one.", 'danger')
+        elif form.email.data != current_email:
+            if get_db_email > 0:
+                flash("That email is already taken. Please choose a different one.", 'danger')
+        else:  
+            cur.execute("UPDATE users SET name = %s WHERE username = %s", (form.name.data, user))
+            cur.execute("UPDATE users set email = %s WHERE username = %s", (form.email.data, user))
+        
+        # Close the connection
+        connection.commit()
+        cur.close()
+        return redirect(url_for('profile'))
+        
+    return render_template('profile.html', form=form)
+        
     
-    #Get username and email from db
-    cur.execute("SELECT username FROM users  WHERE username = %s", user)
-    current_user = cur.fetchall()[0]['username']
-    cur.execute("SELECT email FROM users  WHERE username = %s", user)
-    current_email = cur.fetchall()[0]['email']
-    
-    # Save and close the connection
-    connection.commit()
-    cur.close()
-    
-    #Get profile picture
-    image_file = url_for('static', filename = 'images/avatar.png')
-    
-    
-    return render_template('profile.html', current_user = current_user, current_email = current_email)
-
     
 """ Logout """
 @app.route('/logout')

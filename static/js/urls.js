@@ -9,7 +9,8 @@ let thumbsDownButton = document.getElementsByClassName('fa-thumbs-down')[0];
 let likesSpan = document.getElementById('likes__number');
 
 // Get recipe id from Jinja template
-let url_string = recipeId;
+var url_string = recipeId;
+
 
 
 
