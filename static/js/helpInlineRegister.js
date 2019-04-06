@@ -47,7 +47,6 @@ window.onload = function() {
     
     /* Custom box__link for alert so no interference with the alert modal is made */
     let boxLink = document.getElementsByClassName('box__link');
-    console.log(boxLink);
     boxLink.style.display = 'flex';
     boxLink.style.height = '100%';
     boxLink.style.width = '100%';

@@ -95,10 +95,8 @@ def register():
         connection.commit()
         cur.close()
         
-        next_page = request.args.get('next')
-        if not next_page or url_parse(next_page).netloc != '':
-            next_page = url_for('recipes', limit = 6, offset = 0)
-        return redirect(next_page)
+        return redirect(url_for('recipes', limit = 6, offset = 0))
+        
     return render_template('register.html', form=form)
     
     
@@ -172,6 +170,7 @@ def profile():
     if request.method == 'POST' and form.validate():
         
         name = form.name.data
+        print(form.name.data)
         email = form.email.data
         about_me = form.about_me.data
         
@@ -190,23 +189,49 @@ def profile():
         
         #Make the checks for the name and email that come from the form
         
-        get_db_name = cur.execute("SELECT name FROM users WHERE username = %s", form.name.data)
+        get_db_name = cur.execute("SELECT name FROM users WHERE name = %s", form.name.data)
+        print(get_db_name)
         get_db_email = cur.execute("SELECT email FROM users WHERE email = %s", form.email.data)
+        print(get_db_email)
         
+         
         if form.name.data != current_name:
             if get_db_name > 0:
                 flash("That name is already taken. Please choose a different one.", 'danger')
+            elif get_db_email > 0 and form.name.data != current_email:
+                flash("That email is already taken. Please choose a different one.", 'danger')
+            else:
+                cur.execute("UPDATE users SET name = %s WHERE username = %s", (form.name.data, user))
+                cur.execute("UPDATE users set email = %s WHERE username = %s", (form.email.data, user))
+                connection.commit()
         elif form.email.data != current_email:
             if get_db_email > 0:
                 flash("That email is already taken. Please choose a different one.", 'danger')
-        else:  
-            cur.execute("UPDATE users SET name = %s WHERE username = %s", (form.name.data, user))
-            cur.execute("UPDATE users set email = %s WHERE username = %s", (form.email.data, user))
-        
-        # Close the connection
-        connection.commit()
-        cur.close()
-        return redirect(url_for('profile'))
+            elif (get_db_name > 0 and form.name.data != current_name):
+                flash("That name is already taken. Please choose a different one.", 'danger')
+            else:
+                cur.execute("UPDATE users SET name = %s WHERE username = %s", (form.name.data, user))
+                cur.execute("UPDATE users set email = %s WHERE username = %s", (form.email.data, user))
+                connection.commit()
+        # else:
+        #     cur.execute("UPDATE users SET name = %s WHERE username = %s", (form.name.data, user))
+        #     cur.execute("UPDATE users set email = %s WHERE username = %s", (form.email.data, user))
+        #     connection.commit()
+        #     cur.close()
+            # if get_db_name > 0:
+            #     flash("That name is already taken. Please choose a different one.", 'danger')
+            # elif get_db_email > 0:
+            #     flash("That email is already taken. Please choose a different one.", 'danger')
+        # else:
+        #         cur.execute("UPDATE users SET name = %s WHERE username = %s", (form.name.data, user))
+        #         cur.execute("UPDATE users set email = %s WHERE username = %s", (form.email.data, user))
+        #         flash('Your profile has been updated successfully', 'success')
+        #         return redirect(url_for('profile'))
+
+
+        # # Close the connection
+        # connection.commit()
+        # cur.close()
         
     return render_template('profile.html', form=form)
         
@@ -359,7 +384,6 @@ def like(recipe_id):
         likes = likes + 1
         recipe_collection.update({'_id': ObjectId(recipe_id)}, {
                                   "$set": {"likes": likes}})
-        ajax_likes = likes
         cur.execute("UPDATE userlikes SET liked = '0' WHERE userId = %s AND recipeId = %s", (user_id, recipe_number))
         cur.execute("UPDATE userlikes SET unliked = '1' WHERE userId = %s AND recipeId = %s", (user_id, recipe_number))
         
