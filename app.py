@@ -1,6 +1,7 @@
 import os, pymysql, requests, pygal, re
 from flask.logging import create_logger
 from zapp import values, env
+from datetime import datetime
 from zapp.values import French_values, Mexican_values, Greek_values, English_values, Asian_values, Indian_values, Irish_values, Italian_values
 from flask_pymongo import PyMongo, pymongo
 from flask import Flask, redirect, render_template, request, url_for, flash, session, logging, json
@@ -48,6 +49,13 @@ class RegisterForm(Form):
     confirm = PasswordField('Confirm Password', validators = [DataRequired(), EqualTo('password',
                 message = 'Passwords do not match')])
                 
+
+""" Edit Profile Form class with fields and validators """
+
+class EditForm(Form):
+    nickname = StringField('Nickname', validators=[DataRequired(), Length(min=6, max=25)])
+    about_me = TextAreaField('About Me', validators=[Length(min=0, max=140)])
+                
             
 """Route when first accessing the page"""
 
@@ -90,8 +98,6 @@ def register():
             next_page = url_for('recipes', limit = 6, offset = 0)
         return redirect(next_page)
     return render_template('register.html', form=form)
-    
-    
     
     
     
@@ -152,6 +158,32 @@ def is_logged_in(f):
             flash('Unauthorized, please login', 'danger')
             return redirect(url_for('login'))
     return wrap
+    
+    
+    
+    
+@app.route('/profile', methods = ['GET', 'POST'])
+def profile():
+    #Create cursor
+    cur = connection.cursor()
+    
+    user = session['username']
+    
+    #Get username and email from db
+    cur.execute("SELECT username FROM users  WHERE username = %s", user)
+    current_user = cur.fetchall()[0]['username']
+    cur.execute("SELECT email FROM users  WHERE username = %s", user)
+    current_email = cur.fetchall()[0]['email']
+    
+    # Save and close the connection
+    connection.commit()
+    cur.close()
+    
+    #Get profile picture
+    image_file = url_for('static', filename = 'images/avatar.png')
+    
+    
+    return render_template('profile.html', current_user = current_user, current_email = current_email)
 
     
 """ Logout """
@@ -370,6 +402,7 @@ def update_rating(recipe_id):
         recipe = recipe_collection.find_one({"_id": ObjectId(recipe_id)})
         recipe_number = recipe["id"]
         formatted_average = 0
+        numbers_array = [1, 2, 3, 4, 5]
         
         cur.execute("SELECT id FROM users WHERE username = %s", user)
         user_id = cur.fetchall()[0]['id']
@@ -390,7 +423,10 @@ def update_rating(recipe_id):
         for doc in instance_recipe:
             sum_rating = sum_rating + int(doc["rating"])
         average_rating = sum_rating / instance_count
-        formatted_average =  "{:.1f}".format(average_rating)
+        if average_rating not in numbers_array:
+            formatted_average =  "{:.1f}".format(average_rating)
+        else:
+            formatted_average = int(average_rating)
             
         
         recipe_collection.update({"_id": ObjectId(recipe_id)},

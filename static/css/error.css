@@ -1,3 +1,5 @@
+/* ------------------------------------------- Special margins/styling ------------------------- */
+
 html, body {
     margin: 0;
     padding: 0;
@@ -20,6 +22,8 @@ a {
 a:visited { 
     color: blue;
 }
+
+/* -------------------------------------------- Error text ------------------------------ */
 
 .error__text {
     display: flex;
