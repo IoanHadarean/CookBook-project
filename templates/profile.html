@@ -8,7 +8,12 @@
         <div class="media-body">
             <h2 class="account-heading">{{ current_name }}</h2>
             <p class="text-secondary"> {{ current_email }}</p>
+            {% if profile_description %}
+            <p class="text-secondary">{{ profile_description }}</p>
+            {% else %}
             <p class="text-secondary"></p>
+            {% endif %}
+            <p class="text-secondary">{{ moment().format('MMMM Do YYYY, h:mm:ss a') }}</p>
         </div>
     </div>
 

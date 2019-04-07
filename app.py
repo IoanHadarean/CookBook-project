@@ -9,6 +9,7 @@ from zapp.values import French_values, Mexican_values, Greek_values, English_val
 from flask_pymongo import PyMongo, pymongo
 from flask import Flask, redirect, render_template, request, url_for, flash, session, logging, json
 from bson.objectid import ObjectId
+from flask_moment import Moment
 from wtforms import Form, StringField, TextAreaField, PasswordField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from passlib.hash import sha256_crypt
@@ -18,6 +19,7 @@ from werkzeug.urls import url_parse
 
 app = Flask(__name__)
 LOG = create_logger(app)
+moment = Moment(app)
 
 
 
@@ -179,6 +181,8 @@ def profile():
     current_name = cur.fetchall()[0]['name']
     cur.execute("SELECT email FROM users  WHERE username = %s", user)
     current_email = cur.fetchall()[0]['email']
+    cur.execute("SELECT aboutme FROM users  WHERE username = %s", user)
+    profile_description = cur.fetchall()[0]['aboutme']
     connection.commit()
     cur.close()
     
@@ -196,11 +200,12 @@ def profile():
         current_name = cur.fetchall()[0]['name']
         cur.execute("SELECT email FROM users  WHERE username = %s", user)
         current_email = cur.fetchall()[0]['email']
+         
         
         #Check the name and email that come from the form to make sure everything is updated correctly
         
-        get_db_name = cur.execute("SELECT name FROM users WHERE name = %s", form.name.data)
-        get_db_email = cur.execute("SELECT email FROM users WHERE email = %s", form.email.data)
+        get_db_name = cur.execute("SELECT name FROM users WHERE name = %s", name)
+        get_db_email = cur.execute("SELECT email FROM users WHERE email = %s", email)
         
          
         if form.name.data != current_name:
@@ -209,8 +214,9 @@ def profile():
             elif (get_db_email > 0 and form.email.data != current_email):
                 flash("That email is already taken. Please choose a different one.", 'danger')
             else:
-                cur.execute("UPDATE users SET name = %s WHERE username = %s", (form.name.data, user))
-                cur.execute("UPDATE users set email = %s WHERE username = %s", (form.email.data, user))
+                cur.execute("UPDATE users SET name = %s WHERE username = %s", (name, user))
+                cur.execute("UPDATE users set email = %s WHERE username = %s", (email, user))
+                cur.execute("UPDATE users set aboutme = %s WHERE username = %s", (about_me, user))
                 connection.commit()
                 flash('Your profile has been updated successfully', 'success')
                 return redirect(url_for('profile'))
@@ -222,6 +228,7 @@ def profile():
             else:
                 cur.execute("UPDATE users SET name = %s WHERE username = %s", (form.name.data, user))
                 cur.execute("UPDATE users set email = %s WHERE username = %s", (form.email.data, user))
+                cur.execute("UPDATE users set aboutme = %s WHERE username = %s", (form.about_me.data, user))
                 connection.commit()
                 flash('Your profile has been updated successfully', 'success')
                 return redirect(url_for('profile'))
@@ -233,7 +240,7 @@ def profile():
         cur.close()
        
     return render_template('profile.html', current_name = current_name,
-        current_email = current_email, form=form)
+        current_email = current_email, profile_description = profile_description, form=form)
         
     
     
