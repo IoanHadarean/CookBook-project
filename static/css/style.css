@@ -28,13 +28,13 @@
   margin: 0;
  }
 
- h4 {
-  color: #40E0D0;
- }
-
  .alert-success,
  .alert-danger {
   margin-top: 50px;
+ }
+ 
+ .help-inline {
+  color: #62a5a1;
  }
 
  .alert-message {

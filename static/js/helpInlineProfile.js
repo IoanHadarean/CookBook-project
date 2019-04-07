@@ -39,7 +39,7 @@ if (screen.height <= 732) {
             footer.style.bottom = styleBottomValue;
         }
         else {
-            parsedBottomValue -= 40;
+            parsedBottomValue -= 80;
             styleBottomValue = String(parsedBottomValue + 'px');
             footer.style.bottom = styleBottomValue;
         }

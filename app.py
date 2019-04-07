@@ -19,21 +19,20 @@ from werkzeug.urls import url_parse
 app = Flask(__name__)
 LOG = create_logger(app)
 
-#Get Username from Cloud9 Workspace
-username = os.getenv('C9_USER')
+
 
 #Connect to MySQL database
-connection = pymysql.connect(host = 'localhost',
-                            user = username,
-                            password = '',
-                            db = 'flaskapp',
+connection = pymysql.connect(host = os.getenv("DB_HOST"),
+                            user = os.getenv("DB_USERNAME"),
+                            password = os.getenv("DB_PASS"),
+                            db = os.getenv("DB_NAME"),
                             cursorclass = pymysql.cursors.DictCursor)
 
-app.secret_key = os.getenv("SECRET", "1403goagl")
+app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 
 #Connect to MongoDB database
 
-app.config["MONGO_DBNAME"] = "recipes"
+app.config["MONGO_DBNAME"] = os.getenv("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 
 mongo = PyMongo(app)
@@ -180,6 +179,8 @@ def profile():
     current_name = cur.fetchall()[0]['name']
     cur.execute("SELECT email FROM users  WHERE username = %s", user)
     current_email = cur.fetchall()[0]['email']
+    connection.commit()
+    cur.close()
     
     if request.method == 'POST' and form.validate():
         name = form.name.data
@@ -189,9 +190,6 @@ def profile():
         
         #Create cursor
         cur = connection.cursor() 
-    
-        #Get session username
-        user = session['username']
     
         #Get current username and email from db
         cur.execute("SELECT name FROM users  WHERE username = %s", user)
