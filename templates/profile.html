@@ -8,12 +8,13 @@
         <div class="media-body">
             <h2 class="account-heading">{{ current_name }}</h2>
             <p class="text-secondary"> {{ current_email }}</p>
+            <p class="text-secondary"></p>
         </div>
     </div>
 
     <!-- Edit Profile Form -->
 
-    <form id = "profile-form" method="POST" action="">
+    <form id="profile-form" method="POST" action="" enctype = "multipart/form-data">
         <div class="form-group form-group--responsive">
             <div class="row col-lg-12">
                 <h4>{{render_field(form.name, class_="form-control")}}</h4>
@@ -24,10 +25,20 @@
                 <h4>{{render_field(form.email, class_="form-control")}}</h4>
             </div>
         </div>
-
         <div class="form-group form-group--responsive">
             <div class="row col-lg-12">
                 <h4>{{render_field(form.about_me, class_="form-control")}}</h4>
+            </div>
+        </div>
+         <div class="form-group form-group--responsive">
+            <div class="row col-lg-12">
+                {{ form.picture.label() }}
+                {{ form.picture(class="form-control-file") }}
+                {% if form.picture.errors %}
+                    {% for error in form.picture.errors %}
+                        <span class = "text-danger">{{ error }}</span></br>
+                    {% endfor %}
+                {% endif %}
             </div>
         </div>
         <div class="form-group form-group--responsive">

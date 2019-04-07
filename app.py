@@ -1,6 +1,8 @@
 import os, pymysql, requests, pygal, re
 from flask.logging import create_logger
 from flask_login import current_user
+from werkzeug.datastructures import CombinedMultiDict
+from flask_wtf.file import FileField, FileRequired, FileAllowed
 from zapp import values, env
 from datetime import datetime
 from zapp.values import French_values, Mexican_values, Greek_values, English_values, Asian_values, Indian_values, Irish_values, Italian_values
@@ -57,6 +59,7 @@ class EditForm(Form):
     name = StringField('Name', validators=[DataRequired(), Length(min=6, max=50)])
     email = StringField('Email', validators = [DataRequired(), Email(), Length(min=15, max=50)])
     about_me = TextAreaField('About Me', validators=[Length(min=12, max=140)])
+    picture = FileField('Update Profile Picture', validators = [FileRequired(), FileAllowed(['jpg', 'jpeg', 'png'])])
                 
             
 """Route when first accessing the page"""
@@ -164,7 +167,7 @@ def is_logged_in(f):
 
 @app.route('/profile', methods = ['GET', 'POST'])
 def profile():
-    form = EditForm(request.form)
+    form = EditForm(CombinedMultiDict((request.files,request.form)))
     
     #Create cursor
     cur = connection.cursor() 
@@ -182,6 +185,7 @@ def profile():
         name = form.name.data
         email = form.email.data
         about_me = form.about_me.data
+        picture = form.picture
         
         #Create cursor
         cur = connection.cursor() 
