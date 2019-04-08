@@ -8,6 +8,7 @@ from datetime import datetime
 from zapp.values import French_values, Mexican_values, Greek_values, English_values, Asian_values, Indian_values, Irish_values, Italian_values
 from flask_pymongo import PyMongo, pymongo
 from flask import Flask, redirect, render_template, request, url_for, flash, session, logging, json
+from bson.json_util import dumps
 from bson.objectid import ObjectId
 from flask_moment import Moment
 from wtforms import Form, StringField, TextAreaField, PasswordField
@@ -285,17 +286,24 @@ def recipes():
     return render_template('recipes.html', args=args)
   
   
-@app.route('/input_results', methods=['POST'])
-def input_results():
+@app.route('/search_results', methods=['GET', 'POST'])
+def search_results():
     if request.method == 'POST':
+        search_text = request.form.get('search_recipes')
         recipe_collection.create_index([('$**', 'text')])
-        for idx in recipe_collection.list_indexes():
-            print(idx)
+            
+        result = dumps(recipe_collection.find( { "$text": { "$search": search_text }}))
+    
+        parsed_result = json.loads(result)
+        print(parsed_result)
+    
+        recipe_names = []
+        for recipe in parsed_result:
+            recipe_names.append(recipe["cuisine_name"])
         
-    return json.jsonify({'idx': idx})
-    
-    
-    
+        return render_template('search.html', recipe_names = recipe_names)
+
+    return render_template('search.html')
     
 
 """ View details of a recipe """
