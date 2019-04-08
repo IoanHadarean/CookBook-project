@@ -2,6 +2,11 @@
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/recipes.css') }}" type="text/css" />
 <section>
     <h1 class="random-message lifted"></h1>
+    <form class="uk-search uk-search-default" action = "{{ url_for('input_results') }}" method = "POST">
+        <span uk-search-icon></span>
+        <input class="uk-search-input" type="search" placeholder="Search Recipes...">
+        <button id = "submit_search" type="submit" class="btn btn-primary btn-center">Search</button>
+    </form>
     <div class="container">
         {% for recipe in args.recipes_sorted %}
         <div class="recipes">

@@ -192,6 +192,9 @@ def profile():
         about_me = form.about_me.data
         picture = form.picture
         
+        #Get session username
+        user = session['username']
+        
         #Create cursor
         cur = connection.cursor() 
     
@@ -200,7 +203,9 @@ def profile():
         current_name = cur.fetchall()[0]['name']
         cur.execute("SELECT email FROM users  WHERE username = %s", user)
         current_email = cur.fetchall()[0]['email']
-         
+        
+        # Set user description regardless of the checks
+        cur.execute("UPDATE users set aboutme = %s WHERE username = %s", (about_me, user))
         
         #Check the name and email that come from the form to make sure everything is updated correctly
         
@@ -208,27 +213,25 @@ def profile():
         get_db_email = cur.execute("SELECT email FROM users WHERE email = %s", email)
         
          
-        if form.name.data != current_name:
+        if name != current_name:
             if get_db_name > 0:
                 flash("That name is already taken. Please choose a different one.", 'danger')
-            elif (get_db_email > 0 and form.email.data != current_email):
+            elif (get_db_email > 0 and email != current_email):
                 flash("That email is already taken. Please choose a different one.", 'danger')
             else:
                 cur.execute("UPDATE users SET name = %s WHERE username = %s", (name, user))
                 cur.execute("UPDATE users set email = %s WHERE username = %s", (email, user))
-                cur.execute("UPDATE users set aboutme = %s WHERE username = %s", (about_me, user))
                 connection.commit()
                 flash('Your profile has been updated successfully', 'success')
                 return redirect(url_for('profile'))
-        elif form.email.data != current_email:
+        elif email != current_email:
             if get_db_email > 0:
                 flash("That email is already taken. Please choose a different one.", 'danger')
             elif (get_db_name > 0 and form.name.data != current_name):
                 flash("That name is already taken. Please choose a different one.", 'danger')
             else:
-                cur.execute("UPDATE users SET name = %s WHERE username = %s", (form.name.data, user))
-                cur.execute("UPDATE users set email = %s WHERE username = %s", (form.email.data, user))
-                cur.execute("UPDATE users set aboutme = %s WHERE username = %s", (form.about_me.data, user))
+                cur.execute("UPDATE users SET name = %s WHERE username = %s", (name, user))
+                cur.execute("UPDATE users set email = %s WHERE username = %s", (email, user))
                 connection.commit()
                 flash('Your profile has been updated successfully', 'success')
                 return redirect(url_for('profile'))
@@ -280,7 +283,16 @@ def recipes():
     }
     
     return render_template('recipes.html', args=args)
-    
+  
+  
+@app.route('/input_results', methods=['POST'])
+def input_results():
+    if request.method == 'POST':
+        recipe_collection.create_index([('$**', 'text')])
+        for idx in recipe_collection.list_indexes():
+            print(idx)
+        
+    return json.jsonify({'idx': idx})
     
     
     
