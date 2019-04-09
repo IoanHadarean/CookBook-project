@@ -285,6 +285,12 @@ def recipes():
     
     return render_template('recipes.html', args=args)
   
+  
+  
+  
+  
+  
+  
 
 @app.route('/search_recipes', methods = ['GET', 'POST'])
 def search_recipes():
@@ -296,32 +302,17 @@ def search_recipes():
         result = dumps(recipe_collection.find({ "$text": { "$search": str(search_text) }}))
         parsed_result = json.loads(result)
         print(parsed_result)
+        url_array = []
+        for item in parsed_result:
+            url_array.append(item["_id"]["$oid"])
+        print(url_array)
+        
         session['count_recipes'] = str(len([x for x in parsed_result]))
         
-        pagination_offset = int(request.args.get('offset', '0'))
-        pagination_limit = int(request.args.get('limit', '6'))
-        search_results = recipe_collection.find({ "$text": { "$search": str(search_text) }})
-        starting_id = search_results.sort('_id', pymongo.ASCENDING)
-        last_id = starting_id[pagination_offset]['_id']
-        total_results = 0
-        for item in search_results:
-            total_results +=1
         
-        args = {
-            "limit": pagination_limit,
-            "offset": pagination_offset,
-            "recipes_sorted": recipe_collection.find({"$and": [{ "$text": { "$search": str(search_text) }}, {'_id': {'$gte' : last_id}}]}).sort('_id', pymongo.ASCENDING).limit(pagination_limit),
-            "next_url": '/search_recipes?limit=' + str(pagination_limit) + '&offset=' + str(pagination_offset + pagination_limit),
-            "prev_url": '/search_recipes?limit=' + str(pagination_limit) + '&offset=' + str(pagination_offset - pagination_limit),
-            "recipes": recipes,
-            "total_results": total_results
-        }
-        
-        
-        return render_template('search_recipes.html', parsed_result = parsed_result, args = args)
-    
-    # return render_template('search_recipes.html', args = args)
-    
+        return render_template('search_recipes.html', parsed_result = parsed_result)
+
+    return render_template('search_recipes.html')
     
     
     
@@ -625,6 +616,8 @@ def database_error(error):
 """ Main function for running the app """      
 
 if __name__ == "__main__":
+    global parsed_result
+    global args
     app.run(host=os.environ.get('IP'),
         port=int(os.environ.get('PORT')),
         debug=True)
