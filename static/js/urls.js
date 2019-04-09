@@ -27,6 +27,9 @@ function loadLike(e) {
             let response = JSON.parse(xhr.responseText);
             likesSpan.innerHTML = "Likes " + response.likes;
         }
+        else {
+            console.log("Response not received");
+        }
     };
     url_array.forEach(function(url) {
         if (url === url_string) {

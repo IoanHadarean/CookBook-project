@@ -285,12 +285,13 @@ def recipes():
     
     return render_template('recipes.html', args=args)
   
- 
+
   
 """ Search recipes by full text """  
   
 @app.route('/search_results', methods=['GET', 'POST'])
 def search_results():
+    global count_recipes
     pagination_offset = int(request.args.get('offset', '0'))
     pagination_limit = int(request.args.get('limit', '6'))
 
@@ -310,6 +311,7 @@ def search_results():
         "recipes": recipes,
         "total_results": total_results
     }
+    
     if request.method == 'POST':
         count_recipes = 0
         search_text = request.form.get('search_recipes')
@@ -319,10 +321,13 @@ def search_results():
         parsed_result = json.loads(result)
         for recipe in parsed_result:
             count_recipes += 1
+        print(result)
+            
+    print(count_recipes)
 
-        return render_template('recipes.html', count_recipes = count_recipes, args = args)
+    return render_template('recipes.html', count_recipes = count_recipes, args = args)
     
-    return redirect(url_for('recipes'))
+
 """ View details of a recipe """
 
 @app.route('/get_recipe/<recipe_id>', methods = ['GET', 'POST'])
