@@ -1,18 +1,30 @@
+/* global countRecipes */
+
+
 // Get HTML elements
-let searchButton = document.getElementById('submit_search');
-console.log(searchButton);
+var searchButton = document.getElementById('submit_search');
 
 searchButton.addEventListener('click', loadResults);
 
 
-function loadResults() {
-    var xhr = new XMLHttpRequest();
+var countResults = countRecipes;
+
+function loadResults(e) {
+    let xhr = new XMLHttpRequest();
+    var searchInputValue = document.getElementById('search_input').value;
+    console.log(searchInputValue);
     xhr.onload = function() {
         if (this.readyState === 4 && this.status === 200) {
-            let response = xhr.responseText;
-            console.log(response);
+            
+            console.log(countResults);
+        }
+        else {
+            console.log("Error");
         }
     };
     xhr.open("POST", "/search_results", true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send();
+    e.preventDefault();
 }
+

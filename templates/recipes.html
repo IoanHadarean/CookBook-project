@@ -2,11 +2,12 @@
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/recipes.css') }}" type="text/css" />
 <section>
     <h1 class="random-message lifted"></h1>
-    <form class="uk-search uk-search-default" action="{{ url_for('search_results') }}" method="POST">
-        <span uk-search-icon></span>
-        <input class="uk-search-input" name="search_recipes" type="text" placeholder="Search Recipes...">
+    <form class="uk-search uk-search-default" action="{{ url_for('search_results') }}" method = "POST">
+        <!--<span class = "uk-search-icon"></span>-->
+        <input id ="search_input" class="uk-search-input" type="text" name="search_recipes" placeholder="Search Recipes..." data-name = {{ count_recipes }}>
         <button id="submit_search" type="submit" class="btn btn-primary btn-center">Search</button>
     </form>
+    {% if search_text != None %}
     <div class="container">
         {% for recipe in args.recipes_sorted %}
         <div class="recipes">
@@ -44,7 +45,17 @@
             </ul>
         </div>
     </div>
+    {% else %}
+      <div class="container">
+        {% for name in recipe_names %}
+            <p>{{ name }}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
     {% endif %}
 </section>
 <script src="{{ url_for('static', filename = 'js/random_message.js') }}" async></script>
+<script type="text/javascript">
+    var countRecipes = '{{ count_recipes }}';
+</script>
 {% endblock %}
