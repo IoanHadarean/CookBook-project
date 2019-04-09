@@ -20,9 +20,11 @@
 
           <ul class="nav navbar-nav navbar-right">
             {% if session.logged_in %}
+            <li><a href="/search_recipes">Search</a></li>
             <li><a href="/profile">Profile</a></li>
             <li><a href="/logout">Logout</a></li>
             {% else %}
+            <li><a href="/search_results">Search</a></li>
             <li><a href="/register">Register</a></li>
             <li><a href="/login">Login</a></li>
             {% endif %}

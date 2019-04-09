@@ -3,35 +3,32 @@
 
 // Get HTML elements
 var searchButton = document.getElementById('submit_search');
-
-// Add click event listener for search button
-searchButton.addEventListener('click', loadResults);
-
-// Get countRecipes variable from Jinja template in recipes.html
-var countResults = countRecipes;
+var form = document.getElementById('search_form');
+var input = document.getElementById('search_input');
 
 
 // Load the search results
-function loadResults(e) {
+input.addEventListener('keyup', function loadResults(e) {
+    let inputValue = document.getElementById('search_input').value;
     let xhr = new XMLHttpRequest();
-    xhr.onload = function() {
+    xhr.open("POST", "/search_results", true);
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.send(inputValue);
+    xhr.onload =  displayData;
+    function displayData() {
         if (this.readyState === 4 && this.status === 200) {
             let response = xhr.responseText;
-            document.getElementById('search_input').value = '';
-            if (countResults == 0) {
-                document.getElementById('search_input').placeholder = 'No recipes were found';
+            console.log(response);
+            if (response == 0) {
+                document.getElementById('search_input').innerHTML = 'No recipes were found';
             }
             else {
-                document.getElementById('search_input').placeholder = countResults + " matches were found";
+                document.getElementById('search_input').innerHTML = response + " matches were found";
             }
         }
         else {
-            console.log("Response not received");
+            alert("Response not received");
         }
-    };
-    xhr.open("POST", "/search_results", true);
-    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhr.send();
+    }
     e.preventDefault();
-}
-
+});
