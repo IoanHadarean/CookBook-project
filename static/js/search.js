@@ -14,27 +14,29 @@ input.addEventListener('input', function loadResults() {
     let inputValue = document.getElementById('search_input').value;
     console.log(inputValue);
     document.getElementById('search_message').innerHTML = '';
+    document.getElementsByClassName('container')[0].innerHTML = '';
     inputValue = '';
     xhr.onload = function() {
         inputValue = '';
         if (this.readyState === 4 && this.status === 200) {
             let response = JSON.parse(xhr.responseText);
-            console.log(response);
             var countResults = response;
             document.getElementById('search_message').innerHTML = '';
-            console.log(countResults);
             if (countResults == 0) {
                 document.getElementById('search_message').innerHTML = 'No recipes were found';
                 inputValue = '';
+                document.getElementsByClassName('container')[0].innerHTML = '';
             }
             else {
                 document.getElementById('search_message').innerHTML = countResults + " matches were found";
                 inputValue = '';
+                document.getElementsByClassName('container')[0].innerHTML = '';
             }
         }
         else {
             console.log("Response not received");
             document.getElementById('search_message').innerHTML = '';
+            document.getElementsByClassName('container')[0].innerHTML = '';
         }
     };
     xhr.open("POST", "/search_results", true);
