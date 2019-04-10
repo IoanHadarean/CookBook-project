@@ -1,8 +1,9 @@
 /*------------------Special margins and styling--------------- */
 
 footer {
-    position: relative;
+    position: absolute;
 }
+
 
 .container {
     width: 100%;
@@ -150,7 +151,6 @@ section {
 .view__details {
     color: black;
 }
-
 
 
 /*  ------------------------------------Pagination ------------------------- */
@@ -317,13 +317,6 @@ section {
     .recipes__image img {
         width: 80%;
         margin-left: 10%;
-    }
-}
-
-@media only screen and (max-height: 768px) {
-    footer {
-        position: relative;
-        bottom: 0;
     }
 }
 

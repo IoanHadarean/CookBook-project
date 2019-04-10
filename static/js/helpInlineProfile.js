@@ -1,4 +1,4 @@
-/* Custom js responsiveness for mobile devices for profile */
+// Custom js responsiveness for mobile devices for profile //
 
 // window.onload = function() {
 

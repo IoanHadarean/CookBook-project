@@ -1,6 +1,6 @@
-{% extends 'base.html' %} {% block content %} {% include 'includes/_messages.html' %} 
-<link rel="stylesheet" href="{{ url_for('static', filename = 'css/recipes.css') }}" type="text/css" />
-<link rel="stylesheet" href="{{ url_for('static', filename = 'css/search_results.css') }}" type="text/css" />
+{% extends 'base.html' %} {% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename = 'css/search_recipe.css') }}" type="text/css" />
+<link rel="stylesheet" href="{{ url_for('static', filename = 'css/results.css') }}" type="text/css" />
 <form id="search_form" class="uk-search uk-search-default" action="{{ url_for('search_recipes', limit=6, offset=0) }}" method="POST">
     <!--<span class = "uk-search-icon"></span>-->
     <input id="search_input" class="uk-search-input" type="text" name="search_input" placeholder="Search Recipes...">

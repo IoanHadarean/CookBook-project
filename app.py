@@ -61,7 +61,7 @@ class EditForm(Form):
     name = StringField('Name', validators=[DataRequired(), Length(min=6, max=50)])
     email = StringField('Email', validators = [DataRequired(), Email(), Length(min=15, max=50)])
     about_me = TextAreaField('About Me', validators=[Length(min=12, max=140)])
-    picture = FileField('Update Profile Picture', validators = [FileRequired(), FileAllowed(['jpg', 'jpeg', 'png'])])
+    picture = FileField('Update Profile Picture', validators = [FileAllowed(['jpg', 'jpeg', 'png'])])
                 
             
 """Route when first accessing the page"""
@@ -100,7 +100,7 @@ def register():
         connection.commit()
         cur.close()
         
-        return redirect(url_for('recipes', limit = 6, offset = 0))
+        return redirect(url_for('profile'))
         
     return render_template('register.html', form=form)
     
@@ -136,7 +136,7 @@ def login():
                 flash('You are now logged in', 'success')
                 next_page = request.args.get('next')
                 if not next_page or url_parse(next_page).netloc != '':
-                    next_page = url_for('recipes', limit = 6, offset = 0)
+                    next_page = url_for('profile')
                 return redirect(next_page)
             else:
                 error = 'Invalid login'
@@ -274,13 +274,18 @@ def recipes():
   
   
   
+""" Get the search results for recipes and then 
+    implement pagination for search results
+    (Note: don't change any code here) """
+ 
+  
 
 @app.route('/search_recipes', methods = ['GET', 'POST'])
 def search_recipes():
 
     if request.method == 'POST':
         
-        #Search results
+        # Get the results from the form according to user input
         global search_text
         search_text = request.form.get('search_input')
         session['search_text'] = search_text
@@ -289,13 +294,12 @@ def search_recipes():
         result = dumps(recipe_collection.find({ "$text": { "$search": str(search_text) }}))
         global parsed_result
         parsed_result = json.loads(result)
-        print(parsed_result)
 
         session['count_recipes'] = str(len([x for x in parsed_result]))
         
         
         
-        #Pagination for search
+        #Pagination for search when the form is submitted
         pagination_offset = int(request.args.get('offset', '0'))
         pagination_limit = int(request.args.get('limit', '6'))
     
@@ -303,7 +307,6 @@ def search_recipes():
         recipes = recipe_collection.find({ "$text": { "$search": str(search_text) }})
         starting_id = recipe_collection.find({ "$text": { "$search": str(search_text) }}).sort('_id', pymongo.ASCENDING)
         results_count = starting_id.count()
-        print(results_count)
         
         if results_count != 0 and search_text != None:
             last_id = starting_id[pagination_offset]['_id']
@@ -326,16 +329,14 @@ def search_recipes():
             return render_template('search_recipes.html')
             
             
-    #Pagination for search
+    #Pagination for search on GET request
     pagination_offset = int(request.args.get('offset', '0'))
     pagination_limit = int(request.args.get('limit', '6'))
     search_text = session.get('search_text')
-    print(search_text)
     
     recipes = recipe_collection.find({ "$text": { "$search": str(search_text) }})
     starting_id = recipe_collection.find({ "$text": { "$search": str(search_text) }}).sort('_id', pymongo.ASCENDING)
     results_count = starting_id.count()
-    print(results_count)
     
     if results_count != 0 and search_text != None:
         last_id = starting_id[pagination_offset]['_id']
@@ -585,6 +586,11 @@ def update_rating(recipe_id):
     return redirect(url_for('get_recipe', recipe_id = recipe_id))
 
 
+
+""" Allow logged in user to add recipe """
+@app.route('/add_recipe', methods = ['GET', 'POST'])
+def add_recipe():
+    return render_template('add_recipe.html')
 
 
 """ Recipe ingredients statistics by cuisine """

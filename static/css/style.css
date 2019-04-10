@@ -19,6 +19,8 @@
   padding-left: 0px;
   padding-right: 0px;
   height: 100%;
+  min-height: 100%;
+  height:auto !important;
   width: 100%;
  }
 
@@ -249,8 +251,7 @@
   }
 
   .navbar-middle {
-   left: 34vw;
-   right: 26vw;
+   left: 10vw;
    width: 40vw;
    position: absolute;
   }
@@ -258,8 +259,7 @@
 
  @media (min-width: 1024px) and (max-width: 1440px) {
   .navbar-middle {
-   left: 33vw;
-   right: 27vw;
+   left: 20vw;
    width: 40vw;
    position: absolute;
   }
