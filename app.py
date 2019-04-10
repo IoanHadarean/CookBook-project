@@ -302,10 +302,6 @@ def search_recipes():
         result = dumps(recipe_collection.find({ "$text": { "$search": str(search_text) }}))
         parsed_result = json.loads(result)
         print(parsed_result)
-        url_array = []
-        for item in parsed_result:
-            url_array.append(item["_id"]["$oid"])
-        print(url_array)
         
         session['count_recipes'] = str(len([x for x in parsed_result]))
         
@@ -327,8 +323,8 @@ def search_results():
         recipe_collection.create_index([('$**', 'text')])
         result = dumps(recipe_collection.find({ "$text": { "$search": str(search_text) }}))
         parsed_result = json.loads(result)
-    print(count_recipes)
-    return count_recipes
+
+        return count_recipes
             
     
 
