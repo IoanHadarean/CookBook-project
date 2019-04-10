@@ -20,7 +20,7 @@
 
           <ul class="nav navbar-nav navbar-right">
             {% if session.logged_in %}
-            <li><a href="/search_recipes">Search</a></li>
+            <li><a href="{{ url_for('search_recipes', parsed_result = parsed_result,  pagination_limit=6, pagination_offset=0) }}">Search</a></li>
             <li><a href="/profile">Profile</a></li>
             <li><a href="/logout">Logout</a></li>
             {% else %}

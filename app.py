@@ -294,21 +294,72 @@ def recipes():
 
 @app.route('/search_recipes', methods = ['GET', 'POST'])
 def search_recipes():
+
     if request.method == 'POST':
-        search_text = request.form.get('search_recipes')
-        session['search_text'] = search_text
-        print(search_text)
-        recipe_collection.create_index([('$**', 'text')])
-        result = dumps(recipe_collection.find({ "$text": { "$search": str(search_text) }}))
-        parsed_result = json.loads(result)
-        print(parsed_result)
         
+        #Search results
+        global search_text
+        search_text = request.form.get('search_input')
+        session['search_text'] = search_text
+        recipe_collection.create_index([('$**', 'text')])
+        global result
+        result = dumps(recipe_collection.find({ "$text": { "$search": str(search_text) }}))
+        global parsed_result
+        parsed_result = json.loads(result)
+
         session['count_recipes'] = str(len([x for x in parsed_result]))
         
         
-        return render_template('search_recipes.html', parsed_result = parsed_result)
+        
+        #Pagination for search
+        pagination_offset = int(request.args.get('offset', '0'))
+        pagination_limit = int(request.args.get('limit', '6'))
+    
+    
+        recipes = recipe_collection.find({ "$text": { "$search": str(search_text) }})
+        starting_id = recipe_collection.find({ "$text": { "$search": str(search_text) }}).sort('_id', pymongo.ASCENDING)
+        last_id = starting_id[pagination_offset]['_id']
+        total_results = 0
+        for item in recipes:
+            total_results +=1
+        
+        args = {
+            "limit": pagination_limit,
+            "offset": pagination_offset,
+            "recipes_sorted": recipe_collection.find({"$and": [{ "$text": { "$search": str(search_text) }}, {'_id': {'$gte' : last_id}}]}).sort('_id', pymongo.ASCENDING).limit(pagination_limit),
+            "next_url": '/search_recipes?limit=' + str(pagination_limit) + '&offset=' + str(pagination_offset + pagination_limit),
+            "prev_url": '/search_recipes?limit=' + str(pagination_limit) + '&offset=' + str(pagination_offset - pagination_limit),
+            "recipes": recipes,
+            "total_results": total_results
+        } 
+        
+        return render_template('search_recipes.html', parsed_result = parsed_result, args = args)
+        
+    #Pagination for search
+    pagination_offset = int(request.args.get('offset', '0'))
+    pagination_limit = int(request.args.get('limit', '6'))
+    search_text = session.get('search_text')
+    
+    recipes = recipe_collection.find({ "$text": { "$search": str(search_text) }})
+    starting_id = recipe_collection.find({ "$text": { "$search": str(search_text) }}).sort('_id', pymongo.ASCENDING)
+    last_id = starting_id[pagination_offset]['_id']
+    total_results = 0
+    for item in recipes:
+        total_results +=1
+        
+    args = {
+        "limit": pagination_limit,
+        "offset": pagination_offset,
+        "recipes_sorted": recipe_collection.find({"$and": [{ "$text": { "$search": str(search_text) }}, {'_id': {'$gte' : last_id}}]}).sort('_id', pymongo.ASCENDING).limit(pagination_limit),
+        "next_url": '/search_recipes?limit=' + str(pagination_limit) + '&offset=' + str(pagination_offset + pagination_limit),
+        "prev_url": '/search_recipes?limit=' + str(pagination_limit) + '&offset=' + str(pagination_offset - pagination_limit),
+        "recipes": recipes,
+        "total_results": total_results
+    } 
+    
+    
 
-    return render_template('search_recipes.html')
+    return render_template('search_recipes.html',  args = args)
     
     
     
@@ -316,16 +367,16 @@ def search_recipes():
   
 @app.route('/search_results', methods=['POST'])
 def search_results():
-    count_recipes = session.get('count_recipes')
+    search_text = session.get('search_text')
     if request.method == 'POST':
-        search_text = session.get('search_text')
-        print(search_text)
         recipe_collection.create_index([('$**', 'text')])
         result = dumps(recipe_collection.find({ "$text": { "$search": str(search_text) }}))
         parsed_result = json.loads(result)
-
+        count_recipes = str(len([x for x in parsed_result]))
+        
         return count_recipes
-            
+
+
     
 
 """ View details of a recipe """

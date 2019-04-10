@@ -1,14 +1,14 @@
 {% extends 'base.html' %} {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/recipes.css') }}" type="text/css" />
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/search_results.css') }}" type="text/css" />
-<form id="search_form" class="uk-search uk-search-default" action="/search_recipes" method="POST">
+<form id="search_form" class="uk-search uk-search-default" action="{{ url_for('search_recipes', parsed_result = parsed_result, pagination_limit=6, pagination_offset=0) }}" method="POST">
     <!--<span class = "uk-search-icon"></span>-->
-    <input id="search_input" class="uk-search-input" type="text" name="search_recipes" placeholder="Search Recipes...">
+    <input id="search_input" class="uk-search-input" type="text" name="search_input" placeholder="Search Recipes...">
     <button id="submit_search" type="submit" class="btn btn-primary btn-center">Search</button>
 </form>
 <span id = "search_message"></span>
 <div class = "container">
-    {% for recipe in parsed_result %}
+    {% for recipe in args.recipes_sorted %}
         <div class="recipes">
             <div class="recipes__name">
                 <h3 class="name__inline">{{ recipe.recipe_name }}</h3>
@@ -26,5 +26,21 @@
             </div>
         </div>
     {% endfor %}
+    {% if args.total_results > args.limit %}
+        <div class="recipes__pagination">
+            <ul class="pagination__list">
+                {% if args.offset > 0 %}
+                <li class="list__prev">
+                    <a href="{{args.prev_url}}">Previous</a>
+                </li>
+                {% endif %} {% if args.offset + args.limit
+                < args.total_results %} <li class="list__next">
+                    <a href="{{args.next_url}}">Next</a>
+                    </li>
+                    {% endif %}
+            </ul>
+        </div>
+    </div>
+    {% endif %}
 </div>
 {% endblock %}
