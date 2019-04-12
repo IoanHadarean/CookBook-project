@@ -3,7 +3,7 @@
 <section>
     <div class="content-section">
         <div class="media">
-            <img class="rounded-circle account-img" src="static/images/avatar.png" />
+            <img class="rounded-circle account-img" src= "{{ url_for('static', filename = 'images/' + image_file) }}" />
         </div>
         <div class="media-body">
             <h2 class="account-heading">{{ current_name }}</h2>

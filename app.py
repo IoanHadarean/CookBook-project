@@ -1,4 +1,5 @@
-import os, pymysql, requests, pygal, re
+import os, pymysql, requests, pygal, re, binascii
+from os import urandom
 from datetime import datetime
 from flask.logging import create_logger
 from flask_login import current_user
@@ -155,8 +156,15 @@ def login():
     
     
     
-
-
+# def save_picture(form_picture):
+#     random_hex = "Goagl140"
+#     _, f_ext = os.path.splitext(form_picture.filename)
+#     picture_fn = random_hex + f_ext
+#     picture_path = os.path.join(app.root_path, 'static/images', picture_fn)
+#     form_picture.save(picture_path)
+#     return picture_fn
+    
+    
 @app.route('/profile', methods = ['GET', 'POST'])
 def profile():
     form = EditForm(CombinedMultiDict((request.files,request.form)))
@@ -174,6 +182,8 @@ def profile():
     current_email = cur.fetchall()[0]['email']
     cur.execute("SELECT aboutme FROM users  WHERE username = %s", user)
     profile_description = cur.fetchall()[0]['aboutme']
+    cur.execute("SELECT image FROM users  WHERE username = %s", user)
+    image_file = cur.fetchall()[0]['image']
     connection.commit()
     cur.close()
     
@@ -181,7 +191,18 @@ def profile():
         name = form.name.data
         email = form.email.data
         about_me = form.about_me.data
-        picture = form.picture
+        picture = form.picture.data
+        random_hex = "Goagl140"
+        _, f_ext = os.path.splitext(picture.filename)
+        picture_fn = random_hex + f_ext
+        picture_path = os.path.join(app.root_path, 'static/images', picture_fn)
+        picture.save(picture_path)
+        picture_file = picture_fn
+        current_image_file = picture_file
+        print(current_image_file)
+        
+
+
         
         #Get session username
         user = session.get('username')
@@ -195,8 +216,6 @@ def profile():
         cur.execute("SELECT email FROM users  WHERE username = %s", user)
         current_email = cur.fetchall()[0]['email']
         
-        # Set user description regardless of the checks
-        cur.execute("UPDATE users set aboutme = %s WHERE username = %s", (about_me, user))
         
         #Check the name and email that come from the form to make sure everything is updated correctly
         
@@ -211,7 +230,9 @@ def profile():
                 flash("That email is already taken. Please choose a different one.", 'danger')
             else:
                 cur.execute("UPDATE users SET name = %s WHERE username = %s", (name, user))
-                cur.execute("UPDATE users set email = %s WHERE username = %s", (email, user))
+                cur.execute("UPDATE users SET email = %s WHERE username = %s", (email, user))
+                cur.execute("UPDATE users SET aboutme = %s WHERE username = %s", (about_me, user))
+                cur.execute("UPDATE users SET image = %s WHERE username = %s", (picture_file, user))
                 connection.commit()
                 flash('Your profile has been updated successfully', 'success')
                 return redirect(url_for('profile'))
@@ -222,7 +243,9 @@ def profile():
                 flash("That name is already taken. Please choose a different one.", 'danger')
             else:
                 cur.execute("UPDATE users SET name = %s WHERE username = %s", (name, user))
-                cur.execute("UPDATE users set email = %s WHERE username = %s", (email, user))
+                cur.execute("UPDATE users SET email = %s WHERE username = %s", (email, user))
+                cur.execute("UPDATE users SET aboutme = %s WHERE username = %s", (about_me, user))
+                cur.execute("UPDATE users SET image = %s WHERE username = %s", (picture_file, user))
                 connection.commit()
                 flash('Your profile has been updated successfully', 'success')
                 return redirect(url_for('profile'))
@@ -232,8 +255,9 @@ def profile():
 
         #Close the connection
         cur.close()
+    
        
-    return render_template('profile.html', current_name = current_name,
+    return render_template('profile.html', current_name = current_name, image_file = image_file,
                             current_email = current_email, profile_description = profile_description, form=form)
         
     
@@ -394,26 +418,22 @@ def get_recipe(recipe_id):
     the_recipe = recipe_collection.find_one({"_id": ObjectId(recipe_id)})
     
     
-    """ Get the rating text for each rating """
+    """ Get the rating text for each rating done by each user for each recipe """
+    
     # Get MySQL connection
     cur = connection.cursor()
 
 
     user = session.get('username')
-    print(user)
     recipe_number = the_recipe["id"]
-    print(recipe_number)
     
     cur.execute("SELECT id FROM users WHERE username = %s", user)
     user_id = cur.fetchall()[0]['id']
-    print(user_id)
     
     instance_rating = ratings_collection.find_one({"user_id": user_id, "recipe_id": recipe_number})
-    print(instance_rating)
     if instance_rating == None:
         ratings_collection.insert_one({"user_id": user_id, "recipe_id": recipe_number, "rating": 0, "rateText": "Rate Recipe"})
-        # rate_text = instance_rating["rateText"]
-        # print(rateText)
+
     # Close the connection
     cur.close()
     
