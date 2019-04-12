@@ -1,4 +1,6 @@
-import os, pymysql, requests, pygal, re, binascii
+import os, pymysql, requests, pygal, re
+from base64 import b64encode
+from PIL import Image
 from os import urandom
 from datetime import datetime
 from flask.logging import create_logger
@@ -192,14 +194,19 @@ def profile():
         email = form.email.data
         about_me = form.about_me.data
         picture = form.picture.data
-        random_hex = "Goagl140"
+        random_hex = urandom(8)
+        token = b64encode(random_hex).decode('utf-8')
         _, f_ext = os.path.splitext(picture.filename)
-        picture_fn = random_hex + f_ext
+        picture_fn = token + f_ext
         picture_path = os.path.join(app.root_path, 'static/images', picture_fn)
-        picture.save(picture_path)
+        
+        output_size = (180, 180)
+        
+        i = Image.open(picture)
+        i.thumbnail(output_size)
+        
+        i.save(picture_path)
         picture_file = picture_fn
-        current_image_file = picture_file
-        print(current_image_file)
         
 
 
