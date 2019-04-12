@@ -201,8 +201,6 @@ def profile():
         
         i.save(picture_path)
         picture_file = picture_fn
-        
-
 
         
         #Get session username

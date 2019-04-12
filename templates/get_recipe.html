@@ -80,6 +80,22 @@
         <div class="recipe__author">
             <p class="author__description">By {{ recipe.author_name }}</p>
         </div>
+        
+        <!-- Recipe specification -->
+        <div class="info__specs">
+            <div class="specs__cuisine">
+                <span>Cuisine</span>
+                <span class="is-spec">{{ recipe.cuisine_name }}</span>
+            </div>
+            <div class="specs__course">
+                <span>Course</span>
+                <span class="is-spec">{{ recipe.course_name }}</span>
+            </div>
+            <div class="specs__allergens">
+                <span>Allergens</span>
+                <span class="is-spec">{{ recipe.allergen_name }}</span>
+            </div>
+        </div>
 
         <!-- Recipe cooking time -->
         <div class="recipe-separator"></div>
@@ -88,11 +104,11 @@
                 <i class="far fa-clock"></i>
             </div>
             <div class="time__cooking">
-                <span>Cooking Time</span>
+                <span>Cooking</span>
                 <span class="is-time">{{ recipe.cooking_time }}</span>
             </div>
             <div class="time__preparation">
-                <span>Preparation Time</span>
+                <span>Preparation</span>
                 <span class="is-time">{{ recipe.preparation_time }}</span>
             </div>
             <div class="time__ready">
@@ -128,6 +144,7 @@
 
         <!-- Recipe ingredients -->
         <div class="recipe-separator"></div>
+        <h3 class="alert__description">Ingredients</h3>
         <div class="recipe__quantities">
             <ul class="quantities__container">
                 {% for quantity in full_quantities %}
@@ -146,6 +163,7 @@
 
         <!-- Recipe instructions -->
         <div class="recipe__instructions">
+            <h3 class="alert__description cooking">Cooking Instructions</h3>
             {% for instruction in recipe.cooking_directions %}
             <div class="instructions__full">
                 <span class="instructions__index">{{ loop.index }}</span>

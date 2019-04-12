@@ -229,7 +229,6 @@ x-star-rating>.star.full:after {
 
 .author__description {
     font-size: 16px;
-    margin-left: 5vw;
 }
 
 .recipe__author,
@@ -239,7 +238,7 @@ x-star-rating>.star.full:after {
     justify-content: center;
 }
 
-/* ----------------------------------- Recipe Cooking Time ---------------------------- */
+/* ----------------------------------- Recipe Cooking Time and Specs ---------------------------- */
 
 .recipe-separator {
     width: 95%;
@@ -247,18 +246,29 @@ x-star-rating>.star.full:after {
     border: 1px solid gray;
 }
 
-.info__time {
+.info__time,
+.info__specs {
     text-align: center;
     font-size: 40px;
     margin-top: 15px;
-    height: 140px;
     margin-bottom: 20px;
     position: sticky;
 }
 
+.info__time {
+    height: 140px;
+}
+
+.info__specs {
+    height: 70px;
+}
+
 .time__cooking,
 .time__preparation,
-.time__ready {
+.time__ready,
+.specs__cuisine,
+.specs__course,
+.specs__allergens {
     height: 100px;
     font-size: 20px;
     display: flex;
@@ -266,7 +276,8 @@ x-star-rating>.star.full:after {
     position: absolute;
 }
 
-.time__cooking {
+.time__cooking,
+.specs__cuisine {
     margin-left: 2.5vw;
     width: 30vw;
 }
@@ -279,18 +290,21 @@ x-star-rating>.star.full:after {
 }
 
 .time__preparation,
-.time__clock {
-    margin-left: 32.5vw;
+.time__clock, 
+.specs__course {
+    margin-left: 30vw;
     width: 40vw;
 }
 
-.time__ready {
-    margin-left: 75.5vw;
+.time__ready,
+.specs__allergens {
+    margin-left: 70vw;
     margin-right: 2.5vw;
     width: 22vw;
 }
 
-.is-time {
+.is-time,
+.is-spec {
     margin-top: 10px;
     color: #009978;
     font-size: 16px;
@@ -299,7 +313,6 @@ x-star-rating>.star.full:after {
 /* ------------------------------------------ Recipe Alert ----------------------------- */
 
 .recipe__alert {
-    margin-left: 2.5vw;
     margin-right: 2.5vw;
     width: 95vw;
     height: 100px;
@@ -389,6 +402,10 @@ x-star-rating>.star.full:after {
     border-radius: 50%;
 }
 
+.cooking {
+    margin-left: 0;
+}
+
 .instructions__full {
     width: 90vw;
     margin-top: 30px;
@@ -415,21 +432,26 @@ x-star-rating>.star.full:after {
     }
 }
 
-@media (min-width: 480px) and (max-width: 768px) {
+
+@media only screen and (max-width: 768px) {
     .recipe__ingredients {
-        width: 60%;
+        width: 50%;
         margin-left: 5%;
+    }
+    
+    .recipe__quantities {
+        margin-left: 15%;
     }
 }
 
 @media (min-width: 768px) and (max-width: 2560px) {
     .recipe__ingredients {
-        width: 50%;
+        width: 40%;
         margin-left: 3.35%;
     }
 
     .recipe__quantities {
-        margin-left: 35%;
+        margin-left: 37.5%;
         width: 10%;
     }
 }
