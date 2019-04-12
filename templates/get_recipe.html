@@ -36,7 +36,11 @@
             <div class="stars-inner"></div>
         </div>
         <span class="numbers-rating">{{ recipe.rating }}</span>
-        <button id="rating__button">{{ recipe.rateText }}</button>
+        {% if instance_rating == None %}
+            <button id="rating__button">Rate Recipe</button>
+        {% else %}
+            <button id="rating__button">{{ instance_rating.rateText }}</button>
+        {% endif %}
         {% if session.logged_in %}
         <div id="rating__modal" class="modal">
             <div class="modal-content">

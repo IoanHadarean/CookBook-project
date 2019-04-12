@@ -95,14 +95,15 @@ def register():
             flash("That email is already taken. Please choose a different one.")
         else:
             cur.execute("INSERT INTO users(name, email, username, password) VALUES(%s, %s, %s, %s)", (name, email, username, password))
+            # Save the connection
+            connection.commit()
             session['logged_in'] = True
             session['username'] = username
             flash('You are now logged in', 'success')
-            return redirect(url_for('recipes', limit = 6, offset = 0))
+            return redirect(url_for('profile'))
             
             
-        # Save and close the connection
-        connection.commit()
+        #Close the connection
         cur.close()
         
     return render_template('register.html', form=form)
@@ -136,10 +137,10 @@ def login():
                 session['logged_in'] = True
                 session['username'] = username
                 
-                flash('You are now logged in', 'success')
                 next_page = request.args.get('next')
                 if not next_page or url_parse(next_page).netloc != '':
-                    next_page = url_for('recipes', limit = 6, offset = 0)
+                    flash('You are now logged in', 'success')
+                    next_page = url_for('profile')
                 return redirect(next_page)
             else:
                 error = 'Invalid login'
@@ -393,6 +394,31 @@ def get_recipe(recipe_id):
     the_recipe = recipe_collection.find_one({"_id": ObjectId(recipe_id)})
     
     
+    """ Get the rating text for each rating """
+    # Get MySQL connection
+    cur = connection.cursor()
+
+
+    user = session.get('username')
+    print(user)
+    recipe_number = the_recipe["id"]
+    print(recipe_number)
+    
+    cur.execute("SELECT id FROM users WHERE username = %s", user)
+    user_id = cur.fetchall()[0]['id']
+    print(user_id)
+    
+    instance_rating = ratings_collection.find_one({"user_id": user_id, "recipe_id": recipe_number})
+    print(instance_rating)
+    if instance_rating == None:
+        ratings_collection.insert_one({"user_id": user_id, "recipe_id": recipe_number, "rating": 0, "rateText": "Rate Recipe"})
+        # rate_text = instance_rating["rateText"]
+        # print(rateText)
+    # Close the connection
+    cur.close()
+    
+    
+    
     """ Add ready time for each recipe (cooking time + preparation time) """
     
     cooking_time = the_recipe["cooking_time"].split(" ")
@@ -449,10 +475,12 @@ def get_recipe(recipe_id):
             i += 1
         full_quantities.append(concatenated_quantity)
         full_ingredients.append(concatenated_ingredient)
+        
+    
 
             
     return render_template('get_recipe.html', recipe=the_recipe, total = total, full_quantities = full_quantities,
-                            full_ingredients = full_ingredients, request=request)
+                            full_ingredients = full_ingredients, request=request, instance_rating = instance_rating)
     
     
     
@@ -567,8 +595,8 @@ def update_rating(recipe_id):
         if instance_record != None:
             ratings_collection.update({"user_id": user_id, "recipe_id": recipe_number},
                                     { "$set": { "rating": rating }})
-            recipe_collection.update({"_id": ObjectId(recipe_id)},
-                                    { "$set": { "rateText": "Edit Rating"}})
+            ratings_collection.update({"user_id": user_id, "recipe_id": recipe_number},
+                                    { "$set": { "rateText": "Edit Rating" }})
         else:
             ratings_collection.insert_one({"user_id": user_id, "recipe_id": recipe_number, "rating": rating })
         
@@ -587,6 +615,7 @@ def update_rating(recipe_id):
         
         recipe_collection.update({"_id": ObjectId(recipe_id)},
                                     { "$set": { "rating": formatted_average}})
+                                    
         
     return redirect(url_for('get_recipe', recipe_id = recipe_id))
 
