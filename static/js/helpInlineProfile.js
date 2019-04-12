@@ -78,3 +78,4 @@ else if (screen.height > 500 && screen.height <= 1080 && screen.width >= 768 && 
 // Create datetime for each user according to timezone
 
 document.getElementById('date-time').innerHTML = new Date().toLocaleString();
+

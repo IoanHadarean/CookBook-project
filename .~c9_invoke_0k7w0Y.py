@@ -194,6 +194,7 @@ def profile():
         picture_fn = token + f_ext
         picture_path = os.path.abspath(os.path.join(app.root_path, 'static/images', picture_fn))
         
+        
         output_size = (180, 180)
         
         i = Image.open(picture)
@@ -252,8 +253,8 @@ def profile():
                 return redirect(url_for('profile'))
         else:
             flash('Your profile has been updated successfully', 'success')
-            cur.execute("UPDATE users SET aboutme = %s WHERE username = %s", (about_me, user))
-            cur.execute("UPDATE users SET image = %s WHERE username = %s", (picture_file, user))
+            # cur.execute("UPDATE users SET aboutme = %s WHERE username = %s", (about_me, user))
+            # cur.execute("UPDATE users SET image = %s WHERE username = %s", (picture_file, user))
             return redirect(url_for('profile'))
 
         #Close the connection
