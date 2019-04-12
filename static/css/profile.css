@@ -58,15 +58,38 @@ label {
         margin-left: 35vw;
         margin-right: 35vw;
     }
-    
+}
+
+@media (max-width: 1920px) and (min-width: 768px) and (max-height: 368px) {
     footer {
         bottom: -200px;
     }
 }
 
-@media (min-width: 375px) and (min-height: 680px) {
+@media (max-width: 1920px) and (min-width: 768px) and (min-height: 369px) and (max-height: 1000px) {
+    footer {
+        bottom: -500px;
+        height: 100px;
+        position: absolute;
+    }
+    
+    .footer__copyright {
+        width: 100%;
+    }
+}
+
+
+@media only screen and (min-width: 481px) and (min-height: 680px) {
     footer {
         position: absolute;
+    }
+}
+
+
+@media (min-width: 375px) and (max-width: 480px) and (min-height: 680px) and (max-height: 1000px) {
+    footer {
+        position: relative;
+        bottom: -100px;
     }
 }
 

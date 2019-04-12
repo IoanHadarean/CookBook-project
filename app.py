@@ -1,13 +1,13 @@
 import os, pymysql, requests, pygal, re
+from datetime import datetime
 from flask.logging import create_logger
 from flask_login import current_user
 from werkzeug.datastructures import CombinedMultiDict
 from flask_wtf.file import FileField, FileRequired, FileAllowed
 from zapp import values, env
-from datetime import datetime
 from zapp.values import French_values, Mexican_values, Greek_values, English_values, Asian_values, Indian_values, Irish_values, Italian_values
 from flask_pymongo import PyMongo, pymongo
-from flask import Flask, redirect, render_template, request, url_for, flash, session, logging, json, jsonify
+from flask import Flask, redirect, render_template, render_template_string, request, url_for, flash, session, logging, json, jsonify
 from bson.json_util import dumps
 from bson.objectid import ObjectId
 from flask_moment import Moment
@@ -95,12 +95,15 @@ def register():
             flash("That email is already taken. Please choose a different one.")
         else:
             cur.execute("INSERT INTO users(name, email, username, password) VALUES(%s, %s, %s, %s)", (name, email, username, password))
-        
+            session['logged_in'] = True
+            session['username'] = username
+            flash('You are now logged in', 'success')
+            return redirect(url_for('recipes', limit = 6, offset = 0))
+            
+            
         # Save and close the connection
         connection.commit()
         cur.close()
-        
-        return redirect(url_for('profile'))
         
     return render_template('register.html', form=form)
     
@@ -136,7 +139,7 @@ def login():
                 flash('You are now logged in', 'success')
                 next_page = request.args.get('next')
                 if not next_page or url_parse(next_page).netloc != '':
-                    next_page = url_for('profile')
+                    next_page = url_for('recipes', limit = 6, offset = 0)
                 return redirect(next_page)
             else:
                 error = 'Invalid login'
@@ -161,7 +164,7 @@ def profile():
     cur = connection.cursor() 
     
     #Get session username
-    user = session['username']
+    user = session.get('username')
     
     #Get current username and email from db
     cur.execute("SELECT name FROM users  WHERE username = %s", user)
@@ -180,7 +183,7 @@ def profile():
         picture = form.picture
         
         #Get session username
-        user = session['username']
+        user = session.get('username')
         
         #Create cursor
         cur = connection.cursor() 
@@ -230,8 +233,10 @@ def profile():
         cur.close()
        
     return render_template('profile.html', current_name = current_name,
-        current_email = current_email, profile_description = profile_description, form=form)
+                            current_email = current_email, profile_description = profile_description, form=form)
         
+    
+    
     
     
 """ Logout """
@@ -587,10 +592,17 @@ def update_rating(recipe_id):
 
 
 
+
+
+
 """ Allow logged in user to add recipe """
 @app.route('/add_recipe', methods = ['GET', 'POST'])
 def add_recipe():
     return render_template('add_recipe.html')
+    
+    
+    
+    
 
 
 """ Recipe ingredients statistics by cuisine """
