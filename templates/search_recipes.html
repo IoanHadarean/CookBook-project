@@ -5,7 +5,11 @@
     <input id="search_input" class="uk-search-input" type="text" name="search_input" placeholder="Search Recipes...">
     <button id="submit_search" type="submit" class="btn btn-primary btn-center">Search</button>
 </form>
-<span id="search_message"></span>
+{% if count_recipes != "0" and search_text != '' and search_text is defined %}
+<span id="search_message">{{ count_recipes }} recipes were found </span>
+{% elif count_recipes == "0" and search_text != '' and search_text is defined %}
+<span id="search_message">No recipes were found </span>
+{% endif %}
 <div class="container">
     {% if args %}
     {% for recipe in args.recipes_sorted %}

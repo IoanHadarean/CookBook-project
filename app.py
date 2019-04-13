@@ -321,20 +321,19 @@ def search_recipes():
     
     result = []
     parsed_result = []
-    search_text = ''
     if request.method == 'POST':
         
         # Get the results from the form according to user input
         search_text = request.form.get('search_input')
-        print(search_text)
         session['search_text'] = search_text
         recipe_collection.create_index([('$**', 'text')])
         result = dumps(recipe_collection.find({ "$text": { "$search": str(search_text) }}))
         parsed_result = json.loads(result)
-        print(session['count_recipes'])
 
         session['count_recipes'] = str(len([x for x in parsed_result]))
-        
+        count_recipes = session['count_recipes']
+        print(count_recipes)
+        print(search_text)
         
         
         
@@ -363,9 +362,9 @@ def search_recipes():
                 "total_results": total_results
             }
         
-            return render_template('search_recipes.html', parsed_result = parsed_result, args = args)
+            return render_template('search_recipes.html', search_text = search_text, count_recipes = count_recipes, parsed_result = parsed_result, args = args)
         else:
-            return render_template('search_recipes.html')
+            return render_template('search_recipes.html', search_text = search_text, count_recipes = count_recipes)
             
             
     #Pagination for search on GET request
@@ -396,10 +395,22 @@ def search_recipes():
         return render_template('search_recipes.html', args = args)
     else:
         return render_template('search_recipes.html')
+   
+   
+   
         
     
-    
-    
+""" Login Required decorator """
+ 
+def is_logged_in(f):
+    @wraps(f)
+    def wrap(*args, **kwargs):
+        if 'logged_in' in session:
+            return f(*args, **kwargs)
+        else:
+            flash('You need to have an account to view/rate recipes', 'danger')
+        return redirect(url_for('register'))
+    return wrap
     
     
     
@@ -417,6 +428,7 @@ def search_results():
 """ View details of a recipe """
 
 @app.route('/get_recipe/<recipe_id>', methods = ['GET', 'POST'])
+@is_logged_in
 def get_recipe(recipe_id):
     
     the_recipe = recipe_collection.find_one({"_id": ObjectId(recipe_id)})

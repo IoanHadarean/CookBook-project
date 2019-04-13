@@ -5,12 +5,16 @@ var input = document.getElementById('search_input');
 var footerTag = document.getElementsByTagName('footer')[0];
 var results = document.getElementsByClassName('container')[0];
 var recipes = document.getElementsByClassName('recipes')[0];
+var inputValue = document.getElementById('search_input').value;
+var countSpan = document.getElementById('search_message');
 
-// searchButton.addEventListener('click', resetForm);
+// searchButton.addEventListener('click', resetInput);
+// input.addEventListener('input', resetInput);
 
-// function resetForm() {
-//     form.submit();
-//     form.reset();
+// function resetInput() {
+//     let inputValue = document.getElementById('search_input').value;
+//     inputValue = '';
+//     results = '';
 // }
 
 
@@ -19,33 +23,24 @@ var recipes = document.getElementsByClassName('recipes')[0];
 if (input) {
     input.addEventListener('input', function loadResults() {
         let xhr = new XMLHttpRequest();
-        var inputValue = document.getElementById('search_input').value;
+        // var inputValue = document.getElementById('search_input').value;
         document.getElementById('search_message').innerHTML = '';
         document.getElementsByClassName('container')[0].innerHTML = '';
         footerTag.style.position = 'absolute';
         inputValue = '';
-        
+        document.getElementsByClassName('container')[0].innerHTML = '';
         xhr.onload = function() {
             inputValue = '';
             if (this.readyState === 4 && this.status === 200) {
-                let response = JSON.parse(xhr.responseText);
-                var countResults = response;
-                console.log(countResults);
+                let response = xhr.responseText;
                 document.getElementById('search_message').innerHTML = '';
-                if (countResults == 0) {
-                    document.getElementById('search_message').innerHTML = 'No recipes were found';
-                    inputValue = '';
-                    document.getElementsByClassName('container')[0].innerHTML = '';
-                }
-                else {
-                    document.getElementById('search_message').innerHTML = countResults + " matches were found";
-                    inputValue = '';
-                    document.getElementsByClassName('container')[0].innerHTML = '';
-                }
+                inputValue = '';
+                document.getElementsByClassName('container')[0].innerHTML = '';
             }
             else {
                 console.log("Response not received");
                 document.getElementById('search_message').innerHTML = '';
+                inputValue = '';
                 document.getElementsByClassName('container')[0].innerHTML = '';
             }
         };
