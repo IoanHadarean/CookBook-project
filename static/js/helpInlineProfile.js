@@ -1,3 +1,7 @@
+/* global date */
+
+
+
 // Custom js responsiveness for mobile devices for profile //
 
 
@@ -75,7 +79,8 @@ else if (screen.height > 500 && screen.height <= 1080 && screen.width >= 768 && 
     });
 }
 
-// Create datetime for each user according to timezone
+// Create UTC datetime to localtime for each user
 
-document.getElementById('date-time').innerHTML = new Date().toLocaleString();
+var UTC = date + ' UTC';
+document.getElementById('date-time').innerHTML = new Date(UTC).toLocaleString();
 
