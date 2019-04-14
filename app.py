@@ -45,9 +45,6 @@ mongo = PyMongo(app)
 
 recipe_collection = mongo.db.recipes
 ratings_collection = mongo.db.ratings
-cuisines = mongo.db.cuisines.find()
-courses = mongo.db.courses.find()
-allergens = mongo.db.allergens.find()
 user_recipes = mongo.db.user_recipes
 
     
@@ -67,8 +64,8 @@ class RegisterForm(Form):
 class EditForm(Form):
     name = StringField('Name', validators=[DataRequired(), Length(min=6, max=50)])
     email = StringField('Email', validators = [DataRequired(), Email(), Length(min=11, max=50)])
-    about_me = TextAreaField('About Me', validators=[Length(min=0, max=140)])
-    picture = FileField('Update Profile Picture', validators = [FileAllowed(['jpg', 'jpeg', 'png'])])
+    about_me = TextAreaField('About Me', validators=[Length(min=12, max=140)])
+    picture = FileField('Update Profile Picture', validators = [FileRequired(), FileAllowed(['jpg', 'jpeg', 'png'])])
                 
             
 """Route when first accessing the page"""
@@ -305,7 +302,19 @@ def recipes():
         "total_results": total_results
     }
     
-    return render_template('recipes.html', args=args)
+    cuisines = mongo.db.cuisines.find()
+    courses = mongo.db.courses.find()
+    allergens = mongo.db.allergens.find()
+    
+    
+    
+    # cuisines_options = []
+    # for cuisine in cuisines:
+    #     cuisines_options.append(cuisine['cuisine_name'])
+    # print(cuisines_options)
+    
+    return render_template('recipes.html', allergens = allergens, cuisines = cuisines, courses = courses,
+                            args=args)
   
   
   
@@ -332,8 +341,6 @@ def search_recipes():
 
         session['count_recipes'] = str(len([x for x in parsed_result]))
         count_recipes = session['count_recipes']
-        print(count_recipes)
-        print(search_text)
         
         
         
@@ -663,27 +670,6 @@ def update_rating(recipe_id):
 """ Allow logged in user to add recipe """
 @app.route('/add_recipe', methods = ['GET', 'POST'])
 def add_recipe():
-    
-    # course_names = courses.find()
-    # allergen_names =  allergens.find()
-    # cuisine_names = cuisines.find()
-    
-    # course_options = []
-    # cuisine_options = []
-    # allergen_options = []
-    # for course in course_names:
-    #     course_options.append(course["course_name"])
-    # for cuisine in cuisine_names:
-    #     cuisine_options.append(cuisine["cuisine_name"])
-    # for allergen in allergen_names:
-    #     allergen_options.append(allergen["allergen_name"])
-
-    
-    # course_options = []
-    # for course in courses:
-    #     course_options.append(course["course_name"])
-    # print(course_options)
-    
     return render_template('add_recipe.html', user_recipes = user_recipes, courses = courses,
                             cuisines = cuisines, allergens = allergens)
     
@@ -699,7 +685,7 @@ def charts():
     """ Recipe ingredients statistics by cuisine """
     
     dot_chart = pygal.Dot(x_label_rotation=30, print_values = False, show_legend = False, style=pygal.style.styles['default'](value_font_size=30, title_font_size=30, 
-                         legend_font_size=30, dots_size=3000, tooltip_font_size=30, label_font_size=22))
+                         legend_font_size=30, dots_size=3000, background = 'transparent', tooltip_font_size=30, label_font_size=22))
     dot_chart.title = 'Recipe Ingredients Statistics by Cuisine'
     dot_chart.y_title = 'Recipes by cuisine'
     dot_chart.x_labels = ['milk', 'egg', 'sugar', 'flour', 'salt', 'water', 'garlic', 'vanilla', 'butter']
@@ -717,7 +703,7 @@ def charts():
     """ Recipe allergens statistics (in %) """
     
     solid_gauge_chart = pygal.SolidGauge(inner_radius=0.70, style=pygal.style.styles['default'](value_font_size=25, title_font_size=30,
-                                        legend_font_size=30, tooltip_font_size=30))
+                                        legend_font_size=30, background = 'transparent', tooltip_font_size=30))
     solid_gauge_chart.title = 'Recipe Allergens Statistics (in %)'
     percent_formatter = lambda x: '{:.10g}%'.format(x)
     solid_gauge_chart.value_formatter = percent_formatter
@@ -732,7 +718,7 @@ def charts():
     """ Average calories by cuisine """
     
     gauge_chart = pygal.Gauge(human_readable=True, style=pygal.style.styles['default'](value_font_size=30, title_font_size=30, 
-                                legend_font_size=30, tooltip_font_size=30, label_font_size=25))
+                                legend_font_size=30, background = 'transparent', tooltip_font_size=30, label_font_size=25))
     gauge_chart.title = 'Average calories by cuisine'
     gauge_chart.range = [0, 1000]
     gauge_chart.add('French', 393.5)
