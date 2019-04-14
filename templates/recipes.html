@@ -6,19 +6,19 @@
         <select name="option-select">
             <option id = "choose-allergens" value="" disabled selected>Choose Allergen</option>
             {% for allergen in allergens %}
-                <option  value="allergens-{{ loop.index }}" name="allergens-{{ loop.index }}">{{ allergen.allergen_name }}</option>
+                <option  value="{{ allergen }}" name="allergens-{{ loop.index }}">{{ allergen.allergen_name }}</option>
             {% endfor %}
         </select>
         <select name="option-select">
             <option id = "choose-cuisines" value="" disabled selected>Choose Cuisine</option>
             {% for cuisine in cuisines %}
-                <option value="cuisines-{{ loop.index }}" name="cuisine-{{ loop.index }}">{{ cuisine.cuisine_name }}</option>
+                <option value="{{ cuisine }}" name="cuisines-{{ loop.index }}">{{ cuisine.cuisine_name }}</option>
             {% endfor %}
         </select>
         <select name="option-select">
             <option id = "choose-courses" value="" disabled selected>Choose Course</option>
             {% for course in courses %}
-                <option value="courses-{{ loop.index }}" name="courses-{{ loop.index }}">{{ course.course_name }}</option>
+                <option value="{{ course }}" name="courses-{{ loop.index }}">{{ course.course_name }}</option>
             {% endfor %}
         </select>
     </form>
