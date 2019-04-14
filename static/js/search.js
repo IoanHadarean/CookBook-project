@@ -1,11 +1,8 @@
 // Get HTML elements
-var searchButton = document.getElementById('submit_search');
-var searchForm = document.getElementById('search_form');
-var input = document.getElementById('search_input');
-var footerTag = document.getElementsByTagName('footer')[0];
-var results = document.getElementsByClassName('container')[0];
-var recipes = document.getElementsByClassName('recipes')[0];
-var countSpan = document.getElementById('search_message');
+let input = document.getElementById('search_input');
+let footerTag = document.getElementsByTagName('footer')[0];
+let results = document.getElementsByClassName('container')[0];
+let recipes = document.getElementsByClassName('recipes')[0];
 
 
 
