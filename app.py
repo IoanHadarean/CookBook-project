@@ -307,8 +307,8 @@ def recipes():
     courses = mongo.db.courses.find()
     allergens = mongo.db.allergens.find()
     
-    return render_template('recipes.html', allergens = allergens, cuisines = cuisines, courses = courses,
-                            args=args)
+    
+    return render_template('recipes.html', cuisines = cuisines, courses = courses, allergens = allergens, args=args)
   
   
   
@@ -347,8 +347,14 @@ def filter_recipes():
     if request.method == 'POST':
         form = request.form.to_dict()
         recipes = recipe_collection.aggregate([{"$match": {"$and": get_results(form)}}])
-        return render_template('recipes.html', recipes = list(recipes))
-    return render_template('recipes.html')
+        return render_template('search_recipes.html', recipes = list(recipes))
+        
+        
+        
+    cuisines = mongo.db.cuisines.find()
+    courses = mongo.db.courses.find()
+    allergens = mongo.db.allergens.find()
+    return render_template('search_recipes.html', cuisines = cuisines, allergens = allergens, courses = courses)
 
 
 
@@ -376,6 +382,9 @@ def search_recipes():
     
     result = []
     parsed_result = []
+    cuisines = mongo.db.cuisines.find()
+    courses = mongo.db.courses.find()
+    allergens = mongo.db.allergens.find()
     if request.method == 'POST':
         
         # Get the results from the form according to user input
@@ -415,9 +424,11 @@ def search_recipes():
                 "total_results": total_results
             }
         
-            return render_template('search_recipes.html', search_text = search_text, count_recipes = count_recipes, parsed_result = parsed_result, args = args)
+            return render_template('search_recipes.html',
+            search_text = search_text, count_recipes = count_recipes, parsed_result = parsed_result, args = args)
         else:
-            return render_template('search_recipes.html', search_text = search_text, count_recipes = count_recipes)
+            return render_template('search_recipes.html',
+            search_text = search_text, count_recipes = count_recipes)
             
             
     #Pagination for search on GET request

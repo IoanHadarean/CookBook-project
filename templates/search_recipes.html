@@ -10,26 +10,6 @@
 {% elif count_recipes == "0" and search_text != '' and search_text is defined %}
 <span id="search_message">No recipes were found</span>
 {% endif %}
- <form id = "filter-form" method = "POST" action = "/filter_recipes">
-        <select id="allergens" name="allergens_name">
-            <option value="" disabled selected>Choose Allergen</option>
-            {% for allergen in allergens %}
-                <option value="allergens-{{ loop.index }}" name="allergens-{{ loop.index }}">{{ allergen.allergen_name }}</option>
-            {% endfor %}
-        </select>
-        <select id="cuisines" name="cuisines_name">
-            <option value="" disabled selected>Choose Cuisine</option>
-            {% for cuisine in cuisines %}
-                <option value="cuisines-{{ loop.index }}" name="cuisine-{{ loop.index }}">{{ cuisine.cuisine_name }}</option>
-            {% endfor %}
-        </select>
-        <select id="courses" name="course_name">
-            <option value="" disabled selected>Choose Course</option>
-            {% for course in courses %}
-                <option value="courses-{{ loop.index }}" name="courses-{{ loop.index }}">{{ course.course_name }}</option>
-            {% endfor %}
-        </select>
-    </form>
 <div class="container">
     {% if args %}
     {% for recipe in args.recipes_sorted %}
@@ -68,6 +48,5 @@
     {% endif %}
     {% endif %}
 </div>
-<div id="results" class="row justify-content-center">	</div>
 
 {% endblock %}
