@@ -338,3 +338,10 @@ section {
         width: 100vw;
     }
 }
+
+
+@media (min-width: 1921px) and (max-width: 2560px) {
+    .recipes__image {
+        height: 300px;
+    }
+}

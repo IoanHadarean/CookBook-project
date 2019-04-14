@@ -2,13 +2,13 @@
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/search_recipe.css') }}" type="text/css" />
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/results.css') }}" type="text/css" />
 <form id="search_form" class="uk-search uk-search-default" action="{{ url_for('search_recipes', limit=6, offset=0) }}" method="POST">
-    <input id="search_input" class="uk-search-input" type="text" name="search_input" placeholder="Search Recipes...">
+    <input id="search_input" class="uk-search-input" type="text" value = "{{request.form['search_input']}}" name="search_input" placeholder="Search Recipes...">
     <button id="submit_search" type="submit" class="btn btn-primary btn-center">Search</button>
 </form>
 {% if count_recipes != "0" and search_text != '' and search_text is defined %}
 <span id="search_message">{{ count_recipes }} recipes were found </span>
 {% elif count_recipes == "0" and search_text != '' and search_text is defined %}
-<span id="search_message">No recipes were found </span>
+<span id="search_message">No recipes were found</span>
 {% endif %}
 <div class="container">
     {% if args %}
