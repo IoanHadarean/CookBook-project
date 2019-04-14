@@ -8,6 +8,7 @@ from flask_login import current_user
 from werkzeug.datastructures import CombinedMultiDict
 from flask_wtf.file import FileField, FileRequired, FileAllowed
 from zapp import values, env
+from zapp.helpers import get_results
 from zapp.values import French_values, Mexican_values, Greek_values, English_values, Asian_values, Indian_values, Irish_values, Italian_values
 from flask_pymongo import PyMongo, pymongo
 from flask import Flask, redirect, render_template, render_template_string, request, url_for, flash, session, logging, json, jsonify
@@ -306,17 +307,62 @@ def recipes():
     courses = mongo.db.courses.find()
     allergens = mongo.db.allergens.find()
     
-    
-    
-    # cuisines_options = []
-    # for cuisine in cuisines:
-    #     cuisines_options.append(cuisine['cuisine_name'])
-    # print(cuisines_options)
-    
     return render_template('recipes.html', allergens = allergens, cuisines = cuisines, courses = courses,
                             args=args)
   
   
+  
+@app.route('/filter_results', methods=['POST'])
+def filter_results():
+	if request.method == "POST":
+		form = request.form.to_dict()
+		recipes = recipe_collection.aggregate([{"$match": {"$and": get_results(form)}}])
+
+		# Convert the cursor to list
+		recipes = list(recipes)
+		# Create a temporary list where the final results are stored
+		cleaned_recipes = list()
+		# Remove the ObjectId
+		for document in recipes:
+			del document['_id']
+			cleaned_recipes.append(document)
+
+
+		recipes = {
+			'doc' : cleaned_recipes
+		}
+		# Jsonify the list of documents (without IDs) and return it back in form of JSON 
+		return jsonify(recipes)  
+  
+  
+  
+  
+  
+  
+  
+  
+
+@app.route('/filter_recipes', methods = ["GET", "POST"])
+def filter_recipes():
+    if request.method == 'POST':
+        form = request.form.to_dict()
+        recipes = recipe_collection.aggregate([{"$match": {"$and": get_results(form)}}])
+        return render_template('recipes.html', recipes = list(recipes))
+    return render_template('recipes.html')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   
   
 """ Get the search results for recipes and then 
@@ -670,6 +716,10 @@ def update_rating(recipe_id):
 """ Allow logged in user to add recipe """
 @app.route('/add_recipe', methods = ['GET', 'POST'])
 def add_recipe():
+    cuisines = mongo.db.cuisines.find()
+    courses = mongo.db.courses.find()
+    allergens = mongo.db.allergens.find()
+    user_recipes = mongo.db.user_recipes.find()
     return render_template('add_recipe.html', user_recipes = user_recipes, courses = courses,
                             cuisines = cuisines, allergens = allergens)
     
@@ -754,8 +804,6 @@ def database_error(error):
 """ Main function for running the app """      
 
 if __name__ == "__main__":
-    global parsed_result
-    global args
     app.run(host=os.environ.get('IP'),
         port=int(os.environ.get('PORT')),
         debug=True)

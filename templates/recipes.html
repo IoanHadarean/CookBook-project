@@ -2,26 +2,6 @@
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/recipes.css') }}" type="text/css" />
 <section>
     <h1 class="random-message lifted"></h1>
-     <form>
-        <select id="allergens" name="allergens_name">
-            <option value="" disabled selected>Choose Allergen</option>
-            {% for allergen in allergens %}
-                <option value="allergens-{{ loop.index }}" name="allergens-{{ loop.index }}">{{ allergen.allergen_name }}</option>
-            {% endfor %}
-        </select>
-        <select id="cuisines" name="cuisines_name">
-            <option value="" disabled selected>Choose Cuisine</option>
-            {% for cuisine in cuisines %}
-                <option value="cuisines-{{ loop.index }}" name="cuisine-{{ loop.index }}">{{ cuisine.cuisine_name }}</option>
-            {% endfor %}
-        </select>
-        <select id="courses" name="course_name">
-            <option value="" disabled selected>Choose Course</option>
-            {% for course in courses %}
-                <option value="courses-{{ loop.index }}" name="courses-{{ loop.index }}">{{ course.course_name }}</option>
-            {% endfor %}
-        </select>
-    </form>
     <div class="container">
         {% for recipe in args.recipes_sorted %}
         <div class="recipes">
