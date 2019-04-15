@@ -327,51 +327,29 @@ def recipes():
     return render_template('recipes.html', cuisines = cuisines, courses = courses, allergens = allergens, args=args)
   
   
-  
-@app.route('/filter_results', methods=['POST'])
-def filter_results():
-	if request.method == "POST":
-		form = request.form.to_dict()
-		print(form)
-		recipes = recipe_collection.aggregate([{"$match": {"$and": get_results(form)}}])
-
-
-		# Convert the cursor to list
-		recipes = list(recipes)
-		# Create a temporary list where the final results are stored
-		cleaned_recipes = list()
-		# Remove the ObjectId
-		for document in recipes:
-			del document['_id']
-			cleaned_recipes.append(document)
-
-
-		recipes = {
-			'doc' : cleaned_recipes
-		}
-		# Jsonify the list of documents (without IDs) and return it back in the form of JSON 
-		return jsonify(recipes)  
-  
-  
-  
-  
-  
-  
-  
+ 
   
 
 @app.route('/filter_recipes', methods = ["GET", "POST"])
 def filter_recipes():
+    result = []
+    filter_result = []
     if request.method == 'POST':
         form = request.form.to_dict()
-        print(form)
-        recipes = recipe_collection.aggregate([{"$match": {"$and": get_results(form)}}])
-        print(recipes)
-        return render_template('recipes.html', recipes = list(recipes))
-    return render_template('recipes.html')
+        recipes = dumps(recipe_collection.aggregate([{"$match": {"$and": get_results(form)}}]))
+        filter_result = json.loads(recipes)
+        session['count_filter'] = str(len([x for x in filter_result]))
+        return jsonify({'filter_result': filter_result})
 
 
+@app.route('/filter_results', methods=['POST'])
+def filter_results():
+    count_filter = session.get('count_filter')
+    print(count_filter)
+    if request.method == "POST":
+        return count_filter
 
+  
 
 
 
@@ -396,9 +374,6 @@ def search_recipes():
     
     result = []
     parsed_result = []
-    cuisines = mongo.db.cuisines.find()
-    courses = mongo.db.courses.find()
-    allergens = mongo.db.allergens.find()
     if request.method == 'POST':
         
         # Get the results from the form according to user input
@@ -491,17 +466,10 @@ def is_logged_in(f):
     return wrap
     
     
-    
-""" Search recipes by full text """  
-  
-@app.route('/search_results', methods=['POST'])
-def search_results():
-    count = session.get('count_recipes')
-    if request.method == 'POST':
-        return count
-    
 
     
+
+
 
 """ View details of a recipe """
 

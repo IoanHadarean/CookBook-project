@@ -3,28 +3,27 @@
 <section>
     <h1 class="random-message lifted"></h1>
     <form id = "filter_form" method = "POST" action = "/filter_recipes" enctype="multipart/form-data">
-        <select name="option-select">
+        <select name="allergen_name">
             <option id = "choose-allergens" value="" disabled selected>Choose Allergen</option>
             {% for allergen in allergens %}
                 <option  value="{{ allergen.allergen_name }}" name="allergens-{{ loop.index }}">{{ allergen.allergen_name }}</option>
             {% endfor %}
         </select>
-        <select name="option-select-1">
+        <select name="cuisine_name">
             <option id = "choose-cuisines" value="" disabled selected>Choose Cuisine</option>
             {% for cuisine in cuisines %}
                 <option value="{{ cuisine.cuisine_name }}" name="cuisines-{{ loop.index }}">{{ cuisine.cuisine_name }}</option>
             {% endfor %}
         </select>
-        <select name="option-select-2">
+        <select name="course_name">
             <option id = "choose-courses" value="" disabled selected>Choose Course</option>
             {% for course in courses %}
                 <option value="{{ course.course_name }}" name="courses-{{ loop.index }}">{{ course.course_name }}</option>
             {% endfor %}
         </select>
+        <button type = "submit" id="tags_search_btn" class="btn btn-block btn-outline-warning">
+		Select a tag!</button>
     </form>
-    <button	id="tags_search_btn" class="btn btn-block btn-outline-warning" disabled>
-		Select a tag!
-	</button>
 	<p id = "num-results"></p>
 	<div id="results" class="row justify-content-center">	</div>
     <div class="container">

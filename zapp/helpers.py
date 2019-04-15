@@ -13,6 +13,7 @@ def get_results(data):
         # Create temporary dictionary for storing the filter
         search_filter = dict()
         search_filter[key] = data[value_key]
+        print(search_filter)
         # Append the filter to the list of filters
         filters.append(search_filter)
     return filters
