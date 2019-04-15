@@ -252,7 +252,6 @@ def profile():
                 cur.execute("UPDATE users SET email = %s WHERE username = %s", (email, user))
                 cur.execute("UPDATE users SET aboutme = %s WHERE username = %s", (about_me, user))
                 cur.execute("UPDATE users SET image = %s WHERE username = %s", (picture_file, user))
-                connection.commit()
                 flash('Your profile has been updated successfully', 'success')
                 return redirect(url_for('profile'))
         elif email != current_email:
@@ -265,7 +264,6 @@ def profile():
                 cur.execute("UPDATE users SET email = %s WHERE username = %s", (email, user))
                 cur.execute("UPDATE users SET aboutme = %s WHERE username = %s", (about_me, user))
                 cur.execute("UPDATE users SET image = %s WHERE username = %s", (picture_file, user))
-                connection.commit()
                 flash('Your profile has been updated successfully', 'success')
                 return redirect(url_for('profile'))
         else:
@@ -274,7 +272,8 @@ def profile():
             cur.execute("UPDATE users SET image = %s WHERE username = %s", (picture_file, user))
             return redirect(url_for('profile'))
 
-        #Close the connection
+        #Commit and close the connection
+        connection.commit()
         cur.close()
     
        
