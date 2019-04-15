@@ -2,9 +2,9 @@ import os, pymysql, requests, pygal, re
 from base64 import b64encode
 from PIL import Image
 from os import urandom
-from datetime import datetime
+from datetime import datetime, timedelta
 from flask.logging import create_logger
-from flask_login import current_user
+from flask_login import current_user, LoginManager, login_required, login_user, logout_user
 from werkzeug.datastructures import CombinedMultiDict
 from flask_wtf.file import FileField, FileRequired, FileAllowed
 from zapp import values, env
@@ -25,6 +25,14 @@ from werkzeug.urls import url_parse
 app = Flask(__name__)
 LOG = create_logger(app)
 moment = Moment(app)
+
+# Define Flask-login configuration 
+
+login_mgr = LoginManager(app)
+login_mgr.login_view = 'login'
+login_mgr.refresh_view = 'login'
+login_mgr.needs_refresh_message = (u"To protect your account, please reauthenticate to access this page.")
+login_mgr.needs_refresh_message_category = "info"
 
 
 
@@ -68,6 +76,15 @@ class EditForm(Form):
     about_me = TextAreaField('About Me', validators=[Length(min=12, max=140)])
     picture = FileField('Update Profile Picture', validators = [FileRequired(), FileAllowed(['jpg', 'jpeg', 'png'])])
                 
+           
+""" Log out the user from session after 1 hour """           
+            
+@app.before_request
+def before_request():
+    session.permanent = True
+    app.permanent_session_lifetime = timedelta(minutes=60)
+            
+            
             
 """Route when first accessing the page"""
 
@@ -307,7 +324,6 @@ def recipes():
     courses = mongo.db.courses.find()
     allergens = mongo.db.allergens.find()
     
-    
     return render_template('recipes.html', cuisines = cuisines, courses = courses, allergens = allergens, args=args)
   
   
@@ -316,8 +332,9 @@ def recipes():
 def filter_results():
 	if request.method == "POST":
 		form = request.form.to_dict()
+		print(form)
 		recipes = recipe_collection.aggregate([{"$match": {"$and": get_results(form)}}])
-		print(recipes)
+
 
 		# Convert the cursor to list
 		recipes = list(recipes)
@@ -332,7 +349,7 @@ def filter_results():
 		recipes = {
 			'doc' : cleaned_recipes
 		}
-		# Jsonify the list of documents (without IDs) and return it back in form of JSON 
+		# Jsonify the list of documents (without IDs) and return it back in the form of JSON 
 		return jsonify(recipes)  
   
   
@@ -347,6 +364,7 @@ def filter_results():
 def filter_recipes():
     if request.method == 'POST':
         form = request.form.to_dict()
+        print(form)
         recipes = recipe_collection.aggregate([{"$match": {"$and": get_results(form)}}])
         print(recipes)
         return render_template('recipes.html', recipes = list(recipes))
@@ -806,7 +824,9 @@ def page_not_found(error):
 @app.errorhandler(500)
 def database_error(error):
     return render_template('error500.html'), 500
-
+  
+  
+ 
   
 """ Main function for running the app """      
 
