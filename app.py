@@ -208,11 +208,14 @@ def profile():
         email = form.email.data
         about_me = form.about_me.data
         picture = form.picture.data
-        random_hex = urandom(8)
+        random_hex = urandom(16)
         token = b64encode(random_hex).decode('utf-8')
         _, f_ext = os.path.splitext(picture.filename)
         picture_fn = token + f_ext
-        picture_path = os.path.abspath(os.path.join(app.root_path, 'static/images', picture_fn))
+        new_picture_fn = picture_fn.replace("/", "|")
+        app.root_path = os.path.dirname(os.path.abspath(__file__))
+        picture_path = os.path.abspath(os.path.join(app.root_path, 'static/images', new_picture_fn))
+        print(picture_path)
         
         output_size = (180, 180)
         
@@ -220,7 +223,7 @@ def profile():
         i.thumbnail(output_size)
         
         i.save(picture_path)
-        picture_file = picture_fn
+        picture_file = new_picture_fn
 
         
         #Get session username
