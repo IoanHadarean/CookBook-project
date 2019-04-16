@@ -21,12 +21,11 @@
                 <option value="{{ course.course_name }}" name="courses-{{ loop.index }}">{{ course.course_name }}</option>
             {% endfor %}
         </select>
-        <button type = "submit" id="tags_search_btn" class="btn btn-block btn-outline-warning">
+        <button type = "submit" id="tags_search_btn" class="btn btn-block btn-outline-warning" disabled>
 		Filter Recipes</button>
     </form>
-	<p id = "num-results"></p>
-	<div id="results" class="row justify-content-center"></div>
-	{% if count_filter != "0" %}
+	{% if count_filter != "0" and args %}
+	<p id = "num-results">{{ count_filter }}</p>
     <div class="container">
         {% for recipe in args.recipes_sorted %}
         <div class="recipes">
@@ -62,7 +61,7 @@
     </div>
     {% endif %}
     {% else %}
-    <p>No search results found</p>
+    <p id = "num-results">No recipes found</p>
     {% endif %}
 </section>
 <script src="{{ url_for('static', filename = 'js/random_message.js') }}" async></script>

@@ -6,7 +6,11 @@
     <button id="submit_search" type="submit" class="btn btn-primary btn-center">Search</button>
 </form>
 {% if count_recipes != "0" and search_text != '' and search_text is defined %}
-<span id="search_message">{{ count_recipes }} recipes were found </span>
+    {% if count_recipes != "1" %}
+        <span id="search_message">{{ count_recipes }} recipe was found </span>
+    {% else %}
+    <span id="search_message">{{ count_recipes }} recipes were found </span>
+    {% endif %}
 {% elif count_recipes == "0" and search_text != '' and search_text is defined %}
 <span id="search_message">No recipes were found</span>
 {% endif %}
