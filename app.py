@@ -333,12 +333,45 @@ def recipes():
 def filter_recipes():
     result = []
     filter_result = []
+    args = {}
+    cuisines = mongo.db.cuisines.find()
+    courses = mongo.db.courses.find()
+    allergens = mongo.db.allergens.find()
     if request.method == 'POST':
         form = request.form.to_dict()
+        print(form)
         recipes = dumps(recipe_collection.aggregate([{"$match": {"$and": get_results(form)}}]))
         filter_result = json.loads(recipes)
         session['count_filter'] = str(len([x for x in filter_result]))
-        return jsonify({'filter_result': filter_result})
+       
+        #Pagination for filters when the form is submitted
+        pagination_offset = int(request.args.get('offset', '0'))
+        pagination_limit = int(request.args.get('limit', '6'))
+    
+    
+        starting_id = recipe_collection.aggregate([{"$match": {"$and": get_results(form)}}, {"$sort": {"_id": 1}}])
+        results_count = 0
+        result = []
+        for count_item in starting_id:
+            results_count += 1
+            result.append(count_item)
+        
+        if results_count != 0:
+            last_id = result[pagination_offset]['_id']
+        
+        
+            args = {
+                "limit": pagination_limit,
+                "offset": pagination_offset,
+                "recipes_sorted": recipe_collection.aggregate([{"$match": {"$and": get_results(form)}}, {"$sort": {"_id": 1}}, {"$limit": pagination_limit}]),
+                "next_url": '/filter_recipes?limit=' + str(pagination_limit) + '&offset=' + str(pagination_offset + pagination_limit),
+                "prev_url": '/filter_recipes?limit=' + str(pagination_limit) + '&offset=' + str(pagination_offset - pagination_limit),
+                "total_results": results_count
+            }
+            
+            print(args["recipes_sorted"])
+        
+    return render_template('recipes.html', cuisines = cuisines, courses = courses, allergens = allergens, args = args)
 
 
 @app.route('/filter_results', methods=['POST'])

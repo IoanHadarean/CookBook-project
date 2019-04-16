@@ -111,8 +111,8 @@ adding a function that clears markers after each time another country is clicked
 3. **PyMongo 3.7.2**(https://api.mongodb.com/python/current/)
    <br>**PyMongo 3.7.2** is a Python library that made the connection between Flask and the mLab MongoDB database.
    Note:  The command that was run for finding the version of pymongo was *pip freeze | grep pymongo*
-4. **PyMySQL **(https://pymysql.readthedocs.io/en/latest/)
-   <br>**PyMySQL ** is a Python library that liaised MySQL with Flask and Python.
+4. **PyMySQL**(https://pymysql.readthedocs.io/en/latest/)
+   <br>**PyMySQL** is a Python library that liaised MySQL with Flask and Python.
    Note:  The command that was run for finding the version of pymongo was *pip freeze | grep PyMySQL*
 
 
