@@ -333,7 +333,6 @@ def recipes():
 def filter_recipes():
     result = []
     filter_result = []
-    args = {}
     cuisines = mongo.db.cuisines.find()
     courses = mongo.db.courses.find()
     allergens = mongo.db.allergens.find()
@@ -341,8 +340,11 @@ def filter_recipes():
         form = request.form.to_dict()
         print(form)
         recipes = dumps(recipe_collection.aggregate([{"$match": {"$and": get_results(form)}}]))
+        print(recipes)
         filter_result = json.loads(recipes)
         session['count_filter'] = str(len([x for x in filter_result]))
+        count_filter = session['count_filter']
+        print(count_filter)
        
         #Pagination for filters when the form is submitted
         pagination_offset = int(request.args.get('offset', '0'))
@@ -369,30 +371,16 @@ def filter_recipes():
                 "total_results": results_count
             }
             
-            print(args["recipes_sorted"])
-        
-    return render_template('recipes.html', cuisines = cuisines, courses = courses, allergens = allergens, args = args)
+            return render_template('recipes.html', form = form, count_filter = count_filter,
+            cuisines = cuisines, courses = courses, allergens = allergens, args = args)
+        else:
+            return render_template('recipes.html', form = form, count_filter = count_filter,
+            cuisines = cuisines, courses = courses, allergens = allergens)
+    
+    return render_template('recipes.html', cuisines = cuisines, courses = courses, allergens = allergens)
 
-
-@app.route('/filter_results', methods=['POST'])
-def filter_results():
-    count_filter = session.get('count_filter')
-    print(count_filter)
-    if request.method == "POST":
-        return count_filter
 
   
-
-
-
-
-
-
-
-
-
-
-
   
   
 """ Get the search results for recipes and then 

@@ -1,7 +1,14 @@
 let filterButton = document.getElementById('tags_search_btn');
+let filterForm = document.getElementById('filter_form');
+let footer = document.getElementsByTagName('footer')[0];
 let selects = document.querySelectorAll('select');
 let container = document.getElementsByClassName('container')[0];
-selects.forEach(select => select.onchange = () => container.innerHTML = '');
+let filterRecipes = document.getElementsByClassName('recipes')[0];
+selects.forEach(select => select.onchange = function() {
+   container.innerHTML = '';
+   footer.style.position = 'absolute';
+});
+
 
 filterButton.addEventListener('click', num_results);
 
@@ -18,6 +25,15 @@ function num_results() {
     xhr.open("POST", "/filter_results", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.send();
+}
+
+if (container) {
+    if (container.contains(filterRecipes)) {
+        footer.style.position = 'relative';
+    }
+    else {
+        footer.style.position = 'absolute';
+    }
 }
 
 

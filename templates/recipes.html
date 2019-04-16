@@ -22,10 +22,11 @@
             {% endfor %}
         </select>
         <button type = "submit" id="tags_search_btn" class="btn btn-block btn-outline-warning">
-		Select a tag!</button>
+		Filter Recipes</button>
     </form>
 	<p id = "num-results"></p>
-	<div id="results" class="row justify-content-center">	</div>
+	<div id="results" class="row justify-content-center"></div>
+	{% if count_filter != "0" %}
     <div class="container">
         {% for recipe in args.recipes_sorted %}
         <div class="recipes">
@@ -59,6 +60,9 @@
             </ul>
         </div>
     </div>
+    {% endif %}
+    {% else %}
+    <p>No search results found</p>
     {% endif %}
 </section>
 <script src="{{ url_for('static', filename = 'js/random_message.js') }}" async></script>
