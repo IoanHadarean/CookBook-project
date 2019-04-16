@@ -326,7 +326,9 @@ def recipes():
     return render_template('recipes.html', cuisines = cuisines, courses = courses, allergens = allergens, args=args)
   
   
- 
+  
+""" Get the filter results for recipes and then 
+    implement pagination for filter results """
   
 
 @app.route('/filter_recipes', methods = ["GET", "POST"])
@@ -338,9 +340,8 @@ def filter_recipes():
     allergens = mongo.db.allergens.find()
     if request.method == 'POST':
         form = request.form.to_dict()
-        print(form)
+        session['filter_form'] = form
         recipes = dumps(recipe_collection.aggregate([{"$match": {"$and": get_results(form)}}]))
-        print(recipes)
         filter_result = json.loads(recipes)
         session['count_filter'] = str(len([x for x in filter_result]))
         count_filter = session['count_filter']
@@ -377,15 +378,42 @@ def filter_recipes():
             return render_template('recipes.html', form = form, count_filter = count_filter,
             cuisines = cuisines, courses = courses, allergens = allergens)
     
-    return render_template('recipes.html', cuisines = cuisines, courses = courses, allergens = allergens)
+    
+    #Pagination on GET request for filters
+    pagination_offset = int(request.args.get('offset', '0'))
+    pagination_limit = int(request.args.get('limit', '6'))
+    form = session.get('filter_form')
+    
+    starting_id = recipe_collection.aggregate([{"$match": {"$and": get_results(form)}}, {"$sort": {"_id": 1}}])
+    results_count = 0
+    result = []
+    for count_item in starting_id:
+        results_count += 1
+        result.append(count_item)
+        
+    if results_count != 0:
+        last_id = result[pagination_offset]['_id']
+        
+        
+        args = {
+            "limit": pagination_limit,
+            "offset": pagination_offset,
+            "recipes_sorted": recipe_collection.aggregate([{"$match": {"$and": get_results(form)}}, {"$sort": {"_id": 1}}, {"$limit": pagination_limit}]),
+            "next_url": '/filter_recipes?limit=' + str(pagination_limit) + '&offset=' + str(pagination_offset + pagination_limit),
+            "prev_url": '/filter_recipes?limit=' + str(pagination_limit) + '&offset=' + str(pagination_offset - pagination_limit),
+            "total_results": results_count
+        }
+    
+        return render_template('recipes.html', cuisines = cuisines, courses = courses, allergens = allergens, args = args)
+    else:
+        return render_template('recipes.html')
 
 
   
   
   
 """ Get the search results for recipes and then 
-    implement pagination for search results
-    (Note: don't change any code here) """
+    implement pagination for search results """
  
   
 
@@ -438,7 +466,6 @@ def search_recipes():
         else:
             return render_template('search_recipes.html',
             search_text = search_text, count_recipes = count_recipes)
-            
             
     #Pagination for search on GET request
     pagination_offset = int(request.args.get('offset', '0'))
