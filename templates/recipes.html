@@ -24,9 +24,17 @@
         <button type = "submit" id="tags_search_btn" class="btn btn-block btn-outline-warning" disabled>
 		Filter Recipes</button>
     </form>
-	{% if count_filter != "0" and args %}
-	<p id = "num-results">{{ count_filter }}</p>
+	{% if count_filter != "0" and form != '' and form is defined %}
+	    {% if count_filter == "1" %}
+	        <p id = "num-results">{{ count_filter }} recipe was found</p>
+	    {% else %}
+	        <p id = "num-results">{{ count_filter }} recipes were found</p>
+	    {% endif %}
+	{% elif count_filter == "0" and form != '' and form is defined %}
+        <p id = "num-results">No recipes found</p>
+    {% endif %}
     <div class="container">
+        {% if args %}
         {% for recipe in args.recipes_sorted %}
         <div class="recipes">
             <div class="recipes__name">
@@ -60,8 +68,6 @@
         </div>
     </div>
     {% endif %}
-    {% else %}
-    <p id = "num-results">No recipes found</p>
     {% endif %}
 </section>
 <script src="{{ url_for('static', filename = 'js/random_message.js') }}" async></script>

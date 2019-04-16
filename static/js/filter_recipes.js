@@ -14,6 +14,7 @@ selects.forEach(select => select.onchange = function() {
    container.innerHTML = '';
    footer.style.position = 'absolute';
    filterButton.disabled = false;
+   filterResults.innerHTML = '';
 });
 
 
