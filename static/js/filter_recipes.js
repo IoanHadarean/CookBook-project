@@ -28,7 +28,6 @@ function num_results() {
             if (this.readyState === 4 && this.status === 200) {
                 let response = xhr.responseText;
                 console.log(response);
-                filterForm.reset();
             }
     };
     xhr.open("POST", "/filter_results", true);

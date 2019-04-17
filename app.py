@@ -215,7 +215,6 @@ def profile():
         new_picture_fn = picture_fn.replace("/", "|")
         app.root_path = os.path.dirname(os.path.abspath(__file__))
         picture_path = os.path.abspath(os.path.join(app.root_path, 'static/images', new_picture_fn))
-        print(picture_path)
         
         output_size = (180, 180)
         
@@ -348,7 +347,6 @@ def filter_recipes():
         filter_result = json.loads(recipes)
         session['count_filter'] = str(len([x for x in filter_result]))
         count_filter = session['count_filter']
-        print(count_filter)
        
         #Pagination for filters when the form is submitted
         pagination_offset = int(request.args.get('offset', '0'))
@@ -375,7 +373,6 @@ def filter_recipes():
                 "total_results": results_count
             }
             
-            print(args["recipes_sorted"])
             
             return render_template('recipes.html', form = form, count_filter = count_filter,
             cuisines = cuisines, courses = courses, allergens = allergens, args = args)
@@ -409,7 +406,7 @@ def filter_recipes():
             "total_results": results_count
         }
     
-        return render_template('recipes.html', cuisines = cuisines, courses = courses, allergens = allergens, args = args)
+        return render_template('recipes.html', form = form, cuisines = cuisines, courses = courses, allergens = allergens, args = args)
     else:
         return render_template('recipes.html')
 
@@ -526,32 +523,9 @@ def is_logged_in(f):
 """ View details of a recipe """
 
 @app.route('/get_recipe/<recipe_id>', methods = ['GET', 'POST'])
-@is_logged_in
 def get_recipe(recipe_id):
     
     the_recipe = recipe_collection.find_one({"_id": ObjectId(recipe_id)})
-    
-    
-    """ Get the rating text for each rating done by each user for each recipe """
-    
-    # Get MySQL connection
-    cur = connection.cursor()
-
-
-    user = session.get('username')
-    recipe_number = the_recipe["id"]
-    
-    cur.execute("SELECT id FROM users WHERE username = %s", user)
-    user_id = cur.fetchall()[0]['id']
-    
-    instance_rating = ratings_collection.find_one({"user_id": user_id, "recipe_id": recipe_number})
-    if instance_rating == None:
-        ratings_collection.insert_one({"user_id": user_id, "recipe_id": recipe_number, "rating": 0, "rateText": "Rate Recipe"})
-
-    # Close the connection
-    cur.close()
-    
-    
     
     """ Add ready time for each recipe (cooking time + preparation time) """
     
@@ -611,10 +585,45 @@ def get_recipe(recipe_id):
         full_ingredients.append(concatenated_ingredient)
         
     
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    """ Get the rating text for each rating done by each user for each recipe """
+    
+    # Get MySQL connection
+    cur = connection.cursor()
 
+    user = session.get('username')
+    recipe_number = the_recipe["id"]
+    
+    instance_rating = []
+    if user != None:
+        cur.execute("SELECT id FROM users WHERE username = %s", user)
+        user_id = cur.fetchall()[0]['id']
+        print(user_id)
+    
+        instance_rating = ratings_collection.find_one({"user_id": user_id, "recipe_id": recipe_number})
+        if instance_rating == None:
+            ratings_collection.insert_one({"user_id": user_id, "recipe_id": recipe_number, "rating": 0, "rateText": "Rate Recipe"})
+
+        # Close the connection
+        connection.commit()
+        cur.close()
+    else:
+        return render_template('get_recipe.html', user =  user, recipe=the_recipe, total = total, full_quantities = full_quantities,
+                            full_ingredients = full_ingredients)
             
-    return render_template('get_recipe.html', recipe=the_recipe, total = total, full_quantities = full_quantities,
-                            full_ingredients = full_ingredients, request=request, instance_rating = instance_rating)
+    return render_template('get_recipe.html', user =  user, recipe=the_recipe, total = total, full_quantities = full_quantities,
+                            full_ingredients = full_ingredients, instance_rating = instance_rating)
     
     
     

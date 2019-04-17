@@ -36,7 +36,9 @@
             <div class="stars-inner"></div>
         </div>
         <span class="numbers-rating">{{ recipe.rating }}</span>
-        {% if instance_rating == None %}
+        {% if instance_rating == None and user != None %}
+            <button id="rating__button">Rate Recipe</button>
+        {% elif user == None %}
             <button id="rating__button">Rate Recipe</button>
         {% else %}
             <button id="rating__button">{{ instance_rating.rateText }}</button>
