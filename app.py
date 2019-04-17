@@ -584,20 +584,8 @@ def get_recipe(recipe_id):
         full_quantities.append(concatenated_quantity)
         full_ingredients.append(concatenated_ingredient)
         
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    """ Get the rating text for each rating done by each user for each recipe """
+    """ Get the rating text for each rating done by each user for each recipe
+        and check for user None value """
     
     # Get MySQL connection
     cur = connection.cursor()
@@ -613,7 +601,7 @@ def get_recipe(recipe_id):
     
         instance_rating = ratings_collection.find_one({"user_id": user_id, "recipe_id": recipe_number})
         if instance_rating == None:
-            ratings_collection.insert_one({"user_id": user_id, "recipe_id": recipe_number, "rating": 0, "rateText": "Rate Recipe"})
+            ratings_collection.insert_one({"user_id": user_id, "recipe_id": recipe_number, "rateText": "Rate Recipe"})
 
         # Close the connection
         connection.commit()

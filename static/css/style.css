@@ -20,7 +20,7 @@
   padding-right: 0px;
   height: 100%;
   min-height: 100%;
-  height:auto !important;
+  height: auto !important;
   width: 100%;
  }
 
@@ -34,7 +34,7 @@
  .alert-danger {
   margin-top: 50px;
  }
- 
+
  .help-inline {
   color: #62a5a1;
  }
@@ -215,6 +215,12 @@
    margin-bottom: 23px;
   }
 
+  .search-tag,
+  .add_recipe-tag,
+  .profile-tag {
+   height: 30px;
+  }
+
  }
 
 
@@ -308,7 +314,7 @@
   .navbar-brand {
    padding-left: 2vw;
   }
-  
+
   .footer__copyright a {
    font-size: 24px;
   }

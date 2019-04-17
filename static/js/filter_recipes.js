@@ -11,10 +11,12 @@ let filterResults = document.getElementById('num-results');
 // Add on change event for selects
 
 selects.forEach(select => select.onchange = function() {
-   container.innerHTML = '';
-   footer.style.position = 'absolute';
-   filterButton.disabled = false;
-   filterResults.innerHTML = '';
+    container.innerHTML = '';
+    footer.style.position = 'absolute';
+    filterButton.disabled = false;
+    if (filterResults) {
+        filterResults.innerHTML = '';
+    }
 });
 
 
@@ -25,10 +27,10 @@ filterButton.addEventListener('click', num_results);
 function num_results() {
     let xhr = new XMLHttpRequest();
     xhr.onload = function() {
-            if (this.readyState === 4 && this.status === 200) {
-                let response = xhr.responseText;
-                console.log(response);
-            }
+        if (this.readyState === 4 && this.status === 200) {
+            let response = xhr.responseText;
+            console.log(response);
+        }
     };
     xhr.open("POST", "/filter_results", true);
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -44,10 +46,9 @@ if (container) {
     }
 }
 
-if (filterResults.innerHTML == 'No recipes found') {
-    footer.style.position = 'absolute';
-    filterButton.disabled = false;
+if (filterResults) {
+    if (filterResults.innerHTML == 'No recipes found') {
+        footer.style.position = 'absolute';
+        filterButton.disabled = false;
+    }
 }
-
-
-

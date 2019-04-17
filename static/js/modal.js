@@ -15,7 +15,9 @@ let html = document.getElementsByTagName('html')[0];
 // When the user clicks on the like/dislike button show modal
 likeButtons.forEach(function(likeButton) {
   likeButton.addEventListener('click', (e) => {
-    likeModal.style.display = 'block';
+    if (likeModal) {
+      likeModal.style.display = 'block';
+    }
     html.style.overflowY = 'hidden';
   });
 });
