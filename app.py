@@ -502,17 +502,17 @@ def search_recipes():
    
         
     
-""" Login Required decorator """
+# """ Login Required decorator """
  
-def is_logged_in(f):
-    @wraps(f)
-    def wrap(*args, **kwargs):
-        if 'logged_in' in session:
-            return f(*args, **kwargs)
-        else:
-            flash('You need to have an account to view/rate recipes', 'danger')
-        return redirect(url_for('register'))
-    return wrap
+# def is_logged_in(f):
+#     @wraps(f)
+#     def wrap(*args, **kwargs):
+#         if 'logged_in' in session:
+#             return f(*args, **kwargs)
+#         else:
+#             flash('You need to have an account to view/rate recipes', 'danger')
+#         return redirect(url_for('register'))
+#     return wrap
     
     
 
