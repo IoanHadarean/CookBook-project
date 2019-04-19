@@ -1,4 +1,4 @@
-import os, pymysql, requests, pygal, re
+import os, pymysql, requests, pygal, re, env
 from base64 import b64encode
 from PIL import Image
 from os import urandom
@@ -7,7 +7,7 @@ from flask.logging import create_logger
 from flask_login import current_user, LoginManager, login_required, login_user, logout_user
 from werkzeug.datastructures import CombinedMultiDict
 from flask_wtf.file import FileField, FileRequired, FileAllowed
-from zapp import values, env
+from zapp import values
 from zapp.helpers import get_results
 from zapp.values import French_values, Mexican_values, Greek_values, English_values, Asian_values, Indian_values, Irish_values, Italian_values
 from flask_pymongo import PyMongo, pymongo

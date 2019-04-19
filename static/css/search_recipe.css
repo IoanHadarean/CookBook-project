@@ -32,9 +32,22 @@ footer {
 }
 
 .btn {
-    margin-top: 70px;
     width: 120px;
+    margin-top: 0;
 }
+
+#btn-container {
+    height: 34px;
+    margin-top: 80px;
+}
+
+.btn:disabled {
+    background-color: #62a5a1;
+    opacity: 1;
+    cursor: pointer;
+    pointer-events: none;
+}
+
 
 /* ---------------------------------- Media Queries ------------------------------ */
 

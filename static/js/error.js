@@ -6,5 +6,7 @@ setTimeout(clearError, 3000);
 
 
 function clearError() {
-    alert.remove();
+    if (alert) {
+        alert.remove();
+    }
 }
