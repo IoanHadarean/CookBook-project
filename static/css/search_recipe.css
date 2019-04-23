@@ -69,9 +69,9 @@ footer {
     }
 }
 
-@media (min-height: 480px) and (max-height: 960px) and (min-width: 375px) {
+@media (min-height: 641px) and (max-height: 960px) and (min-width: 375px) {
     #search_message {
-        margin-top: 55px;
+        margin-top: 40px;
     }
 }
 

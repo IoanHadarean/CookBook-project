@@ -32,12 +32,14 @@ if (results) {
 }
 
 document.addEventListener('click', function(e) {
-     let clickInside = btnContainer.contains(event.target);
+    if (btnContainer) {
+        let clickInside = btnContainer.contains(event.target);
      if (clickInside) {
         searchBtn.style.borderColor = 'black';
         searchBtn.style.borderWidth = 'thin';
      }
      else {
          searchBtn.style.borderColor = 'white';
-     }
+     } 
+    }
 });
