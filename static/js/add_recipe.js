@@ -21,11 +21,7 @@ function loadEventListeners() {
 }
 
 
-
-
-
-
-
+// Get Ingredients from local storage
 
 function getIngredients() {
     let ingredients;
@@ -126,12 +122,9 @@ function addIngredient(e) {
     ingredient.appendChild(addButton);
     ingredient.appendChild(removeButton);
     ingredientsList.appendChild(ingredient);
-    console.log(ingredient);
 
     // Store Ingredient in local storage
     storeIngredientInLocalStorage(input.name);
-
-    input.name = '';
 
     e.preventDefault();
 }
@@ -149,6 +142,7 @@ function storeIngredientInLocalStorage(ingredient) {
         ingredients = JSON.parse(localStorage.getItem('ingredients'));
     }
 
+    
     ingredients.push(ingredient);
 
     localStorage.setItem('ingredients', JSON.stringify(ingredients));
@@ -158,17 +152,39 @@ function storeIngredientInLocalStorage(ingredient) {
 // Remove Ingredient 
 function removeIngredient(e) {
     let ingredientsListLength = document.getElementsByClassName('ingredient').length;
-    console.log(ingredientsListLength);
 
     if (ingredientsListLength == 1) {
         console.log("Not Allowed");
     }
     else if (e.target.parentElement.classList.contains('delete-item')) {
         e.target.parentElement.parentElement.remove();
+        removeTaskFromLocalStorage(e.target.parentElement.parentElement.firstChild);
     }
     else {
+        console.log(e.target.parentElement);
         e.target.parentElement.remove();
+        removeTaskFromLocalStorage(e.target.parentElement.firstChild);
     }
 
     e.preventDefault();
+}
+
+
+// Remove Task from local storage
+function removeTaskFromLocalStorage(ingredientItem) {
+    let ingredients;
+    if (localStorage.getItem('ingredients') === null) {
+        ingredients = [];
+    }
+    else {
+        ingredients = JSON.parse(localStorage.getItem('ingredients'));
+    }
+    
+    ingredients.forEach(function(ingredient, index) {
+        if (ingredientItem.name === ingredient) {
+            ingredients.splice(index, 1);
+        }
+    });
+    
+    localStorage.setItem('ingredients', JSON.stringify(ingredients));
 }
