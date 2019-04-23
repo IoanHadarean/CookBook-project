@@ -64,10 +64,14 @@ function addIngredient(e) {
     let ingredientsListLength = document.getElementsByClassName('ingredient').length;
     
     // Create elements
-    const ingredient = document.createElement("div");
+    const ingredient = document.createElement('div');
     const input = document.createElement('input');
     const addButton = document.createElement('button');
     const removeButton = document.createElement('button');
+    addButton.addEventListener('click', addIngredient);
+    removeButton.addEventListener('click', removeIngredient);
+    const addIcon = document.createElement('i');
+    const deleteIcon = document.createElement('i');
     
     // Add class to ingredient container
     ingredient.className = 'ingredient';
@@ -78,22 +82,27 @@ function addIngredient(e) {
     input.placeholder = "Please enter an ingredient";
     input.className = 'form-control';
     
+    // Add properties to icons
+    addIcon.className = 'material-icons right';
+    deleteIcon.className = 'material-icons right';
+    addIcon.innerHTML = 'add';
+    deleteIcon.innerHTML = 'clear';
+    
     // Add properties to buttons
-    addButton.className = 'add-ingredient';
-    addButton.addEventListener('click', addIngredient);
-    removeButton.addEventListener('click', removeIngredient);
-    removeButton.classList = 'delete-item secondary-content';
-    addButton.innerHTML += `<i class="material-icons right">add</i>`;
-    removeButton.innerHTML += `<i class="material-icons right">clear</i>`;
+    addButton.className = 'add-ingredient secondary-content';
+    removeButton.className = 'delete-item secondary-content';
     addButton.type = 'button';
     removeButton.type = 'button';
     
     // Append elements
+    addButton.appendChild(addIcon);
+    removeButton.appendChild(deleteIcon);
     ingredient.appendChild(input);
     ingredient.appendChild(addButton);
     ingredient.appendChild(removeButton);
     ingredientsList.appendChild(ingredient);
     console.log(ingredient);
+    
     e.preventDefault();
 }
     
@@ -105,8 +114,11 @@ function removeIngredient(e) {
         console.log("Not Allowed");
     }
     else if (e.target.parentElement.classList.contains('delete-item')) {
-        if (confirm('Are you sure you want to delete this ingredient?')) {
-            e.target.parentElement.parentElement.remove();
-        }
+        e.target.parentElement.parentElement.remove();
     }
+    else {
+         e.target.parentElement.remove();
+    }
+    
+    e.preventDefault();
 }
