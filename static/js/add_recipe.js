@@ -4,8 +4,8 @@
 
 // Get HTML Elements
 const form = document.getElementById('recipe');
-const addButtons = document.getElementsByClassName('add-ingredient')[0];
-const deleteButtons = document.getElementsByClassName('delete-item');
+const firstAddButton = document.getElementsByClassName('add-ingredient')[0];
+const firstDeleteButton = document.getElementsByClassName('delete-item')[0];
 const ingredientsList = document.getElementById('ingredients-list');
 
 
@@ -15,7 +15,8 @@ loadEventListeners();
 
 
 function loadEventListeners() {
-    addButtons.addEventListener('click', addIngredient);
+    firstAddButton.addEventListener('click', addIngredient);
+    firstDeleteButton.addEventListener('click', removeIngredient);
 }
 
 
@@ -59,6 +60,9 @@ function loadEventListeners() {
 
 
 function addIngredient(e) {
+    
+    let ingredientsListLength = document.getElementsByClassName('ingredient').length;
+    
     // Create elements
     const ingredient = document.createElement("div");
     const input = document.createElement('input');
@@ -70,12 +74,14 @@ function addIngredient(e) {
     
     // Add properties to input
     input.type = "text";
+    input.name = `ingredient-${ingredientsListLength + 1}`;
     input.placeholder = "Please enter an ingredient";
     input.className = 'form-control';
     
     // Add properties to buttons
     addButton.className = 'add-ingredient';
     addButton.addEventListener('click', addIngredient);
+    removeButton.addEventListener('click', removeIngredient);
     removeButton.classList = 'delete-item secondary-content';
     addButton.innerHTML += `<i class="material-icons right">add</i>`;
     removeButton.innerHTML += `<i class="material-icons right">clear</i>`;
@@ -91,3 +97,16 @@ function addIngredient(e) {
     e.preventDefault();
 }
     
+function removeIngredient(e) {
+    let ingredientsListLength = document.getElementsByClassName('ingredient').length;
+    console.log(ingredientsListLength);
+    
+    if (ingredientsListLength == 1) {
+        console.log("Not Allowed");
+    }
+    else if (e.target.parentElement.classList.contains('delete-item')) {
+        if (confirm('Are you sure you want to delete this ingredient?')) {
+            e.target.parentElement.parentElement.remove();
+        }
+    }
+}
