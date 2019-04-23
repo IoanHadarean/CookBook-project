@@ -4,8 +4,8 @@
 
 // Get HTML Elements
 const form = document.getElementById('recipe');
-const addBtn = document.getElementsByClassName('add-ingredient')[0];
-const deleteBtn = document.getElementsByClassName('delete-item');
+const addButtons = document.getElementsByClassName('add-ingredient')[0];
+const deleteButtons = document.getElementsByClassName('delete-item');
 const ingredientsList = document.getElementById('ingredients-list');
 
 
@@ -15,9 +15,13 @@ loadEventListeners();
 
 
 function loadEventListeners() {
-    addBtn.addEventListener('click', addIngredient);
-    // deleteBtn.addEventListener('click', removeIngredient);
+    addButtons.addEventListener('click', addIngredient);
 }
+
+
+
+
+
 
 
 
@@ -58,8 +62,8 @@ function addIngredient(e) {
     // Create elements
     const ingredient = document.createElement("div");
     const input = document.createElement('input');
-    const addIngredient = document.createElement('button');
-    const removeIngredient = document.createElement('button');
+    const addButton = document.createElement('button');
+    const removeButton = document.createElement('button');
     
     // Add class to ingredient container
     ingredient.className = 'ingredient';
@@ -70,19 +74,18 @@ function addIngredient(e) {
     input.className = 'form-control';
     
     // Add properties to buttons
-    addIngredient.classList = 'add-ingredient secondary-content';
-    removeIngredient.className = 'delete-item secondary-content';
-    addIngredient.innerHTML += `<i class="material-icons right">add</i>`;
-    removeIngredient.innerHTML += `<i class="material-icons right">clear</i>`;
-    addIngredient.type = 'button';
-    removeIngredient.type = 'button';
-    
-
+    addButton.className = 'add-ingredient';
+    addButton.addEventListener('click', addIngredient);
+    removeButton.classList = 'delete-item secondary-content';
+    addButton.innerHTML += `<i class="material-icons right">add</i>`;
+    removeButton.innerHTML += `<i class="material-icons right">clear</i>`;
+    addButton.type = 'button';
+    removeButton.type = 'button';
     
     // Append elements
     ingredient.appendChild(input);
-    ingredient.appendChild(addIngredient);
-    ingredient.appendChild(removeIngredient);
+    ingredient.appendChild(addButton);
+    ingredient.appendChild(removeButton);
     ingredientsList.appendChild(ingredient);
     console.log(ingredient);
     e.preventDefault();
