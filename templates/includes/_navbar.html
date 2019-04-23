@@ -15,16 +15,15 @@
           <ul class="nav navbar-nav navbar-middle">
             <li><a href="{{ url_for('recipes', pagination_limit=6, pagination_offset=0 ) }}">Recipes</a></li>
             <li><a href="/statistics">Statistics</a></li>
+            <li><a href="{{ url_for('search_recipes', limit=6, offset=0) }}">Search</a></li>
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
             {% if session.logged_in %}
-            <li class = "search-tag"><a href="{{ url_for('search_recipes', limit=6, offset=0) }}">Search</a></li>
             <li class = "add_recipe-tag"><a href="/add_recipe">Add Recipe</a></li>
             <li class = "profile-tag"><a href="/profile">Profile</a></li>
             <li><a href="/logout">Logout</a></li>
             {% else %}
-            <li class = "search-tag"><a href="/search_recipes">Search</a></li>
             <li><a href="/register">Register</a></li>
             <li><a href="/login">Login</a></li>
             {% endif %}

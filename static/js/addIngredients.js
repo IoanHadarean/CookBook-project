@@ -3,9 +3,8 @@
 
 
 // Get HTML Elements
-const form = document.getElementById('recipe');
 const firstAddButton = document.getElementsByClassName('add-ingredient')[0];
-const firstDeleteButton = document.getElementsByClassName('delete-item')[0];
+const firstDeleteButton = document.getElementsByClassName('delete-ingredient')[0];
 const ingredientsList = document.getElementById('ingredients-list');
 
 
@@ -16,8 +15,12 @@ loadEventListeners();
 
 function loadEventListeners() {
     document.addEventListener('DOMContentLoaded', getIngredients);
-    firstAddButton.addEventListener('click', addIngredient);
-    firstDeleteButton.addEventListener('click', removeIngredient);
+    if (firstAddButton) {
+        firstAddButton.addEventListener('click', addIngredient);
+    }
+    if (firstDeleteButton) {
+        firstDeleteButton.addEventListener('click', removeIngredient);
+    }
 }
 
 
@@ -51,6 +54,7 @@ function getIngredients() {
         // Add properties to input
         input.type = "text";
         input.name = ingredient;
+        input.style.marginTop = '5px';
         input.placeholder = "Please enter an ingredient";
         input.className = 'form-control';
 
@@ -62,7 +66,8 @@ function getIngredients() {
 
         // Add properties to buttons
         addButton.className = 'add-ingredient secondary-content';
-        removeButton.className = 'delete-item secondary-content';
+        removeButton.className = 'delete-ingredient secondary-content';
+        removeButton.style.marginLeft = '4px';
         addButton.type = 'button';
         removeButton.type = 'button';
 
@@ -72,7 +77,9 @@ function getIngredients() {
         ingredientContainer.appendChild(input);
         ingredientContainer.appendChild(addButton);
         ingredientContainer.appendChild(removeButton);
-        ingredientsList.appendChild(ingredientContainer);
+        if (ingredientsList) {
+            ingredientsList.appendChild(ingredientContainer);
+        }
     });
 }
 
@@ -99,6 +106,7 @@ function addIngredient(e) {
 
     // Add properties to input
     input.type = "text";
+    input.style.marginTop = '5px';
     input.name = `ingredient-${ingredientsListLength + 1}`;
     input.placeholder = "Please enter an ingredient";
     input.className = 'form-control';
@@ -111,7 +119,8 @@ function addIngredient(e) {
 
     // Add properties to buttons
     addButton.className = 'add-ingredient secondary-content';
-    removeButton.className = 'delete-item secondary-content';
+    removeButton.className = 'delete-ingredient secondary-content';
+    removeButton.style.marginLeft = '4px';
     addButton.type = 'button';
     removeButton.type = 'button';
 
@@ -156,7 +165,7 @@ function removeIngredient(e) {
     if (ingredientsListLength == 1) {
         console.log("Not Allowed");
     }
-    else if (e.target.parentElement.classList.contains('delete-item')) {
+    else if (e.target.parentElement.classList.contains('delete-ingredient')) {
         e.target.parentElement.parentElement.remove();
         removeTaskFromLocalStorage(e.target.parentElement.parentElement.firstChild);
     }

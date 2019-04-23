@@ -1,6 +1,7 @@
 {% extends 'base.html' %} {% block content %}
+<section>
 <form id="recipe">
-    <div class="form-group">
+    <div class="container">
         <p>Recipe Name</p>
         <input type="text" class="form-control" id="recipe__name" placeholder="Please enter your recipe name here">
     </div>
@@ -12,12 +13,13 @@
                 <button class="add-ingredient secondary-content" type="button">
                     <i class="material-icons right">add</i>
                 </button>
-                <button class="delete-item secondary-content" type="button">
+                <button class="delete-ingredient secondary-content" type="button">
                     <i class="material-icons right">clear</i>
                 </button>
             </div>
         </div>
     </div>
+    <div class = "container">
      <select id="allergen" name="allergen_name">
         <option value="" disabled selected>Choose Allergen</option>
         {% for allergen in allergens %}
@@ -36,7 +38,23 @@
             <option value="{{ course.course_name }}">{{ course.course_name }}</option>
         {% endfor %}
     </select>
+    </div>
+    <div class="container">
+        <p>Cooking Instructions</p>
+        <div id="instructions-list" class="form-group">
+            <div class="instruction">
+                <input type="text" name = "instruction-1" class="form-control" placeholder="Please enter an instruction">
+                <button class="add-instruction secondary-content" type="button">
+                    <i class="material-icons right">add</i>
+                </button>
+                <button class="delete-instruction secondary-content" type="button">
+                    <i class="material-icons right">clear</i>
+                </button>
+            </div>
+        </div>
+    </div>
 </form>
+</section>
 
   
 {% endblock %}

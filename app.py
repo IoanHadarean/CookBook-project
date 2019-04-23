@@ -140,14 +140,14 @@ def register():
 def login():
     if request.method == 'POST':
         # Get Form Fields
-        username = request.form['username']
+        username = request.form.get('username')
         password_candidate = request.form['password']
         
         # Create cursor
         cur = connection.cursor()
         
         # Get user by username
-        result = cur.execute("SELECT * FROM users WHERE username = %s", [username])
+        result = cur.execute("SELECT * FROM users WHERE username = %s", username)
         
         if result > 0:
             # Get stored hash
