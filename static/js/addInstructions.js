@@ -18,9 +18,9 @@ function loadEventListeners() {
     if (firstInstruction) {
         firstInstruction.addEventListener('click', addInstruction);
     }
-    // if (firstDeleteInstruction) {
-    //     firstDeleteInstruction.addEventListener('click', removeInstruction);
-    // }
+    if (firstDeleteInstruction) {
+        firstDeleteInstruction.addEventListener('click', removeInstruction);
+    }
 }
 
 
@@ -37,14 +37,14 @@ function getInstructions() {
     }
 
     instructions.forEach(function(instruction) {
-        
+
         // Create elements
         const instructionContainer = document.createElement('div');
         const input = document.createElement('input');
         const addButton = document.createElement('button');
         const removeButton = document.createElement('button');
         addButton.addEventListener('click', addInstruction);
-        // removeButton.addEventListener('click', removeInstruction);
+        removeButton.addEventListener('click', removeInstruction);
         const addIcon = document.createElement('i');
         const deleteIcon = document.createElement('i');
 
@@ -98,7 +98,7 @@ function addInstruction(e) {
     const addButton = document.createElement('button');
     const removeButton = document.createElement('button');
     addButton.addEventListener('click', addInstruction);
-    // removeButton.addEventListener('click', removeInstruction);
+    removeButton.addEventListener('click', removeInstruction);
     const addIcon = document.createElement('i');
     const deleteIcon = document.createElement('i');
 
@@ -151,8 +151,50 @@ function storeInstructionInLocalStorage(instruction) {
         instructions = JSON.parse(localStorage.getItem('instructions'));
     }
 
-    
+
     instructions.push(instruction);
+
+    localStorage.setItem('instructions', JSON.stringify(instructions));
+}
+
+
+// Remove Instruction
+function removeInstruction(e) {
+    let instructionsListLength = document.getElementsByClassName('instruction').length;
+
+    if (instructionsListLength == 1) {
+        console.log("Not Allowed");
+    }
+    else if (e.target.parentElement.classList.contains('delete-instruction')) {
+        e.target.parentElement.parentElement.remove();
+        removeInstructionFromLocalStorage(e.target.parentElement.parentElement.firstChild);
+    }
+    else {
+        e.target.parentElement.remove();
+        removeInstructionFromLocalStorage(e.target.parentElement.firstChild);
+    }
+
+    e.preventDefault();
+}
+
+
+
+// Remove Instruction from local storage
+function removeInstructionFromLocalStorage(instructionItem) {
+    let instructions;
+
+    if (localStorage.getItem('instructions') === null) {
+        instructions = [];
+    }
+    else {
+        instructions = JSON.parse(localStorage.getItem('instructions'));
+    }
+
+    instructions.forEach(function(instruction, index) {
+        if (instructionItem.name === instruction) {
+            instructions.splice(index, 1);
+        }
+    });
 
     localStorage.setItem('instructions', JSON.stringify(instructions));
 }

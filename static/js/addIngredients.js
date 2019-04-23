@@ -167,20 +167,20 @@ function removeIngredient(e) {
     }
     else if (e.target.parentElement.classList.contains('delete-ingredient')) {
         e.target.parentElement.parentElement.remove();
-        removeTaskFromLocalStorage(e.target.parentElement.parentElement.firstChild);
+        removeIngredientFromLocalStorage(e.target.parentElement.parentElement.firstChild);
     }
     else {
         console.log(e.target.parentElement);
         e.target.parentElement.remove();
-        removeTaskFromLocalStorage(e.target.parentElement.firstChild);
+        removeIngredientFromLocalStorage(e.target.parentElement.firstChild);
     }
 
     e.preventDefault();
 }
 
 
-// Remove Task from local storage
-function removeTaskFromLocalStorage(ingredientItem) {
+// Remove Ingredient from local storage
+function removeIngredientFromLocalStorage(ingredientItem) {
     let ingredients;
     if (localStorage.getItem('ingredients') === null) {
         ingredients = [];
