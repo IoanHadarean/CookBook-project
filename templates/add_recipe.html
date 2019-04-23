@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 <form id="recipe">
     <div class="form-group">
-        <label for="recipe__name">Recipe Name</label>
+        <p>Recipe Name</p>
         <input type="text" class="form-control" id="recipe__name" placeholder="Please enter your recipe name here">
     </div>
     <div class="container">
@@ -18,25 +18,25 @@
             </div>
         </div>
     </div>
+     <select id="allergen" name="allergen_name">
+        <option value="" disabled selected>Choose Allergen</option>
+        {% for allergen in allergens %}
+            <option value="{{ allergen.allergen_name }}">{{ allergen.allergen_name }}</option>
+        {% endfor %}
+    </select>
+    <select id="cuisine" name="cuisine_name">
+        <option value="" disabled selected>Choose Cuisine</option>
+        {% for cuisine in cuisines %}
+            <option value="{{ cuisine.cuisine_name }}">{{ cuisine.cuisine_name }}</option>
+        {% endfor %}
+    </select>
+    <select id="course" name="course_name">
+        <option value="" disabled selected>Choose Course</option>
+        {% for course in courses %}
+            <option value="{{ course.course_name }}">{{ course.course_name }}</option>
+        {% endfor %}
+    </select>
 </form>
-<!--<form>-->
-<!--    <select id="allergen" name="allergen_name">-->
-<!--        <option value="" disabled selected>Choose Allergen</option>-->
-<!--        {% for allergen in allergens %}-->
-<!--            <option value="{{ allergen.allergen_name }}">{{ allergen.allergen_name }}</option>-->
-<!--        {% endfor %}-->
-<!--    </select>-->
-<!--    <select id="cuisine" name="cuisine_name">-->
-<!--        <option value="" disabled selected>Choose Cuisine</option>-->
-<!--        {% for cuisine in cuisines %}-->
-<!--            <option value="{{ cuisine.cuisine_name }}">{{ cuisine.cuisine_name }}</option>-->
-<!--        {% endfor %}-->
-<!--    </select>-->
-<!--    <select id="course" name="course_name">-->
-<!--        <option value="" disabled selected>Choose Course</option>-->
-<!--        {% for course in courses %}-->
-<!--            <option value="{{ course.course_name }}">{{ course.course_name }}</option>-->
-<!--        {% endfor %}-->
-<!--    </select>-->
-<!--</form>-->
+
+  
 {% endblock %}

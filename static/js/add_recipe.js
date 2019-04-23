@@ -15,6 +15,7 @@ loadEventListeners();
 
 
 function loadEventListeners() {
+    document.addEventListener('DOMContentLoaded', getIngredients);
     firstAddButton.addEventListener('click', addIngredient);
     firstDeleteButton.addEventListener('click', removeIngredient);
 }
@@ -26,43 +27,67 @@ function loadEventListeners() {
 
 
 
-// function getIngredients() {
-//     let ingredients;
+function getIngredients() {
+    let ingredients;
 
-//     if (localStorage.getItem('ingredients') === null) {
-//         ingredients = [];
-//     }
-//     else {
-//         ingredients = JSON.parse(localStorage.getItem('tasks'));
-//     }
+    if (localStorage.getItem('ingredients') === null) {
+        ingredients = [];
+    }
+    else {
+        ingredients = JSON.parse(localStorage.getItem('ingredients'));
+    }
 
-//     ingredients.forEach(function(ingredient) {
-//         // Create li element
-//         const li = document.createElement('li');
-//         // Add li class
-//         li.className = 'collection-item';
-//         // Create text node and append to li
-//         li.appendChild(document.createTextNode(task));
-//         // Create new link element
-//         const link = document.createElement('a');
-//         // Add link class
-//         link.className = 'delete-item secondary-content';
-//         // Add icon html
-//         link.innerHTML = '<i class = "fa fa-remove"></i>';
-//         // Append link to li
-//         li.appendChild(link);
+    ingredients.forEach(function(ingredient) {
+        
+        // Create elements
+        const ingredientContainer = document.createElement('div');
+        const input = document.createElement('input');
+        const addButton = document.createElement('button');
+        const removeButton = document.createElement('button');
+        addButton.addEventListener('click', addIngredient);
+        removeButton.addEventListener('click', removeIngredient);
+        const addIcon = document.createElement('i');
+        const deleteIcon = document.createElement('i');
 
-//         // Append li to ul
-//         taskList.appendChild(li);
-//     });
-// }
+        // Add class to ingredient container
+        ingredientContainer.className = 'ingredient';
+
+        // Add properties to input
+        input.type = "text";
+        input.name = ingredient;
+        input.placeholder = "Please enter an ingredient";
+        input.className = 'form-control';
+
+        // Add properties to icons
+        addIcon.className = 'material-icons right';
+        deleteIcon.className = 'material-icons right';
+        addIcon.innerHTML = 'add';
+        deleteIcon.innerHTML = 'clear';
+
+        // Add properties to buttons
+        addButton.className = 'add-ingredient secondary-content';
+        removeButton.className = 'delete-item secondary-content';
+        addButton.type = 'button';
+        removeButton.type = 'button';
+
+        // Append elements
+        addButton.appendChild(addIcon);
+        removeButton.appendChild(deleteIcon);
+        ingredientContainer.appendChild(input);
+        ingredientContainer.appendChild(addButton);
+        ingredientContainer.appendChild(removeButton);
+        ingredientsList.appendChild(ingredientContainer);
+    });
+}
 
 
+
+// Add Ingredient
 
 function addIngredient(e) {
-    
+
     let ingredientsListLength = document.getElementsByClassName('ingredient').length;
-    
+
     // Create elements
     const ingredient = document.createElement('div');
     const input = document.createElement('input');
@@ -72,28 +97,28 @@ function addIngredient(e) {
     removeButton.addEventListener('click', removeIngredient);
     const addIcon = document.createElement('i');
     const deleteIcon = document.createElement('i');
-    
+
     // Add class to ingredient container
     ingredient.className = 'ingredient';
-    
+
     // Add properties to input
     input.type = "text";
     input.name = `ingredient-${ingredientsListLength + 1}`;
     input.placeholder = "Please enter an ingredient";
     input.className = 'form-control';
-    
+
     // Add properties to icons
     addIcon.className = 'material-icons right';
     deleteIcon.className = 'material-icons right';
     addIcon.innerHTML = 'add';
     deleteIcon.innerHTML = 'clear';
-    
+
     // Add properties to buttons
     addButton.className = 'add-ingredient secondary-content';
     removeButton.className = 'delete-item secondary-content';
     addButton.type = 'button';
     removeButton.type = 'button';
-    
+
     // Append elements
     addButton.appendChild(addIcon);
     removeButton.appendChild(deleteIcon);
@@ -102,14 +127,39 @@ function addIngredient(e) {
     ingredient.appendChild(removeButton);
     ingredientsList.appendChild(ingredient);
     console.log(ingredient);
-    
+
+    // Store Ingredient in local storage
+    storeIngredientInLocalStorage(input.name);
+
+    input.name = '';
+
     e.preventDefault();
 }
-    
+
+
+
+// Store Ingredient in local storage
+function storeIngredientInLocalStorage(ingredient) {
+    let ingredients;
+
+    if (localStorage.getItem('ingredients') === null) {
+        ingredients = [];
+    }
+    else {
+        ingredients = JSON.parse(localStorage.getItem('ingredients'));
+    }
+
+    ingredients.push(ingredient);
+
+    localStorage.setItem('ingredients', JSON.stringify(ingredients));
+}
+
+
+// Remove Ingredient 
 function removeIngredient(e) {
     let ingredientsListLength = document.getElementsByClassName('ingredient').length;
     console.log(ingredientsListLength);
-    
+
     if (ingredientsListLength == 1) {
         console.log("Not Allowed");
     }
@@ -117,8 +167,8 @@ function removeIngredient(e) {
         e.target.parentElement.parentElement.remove();
     }
     else {
-         e.target.parentElement.remove();
+        e.target.parentElement.remove();
     }
-    
+
     e.preventDefault();
 }
