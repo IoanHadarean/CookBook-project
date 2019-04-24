@@ -285,30 +285,32 @@ def profile():
     pagination_offset = int(request.args.get('offset', '0'))
     pagination_limit = int(request.args.get('limit', '6'))
 
+
     userMade = user_recipes.find({"username" : user})
-    starting_id = userMade.sort('_id', pymongo.ASCENDING)
-    last_id = starting_id[pagination_offset]['_id']
-    userRecipes = []
-    total_results = 0
-    for recipe in userMade:
-        userRecipes.append(recipe)
-        total_results += 1
+    if userMade.count() > 0:
+        starting_id = userMade.sort('_id', pymongo.ASCENDING)
+        last_id = starting_id[pagination_offset]['_id']
+        userRecipes = []
+        total_results = 0
+        for recipe in userMade:
+            userRecipes.append(recipe)
+            total_results += 1
     
-    args = {
-        "limit": pagination_limit,
-        "offset": pagination_offset,
-        "recipes_sorted": user_recipes.find({"$and" : [{"username" : user}, {'_id': {'$gte' : last_id}}]}).sort('_id', pymongo.ASCENDING).limit(pagination_limit),
-        "next_url": '/profile?limit=' + str(pagination_limit) + '&offset=' + str(pagination_offset + pagination_limit),
-        "prev_url": '/profile?limit=' + str(pagination_limit) + '&offset=' + str(pagination_offset - pagination_limit),
-        "recipes": userMade,
-        "total_results": total_results
-    }
+        args = {
+            "limit": pagination_limit,
+            "offset": pagination_offset,
+            "recipes_sorted": user_recipes.find({"$and" : [{"username" : user}, {'_id': {'$gte' : last_id}}]}).sort('_id', pymongo.ASCENDING).limit(pagination_limit),
+            "next_url": '/profile?limit=' + str(pagination_limit) + '&offset=' + str(pagination_offset + pagination_limit),
+            "prev_url": '/profile?limit=' + str(pagination_limit) + '&offset=' + str(pagination_offset - pagination_limit),
+            "recipes": userMade,
+            "total_results": total_results
+        }
         
-       
-    return render_template('profile.html', args = args, userMade = userMade, userRecipes = userRecipes, current_name = current_name, image_file = image_file, 
+        return render_template('profile.html', args = args, userMade = userMade, userRecipes = userRecipes, current_name = current_name, image_file = image_file, 
                             date = date, current_email = current_email, profile_description = profile_description, form=form)
-        
-    
+    else:
+         return render_template('profile.html', current_name = current_name, image_file = image_file, 
+                            date = date, current_email = current_email, profile_description = profile_description, form=form)
     
     
     
