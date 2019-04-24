@@ -544,11 +544,22 @@ def insert_recipe():
         
     return redirect(url_for('add_recipe'))      
 
+
+
+
+
+
         
+""" View details of a user recipe """
+
+@app.route('/get_user_recipe/<recipe_id>', methods = ['GET', 'POST'])
+def get_user_recipe(recipe_id):
+    user_recipe = user_recipes.find_one({"_id": ObjectId(recipe_id)})
+    return render_template("get_user_recipe.html", user_recipe = user_recipe)
+    
     
 
-
-""" View details of a recipe """
+""" View details of a database recipe """
 
 @app.route('/get_recipe/<recipe_id>', methods = ['GET', 'POST'])
 def get_recipe(recipe_id):

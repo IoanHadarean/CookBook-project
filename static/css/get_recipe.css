@@ -367,6 +367,10 @@ x-star-rating>.star.full:after {
     float: left;
 }
 
+.ingredients {
+    margin-top: 0;
+}
+
 .recipe__quantities li,
 .recipe__ingredients li {
     min-height: 40px;
@@ -404,6 +408,7 @@ x-star-rating>.star.full:after {
 
 .cooking {
     margin-left: 0;
+    margin-bottom: 50px;
 }
 
 .instructions__full {

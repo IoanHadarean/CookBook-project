@@ -1,0 +1,64 @@
+{% extends 'base.html' %} {% block content %} {% include 'includes/_messages.html' %}
+<link rel="stylesheet" href="{{ url_for('static', filename = 'css/get_user_recipe.css') }}" type="text/css" />
+<section>
+    <!-- Recipe image -->
+    <div class="recipe__image">
+        <img class="image__inline" src={{ user_recipe.recipe_image }} alt="recipe-image">
+    </div>
+
+    <!-- Recipe likes -->
+    <div class="recipe__likes">
+        <span id="likes__number">You can not like/rate your own recipes</span>
+    </div>
+
+    <!-- Recipe Info -->
+    <div class="recipe__info">
+        <!-- Recipe description -->
+        <div class="recipe__title">
+            <h1 class="title__description">{{ user_recipe.recipe_name }}</h1>
+        </div>
+        <div class="recipe__author">
+            <p class="author__description">By {{ user_recipe.username }}</p>
+        </div>
+        
+        <!-- Recipe specification -->
+        <div class="info__specs">
+            <div class="specs__cuisine">
+                <span>Cuisine</span>
+                <span class="is-spec">{{ user_recipe.cuisine_name }}</span>
+            </div>
+            <div class="specs__course">
+                <span>Course</span>
+                <span class="is-spec">{{ user_recipe.course_name }}</span>
+            </div>
+            <div class="specs__allergens">
+                <span>Allergens</span>
+                <span class="is-spec">{{ user_recipe.allergen_name }}</span>
+            </div>
+        </div>
+
+        <!-- Recipe ingredients -->
+        <div class="recipe-separator"></div>
+        <h3 class="ingredients__description">Ingredients</h3>
+        <div class="recipe__ingredients">
+            <ul class="ingredients__container">
+                {% for ingredient in user_recipe.ingredients %}
+                <li>{{ ingredient }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="recipe-separator"></div>
+
+        <!-- Recipe instructions -->
+        <div class="recipe__instructions">
+            <h3 class="instructions__description cooking">Cooking Instructions</h3>
+            {% for instruction in user_recipe.instructions %}
+            <div class="instructions__full">
+                <span class="instructions__index">{{ loop.index }}</span>
+                <li>{{ instruction }}</li>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}
