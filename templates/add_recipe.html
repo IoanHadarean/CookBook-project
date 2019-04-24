@@ -3,13 +3,13 @@
 <form id="recipe" action="{{ url_for('insert_recipe') }}" method = "POST">
     <div class="container">
         <p>Recipe Name</p>
-        <input type="text" class="form-control" id="recipe__name" placeholder="Please enter your recipe name here">
+        <input type="text" name = "recipe_name" class="form-control" id="recipe__name" placeholder="Please enter your recipe name here" required>
     </div>
     <div class="container">
         <p>Ingredients</p>
         <div id="ingredients-list" class="form-group">
             <div class="ingredient">
-                <input type="text" name = "ingredient-1" class="form-control" placeholder="Please enter an ingredient">
+                <input type="text" name = "ingredient-1" class="form-control" placeholder="Please enter an ingredient" required>
                 <button class="add-ingredient secondary-content" type="button">
                     <i class="material-icons right">add</i>
                 </button>
@@ -20,19 +20,19 @@
         </div>
     </div>
     <div class = "container">
-     <select name="allergen_name">
+     <select name="allergen_name" required>
             <option id = "choose-allergens" value="" disabled selected>Choose Allergen</option>
             {% for allergen in allergens %}
                 <option  value="{{ allergen.allergen_name }}" name="allergens-{{ loop.index }}">{{ allergen.allergen_name }}</option>
             {% endfor %}
         </select>
-        <select name="cuisine_name">
+        <select name="cuisine_name" required>
             <option id = "choose-cuisines" value="" disabled selected>Choose Cuisine</option>
             {% for cuisine in cuisines %}
                 <option value="{{ cuisine.cuisine_name }}" name="cuisines-{{ loop.index }}">{{ cuisine.cuisine_name }}</option>
             {% endfor %}
         </select>
-        <select name="course_name">
+        <select name="course_name" required>
             <option id = "choose-courses" value="" disabled selected>Choose Course</option>
             {% for course in courses %}
                 <option value="{{ course.course_name }}" name="courses-{{ loop.index }}">{{ course.course_name }}</option>
@@ -43,7 +43,7 @@
         <p>Cooking Instructions</p>
         <div id="instructions-list" class="form-group">
             <div class="instruction">
-                <input type="text" name = "instruction-1" class="form-control" placeholder="Please enter an instruction">
+                <input type="text" name = "instruction-1" class="form-control" placeholder="Please enter an instruction" required>
                 <button class="add-instruction secondary-content" type="button">
                     <i class="material-icons right">add</i>
                 </button>

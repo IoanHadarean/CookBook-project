@@ -506,12 +506,34 @@ def search_recipes():
 def insert_recipe():
     if request.method == 'POST':
         form = request.form.to_dict()
+        print(form)
         instructions = []
+        ingredients = []
+        
+        # Loop through the keys in the form
+        # If the key matches instruction append to instructions list
         for key in form:
             regex = re.compile("^instruction")
             if regex.match(key):
                 instructions.append(form[key])
         print(instructions)
+        
+        # Loop through the keys in the form
+        # If the key matches ingredient append to ingredients list
+        for key in form:
+            regex = re.compile("^ingredient")
+            if regex.match(key):
+                ingredients.append(form[key])
+        print(ingredients)
+        
+        user_recipes.insert_one({
+            "ingredients": ingredients,
+            "instructions": instructions,
+            "allergen_name": request.form.get("allergen_name"),
+            "cuisine_name": request.form.get("cuisine_name"),
+            "course_name" : request.form.get("course_name"),
+            "recipe_name" : request.form.get("recipe_name")
+        })
         
     return redirect(url_for('add_recipe'))      
 
