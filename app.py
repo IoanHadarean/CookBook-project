@@ -52,6 +52,8 @@ app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 
 mongo = PyMongo(app)
 
+# Get MongoDB collections
+
 recipe_collection = mongo.db.recipes
 ratings_collection = mongo.db.ratings
 user_recipes = mongo.db.user_recipes
@@ -500,22 +502,21 @@ def search_recipes():
    
    
    
+@app.route('/insert_recipe', methods=['POST'])
+def insert_recipe():
+    if request.method == 'POST':
+        form = request.form.to_dict()
+        instructions = []
+        for key in form:
+            regex = re.compile("^instruction")
+            if regex.match(key):
+                instructions.append(form[key])
+        print(instructions)
+        
+    return redirect(url_for('add_recipe'))      
+
         
     
-# """ Login Required decorator """
- 
-# def is_logged_in(f):
-#     @wraps(f)
-#     def wrap(*args, **kwargs):
-#         if 'logged_in' in session:
-#             return f(*args, **kwargs)
-#         else:
-#             flash('You need to have an account to view/rate recipes', 'danger')
-#         return redirect(url_for('register'))
-#     return wrap
-    
-    
-
     
 
 

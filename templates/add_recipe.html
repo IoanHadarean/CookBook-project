@@ -1,6 +1,6 @@
 {% extends 'base.html' %} {% block content %}
 <section>
-<form id="recipe">
+<form id="recipe" action="{{ url_for('insert_recipe') }}" method = "POST">
     <div class="container">
         <p>Recipe Name</p>
         <input type="text" class="form-control" id="recipe__name" placeholder="Please enter your recipe name here">
@@ -20,24 +20,24 @@
         </div>
     </div>
     <div class = "container">
-     <select id="allergen" name="allergen_name">
-        <option value="" disabled selected>Choose Allergen</option>
-        {% for allergen in allergens %}
-            <option value="{{ allergen.allergen_name }}">{{ allergen.allergen_name }}</option>
-        {% endfor %}
-    </select>
-    <select id="cuisine" name="cuisine_name">
-        <option value="" disabled selected>Choose Cuisine</option>
-        {% for cuisine in cuisines %}
-            <option value="{{ cuisine.cuisine_name }}">{{ cuisine.cuisine_name }}</option>
-        {% endfor %}
-    </select>
-    <select id="course" name="course_name">
-        <option value="" disabled selected>Choose Course</option>
-        {% for course in courses %}
-            <option value="{{ course.course_name }}">{{ course.course_name }}</option>
-        {% endfor %}
-    </select>
+     <select name="allergen_name">
+            <option id = "choose-allergens" value="" disabled selected>Choose Allergen</option>
+            {% for allergen in allergens %}
+                <option  value="{{ allergen.allergen_name }}" name="allergens-{{ loop.index }}">{{ allergen.allergen_name }}</option>
+            {% endfor %}
+        </select>
+        <select name="cuisine_name">
+            <option id = "choose-cuisines" value="" disabled selected>Choose Cuisine</option>
+            {% for cuisine in cuisines %}
+                <option value="{{ cuisine.cuisine_name }}" name="cuisines-{{ loop.index }}">{{ cuisine.cuisine_name }}</option>
+            {% endfor %}
+        </select>
+        <select name="course_name">
+            <option id = "choose-courses" value="" disabled selected>Choose Course</option>
+            {% for course in courses %}
+                <option value="{{ course.course_name }}" name="courses-{{ loop.index }}">{{ course.course_name }}</option>
+            {% endfor %}
+        </select>
     </div>
     <div class="container">
         <p>Cooking Instructions</p>
@@ -53,6 +53,7 @@
             </div>
         </div>
     </div>
+    <button id="submit_recipe" type="submit" class="btn btn-primary btn-center">Add Recipe</button>
 </form>
 </section>
 {% endblock %}

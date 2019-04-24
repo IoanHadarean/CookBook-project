@@ -16,6 +16,10 @@ recipes_collection = mongo.db.recipes.find()
 ratings_collection = mongo.db.ratings.find()
 
 
+""" Note: Use these scripts one by one
+    Do not uncomment all of them """
+
+
 """ Find ingredients by cuisine """
 
 # def count_ingredients():
