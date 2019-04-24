@@ -182,7 +182,8 @@ ul {
     display: inline-block;
 }
 
-.ingredients__container {
+.ingredients__container,
+.quantities__container {
     list-style-type: none;
 }
 

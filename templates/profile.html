@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block content %} {% from "includes/_formhelpers.html" import render_field %} {% include 'includes/_messages.html' %}
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/profile.css') }}" type="text/css" />
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/recipes.css') }}" type="text/css" />
-<section class = "no-margins">
+<section class="no-margins">
     <div class="content-section">
         <div class="media">
             <img class="rounded-circle account-img" src="{{ url_for('static', filename = 'images/' + image_file) }}" />
@@ -50,16 +50,15 @@
         </div>
     </form>
 </section>
-<section class = "adjusted-margins">
+<section class="adjusted-margins">
     <div class="container">
-        {% if userRecipes %}
-        {% for recipe in userRecipes %}
+        {% if args %} {% for recipe in args.recipes_sorted %}
         <div class="recipes">
             <div class="recipes__name">
                 <h3 class="name__inline">{{ recipe.recipe_name }}</h3>
             </div>
             <div class="recipes__image">
-                <a href="{{ url_for('get_recipe', recipe_id=recipe._id) }}">
+                <a href="{{ url_for('get_user_recipe', recipe_id=recipe._id) }}">
                     <img class = "image__inline" src = {{ recipe.recipe_image }} alt = "recipe-image">
                 </a>
             </div>
@@ -70,8 +69,22 @@
                 <a class="view__details" href="{{ url_for('get_user_recipe', recipe_id=recipe._id) }}">View Recipe</a>
             </div>
         </div>
-        {% endfor %}
-        {% endif %}
+        {% endfor %} {% if args.total_results > args.limit %}
+        <div class="recipes__pagination">
+            <ul class="pagination__list">
+                {% if args.offset > 0 %}
+                <li class="list__prev">
+                    <a href="{{args.prev_url}}">Previous</a>
+                </li>
+                {% endif %} {% if args.offset + args.limit
+                < args.total_results %} <li class="list__next">
+                    <a href="{{args.next_url}}">Next</a>
+                    </li>
+                    {% endif %}
+            </ul>
+        </div>
+    </div>
+    {% endif %} {% endif %}
 </section>
 <script type="text/javascript">
     var date = '{{ date }}';
