@@ -54,7 +54,7 @@ function getInstructions() {
         const deleteIcon = document.createElement('i');
         
         // Get footer down by the height of the instruction input 
-        parsedBottomValueInstructions -= 75;
+        parsedBottomValueInstructions -= 74;
         footerBottomValueInstructions = String(parsedBottomValueInstructions + 'px');
         footerInstructions.style.bottom = footerBottomValueInstructions;
 
@@ -114,7 +114,7 @@ function addInstruction(e) {
     const deleteIcon = document.createElement('i');
     
     // Get footer down by the height of the instruction input 
-    parsedBottomValueInstructions -= 75;
+    parsedBottomValueInstructions -= 74;
     footerBottomValueInstructions = String(parsedBottomValueInstructions + 'px');
     footerInstructions.style.bottom = footerBottomValueInstructions;
 
@@ -185,10 +185,21 @@ function removeInstruction(e) {
     else if (e.target.parentElement.classList.contains('delete-instruction')) {
         e.target.parentElement.parentElement.remove();
         removeInstructionFromLocalStorage(e.target.parentElement.parentElement.firstChild);
+        
+        
+        // Get footer up when removing an instruction input 
+        parsedBottomValueInstructions += 74;
+        footerBottomValueInstructions = String(parsedBottomValueInstructions + 'px');
+        footerInstructions.style.bottom = footerBottomValueInstructions;
     }
     else {
         e.target.parentElement.remove();
         removeInstructionFromLocalStorage(e.target.parentElement.firstChild);
+        
+         // Get footer up when removing an instruction input 
+        parsedBottomValueInstructions += 74;
+        footerBottomValueInstructions = String(parsedBottomValueInstructions + 'px');
+        footerInstructions.style.bottom = footerBottomValueInstructions;
     }
 
     e.preventDefault();

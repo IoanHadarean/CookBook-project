@@ -56,7 +56,7 @@ function getIngredients() {
         const deleteIcon = document.createElement('i');
         
         // Get footer down by the height of the ingredient input 
-        parsedBottomValueIngredients -= 75;
+        parsedBottomValueIngredients -= 74;
         footerBottomValueIngredients = String(parsedBottomValueIngredients + 'px');
         footerIngredients.style.bottom = footerBottomValueIngredients;
 
@@ -115,7 +115,7 @@ function addIngredient(e) {
     const deleteIcon = document.createElement('i');
     
     // Get footer down by the height of the ingredient input 
-    parsedBottomValueIngredients -= 75;
+    parsedBottomValueIngredients -= 74;
     footerBottomValueIngredients = String(parsedBottomValueIngredients + 'px');
     footerIngredients.style.bottom = footerBottomValueIngredients;
 
@@ -187,11 +187,20 @@ function removeIngredient(e) {
     else if (e.target.parentElement.classList.contains('delete-ingredient')) {
         e.target.parentElement.parentElement.remove();
         removeIngredientFromLocalStorage(e.target.parentElement.parentElement.firstChild);
+        
+         // Get footer up when removing an ingredient input 
+        parsedBottomValueIngredients += 74;
+        footerBottomValueIngredients = String(parsedBottomValueIngredients + 'px');
+        footerIngredients.style.bottom = footerBottomValueIngredients;
     }
     else {
-        console.log(e.target.parentElement);
         e.target.parentElement.remove();
         removeIngredientFromLocalStorage(e.target.parentElement.firstChild);
+        
+         // Get footer up when removing an ingredient input 
+        parsedBottomValueIngredients += 74;
+        footerBottomValueIngredients = String(parsedBottomValueIngredients + 'px');
+        footerIngredients.style.bottom = footerBottomValueIngredients;
     }
 
     e.preventDefault();
