@@ -3,10 +3,15 @@
 
 
 // Get HTML Elements
+let footerInstructions = document.getElementsByTagName('footer')[0];
 const firstInstruction = document.getElementsByClassName('add-instruction')[0];
 const firstDeleteInstruction = document.getElementsByClassName('delete-instruction')[0];
 const instructionsList = document.getElementById('instructions-list');
 
+// Get the footer bottom style and parse it to integer
+let footerStyleInstructions = window.getComputedStyle(footerInstructions, null);
+let footerBottomValueInstructions = footerStyleInstructions.getPropertyValue("bottom");
+let parsedBottomValueInstructions = parseInt(footerBottomValueInstructions, 10);
 
 // Add event listeners
 
@@ -47,6 +52,11 @@ function getInstructions() {
         removeButton.addEventListener('click', removeInstruction);
         const addIcon = document.createElement('i');
         const deleteIcon = document.createElement('i');
+        
+        // Get footer down by the height of the instruction input 
+        parsedBottomValueInstructions -= 75;
+        footerBottomValueInstructions = String(parsedBottomValueInstructions + 'px');
+        footerInstructions.style.bottom = footerBottomValueInstructions;
 
         // Add class to instruction container
         instructionContainer.className = 'instruction';
@@ -102,6 +112,11 @@ function addInstruction(e) {
     removeButton.addEventListener('click', removeInstruction);
     const addIcon = document.createElement('i');
     const deleteIcon = document.createElement('i');
+    
+    // Get footer down by the height of the instruction input 
+    parsedBottomValueInstructions -= 75;
+    footerBottomValueInstructions = String(parsedBottomValueInstructions + 'px');
+    footerInstructions.style.bottom = footerBottomValueInstructions;
 
     // Add class to ingredient container
     instruction.className = 'instruction';

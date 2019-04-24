@@ -3,9 +3,16 @@
 
 
 // Get HTML Elements
+let footerIngredients = document.getElementsByTagName('footer')[0];
 const firstAddButton = document.getElementsByClassName('add-ingredient')[0];
 const firstDeleteButton = document.getElementsByClassName('delete-ingredient')[0];
 const ingredientsList = document.getElementById('ingredients-list');
+
+// Get the footer bottom style and parse it to integer
+let footerStyleIngredients = window.getComputedStyle(footerIngredients, null);
+let footerBottomValueIngredients = footerStyleIngredients.getPropertyValue("bottom");
+let parsedBottomValueIngredients = parseInt(footerBottomValueIngredients, 10);
+
 
 
 // Add event listeners
@@ -47,6 +54,11 @@ function getIngredients() {
         removeButton.addEventListener('click', removeIngredient);
         const addIcon = document.createElement('i');
         const deleteIcon = document.createElement('i');
+        
+        // Get footer down by the height of the ingredient input 
+        parsedBottomValueIngredients -= 75;
+        footerBottomValueIngredients = String(parsedBottomValueIngredients + 'px');
+        footerIngredients.style.bottom = footerBottomValueIngredients;
 
         // Add class to ingredient container
         ingredientContainer.className = 'ingredient';
@@ -101,6 +113,11 @@ function addIngredient(e) {
     removeButton.addEventListener('click', removeIngredient);
     const addIcon = document.createElement('i');
     const deleteIcon = document.createElement('i');
+    
+    // Get footer down by the height of the ingredient input 
+    parsedBottomValueIngredients -= 75;
+    footerBottomValueIngredients = String(parsedBottomValueIngredients + 'px');
+    footerIngredients.style.bottom = footerBottomValueIngredients;
 
     // Add class to ingredient container
     ingredient.className = 'ingredient';

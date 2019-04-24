@@ -22,7 +22,6 @@ if (screen.height <= 732 && screen.width < 768) {
     Array.prototype.forEach.call(spans, span => {
         if (span.innerHTML.indexOf('Field must be between 6 and 50 characters long.') !== -1) {
             parsedBottomValue -= 48;
-            console.log(parsedBottomValue);
             styleBottomValue = String(parsedBottomValue + 'px');
             footer.style.bottom = styleBottomValue;
         }
@@ -52,7 +51,6 @@ else if (screen.height > 500 && screen.height <= 1080 && screen.width >= 768 && 
     Array.prototype.forEach.call(spans, span => {
         if (span.innerHTML.indexOf('Field must be between 6 and 50 characters long.') !== -1) {
             parsedBottomValue -= 80;
-            console.log(parsedBottomValue);
             styleBottomValue = String(parsedBottomValue + 'px');
             footer.style.bottom = styleBottomValue;
         }
