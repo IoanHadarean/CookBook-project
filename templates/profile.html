@@ -1,9 +1,10 @@
 {% extends 'base.html' %} {% block content %} {% from "includes/_formhelpers.html" import render_field %} {% include 'includes/_messages.html' %}
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/profile.css') }}" type="text/css" />
-<section>
+<link rel="stylesheet" href="{{ url_for('static', filename = 'css/recipes.css') }}" type="text/css" />
+<section class = "no-margins">
     <div class="content-section">
         <div class="media">
-            <img class="rounded-circle account-img" src= "{{ url_for('static', filename = 'images/' + image_file) }}"/>
+            <img class="rounded-circle account-img" src="{{ url_for('static', filename = 'images/' + image_file) }}" />
         </div>
         <div class="media-body">
             <h2 class="account-heading">{{ current_name }}</h2>
@@ -13,13 +14,13 @@
             {% else %}
             <p class="text-secondary"></p>
             {% endif %}
-            <p id = "date-time" class="text-secondary">{{ date }}</p>
+            <p id="date-time" class="text-secondary">{{ date }}</p>
         </div>
     </div>
 
     <!-- Edit Profile Form -->
 
-    <form id="profile-form" method="POST" action="" enctype = "multipart/form-data">
+    <form id="profile-form" method="POST" action="" enctype="multipart/form-data">
         <div class="form-group form-group--responsive">
             <div class="row col-lg-12">
                 <h4>{{render_field(form.name, class_="form-control")}}</h4>
@@ -37,23 +38,27 @@
         </div>
         <div class="form-group form-group--responsive">
             <div class="row col-lg-12">
-                {{ form.picture.label() }}
-                {{ form.picture(class="form-control-file") }}
-                {% if form.picture.errors %}
-                    {% for error in form.picture.errors %}
-                        <span class = "text-danger">{{ error }}</span></br>
-                    {% endfor %}
-                {% endif %}
+                {{ form.picture.label() }} {{ form.picture(class="form-control-file") }} {% if form.picture.errors %} {% for error in form.picture.errors %}
+                <span class="text-danger">{{ error }}</span></br>
+                {% endfor %} {% endif %}
             </div>
         </div>
         <div class="form-group form-group--responsive">
             <div class="row col-lg-12 row-center">
-                <button id = "submit_profile" type="submit" class="btn btn-primary btn-center">Update</button>
+                <button id="submit_profile" type="submit" class="btn btn-primary btn-center">Update</button>
             </div>
         </div>
     </form>
 </section>
- <script type="text/javascript">
+<section class = "adjusted-margins">
+    <!-- Render user recipes -->
+    <div class = "row">
+        {% for x in userRecipes %}
+        <p>{{ x }}</p>
+        {% endfor %}
+    </div>
+</section>
+<script type="text/javascript">
     var date = '{{ date }}';
 </script>
 <script type="text/javascript" src="{{ url_for('static', filename = 'js/helpInlineProfile.js') }}" async></script>

@@ -53,6 +53,7 @@ function getInstructions() {
 
         // Add properties to input
         input.type = "text";
+        input.required = true;
         input.name = instruction;
         input.style.marginTop = '5px';
         input.placeholder = "Please enter an instruction";
@@ -107,6 +108,7 @@ function addInstruction(e) {
 
     // Add properties to input
     input.type = "text";
+    input.required = true;
     input.style.marginTop = '5px';
     input.name = `instruction-${instructionsListLength + 1}`;
     input.placeholder = "Please enter an instruction";

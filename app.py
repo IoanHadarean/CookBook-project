@@ -280,9 +280,16 @@ def profile():
         connection.commit()
         cur.close()
     
+    # Get user recipes
+    userMade = user_recipes.find({"username" : user})
+    userRecipes = []
+    for recipe in userMade:
+        userRecipes.append(recipe)
+        
+        
        
-    return render_template('profile.html', current_name = current_name, image_file = image_file, date = date,
-                            current_email = current_email, profile_description = profile_description, form=form)
+    return render_template('profile.html', userMade = userMade, userRecipes = userRecipes, current_name = current_name, image_file = image_file, 
+                            date = date, current_email = current_email, profile_description = profile_description, form=form)
         
     
     
@@ -516,7 +523,6 @@ def insert_recipe():
             regex = re.compile("^instruction")
             if regex.match(key):
                 instructions.append(form[key])
-        print(instructions)
         
         # Loop through the keys in the form
         # If the key matches ingredient append to ingredients list
@@ -524,7 +530,6 @@ def insert_recipe():
             regex = re.compile("^ingredient")
             if regex.match(key):
                 ingredients.append(form[key])
-        print(ingredients)
         
         user_recipes.insert_one({
             "ingredients": ingredients,
@@ -532,15 +537,15 @@ def insert_recipe():
             "allergen_name": request.form.get("allergen_name"),
             "cuisine_name": request.form.get("cuisine_name"),
             "course_name" : request.form.get("course_name"),
-            "recipe_name" : request.form.get("recipe_name")
+            "recipe_name" : request.form.get("recipe_name"),
+            "recipe_image" : "https://media.self.com/photos/58f7d022feead55f43f7fc78/4:3/w_728,c_limit/Creamy-Sun-Dried-Parmesan-Chicken-cafedelites-1%25202.jpg",
+            "username" : session.get("username")
         })
         
     return redirect(url_for('add_recipe'))      
 
         
     
-    
-
 
 
 """ View details of a recipe """
