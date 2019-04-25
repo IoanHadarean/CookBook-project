@@ -54,6 +54,12 @@ function getIngredients() {
         const addIcon = document.createElement('i');
         const deleteIcon = document.createElement('i');
 
+
+        // Get footer down by the height of the ingredient container
+        parsedElementBottomValue -= 79;
+        footerElementBottomValue = String(parsedElementBottomValue + 'px');
+        footerElement.style.bottom = footerElementBottomValue;
+
         // Add class to ingredient container
         ingredientContainer.className = 'ingredient';
 
@@ -108,9 +114,8 @@ function addIngredient(e) {
     const addIcon = document.createElement('i');
     const deleteIcon = document.createElement('i');
 
-
+    // Get footer down by the height of the ingredient container
     parsedElementBottomValue -= 79;
-    console.log(parsedElementBottomValue);
     footerElementBottomValue = String(parsedElementBottomValue + 'px');
     footerElement.style.bottom = footerElementBottomValue;
 
@@ -184,8 +189,9 @@ function removeIngredient(e) {
         e.target.parentElement.parentElement.remove();
         removeIngredientFromLocalStorage(e.target.parentElement.parentElement.firstChild);
 
+
+        // Get footer up by the height of the ingredient container
         parsedElementBottomValue += 79;
-        console.log(parsedElementBottomValue);
         footerElementBottomValue = String(parsedElementBottomValue + 'px');
         footerElement.style.bottom = footerElementBottomValue;
     }
@@ -193,8 +199,8 @@ function removeIngredient(e) {
         e.target.parentElement.remove();
         removeIngredientFromLocalStorage(e.target.parentElement.firstChild);
 
+        // Get footer up by the height of the ingredient container
         parsedElementBottomValue += 79;
-        console.log(parsedElementBottomValue);
         footerElementBottomValue = String(parsedElementBottomValue + 'px');
         footerElement.style.bottom = footerElementBottomValue;
     }

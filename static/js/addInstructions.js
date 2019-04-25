@@ -51,6 +51,12 @@ function getInstructions() {
         const addIcon = document.createElement('i');
         const deleteIcon = document.createElement('i');
 
+
+        // Get footer down by the height of the instructions container
+        parsedElementBottomValue -= 79;
+        footerElementBottomValue = String(parsedElementBottomValue + 'px');
+        footerElement.style.bottom = footerElementBottomValue;
+
         // Add class to instruction container
         instructionContainer.className = 'instruction';
 
@@ -106,8 +112,9 @@ function addInstruction(e) {
     const addIcon = document.createElement('i');
     const deleteIcon = document.createElement('i');
 
+
+    // Get footer down by the height of the instructions container
     parsedElementBottomValue -= 79;
-    console.log(parsedElementBottomValue);
     footerElementBottomValue = String(parsedElementBottomValue + 'px');
     footerElement.style.bottom = footerElementBottomValue;
 
@@ -180,8 +187,9 @@ function removeInstruction(e) {
         e.target.parentElement.parentElement.remove();
         removeInstructionFromLocalStorage(e.target.parentElement.parentElement.firstChild);
 
+
+        // Get footer up by the height of the instructions container
         parsedElementBottomValue += 79;
-        console.log(parsedElementBottomValue);
         footerElementBottomValue = String(parsedElementBottomValue + 'px');
         footerElement.style.bottom = footerElementBottomValue;
     }
@@ -189,8 +197,8 @@ function removeInstruction(e) {
         e.target.parentElement.remove();
         removeInstructionFromLocalStorage(e.target.parentElement.firstChild);
 
+        // Get footer up by the height of the instructions container
         parsedElementBottomValue += 79;
-        console.log(parsedElementBottomValue);
         footerElementBottomValue = String(parsedElementBottomValue + 'px');
         footerElement.style.bottom = footerElementBottomValue;
     }
