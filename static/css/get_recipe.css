@@ -3,6 +3,7 @@
 html,
 body {
     height: fit-content;
+    overflow-y: visible !important;
 }
 
 section {

@@ -3,16 +3,15 @@
 
 
 // Get HTML Elements
-let footerIngredients = document.getElementsByTagName('footer')[0];
+var footerElement = document.getElementsByTagName('footer')[0];
 const firstAddButton = document.getElementsByClassName('add-ingredient')[0];
 const firstDeleteButton = document.getElementsByClassName('delete-ingredient')[0];
 const ingredientsList = document.getElementById('ingredients-list');
 
 // Get the footer bottom style and parse it to integer
-let footerStyleIngredients = window.getComputedStyle(footerIngredients, null);
-let footerBottomValueIngredients = footerStyleIngredients.getPropertyValue("bottom");
-let parsedBottomValueIngredients = parseInt(footerBottomValueIngredients, 10);
-
+var footerElementStyle = window.getComputedStyle(footerElement, null);
+var footerElementBottomValue = footerElementStyle.getPropertyValue("bottom");
+var parsedElementBottomValue = parseInt(footerElementBottomValue, 10);
 
 
 // Add event listeners
@@ -44,7 +43,7 @@ function getIngredients() {
     }
 
     ingredients.forEach(function(ingredient) {
-        
+
         // Create elements
         const ingredientContainer = document.createElement('div');
         const input = document.createElement('input');
@@ -54,11 +53,6 @@ function getIngredients() {
         removeButton.addEventListener('click', removeIngredient);
         const addIcon = document.createElement('i');
         const deleteIcon = document.createElement('i');
-        
-        // Get footer down by the height of the ingredient input 
-        parsedBottomValueIngredients -= 74;
-        footerBottomValueIngredients = String(parsedBottomValueIngredients + 'px');
-        footerIngredients.style.bottom = footerBottomValueIngredients;
 
         // Add class to ingredient container
         ingredientContainer.className = 'ingredient';
@@ -113,11 +107,13 @@ function addIngredient(e) {
     removeButton.addEventListener('click', removeIngredient);
     const addIcon = document.createElement('i');
     const deleteIcon = document.createElement('i');
-    
-    // Get footer down by the height of the ingredient input 
-    parsedBottomValueIngredients -= 74;
-    footerBottomValueIngredients = String(parsedBottomValueIngredients + 'px');
-    footerIngredients.style.bottom = footerBottomValueIngredients;
+
+
+    parsedElementBottomValue -= 79;
+    console.log(parsedElementBottomValue);
+    footerElementBottomValue = String(parsedElementBottomValue + 'px');
+    footerElement.style.bottom = footerElementBottomValue;
+
 
     // Add class to ingredient container
     ingredient.className = 'ingredient';
@@ -170,7 +166,7 @@ function storeIngredientInLocalStorage(ingredient) {
         ingredients = JSON.parse(localStorage.getItem('ingredients'));
     }
 
-    
+
     ingredients.push(ingredient);
 
     localStorage.setItem('ingredients', JSON.stringify(ingredients));
@@ -187,20 +183,20 @@ function removeIngredient(e) {
     else if (e.target.parentElement.classList.contains('delete-ingredient')) {
         e.target.parentElement.parentElement.remove();
         removeIngredientFromLocalStorage(e.target.parentElement.parentElement.firstChild);
-        
-         // Get footer up when removing an ingredient input 
-        parsedBottomValueIngredients += 74;
-        footerBottomValueIngredients = String(parsedBottomValueIngredients + 'px');
-        footerIngredients.style.bottom = footerBottomValueIngredients;
+
+        parsedElementBottomValue += 79;
+        console.log(parsedElementBottomValue);
+        footerElementBottomValue = String(parsedElementBottomValue + 'px');
+        footerElement.style.bottom = footerElementBottomValue;
     }
     else {
         e.target.parentElement.remove();
         removeIngredientFromLocalStorage(e.target.parentElement.firstChild);
-        
-         // Get footer up when removing an ingredient input 
-        parsedBottomValueIngredients += 74;
-        footerBottomValueIngredients = String(parsedBottomValueIngredients + 'px');
-        footerIngredients.style.bottom = footerBottomValueIngredients;
+
+        parsedElementBottomValue += 79;
+        console.log(parsedElementBottomValue);
+        footerElementBottomValue = String(parsedElementBottomValue + 'px');
+        footerElement.style.bottom = footerElementBottomValue;
     }
 
     e.preventDefault();
@@ -216,12 +212,12 @@ function removeIngredientFromLocalStorage(ingredientItem) {
     else {
         ingredients = JSON.parse(localStorage.getItem('ingredients'));
     }
-    
+
     ingredients.forEach(function(ingredient, index) {
         if (ingredientItem.name === ingredient) {
             ingredients.splice(index, 1);
         }
     });
-    
+
     localStorage.setItem('ingredients', JSON.stringify(ingredients));
 }
