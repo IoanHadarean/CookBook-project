@@ -88,7 +88,7 @@ def before_request():
             
             
             
-"""Route when first accessing the page"""
+""" Route when first accessing the page """
 
 @app.route('/')
 def index():
@@ -525,6 +525,19 @@ def search_recipes():
         return render_template('search_recipes.html')
    
    
+""" Allow logged in user to add recipe """
+@app.route('/add_recipe', methods = ['GET', 'POST'])
+def add_recipe():
+    cuisines = mongo.db.cuisines.find()
+    courses = mongo.db.courses.find()
+    allergens = mongo.db.allergens.find()
+    user_recipes = mongo.db.user_recipes.find()
+    return render_template('add_recipe.html', user_recipes = user_recipes, courses = courses,
+                            cuisines = cuisines, allergens = allergens)   
+   
+   
+   
+   
 """ Insert a recipe in the user_recipe collection """   
    
 @app.route("/insert_recipe", methods=["POST"])
@@ -862,25 +875,6 @@ def update_rating(recipe_id):
                                     
         
     return redirect(url_for('get_recipe', recipe_id = recipe_id))
-
-
-
-
-
-
-""" Allow logged in user to add recipe """
-@app.route('/add_recipe', methods = ['GET', 'POST'])
-def add_recipe():
-    cuisines = mongo.db.cuisines.find()
-    courses = mongo.db.courses.find()
-    allergens = mongo.db.allergens.find()
-    user_recipes = mongo.db.user_recipes.find()
-    return render_template('add_recipe.html', user_recipes = user_recipes, courses = courses,
-                            cuisines = cuisines, allergens = allergens)
-    
-    
-    
-    
 
 
 """ Recipe ingredients statistics by cuisine """
