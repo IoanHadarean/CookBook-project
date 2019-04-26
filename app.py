@@ -290,10 +290,8 @@ def profile():
     if userMade.count() > 0:
         starting_id = userMade.sort('_id', pymongo.ASCENDING)
         last_id = starting_id[pagination_offset]['_id']
-        userRecipes = []
         total_results = 0
         for recipe in userMade:
-            userRecipes.append(recipe)
             total_results += 1
     
         args = {
@@ -306,7 +304,7 @@ def profile():
             "total_results": total_results
         }
         
-        return render_template('profile.html', args = args, userMade = userMade, userRecipes = userRecipes, current_name = current_name, image_file = image_file, 
+        return render_template('profile.html', args = args, userMade = userMade, current_name = current_name, image_file = image_file, 
                             date = date, current_email = current_email, profile_description = profile_description, form=form)
     else:
          return render_template('profile.html', current_name = current_name, image_file = image_file, 
@@ -527,24 +525,24 @@ def search_recipes():
         return render_template('search_recipes.html')
    
    
+""" Insert a recipe in the user_recipe collection """   
    
 @app.route('/insert_recipe', methods=['POST'])
 def insert_recipe():
     if request.method == 'POST':
         form = request.form.to_dict()
-        print(form)
         instructions = []
         ingredients = []
         
         # Loop through the keys in the form
-        # If the key matches instruction append to instructions list
+        # If the key matches instruction append instruction to instructions list
         for key in form:
             regex = re.compile("^instruction")
             if regex.match(key):
                 instructions.append(form[key])
         
         # Loop through the keys in the form
-        # If the key matches ingredient append to ingredients list
+        # If the key matches ingredient append ingredients to ingredients list
         for key in form:
             regex = re.compile("^ingredient")
             if regex.match(key):
@@ -564,6 +562,16 @@ def insert_recipe():
     flash ("Your recipe has been added successfully. Please note that you can not like/rate your own recipes.", "success")
     return redirect(url_for('profile'))      
 
+
+
+
+""" Delete user recipe """
+
+@app.route('/delete_recipe/<recipe_id>')
+def delete_recipe(recipe_id):
+    user_recipes.remove({'_id': ObjectId(recipe_id)})
+    flash ('Your recipe has been deleted successfully', 'success')
+    return redirect(url_for('profile'))
 
 
 

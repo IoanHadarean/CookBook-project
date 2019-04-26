@@ -69,6 +69,11 @@
                 <a class="view__details" href="{{ url_for('get_user_recipe', recipe_id=recipe._id) }}">View Recipe</a>
             </div>
         </div>
+        <div class="col s2">
+            <div class="inline actions">
+                <a href="{{url_for('delete_recipe', recipe_id=recipe._id)}}" class="waves-effect waves-light btn btn_small">Delete</a>
+            </div>
+        </div>
         {% endfor %} {% if args.total_results > args.limit %}
         <div class="recipes__pagination">
             <ul class="pagination__list">
