@@ -1,59 +1,72 @@
 {% extends 'base.html' %} {% block content %}
 <section>
-<form id="recipe" action="{{ url_for('update_recipe', recipe_id = recipe._id) }}" method = "POST">
-    <div class="container">
-        <p>Recipe Name</p>
-        <input type="text" name = "recipe_name" class="form-control" id="recipe__name" placeholder="Please enter your recipe name here" required>
-    </div>
-    <div class="container">
-        <p>Ingredients</p>
-        <div id="ingredients-list" class="form-group">
-            <div class="ingredient">
-                <input type="text" name = "ingredient-1" class="form-control" placeholder="Please enter an ingredient" required>
-                <button class="add-ingredient secondary-content" type="button">
+    <form method = "POST">
+        <div class="container">
+            <p>Recipe Name</p>
+            <input type="text" name="recipe_name" value="{{the_recipe.recipe_name }}" class="form-control" id="recipe__name" required>
+        </div>
+        <div class="container">
+            <p>Ingredients</p>
+            {% for ingredient in the_recipe.ingredients %}
+            <div id="ingredients-list" class="form-group">
+                <div class="ingredient">
+                    <input type="text" name="ingredient-1" class="form-control" placeholder="Please enter an ingredient" required>
+                    <button class="add-ingredient secondary-content" type="button">
                     <i class="material-icons right">add</i>
                 </button>
-                <button class="delete-ingredient secondary-content" type="button">
+                    <button class="delete-ingredient secondary-content" type="button">
                     <i class="material-icons right">clear</i>
                 </button>
+                </div>
             </div>
         </div>
-    </div>
-    <div class = "container">
-     <select name="allergen_name" required>
-            <option id = "choose-allergens" value="" disabled selected>Choose Allergen</option>
+        <div class="container">
+            <select name="allergen_name" required>
+            <option id = "choose-allergen" value="" disabled selected>Choose Allergen</option>
             {% for allergen in allergens %}
-                <option  value="{{ allergen.allergen_name }}" name="allergens-{{ loop.index }}">{{ allergen.allergen_name }}</option>
+                {% if allergen.allergen_name == the_recipe.allergen_name %}
+                <option  value="{{ allergen.allergen_name }}" name="allergens-{{ loop.index }}" selected>{{ allergen.allergen_name }}</option>
+                {% else %}
+                <option  value="{{ allergen.allergen_name }}" name="allergens-{{ loop.index }}" selected>{{ allergen.allergen_name }}</option>
+                {% endif %}
             {% endfor %}
         </select>
-        <select name="cuisine_name" required>
-            <option id = "choose-cuisines" value="" disabled selected>Choose Cuisine</option>
+            <select name="cuisine_name" required>
+            <option id = "choose-cuisine" value="" disabled selected>Choose Cuisine</option>
             {% for cuisine in cuisines %}
-                <option value="{{ cuisine.cuisine_name }}" name="cuisines-{{ loop.index }}">{{ cuisine.cuisine_name }}</option>
+                {% if cuisine.cuisine_name == the_recipe.cuisine_name %}
+                <option value="{{ cuisine.cuisine_name }}" name="cuisines-{{ loop.index }}" selected>{{ cuisine.cuisine_name }}</option>
+                {% else %}
+                 <option value="{{ cuisine.cuisine_name }}" name="cuisines-{{ loop.index }}">{{ cuisine.cuisine_name }}</option>
+                {% endif %}
             {% endfor %}
         </select>
-        <select name="course_name" required>
-            <option id = "choose-courses" value="" disabled selected>Choose Course</option>
+            <select name="course_name" required>
+            <option id = "choose-course" value="" disabled selected>Choose Course</option>
             {% for course in courses %}
+                {% if course.course_name == the_recipe.course_name %}
+                <option value="{{ course.course_name }}" name="courses-{{ loop.index }}" selected>{{ course.course_name }}</option>
+                {% else %}
                 <option value="{{ course.course_name }}" name="courses-{{ loop.index }}">{{ course.course_name }}</option>
+                {% endif %}
             {% endfor %}
         </select>
-    </div>
-    <div class="container">
-        <p>Cooking Instructions</p>
-        <div id="instructions-list" class="form-group">
-            <div class="instruction">
-                <input type="text" name = "instruction-1" class="form-control" placeholder="Please enter an instruction" required>
-                <button class="add-instruction secondary-content" type="button">
+        </div>
+        <div class="container">
+            <p>Cooking Instructions</p>
+            <div id="instructions-list" class="form-group">
+                <div class="instruction">
+                    <input type="text" name="instruction-1" class="form-control" placeholder="Please enter an instruction" required>
+                    <button class="add-instruction secondary-content" type="button">
                     <i class="material-icons right">add</i>
                 </button>
-                <button class="delete-instruction secondary-content" type="button">
+                    <button class="delete-instruction secondary-content" type="button">
                     <i class="material-icons right">clear</i>
                 </button>
+                </div>
             </div>
         </div>
-    </div>
-    <button id="submit_recipe" type="submit" class="btn btn-primary btn-center">Edit Recipe</button>
-</form>
+        <button id="submit_recipe" type="submit" class="btn btn-primary btn-center">Edit Recipe</button>
+    </form>
 </section>
 {% endblock %}

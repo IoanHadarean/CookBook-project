@@ -527,7 +527,7 @@ def search_recipes():
    
 """ Insert a recipe in the user_recipe collection """   
    
-@app.route('/insert_recipe', methods=['POST'])
+@app.route("/insert_recipe", methods=["POST"])
 def insert_recipe():
     if request.method == 'POST':
         form = request.form.to_dict()
@@ -564,15 +564,19 @@ def insert_recipe():
 
 
 """ Edit user recipe """
-@app.route("edit_recipe/<recipe_id>", methods = "POST")
+@app.route("/edit_recipe/<recipe_id>", methods = ["GET", "POST"])
 def edit_recipe(recipe_id):
     the_recipe = user_recipes.find_one({"_id": ObjectId(recipe_id)})
-    return render_template("edit_recipe.html", the_recipe = the_recipe)
+    cuisines = mongo.db.cuisines.find()
+    courses = mongo.db.courses.find()
+    allergens = mongo.db.allergens.find()
+    return render_template("edit_recipe.html", the_recipe = the_recipe, cuisines = cuisines,
+                            allergens = allergens, courses = courses)
 
 
 
 """ Update user recipe """
-@app.route('/update_recipe/<recipe_id>', methods=['POST'])
+@app.route("/update_recipe/<recipe_id>", methods=["POST"])
 def update_recipe(recipe_id):
     user_recipes.update({'_id': ObjectId(recipe_id)},
     {
@@ -850,7 +854,7 @@ def add_recipe():
     cuisines = mongo.db.cuisines.find()
     courses = mongo.db.courses.find()
     allergens = mongo.db.allergens.find()
-    user_recipes = mongo.db.user_recipes.find()
+    user_recipes = user_recipes.find()
     return render_template('add_recipe.html', user_recipes = user_recipes, courses = courses,
                             cuisines = cuisines, allergens = allergens)
     
