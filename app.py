@@ -564,7 +564,7 @@ def insert_recipe():
 
 
 """ Edit user recipe """
-@app.route("/edit_recipe/<recipe_id>", methods = ["GET", "POST"])
+@app.route("/edit_recipe/<recipe_id>")
 def edit_recipe(recipe_id):
     the_recipe = user_recipes.find_one({"_id": ObjectId(recipe_id)})
     cuisines = mongo.db.cuisines.find()
@@ -578,13 +578,33 @@ def edit_recipe(recipe_id):
 """ Update user recipe """
 @app.route("/update_recipe/<recipe_id>", methods=["POST"])
 def update_recipe(recipe_id):
+    form = request.form.to_dict()
+    instructions = []
+    ingredients = []
+        
+    # Loop through the keys in the form
+    # If the key matches instruction append instruction to instructions list
+    for key in form:
+        regex = re.compile("^instruction")
+        if regex.match(key):
+            instructions.append(form[key])
+        
+    # Loop through the keys in the form
+    # If the key matches ingredient append ingredients to ingredients list
+    for key in form:
+        regex = re.compile("^ingredient")
+        if regex.match(key):
+            ingredients.append(form[key])
     user_recipes.update({'_id': ObjectId(recipe_id)},
     {
-        'task_name': request.form['task_name'],
-        'category_name': request.form['category_name'],
-        'task_description': request.form['task_description'],
-        'due_date': request.form['due_date'],
-        'is_urgent': request.form['is_urgent']
+        'username': session.get("username"),
+        'recipe_image': "https://media.self.com/photos/58f7d022feead55f43f7fc78/4:3/w_728,c_limit/Creamy-Sun-Dried-Parmesan-Chicken-cafedelites-1%25202.jpg",
+        'recipe_name': request.form.get('recipe_name'),
+        'allergen_name': request.form.get('allergen_name'),
+        'cuisine_name': request.form.get('cuisine_name'),
+        'course_name': request.form.get('course_name'),
+        'instructions': instructions,
+        'ingredients': ingredients
     })
     flash ("Your recipe has been updated successfully", "success")
     return redirect(url_for('profile'))
@@ -854,7 +874,7 @@ def add_recipe():
     cuisines = mongo.db.cuisines.find()
     courses = mongo.db.courses.find()
     allergens = mongo.db.allergens.find()
-    user_recipes = user_recipes.find()
+    user_recipes = mongo.db.user_recipes.find()
     return render_template('add_recipe.html', user_recipes = user_recipes, courses = courses,
                             cuisines = cuisines, allergens = allergens)
     
