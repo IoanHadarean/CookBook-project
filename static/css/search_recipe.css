@@ -48,6 +48,10 @@ footer {
     pointer-events: none;
 }
 
+.font-size-icon {
+    font-size: 50px;
+}
+
 
 /* ---------------------------------- Media Queries ------------------------------ */
 

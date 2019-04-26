@@ -86,7 +86,6 @@ label {
 .edit-button {
     display: inline-block;
     margin-top: 0;
-    margin-left: 6vw;
     box-shadow: 0 0 11px rgba(33, 33, 33, .2);
 }
 
@@ -95,6 +94,7 @@ label {
     display: inline-block;
     box-shadow: 0 0 11px rgba(33, 33, 33, .2);
     margin-top: 0;
+    color: black;
 }
 
 /* ----------------------------------------- Media Queries ----------------------------- */

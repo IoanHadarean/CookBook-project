@@ -82,11 +82,11 @@
             <ul class="pagination__list">
                 {% if args.offset > 0 %}
                 <li class="list__prev">
-                    <a href="{{args.prev_url}}">Previous</a>
+                    <a class = "font-size-icon" href="{{args.prev_url}}"><i class = "fa fa-angle-left"></i></a>
                 </li>
                 {% endif %} {% if args.offset + args.limit
                 < args.total_results %} <li class="list__next">
-                    <a href="{{args.next_url}}">Next</a>
+                    <a class = "font-size-icon" href="{{args.next_url}}"><i class = "fa fa-angle-right"></i></a>
                     </li>
                     {% endif %}
             </ul>
