@@ -82,4 +82,3 @@ var UTC = date + ' UTC';
 document.getElementById('date-time').innerHTML = new Date(UTC).toLocaleString();
 
 
-
