@@ -59,6 +59,26 @@ label {
     width: 180px;
 }
 
+/* ---------------------------------------- Recipes ---------------------------------- */
+.recipes {
+    margin-bottom: 0 !important;
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+}
+
+
+/* ---------------------------------------- Buttons ----------------------------------- */
+
+.delete-button {
+    display: inline-block;
+    width: 12.5vw;
+    margin-left: 6vw;
+    border-radius: 5%;
+    box-shadow: 0 0 11px rgba(33, 33, 33, .2);
+    margin-top: 0;
+    margin-bottom: 50px;
+}
+
 /* ----------------------------------------- Media Queries ----------------------------- */
 
 @media (max-width: 1920px) and (min-width: 768px) {
@@ -80,7 +100,7 @@ label {
         height: 100px;
         position: absolute;
     }
-    
+
     .footer__copyright {
         width: 100%;
     }
@@ -101,9 +121,39 @@ label {
     }
 }
 
+@media (max-width: 559px) and (min-width: 320px) {
+    .delete-button {
+        width: 50vw;
+        margin-left: 50vw;
+    }
+}
+
 
 @media only screen and (max-width: 1200px) {
     .no-margins {
         height: 850px;
+    }
+}
+
+
+@media (min-width: 768px) and (max-width: 1000px) {
+    .delete-button {
+        margin-left: 27.5vw;
+        width: 17.5vw;
+    }
+}
+
+@media (max-width: 767px) and (min-width: 560px)  {
+    .delete-button {
+        margin-left: 50vw;
+        width: 30vw;
+    }
+}
+
+
+@media (max-width: 2560px) and (min-width: 1001px) {
+    .delete-button {
+        width: 13.33vw;
+        margin-left: 18.33vw;
     }
 }
