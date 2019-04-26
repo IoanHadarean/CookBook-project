@@ -11,6 +11,7 @@ body {
 form {
     width: 100%;
     top: auto;
+    height: 350px;
     position: relative;
 }
 
@@ -34,7 +35,7 @@ label {
 
 /* --------------------------------------- Profile ------------------------------ */
 
-.no-margins {
+.no-margin-top {
     margin-top: 0;
 }
 
@@ -67,16 +68,33 @@ label {
 }
 
 
+.container {
+    margin-top: 20px !important;
+}
+
 /* ---------------------------------------- Buttons ----------------------------------- */
+
+.edit-container,
+.delete-container {
+    height: 34px;
+    width: 50vw;
+    float: left;
+    margin-bottom: 50px;
+}
+
+
+.edit-button {
+    display: inline-block;
+    margin-top: 0;
+    margin-left: 6vw;
+    box-shadow: 0 0 11px rgba(33, 33, 33, .2);
+}
+
 
 .delete-button {
     display: inline-block;
-    width: 12.5vw;
-    margin-left: 6vw;
-    border-radius: 5%;
     box-shadow: 0 0 11px rgba(33, 33, 33, .2);
     margin-top: 0;
-    margin-bottom: 50px;
 }
 
 /* ----------------------------------------- Media Queries ----------------------------- */
@@ -124,36 +142,63 @@ label {
 @media (max-width: 559px) and (min-width: 320px) {
     .delete-button {
         width: 50vw;
-        margin-left: 50vw;
+    }
+    
+    .edit-button {
+        width: 50vw;
+        margin-left: 0;
     }
 }
 
-
-@media only screen and (max-width: 1200px) {
-    .no-margins {
-        height: 850px;
-    }
-}
 
 
 @media (min-width: 768px) and (max-width: 1000px) {
+    .delete-container,
     .delete-button {
-        margin-left: 27.5vw;
         width: 17.5vw;
+    }
+    
+    .delete-button {
+        margin-left: -22.5vw;
+    }
+    
+    .edit-button {
+        width: 17.5vw;
+        margin-left: 10vw;
     }
 }
 
 @media (max-width: 767px) and (min-width: 560px)  {
-    .delete-button {
-        margin-left: 50vw;
+    .delete-button,
+    .delete-container {
         width: 30vw;
+    }
+    
+    .edit-button,
+    .edit-container {
+        width: 30vw;
+    }
+    
+    .edit-button,
+    .delete-button {
+        margin-left: 20vw;
     }
 }
 
 
 @media (max-width: 2560px) and (min-width: 1001px) {
-    .delete-button {
+    .delete-button,
+    .delete-container {
         width: 13.33vw;
-        margin-left: 18.33vw;
+    }
+    
+    .edit-button,
+    .edit-container {
+        width: 13.33vw;
+    }
+    
+    .edit-button,
+    .delete-button {
+        margin-left: 5vw;
     }
 }
