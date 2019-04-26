@@ -323,7 +323,8 @@ x-star-rating>.star.full:after {
 .alert__description {
     font-size: 24px;
     font-weight: 700;
-    margin-bottom: 20px;
+    margin-top: 25px;
+    margin-bottom: 25px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -369,7 +370,7 @@ x-star-rating>.star.full:after {
 }
 
 .ingredients {
-    margin-top: 0;
+    margin-top: 50px;
 }
 
 .recipe__quantities li,

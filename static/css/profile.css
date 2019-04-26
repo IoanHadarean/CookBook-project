@@ -123,16 +123,17 @@ label {
     padding-right: 0 !important;
 }
 
-.btn {
-    margin-top: 0;
-}
-
 .cancel-button {
     height: 34px;
     color: black;
     opacity: 0.7;
     font-size: 14px;
     border: 1px solid black !important;
+}
+
+.cancel-button,
+.delete-button-modal {
+    margin-top: 0;
 }
 
 
@@ -208,19 +209,18 @@ label {
 }
 
 @media (max-width: 767px) and (min-width: 560px)  {
-    .delete-button,
     .delete-container {
         width: 30vw;
     }
     
-    .edit-button,
     .edit-container {
         width: 30vw;
+        margin-left: 20vw;
     }
     
     .edit-button,
     .delete-button {
-        margin-left: 20vw;
+        width: 100%;
     }
 }
 

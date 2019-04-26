@@ -45,8 +45,10 @@
     <script src="{{ url_for('static', filename = 'js/navbar.js') }}" async></script>
     <script type="text/javascript" src="{{ url_for('static', filename = 'js/search.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename = 'js/alert.js') }}"></script>
+    {% if request.endpoint == 'add_recipe' or request.endpoint == 'edit_recipe' %}
     <script type="text/javascript" src="{{ url_for('static', filename = 'js/addIngredients.js') }}"></script>
     <script type="text/javascript" src="{{ url_for('static', filename = 'js/addInstructions.js') }}"></script>
+    {% endif %}
 </body>
 
 </html>
