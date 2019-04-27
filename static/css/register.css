@@ -1,9 +1,9 @@
-/* --------------------------------------- Stylings and margins---------------------------*/
+/* --------------------------------------- Special stylings and margins---------------------------*/
 
 html, body {
  overflow-x: hidden;
 }
 
-footer {
- width: 100%;
+.register-button {
+ margin-top: 15px;
 }

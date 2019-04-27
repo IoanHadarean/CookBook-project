@@ -11,12 +11,11 @@
   overflow: initial;
  }
 
-
- form {
-  position: absolute;
-  z-index: 3;
-  margin: 0;
- }
+form {
+ position: absolute;
+ z-index: 3;
+ margin: 0;
+}
 
  .alert-success,
  .alert-danger {
@@ -103,6 +102,7 @@
   justify-content: center;
   padding-left: 5vw;
  }
+
 
  /* -------------------------------------------Buttons--------------------------------------- */
 
@@ -348,12 +348,9 @@
 
 
  @media (min-height: 360px) and (max-height: 667px) {
-  footer {
-   bottom: -200px;
-  }
 
   form {
-   top: 25vh;
+   top: 12vh;
   }
 
   .form-control {

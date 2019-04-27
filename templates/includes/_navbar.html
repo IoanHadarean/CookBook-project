@@ -20,10 +20,10 @@
         {% if session.logged_in %}
         <li class="add_recipe-tag"><a href="/add_recipe">Add Recipe</a></li>
         <li class="profile-tag"><a href="/profile">Profile</a></li>
-        <li><a href="/logout">Logout</a></li>
+        <li><a class = "logout" href="/logout">Logout</a></li>
         {% else %}
         <li><a href="/register">Register</a></li>
-        <li><a href="/login">Login</a></li>
+        <li><a class = "login" href="/login">Login</a></li>
         {% endif %}
       </ul>
     </div>
