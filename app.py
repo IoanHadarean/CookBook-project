@@ -618,7 +618,7 @@ def update_recipe(recipe_id):
         'ingredients': ingredients
     })
     flash ("Your recipe has been updated successfully", "success")
-    return redirect(url_for('profile'))
+    return redirect(url_for('get_user_recipe', recipe_id = recipe_id))
 
 
 

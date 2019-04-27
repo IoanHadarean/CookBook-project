@@ -3,8 +3,8 @@
 
 
 // Get HTML Elements
-const firstAddButton = document.getElementsByClassName('add-ingredient')[0];
-const firstDeleteButton = document.getElementsByClassName('delete-ingredient')[0];
+const firstAddButton = document.getElementsByClassName('add-ingredient');
+const firstDeleteButton = document.getElementsByClassName('delete-ingredient');
 const ingredientsList = document.getElementById('ingredients-list');
 
 
@@ -15,11 +15,11 @@ loadEventListeners();
 
 function loadEventListeners() {
     document.addEventListener('DOMContentLoaded', getIngredients);
-    if (firstAddButton) {
-        firstAddButton.addEventListener('click', addIngredient);
+    for (var i = 0; i < firstAddButton.length; i++) {
+        firstAddButton[i].addEventListener('click', addIngredient);
     }
-    if (firstDeleteButton) {
-        firstDeleteButton.addEventListener('click', removeIngredient);
+    for ( var j = 0; j < firstDeleteButton.length; j++) {
+        firstDeleteButton[j].addEventListener('click', removeIngredient);
     }
 }
 
