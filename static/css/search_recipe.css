@@ -1,8 +1,9 @@
 /* ------------------------- Special margins and styling ----------------- */
 
-.container {
-    height: 0 !important;
+footer {
+    position: absolute;
 }
+
 
 /* ---------------------------Recipe Search ------------------ */
 
@@ -56,7 +57,7 @@
 
 @media (max-height: 1366px) and (min-height: 1024px) {
     form {
-        top: 13vh;
+        top: 15vh;
     }
 }
 
@@ -89,7 +90,7 @@
     #search_message {
         margin-top: 20px;
     }
-    
+
     .container {
         margin-top: 100px !important;
     }
@@ -113,3 +114,9 @@
     }
 }
 
+
+@media (max-height: 667px) and (min-height: 360px) {
+    form {
+        top: 25vh;
+    }
+}

@@ -3,11 +3,11 @@
 <section class="vh100 container-fluid">
     <form id="add-recipe" action="{{ url_for('insert_recipe') }}" method="POST">
         <div class="container">
-            <p>Recipe Name</p>
+            <p class = "add-recipe__name">Recipe Name</p>
             <input type="text" name="recipe_name" class="form-control" id="recipe__name" placeholder="Please enter your recipe name here" required>
         </div>
         <div class="container">
-            <p>Ingredients</p>
+            <p class = "add-recipe__ingredients">Ingredients</p>
             <div id="ingredients-list" class="form-group">
                 <div class="ingredient">
                     <input type="text" name="ingredient-1" class="form-control" placeholder="Please enter an ingredient" required>
@@ -41,7 +41,7 @@
         </select>
         </div>
         <div class="container">
-            <p>Cooking Instructions</p>
+            <p class = "add-recipe__instructions">Cooking Instructions</p>
             <div id="instructions-list" class="form-group">
                 <div class="instruction">
                     <input type="text" name="instruction-1" class="form-control" placeholder="Please enter an instruction" required>
@@ -54,7 +54,9 @@
                 </div>
             </div>
         </div>
-        <button id="submit_recipe" type="submit" class="btn btn-primary btn-center">Add Recipe</button>
+        <div class = "add-button-container">
+            <button id="submit_recipe" type="submit" class="add-button btn btn-primary btn-center">Add Recipe</button>
+        </div>
     </form>
 </section>
 {% endblock %}
