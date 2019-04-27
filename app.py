@@ -180,7 +180,6 @@ def login():
     
     
     
-    
 @app.route('/profile', methods = ['GET', 'POST'])
 def profile():
     form = EditForm(CombinedMultiDict((request.files,request.form)))

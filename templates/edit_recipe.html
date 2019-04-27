@@ -1,6 +1,7 @@
 {% extends 'base.html' %} {% block content %}
-<section>
-    <form action="{{url_for('update_recipe', recipe_id = the_recipe._id) }}" method="POST">
+<link rel="stylesheet" href="{{ url_for('static', filename = 'css/add_edit_recipe.css') }}" type="text/css" />
+<section class="vh100 container-fluid">
+    <form id="edit-recipe" class = "container" action="{{url_for('update_recipe', recipe_id = the_recipe._id) }}" method="POST">
         <div class="container">
             <p>Recipe Name</p>
             <input type="text" name="recipe_name" value="{{the_recipe.recipe_name }}" class="form-control" id="recipe__name" required>
@@ -23,7 +24,7 @@
         </div>
         <div class="container">
             <select name="allergen_name" required>
-            <option id = "choose-allergen" value="" disabled selected>Choose Allergen</option>
+            <option id = "choose-allergens-edit" value="" disabled selected>Choose Allergen</option>
             {% for allergen in allergens %}
                 {% if allergen.allergen_name == the_recipe.allergen_name %}
                 <option  value="{{ allergen.allergen_name }}" name="allergens-{{ loop.index }}" selected>{{ allergen.allergen_name }}</option>
@@ -33,7 +34,7 @@
             {% endfor %}
         </select>
             <select name="cuisine_name" required>
-            <option id = "choose-cuisine" value="" disabled selected>Choose Cuisine</option>
+            <option id = "choose-cuisines-edit" value="" disabled selected>Choose Cuisine</option>
             {% for cuisine in cuisines %}
                 {% if cuisine.cuisine_name == the_recipe.cuisine_name %}
                 <option value="{{ cuisine.cuisine_name }}" name="cuisines-{{ loop.index }}" selected>{{ cuisine.cuisine_name }}</option>
@@ -43,7 +44,7 @@
             {% endfor %}
         </select>
             <select name="course_name" required>
-            <option id = "choose-course" value="" disabled selected>Choose Course</option>
+            <option id = "choose-courses-edit" value="" disabled selected>Choose Course</option>
             {% for course in courses %}
                 {% if course.course_name == the_recipe.course_name %}
                 <option value="{{ course.course_name }}" name="courses-{{ loop.index }}" selected>{{ course.course_name }}</option>
@@ -60,17 +61,16 @@
                 <div class="instruction">
                     <input type="text" name="instruction-{{loop.index}}" class="form-control" value="{{ instruction }}" required>
                     <button class="add-instruction secondary-content" type="button">
-                    <i class="material-icons right">add</i>
-                </button>
+                        <i class="material-icons right">add</i>
+                    </button>
                     <button class="delete-instruction secondary-content" type="button">
-                    <i class="material-icons right">clear</i>
-                </button>
+                        <i class="material-icons right">clear</i>
+                    </button>
                 </div>
+                {% endfor %}
             </div>
-            {% endfor %}
         </div>
         <button id="submit_recipe" type="submit" class="btn btn-primary btn-center">Update Recipe</button>
     </form>
 </section>
 {% endblock %}
-

@@ -11,17 +11,6 @@
   overflow: initial;
  }
 
- .container-fluid {
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover;
-  padding-left: 0px;
-  padding-right: 0px;
-  min-height: 100%;
-  height: auto !important;
-  width: 100%;
- }
 
  form {
   position: absolute;
@@ -68,6 +57,7 @@
   position: fixed;
   width: 100%;
   z-index: 99;
+  top: 0;
  }
 
  .navbar-toggle .icon-bar {

@@ -6,9 +6,6 @@
 const firstInstruction = document.getElementsByClassName('add-instruction')[0];
 const firstDeleteInstruction = document.getElementsByClassName('delete-instruction')[0];
 const instructionsList = document.getElementById('instructions-list');
-var footerElement;
-var parsedElementBottomValue;
-var footerElementBottomValue;
 
 
 // Add event listeners
@@ -50,12 +47,6 @@ function getInstructions() {
         removeButton.addEventListener('click', removeInstruction);
         const addIcon = document.createElement('i');
         const deleteIcon = document.createElement('i');
-
-
-        // Get footer down by the height of the instructions container
-        parsedElementBottomValue -= 79;
-        footerElementBottomValue = String(parsedElementBottomValue + 'px');
-        footerElement.style.bottom = footerElementBottomValue;
 
         // Add class to instruction container
         instructionContainer.className = 'instruction';
@@ -111,12 +102,6 @@ function addInstruction(e) {
     removeButton.addEventListener('click', removeInstruction);
     const addIcon = document.createElement('i');
     const deleteIcon = document.createElement('i');
-
-
-    // Get footer down by the height of the instructions container
-    parsedElementBottomValue -= 79;
-    footerElementBottomValue = String(parsedElementBottomValue + 'px');
-    footerElement.style.bottom = footerElementBottomValue;
 
 
     // Add class to ingredient container
@@ -186,21 +171,10 @@ function removeInstruction(e) {
     else if (e.target.parentElement.classList.contains('delete-instruction')) {
         e.target.parentElement.parentElement.remove();
         removeInstructionFromLocalStorage(e.target.parentElement.parentElement.firstChild);
-
-
-        // Get footer up by the height of the instructions container
-        parsedElementBottomValue += 79;
-        footerElementBottomValue = String(parsedElementBottomValue + 'px');
-        footerElement.style.bottom = footerElementBottomValue;
     }
     else {
         e.target.parentElement.remove();
         removeInstructionFromLocalStorage(e.target.parentElement.firstChild);
-
-        // Get footer up by the height of the instructions container
-        parsedElementBottomValue += 79;
-        footerElementBottomValue = String(parsedElementBottomValue + 'px');
-        footerElement.style.bottom = footerElementBottomValue;
     }
 
     e.preventDefault();

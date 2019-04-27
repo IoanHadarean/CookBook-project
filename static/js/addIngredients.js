@@ -3,15 +3,9 @@
 
 
 // Get HTML Elements
-var footerElement = document.getElementsByTagName('footer')[0];
 const firstAddButton = document.getElementsByClassName('add-ingredient')[0];
 const firstDeleteButton = document.getElementsByClassName('delete-ingredient')[0];
 const ingredientsList = document.getElementById('ingredients-list');
-
-// Get the footer bottom style and parse it to integer
-var footerElementStyle = window.getComputedStyle(footerElement, null);
-var footerElementBottomValue = footerElementStyle.getPropertyValue("bottom");
-var parsedElementBottomValue = parseInt(footerElementBottomValue, 10);
 
 
 // Add event listeners
@@ -54,11 +48,6 @@ function getIngredients() {
         const addIcon = document.createElement('i');
         const deleteIcon = document.createElement('i');
 
-
-        // Get footer down by the height of the ingredient container
-        parsedElementBottomValue -= 79;
-        footerElementBottomValue = String(parsedElementBottomValue + 'px');
-        footerElement.style.bottom = footerElementBottomValue;
 
         // Add class to ingredient container
         ingredientContainer.className = 'ingredient';
@@ -114,10 +103,6 @@ function addIngredient(e) {
     const addIcon = document.createElement('i');
     const deleteIcon = document.createElement('i');
 
-    // Get footer down by the height of the ingredient container
-    parsedElementBottomValue -= 79;
-    footerElementBottomValue = String(parsedElementBottomValue + 'px');
-    footerElement.style.bottom = footerElementBottomValue;
 
 
     // Add class to ingredient container
@@ -188,21 +173,10 @@ function removeIngredient(e) {
     else if (e.target.parentElement.classList.contains('delete-ingredient')) {
         e.target.parentElement.parentElement.remove();
         removeIngredientFromLocalStorage(e.target.parentElement.parentElement.firstChild);
-
-
-        // Get footer up by the height of the ingredient container
-        parsedElementBottomValue += 79;
-        footerElementBottomValue = String(parsedElementBottomValue + 'px');
-        footerElement.style.bottom = footerElementBottomValue;
     }
     else {
         e.target.parentElement.remove();
         removeIngredientFromLocalStorage(e.target.parentElement.firstChild);
-
-        // Get footer up by the height of the ingredient container
-        parsedElementBottomValue += 79;
-        footerElementBottomValue = String(parsedElementBottomValue + 'px');
-        footerElement.style.bottom = footerElementBottomValue;
     }
 
     e.preventDefault();

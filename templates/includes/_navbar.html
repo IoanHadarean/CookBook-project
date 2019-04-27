@@ -1,36 +1,32 @@
-<header>
-  <div class="container-fluid">
-    <nav id="navbar navbar-inverse">
-      <div class="container--nav">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="true" aria-controls="navbar">
+<nav id="navbar navbar-inverse">
+  <div class="container--nav">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="true" aria-controls="navbar">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="{{ url_for('recipes', limit=6, offset=0 ) }}">Relish</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav navbar-middle">
-            <li><a href="{{ url_for('recipes', pagination_limit=6, pagination_offset=0 ) }}">Recipes</a></li>
-            <li><a href="/statistics">Statistics</a></li>
-            <li><a href="{{ url_for('search_recipes', limit=6, offset=0) }}">Search</a></li>
-          </ul>
+      <a class="navbar-brand" href="{{ url_for('recipes', limit=6, offset=0 ) }}">Relish</a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav navbar-middle">
+        <li><a href="{{ url_for('recipes', pagination_limit=6, pagination_offset=0 ) }}">Recipes</a></li>
+        <li><a href="/statistics">Statistics</a></li>
+        <li><a href="{{ url_for('search_recipes', limit=6, offset=0) }}">Search</a></li>
+      </ul>
 
-          <ul class="nav navbar-nav navbar-right">
-            {% if session.logged_in %}
-            <li class = "add_recipe-tag"><a href="/add_recipe">Add Recipe</a></li>
-            <li class = "profile-tag"><a href="/profile">Profile</a></li>
-            <li><a href="/logout">Logout</a></li>
-            {% else %}
-            <li><a href="/register">Register</a></li>
-            <li><a href="/login">Login</a></li>
-            {% endif %}
-          </ul>
-        </div>
-        <!--/.nav-collapse -->
-      </div>
-    </nav>
+      <ul class="nav navbar-nav navbar-right">
+        {% if session.logged_in %}
+        <li class="add_recipe-tag"><a href="/add_recipe">Add Recipe</a></li>
+        <li class="profile-tag"><a href="/profile">Profile</a></li>
+        <li><a href="/logout">Logout</a></li>
+        {% else %}
+        <li><a href="/register">Register</a></li>
+        <li><a href="/login">Login</a></li>
+        {% endif %}
+      </ul>
+    </div>
+    <!--/.nav-collapse -->
   </div>
-</header>
+</nav>

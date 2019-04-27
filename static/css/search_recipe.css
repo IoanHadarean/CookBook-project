@@ -1,9 +1,8 @@
 /* ------------------------- Special margins and styling ----------------- */
 
-footer {
-    position: absolute;
+.container {
+    height: 0 !important;
 }
-
 
 /* ---------------------------Recipe Search ------------------ */
 

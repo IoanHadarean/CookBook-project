@@ -1,4 +1,5 @@
 {% extends 'base.html' %} {% block content %} {% from "includes/_formhelpers.html" import render_field %} {% include 'includes/_messages.html' %}
+<link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}" type="text/css" />
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/profile.css') }}" type="text/css" />
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/recipes.css') }}" type="text/css" />
 <section class="no-margin-top">

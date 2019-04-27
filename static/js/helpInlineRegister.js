@@ -15,7 +15,7 @@ window.onload = function() {
     // Check for innerHTML of help-inline messages and get footer 
     // down by the height of the span containing the message
     // or by a height defined by the position of the footer
-    if (screen.height <= 568) {
+    if (screen.height <= 640) {
         Array.prototype.forEach.call(spans, span => {
             if (span.innerHTML.indexOf('Field must be between 6 and 50 characters long.') !== -1) {
                 parsedBottomValue -= 40;
