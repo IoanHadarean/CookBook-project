@@ -306,7 +306,7 @@ section {
 }
 
 
-@media (min-width: 1000px) and (max-width: 2560px) {
+@media (min-width: 1001px) and (max-width: 2560px) {
     .recipes__separator-medium {
         display: none;
     }

@@ -230,18 +230,17 @@ label {
 
 
 @media (max-width: 2560px) and (min-width: 1001px) {
-    .delete-button,
-    .delete-container {
-        width: 13.33vw;
-    }
-    
-    .edit-button,
-    .edit-container {
-        width: 13.33vw;
-    }
-    
-    .edit-button,
+   .delete-container {
+       width: 13.33vw;
+   }
+   
+   .edit-container {
+       width: 13.33vw;
+       margin-left: 5vw;
+   }
+   
+   .edit-button,
     .delete-button {
-        margin-left: 5vw;
+        width: 100%;
     }
 }

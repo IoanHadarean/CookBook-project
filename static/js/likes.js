@@ -22,7 +22,7 @@ thumbsDownButton.addEventListener('click', loadDislike);
 // Prevent refreshing the page when liking a recipe
 function loadLike(e) {
     let xhr = new XMLHttpRequest();
-    xhr.onload = function() {
+    xhr.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
             let response = JSON.parse(xhr.responseText);
             likesSpan.innerHTML = "Likes " + response.likes;
@@ -37,6 +37,9 @@ function loadLike(e) {
         }
     });
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.onerror = function() {
+        console.log('Request error...');
+    };
     xhr.send();
     e.preventDefault();
 }
@@ -45,7 +48,7 @@ function loadLike(e) {
 // Prevent refreshing the page when disliking a recipe
 function loadDislike(e) {
     let xhr = new XMLHttpRequest();
-    xhr.onload = function() {
+    xhr.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
             let response = JSON.parse(xhr.responseText);
             likesSpan.innerHTML = "Likes " + response.likes;
@@ -57,6 +60,9 @@ function loadDislike(e) {
         }
     });
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.onerror = function() {
+        console.log('Request error...');
+    };
     xhr.send();
     e.preventDefault();
 }

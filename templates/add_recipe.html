@@ -4,13 +4,13 @@
     <form id="add-recipe" action="{{ url_for('insert_recipe') }}" method="POST">
         <div class="container">
             <p class = "add-recipe__name">Recipe Name</p>
-            <input type="text" name="recipe_name" class="form-control" id="recipe__name" placeholder="Please enter your recipe name here" required>
+            <input type="text" name="recipe_name" class="form-control" id="recipe__name" placeholder="Recipe Name" required>
         </div>
         <div class="container">
             <p class = "add-recipe__ingredients">Ingredients</p>
             <div id="ingredients-list" class="form-group">
                 <div class="ingredient">
-                    <input type="text" name="ingredient-1" class="form-control" placeholder="Please enter an ingredient" required>
+                    <input type="text" name="ingredient-1" class="form-control" placeholder="Ingredient" required>
                     <button class="add-ingredient secondary-content" type="button">
                     <i class="material-icons right">add</i>
                 </button>
@@ -44,7 +44,7 @@
             <p class = "add-recipe__instructions">Cooking Instructions</p>
             <div id="instructions-list" class="form-group">
                 <div class="instruction">
-                    <input type="text" name="instruction-1" class="form-control" placeholder="Please enter an instruction" required>
+                    <input type="text" name="instruction-1" class="form-control" placeholder="Instruction" required>
                     <button class="add-instruction secondary-content" type="button">
                     <i class="material-icons right">add</i>
                 </button>
