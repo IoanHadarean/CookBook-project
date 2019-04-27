@@ -4,7 +4,7 @@
     <form id="add-recipe" action="{{ url_for('insert_recipe') }}" method="POST">
         <div class="container">
             <p class = "add-recipe__name">Recipe Name</p>
-            <input type="text" name="recipe_name" class="form-control" id="recipe__name" placeholder="Recipe Name" required>
+            <input type="text" name="recipe_name" class="form-control" id="recipe__name" placeholder="Recipe Name" min = "6" max = "50" required>
         </div>
         <div class="container">
             <p class = "add-recipe__ingredients">Ingredients</p>

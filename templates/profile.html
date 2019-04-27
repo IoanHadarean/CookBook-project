@@ -69,15 +69,16 @@
             <div class="recipes__view">
                 <a class="view__details" href="{{ url_for('get_user_recipe', recipe_id=recipe._id) }}">View Recipe</a>
             </div>
-        </div>
-        <div class="inline actions">
-            <div class="edit-container">
-                <a href="{{url_for('edit_recipe', recipe_id=recipe._id)}}" class="edit-button btn btn-primary">Edit</a>
+            <div class="inline actions">
+                <div class="edit-container">
+                    <a href="{{url_for('edit_recipe', recipe_id=recipe._id)}}" class="edit-button btn btn-primary">Edit</a>
+                </div>
+                <div class="delete-container">
+                    <a class="delete-button btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</a>
+                </div>
             </div>
-            <div class="delete-container">
-                <a class="delete-button btn btn-danger" data-toggle="modal" data-target="#deleteModal">Delete</a>
-            </div>
         </div>
+
 
         <!-- Delete recipe modal -->
         <div id="deleteModal" class="modal fade" role="dialog">
