@@ -6,7 +6,7 @@ let recipes = document.getElementsByClassName('recipes')[0];
 let searchMessage = document.getElementById('search_message');
 let searchBtn = document.getElementById('btnSearch');
 let btnContainer = document.getElementById('btn-container');
-let searchForm = document.getElementById('search_form');
+let recipesContainer = document.getElementsByClassName('container')[0];
 
 
 
@@ -20,7 +20,6 @@ function loadEventListeners() {
         input.addEventListener('input', getInputResults);
     }
     if (searchBtn) {
-        searchBtn.addEventListener('click', getResults);
         searchBtn.addEventListener('click', searchState);
     }
     document.addEventListener('click', styleDisabledButton);
@@ -38,28 +37,8 @@ function loadResults() {
     else {
         searchBtn.disabled = true;
     }
-    document.getElementsByClassName('container')[0].innerHTML = '';
+    recipesContainer.innerHTML = '';
     footerTag.style.position = 'absolute';
-}
-
-
-// Get search results on click
-function getResults() {
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", "/search_results/" + input.value, true);
-    xhr.onload = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            let response = this.responseText;
-            
-        }
-        else {
-            console.log("Response not received");
-        }
-    };
-    xhr.onerror = function() {
-        console.log('Request error...');
-    };
-    xhr.send();
 }
 
 
@@ -67,32 +46,37 @@ function getResults() {
 // Get number of search results on input
 function getInputResults() {
     let xhr = new XMLHttpRequest();
-    xhr.open("POST", "/search_results/" + input.value, true);
-    xhr.onload = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            let results = this.responseText;
-            document.getElementById('count_results').innerHTML = '';
-            if (results === "0") {
-                document.getElementById('search_message').innerHTML = 'No recipes found';
-            }
-            else {
-                if (results === "1") {
-                    document.getElementById('search_message').innerHTML = results + ' recipe was found';
+    document.getElementById('count_results').innerHTML = '';
+    document.getElementById('search_message').innerHTML = '';
+    let trimmedInput = input.value.replace(/\s/g, "", true);
+    if (trimmedInput.length >= 3) {
+        xhr.open("POST", "/search_results/" + trimmedInput);
+        xhr.onload = function() {
+            if (this.readyState == 4 && this.status == 200) {
+                let results = this.responseText;
+                if (results === "0") {
+                    document.getElementById('search_message').innerHTML = 'No recipes found';
                 }
                 else {
-                    document.getElementById('search_message').innerHTML = results + ' recipes were found';
+                    if (results === "1") {
+                        document.getElementById('search_message').innerHTML = results + ' recipe was found';
+                    }
+                    else {
+                        document.getElementById('search_message').innerHTML = results + ' recipes were found';
+                    }
+                }
+                if (input.value === '') {
+                    document.getElementById('search_message').innerHTML = '';
                 }
             }
-            if (input.value === '') {
-                document.getElementById('search_message').innerHTML = '';
-            }
-        }
-    };
-    xhr.onerror = function() {
-        console.log('Request error...');
-    };
-    xhr.send();
+        };
+        xhr.onerror = function() {
+            console.log('Request error...');
+        };
+        xhr.send();
+    }
 }
+
 
 
 // Set the state of the search button

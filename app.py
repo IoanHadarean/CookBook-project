@@ -435,6 +435,17 @@ def filter_recipes():
         return render_template('recipes.html')
 
   
+
+""" Get the number of filter results for recipes """     
+@app.route('/filter_results/<filter_select>', methods = ['POST'])
+def filter_results(filter_select):
+    if request.method == 'POST':
+        recipe_collection.create_index([('$**', 'text')])
+        recipes = dumps(recipe_collection.aggregate([{"$match": {"$and": get_results(filter_select)}}]))
+        filter_result = json.loads(recipes)
+        count_recipes = str(len([x for x in parsed_result]))
+        return count_recipes
+
   
   
   
@@ -442,7 +453,6 @@ def filter_recipes():
 """ Get the search results for recipes and then 
     implement pagination for search results """
  
-  
 
 @app.route('/search_recipes', methods = ['GET', 'POST'])
 def search_recipes():
