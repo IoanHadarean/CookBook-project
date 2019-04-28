@@ -3,13 +3,17 @@
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/search_recipe.css') }}" type="text/css" />
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/results.css') }}" type="text/css" />
 <form id="search_form" class="uk-search uk-search-default" action="{{ url_for('search_recipes', limit=6, offset=0) }}" method="POST">
+    {% if search_text != None and search_text is defined %}
     <input autocomplete = "off" id="search_input" class="uk-search-input" type="text" value={{ search_text }} name="search_input" placeholder="Search Recipes...">
+    {% else %}
+    <input autocomplete = "off" id="search_input" class="uk-search-input" type="text" value= "" name="search_input" placeholder="Search Recipes...">
+    {% endif %}
     <div id="btn-container">
         <button id="btnSearch" type="submit" class="btn btn-primary btn-center">Search</button>
     </div>
 </form>
 <span id="search_message"></span>
-{% if count_recipes != "0" and search_text != '' and search_text is defined %} {% if count_recipes == "1" %}
+{% if count_recipes != "0" and count_recipes != None and search_text != '' and search_text is defined %} {% if count_recipes == "1" %}
 <span id="count-results">{{ count_recipes }} recipe was found </span> {% else %}
 <span id="count_results">{{ count_recipes }} recipes were found </span> {% endif %} {% elif count_recipes == "0" and search_text != '' and search_text is defined %}
 <span id="count_results">No recipes found</span> {% endif %}
