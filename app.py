@@ -434,8 +434,7 @@ def filter_recipes():
     else:
         return render_template('recipes.html')
 
-  
-  
+
   
   
   
@@ -522,23 +521,6 @@ def search_recipes():
         return render_template('search_recipes.html', args = args)
     else:
         return render_template('search_recipes.html')
-       
-       
-        
-@app.route('/search_results/<search_input>', methods = ['POST'])
-def search_results(search_input):
-    if request.method == 'POST':
-        recipe_collection.create_index([('$**', 'text')])
-        result = dumps(recipe_collection.find({ "$text": { "$search": str(search_input) }}))
-        parsed_result = json.loads(result)
-
-        count_recipes = str(len([x for x in parsed_result]))
-        return count_recipes
-
-        
-        
-        
-        
    
    
 """ Allow logged in user to add recipe """
@@ -551,9 +533,6 @@ def add_recipe():
     return render_template('add_recipe.html', user_recipes = user_recipes, courses = courses,
                             cuisines = cuisines, allergens = allergens)   
    
-   
-   
-  
    
    
    
