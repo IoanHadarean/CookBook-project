@@ -1,5 +1,5 @@
 // Get HTML elements
-let filterButton = document.getElementById('tags_search_btn');
+let filterButton = document.getElementById('filter-btn');
 let filterForm = document.getElementById('filter_form');
 let footer = document.getElementsByTagName('footer')[0];
 let selects = document.querySelectorAll('select');
@@ -29,7 +29,6 @@ function num_results() {
     xhr.onload = function() {
         if (this.readyState === 4 && this.status === 200) {
             let response = xhr.responseText;
-            console.log(response);
         }
     };
     xhr.open("POST", "/filter_results", true);

@@ -7,7 +7,6 @@ body {
     height: 100%;
     margin: 0;
     padding: 0;
-    overflow: initial;
 }
 
 .container-fluid {
@@ -16,9 +15,8 @@ body {
 }
 
 .vh100 {
-    margin-top: 100px;
+    margin-top: 150px;
     min-height: 100vh;
-    margin-bottom: 100px;
 }
 
 footer {
@@ -149,7 +147,7 @@ nav {
     border-color: #f26226;
 }
 
-/* ----------------------------------------------- Add Recipe Form-------------------------------------------- */
+/* ----------------------------------------------- Add and Edit Recipe Forms -------------------------------------------- */
 
 .add-recipe__name,
 .add-recipe__ingredients,
