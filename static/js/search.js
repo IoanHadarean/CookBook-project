@@ -50,8 +50,7 @@ function getResults() {
     xhr.onload = function() {
         if (this.readyState == 4 && this.status == 200) {
             let response = this.responseText;
-            console.log(response);
-            document.getElementById('search_message').innerHTML = response;
+            
         }
         else {
             console.log("Response not received");
@@ -72,7 +71,7 @@ function getInputResults() {
     xhr.onload = function() {
         if (this.readyState == 4 && this.status == 200) {
             let results = this.responseText;
-            console.log(results);
+            document.getElementById('count_results').innerHTML = '';
             if (results === "0") {
                 document.getElementById('search_message').innerHTML = 'No recipes found';
             }

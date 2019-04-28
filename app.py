@@ -498,6 +498,7 @@ def search_recipes():
     pagination_offset = int(request.args.get('offset', '0'))
     pagination_limit = int(request.args.get('limit', '6'))
     search_text = session.get('search_text')
+    count_recipes = session.get('count_recipes')
     
     recipes = recipe_collection.find({ "$text": { "$search": str(search_text) }})
     starting_id = recipe_collection.find({ "$text": { "$search": str(search_text) }}).sort('_id', pymongo.ASCENDING)
@@ -519,12 +520,12 @@ def search_recipes():
             "total_results": total_results
         }
         
-        return render_template('search_recipes.html', search_text = search_text, args = args)
+        return render_template('search_recipes.html', count_recipes =  count_recipes, search_text = search_text, args = args)
     else:
-        return render_template('search_recipes.html', search_text = search_text)
+        return render_template('search_recipes.html', count_recipes = count_recipes, search_text = search_text)
        
        
-        
+""" Get the number of search results for recipes """     
 @app.route('/search_results/<search_input>', methods = ['POST'])
 def search_results(search_input):
     if request.method == 'POST':
@@ -535,9 +536,6 @@ def search_results(search_input):
         count_recipes = str(len([x for x in parsed_result]))
         return count_recipes
 
-        
-        
-        
         
    
    

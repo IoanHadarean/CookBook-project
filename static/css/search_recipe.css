@@ -7,11 +7,19 @@ footer {
 
 /* ---------------------------Recipe Search ------------------ */
 
-#search_message {
+#search_message,
+#count_results {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+#search_message {
     margin-top: 80px;
+}
+
+#count_results {
+    margin-top: 0;
 }
 
 .uk-search {
@@ -74,20 +82,20 @@ footer {
 }
 
 @media (min-height: 641px) and (max-height: 960px) and (min-width: 375px) {
-    #search_message {
+    #search_message{
         margin-top: 40px;
     }
 }
 
 
 @media only screen and (max-width: 320px) {
-    #search_message {
+    #search_message{
         margin-top: 35px;
     }
 }
 
 @media only screen and (max-height: 360px) {
-    #search_message {
+    #search_message{
         margin-top: 20px;
     }
 

@@ -9,6 +9,10 @@
     </div>
 </form>
 <span id="search_message"></span>
+{% if count_recipes != "0" and search_text != '' and search_text is defined %} {% if count_recipes == "1" %}
+<span id="count-results">{{ count_recipes }} recipe was found </span> {% else %}
+<span id="count_results">{{ count_recipes }} recipes were found </span> {% endif %} {% elif count_recipes == "0" and search_text != '' and search_text is defined %}
+<span id="count_results">No recipes found</span> {% endif %}
 <div class="container">
     {% if args %} {% for recipe in args.recipes_sorted %}
     <div class="recipes">
