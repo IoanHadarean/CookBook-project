@@ -519,9 +519,9 @@ def search_recipes():
             "total_results": total_results
         }
         
-        return render_template('search_recipes.html', args = args)
+        return render_template('search_recipes.html', search_text = search_text, args = args)
     else:
-        return render_template('search_recipes.html')
+        return render_template('search_recipes.html', search_text = search_text)
        
        
         

@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/search_recipe.css') }}" type="text/css" />
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/results.css') }}" type="text/css" />
 <form id="search_form" class="uk-search uk-search-default" action="{{ url_for('search_recipes', limit=6, offset=0) }}" method="POST">
-    <input id="search_input" class="uk-search-input" type="text" value="{{request.form['search_input']}}" name="search_input" placeholder="Search Recipes...">
+    <input id="search_input" class="uk-search-input" type="text" value={{ search_text }} name="search_input" placeholder="Search Recipes...">
     <div id="btn-container">
         <button id="btnSearch" type="submit" class="btn btn-primary btn-center">Search</button>
     </div>
