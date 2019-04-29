@@ -442,9 +442,24 @@ def filter_recipes():
 def filter_results(allergenName, cuisineName, courseName):
     if request.method == 'POST':
         recipe_collection.create_index([('$**', 'text')])
-        recipes = dumps(recipe_collection.find({"allergen_name": allergenName, "cuisine_name": cuisineName, "course_name": courseName}))
+        recipes = []
+        if allergenName == 'None' and cuisineName == 'None':
+            recipes = dumps(recipe_collection.find({'course_name': courseName}))
+        elif allergenName == 'None' and courseName == 'None':
+            recipes = dumps(recipe_collection.find({'cuisine_name': cuisineName}))
+        elif (courseName == 'None' and cuisineName == 'None'):
+            recipes = dumps(recipe_collection.find({'allergen_name': allergenName}))
+        elif (allergenName == 'None' and cuisineName != 'None' and courseName != 'None'):
+            recipes = dumps(recipe_collection.aggregate([{"$match": {"$and": [{"cuisine_name": cuisineName}, {"course_name": courseName}]}}]))
+        elif (cuisineName == 'None' and allergenName != 'None' and courseName != 'None'):
+            recipes = dumps(recipe_collection.aggregate([{"$match": {"$and": [{"allergen_name": allergenName}, {"course_name": courseName}]}}]))
+        elif (courseName == 'None' and allergenName != 'None' and cuisineName != 'None'):
+             recipes = dumps(recipe_collection.aggregate([{"$match": {"$and": [{"allergen_name": allergenName}, {"cuisine_name": cuisineName}]}}]))
+        else: 
+            recipes = dumps(recipe_collection.aggregate([{"$match": {"$and": [{"allergen_name": allergenName}, {"cuisine_name": cuisineName}, {"course_name": courseName}]}}]))
         filter_result = json.loads(recipes)
         count_recipes = str(len([x for x in filter_result]))
+        print(count_recipes)
         return count_recipes
 
   
