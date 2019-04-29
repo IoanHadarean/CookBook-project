@@ -9,7 +9,19 @@ let filterResults = document.getElementById('num-results');
 
 
 
-// Add on change event for selects
+// // Add on change event for selects
+// selects.forEach(select => select.onchange = function() {
+//     container.innerHTML = '';
+//     footer.style.position = 'absolute';
+//     filterButton.disabled = false;
+//     if (filterResults) {
+//         filterResults.innerHTML = '';
+//     }
+// });
+
+
+// Adding a list of dictionaries for select options
+var fullOptions = [{ "allergen_name": "" }, { "cuisine_name": "" }, { "course_name": "" }];
 selects.forEach(select => select.onchange = function() {
     container.innerHTML = '';
     footer.style.position = 'absolute';
@@ -17,12 +29,6 @@ selects.forEach(select => select.onchange = function() {
     if (filterResults) {
         filterResults.innerHTML = '';
     }
-});
-
-
-// Adding a list of dictionaries for select options
-var fullOptions = [{ "allergen_name": "" }, { "cuisine_name": "" }, {"course_name": "" }];
-selects.forEach(select => select.onchange = function() {
     let selectedOptions = [];
     selectedOptions.push(select.options[select.selectedIndex]);
     let constraints = ['choose-allergens', 'choose-cuisines', 'choose-courses'];
@@ -42,6 +48,32 @@ selects.forEach(select => select.onchange = function() {
             fullOptions[0]["allergen_name"] = parsedSelects[i].value;
         }
     }
+    let allergenName = fullOptions[0]["allergen_name"];
+    let cuisineName = fullOptions[1]["cuisine_name"];
+    let courseName = fullOptions[2]["course_name"];
+    if (allergenName == '') {
+        allergenName = 'None';
+    }
+    if (cuisineName == '') {
+        cuisineName = 'None';
+    }
+    if (courseName == '') {
+        courseName = 'None';
+    }
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", "/filter_results/" + allergenName + "/" + cuisineName + "/" + courseName, true);
+
+    xhr.onload = function() {
+        console.log(xhr.status);
+        if (this.readyState === 4 && this.status === 200) {
+            let response = xhr.responseText;
+        }
+    };
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.onerror = function() {
+        console.log('Request error...');
+    };
+    xhr.send();
 });
 
 
@@ -51,21 +83,23 @@ selects.forEach(select => select.onchange = function() {
 
 
 
-function getFilterResults() {
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", "/filter_results/" + fullOptions, true);
-    xhr.onload = function() {
-        if (this.readyState === 4 && this.status === 200) {
-            let response = xhr.responseText;
-            console.log(response);
-        }
-    };
-    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhr.onerror = function() {
-        console.log('Request error...');
-    };
-    xhr.send();
-}
+
+// function getFilterResults() {
+//     let xhr = new XMLHttpRequest();
+//     console.log(fullOptions);
+//     xhr.open("POST", "/filter_results/" + allergenName + cuisineName + courseName, true);
+//     xhr.onload = function() {
+//         if (this.readyState === 4 && this.status === 200) {
+//             let response = xhr.responseText;
+//             console.log(response);
+//         }
+//     };
+//     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+//     xhr.onerror = function() {
+//         console.log('Request error...');
+//     };
+//     xhr.send();
+// }
 
 
 // Fix footer according to results

@@ -1,5 +1,5 @@
+""" Create list of dictionaries from the search form data """
 def get_results(data):
-    """ Create list of dictionaries from the form data """
     # Create temporary list for filters storage
     filters = list()
     # Loop through each of the keys from the form
@@ -19,3 +19,6 @@ def get_results(data):
     return filters
         
         
+# """ Create list of dictionaries from the filter form data """
+# def getFilters(filterData):
+#     return filterData
