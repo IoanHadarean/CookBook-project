@@ -409,6 +409,7 @@ def filter_recipes():
     pagination_offset = int(request.args.get('offset', '0'))
     pagination_limit = int(request.args.get('limit', '6'))
     form = session.get('filter_form')
+    count_filter = session.get('count_filter')
     
     starting_id = recipe_collection.aggregate([{"$match": {"$and": get_results(form)}}, {"$sort": {"_id": 1}}])
     results_count = 0
@@ -430,21 +431,21 @@ def filter_recipes():
             "total_results": results_count
         }
     
-        return render_template('recipes.html', form = form, cuisines = cuisines, courses = courses, allergens = allergens, args = args)
+        return render_template('recipes.html', count_filter =  count_filter, form = form, cuisines = cuisines, courses = courses, allergens = allergens, args = args)
     else:
-        return render_template('recipes.html')
+        return render_template('recipes.html', count_filter =  count_filter)
 
   
 
-# """ Get the number of filter results for recipes """     
-# @app.route('/filter_results/<filter_select>', methods = ['POST'])
-# def filter_results(filter_select):
-#     if request.method == 'POST':
-#         recipe_collection.create_index([('$**', 'text')])
-#         recipes = dumps(recipe_collection.aggregate([{"$match": {"$and": get_results(filter_select)}}]))
-#         filter_result = json.loads(recipes)
-#         count_recipes = str(len([x for x in parsed_result]))
-#         return count_recipes
+""" Get the number of filter results for recipes """     
+@app.route('/filter_results/<filter_select>', methods = ['POST'])
+def filter_results(filter_select):
+    if request.method == 'POST':
+        recipe_collection.create_index([('$**', 'text')])
+        recipes = dumps(recipe_collection.aggregate([{"$match": {"$and": get_results(filter_select)}}]))
+        filter_result = json.loads(recipes)
+        count_recipes = str(len([x for x in filter_result]))
+        return count_recipes
 
   
   
