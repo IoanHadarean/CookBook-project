@@ -24,6 +24,7 @@
         </select>
             <button type="submit" id="filter-btn" class="btn btn-block btn-outline-warning" disabled>Filter Recipes</button>
         </form>
+        <span id = "filter_results"></span>
         {% if count_filter != "0" and form != '' and form is defined %} {% if count_filter == "1" %}
         <p id="num-results">{{ count_filter }} recipe was found</p>
         {% else %}

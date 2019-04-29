@@ -6,6 +6,9 @@ let selects = document.querySelectorAll('select');
 let container = document.getElementsByClassName('container')[0];
 let filterRecipes = document.getElementsByClassName('recipes')[0];
 let filterResults = document.getElementById('num-results');
+let activeFilterResults = document.getElementById('filter_results');
+
+
 
 
 
@@ -66,7 +69,27 @@ selects.forEach(select => select.onchange = function() {
     xhr.onload = function() {
         console.log(xhr.status);
         if (this.readyState === 4 && this.status === 200) {
-            let response = xhr.responseText;
+            let filters = xhr.responseText;
+            if (filters == "0") {
+                    if (filterResults) {
+                        filterResults.innerHTML = '';
+                    }
+                    activeFilterResults.innerHTML = 'No recipes found';
+                }
+                else {
+                    if (filters == "1") {
+                        if (filterResults) {
+                            filterResults.innerHTML = '';
+                        }
+                        activeFilterResults.innerHTML = filters + ' recipe was found';
+                    }
+                    else if (filters != "1") {
+                        if (filterResults) {
+                            filterResults.innerHTML = '';
+                        }
+                        activeFilterResults.innerHTML = filters + ' recipes were found';
+                    }
+                }
         }
     };
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");

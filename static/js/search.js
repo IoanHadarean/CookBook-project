@@ -58,8 +58,7 @@ var getInputResults= function() {
         xhr.onload = function() {
             if (this.readyState == 4 && this.status == 200) {
                 let results = xhr.responseText;
-                console.log(xhr.response);
-                if (xhr.responseText == "0") {
+                if (results == "0") {
                     if (document.getElementById('count_results')) {
                         document.getElementById('count_results').innerHTML = '';
                     }
