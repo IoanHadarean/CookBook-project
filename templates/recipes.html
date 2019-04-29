@@ -4,19 +4,19 @@
 <section>
     <h1 class="random-message lifted"></h1>
         <form id="filter_form" method="POST" action="/filter_recipes" enctype="multipart/form-data">
-            <select name="allergen_name">
+            <select name="allergen_name" id = "allergen_name">
             <option id = "choose-allergens" value="" disabled selected>Choose Allergen</option>
             {% for allergen in allergens %}
                 <option  value="{{ allergen.allergen_name }}" name="allergens-{{ loop.index }}">{{ allergen.allergen_name }}</option>
             {% endfor %}
         </select>
-            <select name="cuisine_name">
+            <select name="cuisine_name" id = "cuisine_name">
             <option id = "choose-cuisines" value="" disabled selected>Choose Cuisine</option>
             {% for cuisine in cuisines %}
                 <option value="{{ cuisine.cuisine_name }}" name="cuisines-{{ loop.index }}">{{ cuisine.cuisine_name }}</option>
             {% endfor %}
         </select>
-            <select name="course_name">
+            <select name="course_name" id = "course_name">
             <option id = "choose-courses" value="" disabled selected>Choose Course</option>
             {% for course in courses %}
                 <option value="{{ course.course_name }}" name="courses-{{ loop.index }}">{{ course.course_name }}</option>
