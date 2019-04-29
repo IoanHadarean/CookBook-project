@@ -10,6 +10,8 @@ let filterResults = document.getElementById('num-results');
 
 // Add on change event for selects
 
+
+
 selects.forEach(select => select.onchange = function() {
     container.innerHTML = '';
     footer.style.position = 'absolute';
@@ -17,28 +19,45 @@ selects.forEach(select => select.onchange = function() {
     if (filterResults) {
         filterResults.innerHTML = '';
     }
+    let fullOptions = [];
+    let selectedOptions = [];
+    selects.forEach(select => selectedOptions.push(select.options[select.selectedIndex]));
+    console.log(selectedOptions);
+    let constraints = ['choose-allergens', 'choose-cuisines', 'choose-courses'];
+    let parsedSelects = selectedOptions.filter(parsed => !(constraints.includes(parsed.id)));
+    console.log(parsedSelects);
+    for (let i = 0; i < parsedSelects.length; i++) {
+        let options = {};
+        options[parsedSelects[i].name] = parsedSelects[i].value;
+        fullOptions.push(options);
+    }
+    console.log(fullOptions);
 });
 
-
-filterButton.addEventListener('click', num_results);
-
+// filterButton.addEventListener('click', getFilterResults);
 
 
-function num_results() {
-    let xhr = new XMLHttpRequest();
-    xhr.onload = function() {
-        if (this.readyState === 4 && this.status === 200) {
-            let response = xhr.responseText;
-        }
-    };
-    xhr.open("POST", "/filter_results", true);
-    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhr.send();
-}
+
+
+
+// function getFilterResults() {
+//     let xhr = new XMLHttpRequest();
+//     xhr.open("POST", "/filter_results/" + options, true);
+//     xhr.onload = function() {
+//         if (this.readyState === 4 && this.status === 200) {
+//             let response = xhr.responseText;
+//             console.log(response);
+//         }
+//     };
+//     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+//     xhr.onerror = function() {
+//         console.log('Request error...');
+//     };
+//     xhr.send();
+// }
 
 
 // Fix footer according to results
-
 if (container) {
     if (container.contains(filterRecipes)) {
         footer.style.position = 'relative';
