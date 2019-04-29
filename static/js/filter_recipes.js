@@ -11,23 +11,10 @@ let activeFilterResults = document.getElementById('filter_results');
 
 
 
-
-// // Add on change event for selects
-// selects.forEach(select => select.onchange = function() {
-//     container.innerHTML = '';
-//     footer.style.position = 'absolute';
-//     filterButton.disabled = false;
-//     if (filterResults) {
-//         filterResults.innerHTML = '';
-//     }
-// });
-
-
 // Adding a list of dictionaries for select options
 var fullOptions = [{ "allergen_name": "" }, { "cuisine_name": "" }, { "course_name": "" }];
 selects.forEach(select => select.onchange = function() {
     container.innerHTML = '';
-    footer.style.position = 'absolute';
     filterButton.disabled = false;
     if (filterResults) {
         filterResults.innerHTML = '';
@@ -101,30 +88,6 @@ selects.forEach(select => select.onchange = function() {
 
 
 
-
-
-
-
-
-
-// function getFilterResults() {
-//     let xhr = new XMLHttpRequest();
-//     console.log(fullOptions);
-//     xhr.open("POST", "/filter_results/" + allergenName + cuisineName + courseName, true);
-//     xhr.onload = function() {
-//         if (this.readyState === 4 && this.status === 200) {
-//             let response = xhr.responseText;
-//             console.log(response);
-//         }
-//     };
-//     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-//     xhr.onerror = function() {
-//         console.log('Request error...');
-//     };
-//     xhr.send();
-// }
-
-
 // Fix footer according to results
 if (container) {
     if (container.contains(filterRecipes)) {
@@ -132,8 +95,3 @@ if (container) {
     }
 }
 
-if (filterResults) {
-    if (filterResults.innerHTML == 'No recipes found') {
-        footer.style.position = 'absolute';
-    }
-}

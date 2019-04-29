@@ -56,7 +56,7 @@ function getInstructions() {
         input.required = true;
         input.name = instruction;
         input.style.marginTop = '5px';
-        input.placeholder = "Please enter an instruction";
+        input.placeholder = "Add Instruction";
         input.className = 'form-control';
 
         // Add properties to icons
@@ -112,7 +112,7 @@ function addInstruction(e) {
     input.required = true;
     input.style.marginTop = '5px';
     input.name = `instruction-${instructionsListLength + 1}`;
-    input.placeholder = "Please enter an instruction";
+    input.placeholder = "Add Instruction";
     input.className = 'form-control';
 
     // Add properties to icons

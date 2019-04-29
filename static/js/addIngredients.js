@@ -57,7 +57,7 @@ function getIngredients() {
         input.name = ingredient;
         input.style.marginTop = '5px';
         input.required = true;
-        input.placeholder = "Please enter an ingredient";
+        input.placeholder = "Add Ingredient";
         input.className = 'form-control';
 
         // Add properties to icons
@@ -113,7 +113,7 @@ function addIngredient(e) {
     input.style.marginTop = '5px';
     input.required = true;
     input.name = `ingredient-${ingredientsListLength + 1}`;
-    input.placeholder = "Please enter an ingredient";
+    input.placeholder = "Add Ingredient";
     input.className = 'form-control';
 
     // Add properties to icons
