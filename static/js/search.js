@@ -7,6 +7,7 @@ let searchMessage = document.getElementById('search_message');
 let searchBtn = document.getElementById('btnSearch');
 let btnContainer = document.getElementById('btn-container');
 let recipesContainer = document.getElementsByClassName('container')[0];
+let countResults = document.getElementById('count_results');
 
 
 // Load all event listeners
@@ -16,14 +17,24 @@ loadEventListeners();
 // Add Event Listeners
 function loadEventListeners() {
     if (input) {
-        input.addEventListener('keyup', loadResults);
-        input.addEventListener('keyup', getInputResults);
+        input.addEventListener('input', loadResults);
+        input.addEventListener('keyup', removeCountResults);
+        input.addEventListener('input', getInputResults);
     }
     if (searchBtn) {
         searchBtn.addEventListener('click', searchState);
     }
     document.addEventListener('click', styleDisabledButton);
 }
+
+
+// Remove count results when deleting input value
+function removeCountResults() {
+    if (countResults) {
+       countResults.innerHTML = '';
+    }
+}
+
 
 
 // Load the search results
@@ -45,7 +56,7 @@ function loadResults() {
 
 
 // Get number of search results on input
-var getInputResults= function() {
+var getInputResults = function() {
     let xhr = new XMLHttpRequest();
     var searchRequest = null;
     let trimmedInput = input.value.replace(/\s/g, "", true);
@@ -59,28 +70,28 @@ var getInputResults= function() {
             if (this.readyState == 4 && this.status == 200) {
                 let results = xhr.responseText;
                 if (results == "0") {
-                    if (document.getElementById('count_results')) {
-                        document.getElementById('count_results').innerHTML = '';
+                    if (countResults) {
+                        countResults.innerHTML = '';
                     }
                     document.getElementById('search_message').innerHTML = 'No recipes found';
                 }
                 else {
                     if (results == "1") {
-                        if (document.getElementById('count_results')) {
-                            document.getElementById('count_results').innerHTML = '';
+                        if (countResults) {
+                            countResults.innerHTML = '';
                         }
                         document.getElementById('search_message').innerHTML = results + ' recipe was found';
                     }
                     else if (results != "1") {
-                        if (document.getElementById('count_results')) {
-                            document.getElementById('count_results').innerHTML = '';
+                        if (countResults) {
+                           countResults.innerHTML = '';
                         }
                         document.getElementById('search_message').innerHTML = results + ' recipes were found';
                     }
                 }
                 if (input.value == '') {
-                    if (document.getElementById('count_results')) {
-                        document.getElementById('count_results').innerHTML = '';
+                    if (countResults) {
+                        countResults.innerHTML = '';
                     }
                     document.getElementById('search_message').innerHTML = '';
                 }
@@ -133,7 +144,7 @@ function styleDisabledButton() {
 // Performed debouncing to avoid unnecessary requests on input change
 var debounceTimeout = null;
 
-input.addEventListener('input', function(event){
-  clearTimeout(debounceTimeout);
-  debounceTimeout = setTimeout(getInputResults, 500);
+input.addEventListener('input', function(event) {
+    clearTimeout(debounceTimeout);
+    debounceTimeout = setTimeout(getInputResults, 500);
 });
