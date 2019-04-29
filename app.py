@@ -436,15 +436,15 @@ def filter_recipes():
 
   
 
-""" Get the number of filter results for recipes """     
-@app.route('/filter_results/<filter_select>', methods = ['POST'])
-def filter_results(filter_select):
-    if request.method == 'POST':
-        recipe_collection.create_index([('$**', 'text')])
-        recipes = dumps(recipe_collection.aggregate([{"$match": {"$and": get_results(filter_select)}}]))
-        filter_result = json.loads(recipes)
-        count_recipes = str(len([x for x in parsed_result]))
-        return count_recipes
+# """ Get the number of filter results for recipes """     
+# @app.route('/filter_results/<filter_select>', methods = ['POST'])
+# def filter_results(filter_select):
+#     if request.method == 'POST':
+#         recipe_collection.create_index([('$**', 'text')])
+#         recipes = dumps(recipe_collection.aggregate([{"$match": {"$and": get_results(filter_select)}}]))
+#         filter_result = json.loads(recipes)
+#         count_recipes = str(len([x for x in parsed_result]))
+#         return count_recipes
 
   
   
@@ -540,10 +540,9 @@ def search_recipes():
 def search_results(search_input):
     if request.method == 'POST':
         recipe_collection.create_index([('$**', 'text')])
-        result = dumps(recipe_collection.find({ "$text": { "$search": str(search_input) }}))
-        parsed_result = json.loads(result)
-
-        count_recipes = str(len([x for x in parsed_result]))
+        result = recipe_collection.find({ "$text": { "$search": str(search_input) }})
+        count_recipes = str(result.count())
+        print(count_recipes)
         return count_recipes
 
         

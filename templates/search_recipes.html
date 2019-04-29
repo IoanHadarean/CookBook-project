@@ -3,7 +3,7 @@
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/search_recipe.css') }}" type="text/css" />
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/results.css') }}" type="text/css" />
 <form id="search_form" class="uk-search uk-search-default" action="{{ url_for('search_recipes', limit=6, offset=0) }}" method="POST">
-    {% if search_text != None and search_text is defined %}
+    {% if search_text != None %}
     <input autocomplete = "off" id="search_input" class="uk-search-input" type="text" value={{ search_text }} name="search_input" placeholder="Search Recipes...">
     {% else %}
     <input autocomplete = "off" id="search_input" class="uk-search-input" type="text" value= "" name="search_input" placeholder="Search Recipes...">
@@ -53,4 +53,5 @@
 {% endif %} {% endif %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.3/js/uikit.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.3/js/uikit-icons.min.js"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename = 'js/search.js') }}" async></script>
 {% endblock %}

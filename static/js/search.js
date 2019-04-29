@@ -9,15 +9,15 @@ let btnContainer = document.getElementById('btn-container');
 let recipesContainer = document.getElementsByClassName('container')[0];
 
 
-
+// Load all event listeners
 loadEventListeners();
 
 
 // Add Event Listeners
 function loadEventListeners() {
     if (input) {
-        input.addEventListener('input', loadResults);
-        input.addEventListener('input', getInputResults);
+        input.addEventListener('keyup', loadResults);
+        input.addEventListener('keyup', getInputResults);
     }
     if (searchBtn) {
         searchBtn.addEventListener('click', searchState);
@@ -45,27 +45,44 @@ function loadResults() {
 
 
 // Get number of search results on input
-function getInputResults() {
+var getInputResults= function() {
     let xhr = new XMLHttpRequest();
-    document.getElementById('search_message').innerHTML = '';
+    var searchRequest = null;
     let trimmedInput = input.value.replace(/\s/g, "", true);
     if (trimmedInput.length >= 3) {
-        xhr.open("POST", "/search_results/" + trimmedInput);
+        searchRequest = xhr.open("POST", "/search_results/" + trimmedInput, true);
+        // Abort old pending requests
+        if (searchRequest) {
+            searchRequest.abort();
+        }
         xhr.onload = function() {
             if (this.readyState == 4 && this.status == 200) {
-                let results = this.responseText;
-                if (results === "0" && input.value != '') {
+                let results = xhr.responseText;
+                console.log(xhr.response);
+                if (xhr.responseText == "0") {
+                    if (document.getElementById('count_results')) {
+                        document.getElementById('count_results').innerHTML = '';
+                    }
                     document.getElementById('search_message').innerHTML = 'No recipes found';
                 }
                 else {
-                    if (results === "1" && input.value != '') {
+                    if (results == "1") {
+                        if (document.getElementById('count_results')) {
+                            document.getElementById('count_results').innerHTML = '';
+                        }
                         document.getElementById('search_message').innerHTML = results + ' recipe was found';
                     }
-                    else if (results !== "1" && input.value != '') {
+                    else if (results != "1") {
+                        if (document.getElementById('count_results')) {
+                            document.getElementById('count_results').innerHTML = '';
+                        }
                         document.getElementById('search_message').innerHTML = results + ' recipes were found';
                     }
                 }
-                if (input.value === '') {
+                if (input.value == '') {
+                    if (document.getElementById('count_results')) {
+                        document.getElementById('count_results').innerHTML = '';
+                    }
                     document.getElementById('search_message').innerHTML = '';
                 }
             }
@@ -75,7 +92,7 @@ function getInputResults() {
         };
         xhr.send();
     }
-}
+};
 
 
 
@@ -111,3 +128,13 @@ function styleDisabledButton() {
         }
     }
 }
+
+
+
+// Performed debouncing to avoid unnecessary requests on input change
+var debounceTimeout = null;
+
+input.addEventListener('input', function(event){
+  clearTimeout(debounceTimeout);
+  debounceTimeout = setTimeout(getInputResults, 500);
+});
