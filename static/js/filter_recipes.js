@@ -13,7 +13,7 @@ let activeFilterResults = document.getElementById('filter_results');
 
 // Adding a list of dictionaries for select options
 var fullOptions = [{ "allergen_name": "" }, { "cuisine_name": "" }, { "course_name": "" }];
-selects.forEach(select => select.onchange = function() {
+selects.forEach(select => select.onchange = function getFilterResults() {
     container.innerHTML = '';
     filterButton.disabled = false;
     if (filterResults) {
@@ -50,39 +50,48 @@ selects.forEach(select => select.onchange = function() {
     if (courseName == '') {
         courseName = 'None';
     }
-    let xhr = new XMLHttpRequest();
-    xhr.open("POST", "/filter_results/" + allergenName + "/" + cuisineName + "/" + courseName, true);
 
+    let xhr = new XMLHttpRequest();
+    var searchRequest = null;
+    xhr.open("POST", "/filter_results/" + allergenName + "/" + cuisineName + "/" + courseName, true);
+    // Abort old pending requests
+    if (searchRequest) {
+        searchRequest.abort();
+    }
     xhr.onload = function() {
         console.log(xhr.status);
         if (this.readyState === 4 && this.status === 200) {
             let filters = xhr.responseText;
             if (filters == "0") {
+                if (filterResults) {
+                    filterResults.innerHTML = '';
+                }
+                activeFilterResults.innerHTML = 'No recipes found';
+            }
+            else {
+                if (filters == "1") {
                     if (filterResults) {
                         filterResults.innerHTML = '';
                     }
-                    activeFilterResults.innerHTML = 'No recipes found';
+                    activeFilterResults.innerHTML = filters + ' recipe was found';
                 }
-                else {
-                    if (filters == "1") {
-                        if (filterResults) {
-                            filterResults.innerHTML = '';
-                        }
-                        activeFilterResults.innerHTML = filters + ' recipe was found';
+                else if (filters != "1") {
+                    if (filterResults) {
+                        filterResults.innerHTML = '';
                     }
-                    else if (filters != "1") {
-                        if (filterResults) {
-                            filterResults.innerHTML = '';
-                        }
-                        activeFilterResults.innerHTML = filters + ' recipes were found';
-                    }
+                    activeFilterResults.innerHTML = filters + ' recipes were found';
                 }
+            }
         }
     };
     xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xhr.onerror = function() {
         console.log('Request error...');
     };
+    // Performed debouncing to avoid unnecessary requests on select change
+    var debounceTimeout = null;
+    clearTimeout(debounceTimeout);
+    debounceTimeout = setTimeout(getFilterResults, 500);
     xhr.send();
 });
 
@@ -94,4 +103,3 @@ if (container) {
         footer.style.position = 'relative';
     }
 }
-

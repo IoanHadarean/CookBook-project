@@ -441,7 +441,6 @@ def filter_recipes():
 @app.route('/filter_results/<allergenName>/<cuisineName>/<courseName>', methods = ['POST'])
 def filter_results(allergenName, cuisineName, courseName):
     if request.method == 'POST':
-        recipe_collection.create_index([('$**', 'text')])
         recipes = []
         if allergenName == 'None' and cuisineName == 'None':
             recipes = dumps(recipe_collection.find({'course_name': courseName}))
@@ -459,7 +458,6 @@ def filter_results(allergenName, cuisineName, courseName):
             recipes = dumps(recipe_collection.aggregate([{"$match": {"$and": [{"allergen_name": allergenName}, {"cuisine_name": cuisineName}, {"course_name": courseName}]}}]))
         filter_result = json.loads(recipes)
         count_recipes = str(len([x for x in filter_result]))
-        print(count_recipes)
         return count_recipes
 
   
