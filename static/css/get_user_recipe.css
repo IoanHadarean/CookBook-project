@@ -229,9 +229,7 @@ ul {
 }
 
 .recipe__instructions {
-    margin-bottom: 50px;
-    margin-left: 2.5%;
-    margin-right: 5%;
+    margin: 50px 5% 50px 2.5%;
     width: 92.5%;
 }
 
