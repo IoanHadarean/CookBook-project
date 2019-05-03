@@ -31,6 +31,7 @@ option {
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-top: 10%;
 }
 
 
@@ -49,22 +50,44 @@ option {
     margin-top: 200px;
 }
 
-#filter-btn {
-    background-color: #62a5a1;
-}
-
 #filter-form-container {
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
+
+/* ----------------------------------- Filter Buttons ------------------------------------------ */
+
+#filter-btn {
+    background-color: #62a5a1;
+}
+
+.all-recipes {
+    height: 32px;
+    color: black;
+    margin-left: 20px;
+}
+
+.all-recipes:hover {
+    text-decoration: none;
+}
+
+.btn {
+    margin-top: 0;
+}
+
+.back-all-button {
+    background: white;
+    border: 1px solid black;
+}
+
 /* -----------------------------------  Media Queries --------------------- */
 
-@media only screen and (max-width: 320px) {
+@media only screen and (max-width: 360px) {
     select,
     option {
-        font-size: 11px;
+        font-size: 10px;
         margin-left: 0;
     }
     
@@ -100,14 +123,14 @@ option {
 }
 
 @media(min-height: 600px)  and (max-height: 1366px) and (max-width: 767px) {
-    #filter-results {
+    #filter_results {
         margin-top: 220px;
     }
 }
 
 
 @media(min-height: 600px)  and (max-height: 1366px) and (min-width: 768px) and (max-width: 2560px) {
-    #filter-results {
+    #filter_results {
         margin-top: 260px;
     }
 }
