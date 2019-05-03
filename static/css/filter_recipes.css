@@ -3,11 +3,17 @@
 select,
 option {
     background: white;
-     -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
     -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
     height: 30px;
-    width: 25vw;
+    margin-top: 120px;
+    margin-left: 10px;
+    font-size: 11px;
+}
+
+.container {
+    margin-top: 100px;
 }
 
 .btn:disabled {
@@ -19,3 +25,30 @@ option {
 
 
 
+/* ---------------------------------------- Recipe filters -------------------------- */
+
+#filter-btn-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+#num-results,
+#filter_results {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#num-results {
+    margin-top: 0;
+}
+
+#filter_results {
+    margin-top: 200px;
+}
+
+#filter-btn {
+    background-color: #62a5a1;
+}
