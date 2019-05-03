@@ -769,7 +769,7 @@ def get_recipe(recipe_id):
     
         instance_rating = ratings_collection.find_one({"user_id": user_id, "recipe_id": recipe_number})
         if instance_rating == None:
-            ratings_collection.insert_one({"user_id": user_id, "recipe_id": recipe_number, "rateText": "Rate Recipe"})
+            ratings_collection.insert_one({"user_id": user_id, "recipe_id": recipe_number, "rating" : "0", "rateText": "Rate Recipe"})
 
         # Close the connection
         connection.commit()
@@ -904,6 +904,7 @@ def update_rating(recipe_id):
         instance_count = ratings_collection.count_documents({"recipe_id": recipe_number })
         sum_rating = 0
         for doc in instance_recipe:
+            print(doc)
             sum_rating = sum_rating + int(doc["rating"])
         average_rating = sum_rating / instance_count
         if average_rating not in numbers_array:
