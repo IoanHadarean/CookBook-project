@@ -11,7 +11,7 @@
             <div id="ingredients-list" class="form-group">
                 {% for ingredient in the_recipe.ingredients %}
                 <div class="ingredient">
-                    <input type="text" autocomplete = "off" name="ingredient-{{loop.index}}" class="form-control" value="{{ ingredient }}" min = "3" max = "25" required>
+                    <input type="text" autocomplete = "off" name="ingredient-{{loop.index}}" class="form-control" value="{{ ingredient }}" minlength = "3" maxlength = "50" required>
                     <button class="add-ingredient secondary-content" type="button">
                     <i class="material-icons right">add</i>
                     </button>
@@ -59,7 +59,7 @@
             <div id="instructions-list" class="form-group">
                 {% for instruction in the_recipe.instructions %}
                 <div class="instruction">
-                    <input type="text" autocomplete = "off" name="instruction-{{loop.index}}" class="form-control" value="{{ instruction }}" min = "4" max = "50" required>
+                    <input type="text" autocomplete = "off" name="instruction-{{loop.index}}" class="form-control" value="{{ instruction }}" minlength = "4" maxlength = "100" required>
                     <button class="add-instruction secondary-content" type="button">
                         <i class="material-icons right">add</i>
                     </button>
