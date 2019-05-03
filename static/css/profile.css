@@ -32,6 +32,10 @@ label {
     font-weight: 100;
 }
 
+.form-control-file {
+    background-color: white;
+}
+
 
 /* --------------------------------------- Profile ------------------------------ */
 
@@ -239,5 +243,17 @@ label {
 @media (max-width: 2560px) and (min-width: 1001px) {
     .inline {
         width: 26.66vw;
+    }
+}
+
+@media (min-width: 1080px) and (max-width: 2560px) {
+    .btn {
+        margin-top: 10%;
+    }
+    
+    #reset-progress,
+    .cancel-button,
+    .delete-button-modal {
+        margin-top: 0;
     }
 }
