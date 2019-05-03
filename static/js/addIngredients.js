@@ -14,11 +14,11 @@ loadEventListeners();
 
 
 function loadEventListeners() {
-    document.addEventListener('DOMContentLoaded', getIngredients);
+    window.addEventListener('load', getIngredients);
     for (var i = 0; i < firstAddButton.length; i++) {
         firstAddButton[i].addEventListener('click', addIngredient);
     }
-    for ( var j = 0; j < firstDeleteButton.length; j++) {
+    for (var j = 0; j < firstDeleteButton.length; j++) {
         firstDeleteButton[j].addEventListener('click', removeIngredient);
     }
 }
@@ -35,9 +35,7 @@ function getIngredients() {
     else {
         ingredients = JSON.parse(localStorage.getItem('ingredients'));
     }
-
     ingredients.forEach(function(ingredient) {
-
         // Create elements
         const ingredientContainer = document.createElement('div');
         const input = document.createElement('input');
@@ -59,6 +57,9 @@ function getIngredients() {
         input.required = true;
         input.placeholder = "Add Ingredient";
         input.className = 'form-control';
+        input.autocomplete = "off";
+        input.min = "3";
+        input.max = "25";
 
         // Add properties to icons
         addIcon.className = 'material-icons right';
@@ -79,9 +80,8 @@ function getIngredients() {
         ingredientContainer.appendChild(input);
         ingredientContainer.appendChild(addButton);
         ingredientContainer.appendChild(removeButton);
-        if (ingredientsList) {
-            ingredientsList.appendChild(ingredientContainer);
-        }
+
+        ingredientsList.appendChild(ingredientContainer);
     });
 }
 
@@ -115,6 +115,9 @@ function addIngredient(e) {
     input.name = `ingredient-${ingredientsListLength + 1}`;
     input.placeholder = "Add Ingredient";
     input.className = 'form-control';
+    input.autocomplete = "off";
+    input.min = "3";
+    input.max = "25";
 
     // Add properties to icons
     addIcon.className = 'material-icons right';

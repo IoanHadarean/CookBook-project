@@ -556,7 +556,6 @@ def search_results(search_input):
         recipe_collection.create_index([('$**', 'text')])
         result = recipe_collection.find({ "$text": { "$search": str(search_input) }})
         count_recipes = str(result.count())
-        print(count_recipes)
         return count_recipes
 
         
@@ -753,17 +752,17 @@ def get_recipe(recipe_id):
     """ Get the rating text for each rating done by each user for each recipe
         and check for user None value """
     
-    # Get MySQL connection
-    cur = connection.cursor()
 
     user = session.get('username')
     recipe_number = the_recipe["id"]
     
     instance_rating = []
     if user != None:
+        # Get MySQL connection
+        cur = connection.cursor()
+        user = session.get('username')
         cur.execute("SELECT id FROM users WHERE username = %s", user)
         user_id = cur.fetchall()[0]['id']
-        print(user_id)
     
         instance_rating = ratings_collection.find_one({"user_id": user_id, "recipe_id": recipe_number})
         if instance_rating == None:

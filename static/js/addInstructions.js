@@ -14,7 +14,7 @@ loadEventListeners();
 
 
 function loadEventListeners() {
-    document.addEventListener('DOMContentLoaded', getInstructions);
+    window.addEventListener('load', getInstructions);
     if (firstInstruction) {
         firstInstruction.addEventListener('click', addInstruction);
     }
@@ -39,14 +39,14 @@ function getInstructions() {
     instructions.forEach(function(instruction) {
 
         // Create elements
-        const instructionContainer = document.createElement('div');
-        const input = document.createElement('input');
-        const addButton = document.createElement('button');
-        const removeButton = document.createElement('button');
+        let instructionContainer = document.createElement('div');
+        let input = document.createElement('input');
+        let addButton = document.createElement('button');
+        let removeButton = document.createElement('button');
         addButton.addEventListener('click', addInstruction);
         removeButton.addEventListener('click', removeInstruction);
-        const addIcon = document.createElement('i');
-        const deleteIcon = document.createElement('i');
+        let addIcon = document.createElement('i');
+        let deleteIcon = document.createElement('i');
 
         // Add class to instruction container
         instructionContainer.className = 'instruction';
@@ -58,6 +58,9 @@ function getInstructions() {
         input.style.marginTop = '5px';
         input.placeholder = "Add Instruction";
         input.className = 'form-control';
+        input.autocomplete = "off";
+        input.min = "6";
+        input.max = "30";
 
         // Add properties to icons
         addIcon.className = 'material-icons right';
@@ -78,9 +81,7 @@ function getInstructions() {
         instructionContainer.appendChild(input);
         instructionContainer.appendChild(addButton);
         instructionContainer.appendChild(removeButton);
-        if (instructionsList) {
-            instructionsList.appendChild(instructionContainer);
-        }
+        instructionsList.appendChild(instructionContainer);
     });
 }
 
@@ -114,6 +115,9 @@ function addInstruction(e) {
     input.name = `instruction-${instructionsListLength + 1}`;
     input.placeholder = "Add Instruction";
     input.className = 'form-control';
+    input.autocomplete = "off";
+    input.min = "6";
+    input.max = "30";
 
     // Add properties to icons
     addIcon.className = 'material-icons right';
