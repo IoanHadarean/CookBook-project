@@ -58,8 +58,8 @@ function getIngredients() {
         input.placeholder = "Add Ingredient";
         input.className = 'form-control';
         input.autocomplete = "off";
-        input.min = "3";
-        input.max = "25";
+        input.minLength = "3";
+        input.maxLength = "50";
 
         // Add properties to icons
         addIcon.className = 'material-icons right';
@@ -116,8 +116,8 @@ function addIngredient(e) {
     input.placeholder = "Add Ingredient";
     input.className = 'form-control';
     input.autocomplete = "off";
-    input.min = "3";
-    input.max = "25";
+    input.minLength = "3";
+    input.maxLength = "50";
 
     // Add properties to icons
     addIcon.className = 'material-icons right';

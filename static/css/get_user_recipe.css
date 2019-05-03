@@ -35,24 +35,6 @@ ul {
     -o-object-fit: cover;
 }
 
-/* ------------------------------------- Recipe Likes ------------------------------ */
-
-.recipe__likes {
-    margin-top: 10px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.recipe__likes span,
-.recipe__likes .fa-thumbs-up {
-    margin-right: 10px;
-}
-
-.recipe__likes a {
-    text-decoration: none;
-}
-
 
 /* -------------------------------------- Recipe Info ------------------------- */
 
@@ -83,7 +65,6 @@ ul {
     border: 1px solid gray;
 }
 
-.info__time,
 .info__specs {
     text-align: center;
     font-size: 40px;
@@ -100,9 +81,6 @@ ul {
     height: 70px;
 }
 
-.time__cooking,
-.time__preparation,
-.time__ready,
 .specs__cuisine,
 .specs__course,
 .specs__allergens {
@@ -113,34 +91,26 @@ ul {
     position: absolute;
 }
 
-.time__cooking,
+
 .specs__cuisine {
     margin-left: 2.5vw;
     width: 30vw;
 }
 
-.time__clock {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-bottom: 20px;
-}
-
-.time__preparation,
-.time__clock, 
+ 
 .specs__course {
     margin-left: 30vw;
     width: 40vw;
 }
 
-.time__ready,
+
 .specs__allergens {
     margin-left: 70vw;
     margin-right: 2.5vw;
     width: 22vw;
 }
 
-.is-time,
+
 .is-spec {
     margin-top: 10px;
     color: #009978;
@@ -160,6 +130,53 @@ ul {
     margin-left: 2.5vw;
 }
 
+/* ------------------------------------------ Recipe Alert ----------------------------- */
+
+.recipe__alert {
+    margin-right: 2.5vw;
+    width: 95vw;
+    height: 100px;
+    margin-bottom: 20px;
+}
+
+.alert__description {
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 95vw;
+    margin-left: 2.5vw;
+}
+
+.alert__box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 35px;
+    background: #f26226;
+    width: 50vw;
+    margin-left: 25vw;
+}
+
+.box__link {
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box__link:hover {
+    text-decoration: none;
+    color: white;
+}
+
 /* ------------------------------------------------ Recipe Ingredients ---------------------- */
 
 .ingredients {
@@ -177,13 +194,13 @@ ul {
 
 .recipe__ingredients {
     margin-top: 20px;
-    width: 65vw;
+    width: 100%;
     margin-bottom: 20px;
     display: inline-block;
+    text-align: center;
 }
 
-.ingredients__container,
-.quantities__container {
+.ingredients__container {
     list-style-type: none;
 }
 
@@ -218,37 +235,9 @@ ul {
     width: 92.5%;
 }
 
+
+
 /* ---------------------------------------Media Queries ------------------------------ */
-
-@media only screen and (max-width: 768px) {
-    .recipe__ingredients {
-        width: 50%;
-        margin-left: 5%;
-    }
-    
-    .recipe__quantities {
-        margin-left: 15%;
-    }
-}
-
-@media (min-width: 768px) and (max-width: 2560px) {
-    .recipe__ingredients {
-        width: 40%;
-        margin-left: 3.35%;
-    }
-
-    .recipe__quantities {
-        margin-left: 37.5%;
-        width: 10%;
-    }
-}
-
-@media (min-width: 480px) and (max-width: 2560px) {
-    .recipe__quantities li {
-        text-align: right;
-    }
-}
-
 
 @media (min-width: 768px) and (max-width: 1280px) {
     .image__inline {
@@ -271,6 +260,41 @@ ul {
         width: 30vw;
         margin-left: 35vw;
         margin-right: 35vw;
+    }
+}
+
+@media (min-width: 360px) and (max-width: 768px) {
+    .modal__alert {
+        margin-top: 0;
+    }
+}
+
+@media (min-width: 560px) and (max-width: 768px) {
+    .alert__box {
+        width: 26vw;
+        margin-left: 37vw;
+    }
+}
+
+
+@media (min-width: 769px) and (max-width: 1280px) {
+    .alert__box {
+        width: 20vw;
+        margin-left: 40vw;
+    }
+}
+
+@media (min-width: 1281px) and (max-width: 1920px) {
+    .alert__box {
+        width: 14vw;
+        margin-left: 43vw;
+    }
+}
+
+@media (min-width: 1921px) and (max-width: 2560px) {
+    .alert__box {
+        width: 10vw;
+        margin-left: 45vw;
     }
 }
 

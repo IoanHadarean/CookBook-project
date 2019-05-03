@@ -33,6 +33,31 @@
                 <span class="is-spec">{{ user_recipe.allergen_name }}</span>
             </div>
         </div>
+        
+        <!-- Recipe alert -->
+        <div class="recipe-separator"></div>
+        <div class="recipe__alert">
+            <h3 class="alert__description">Add your own recipes</h3>
+            <div class="alert__box">
+                {% if session.logged_in %}
+                <a class="box__link" href="/add_recipe">ADD RECIPE</a> {% else %}
+                <a class="box__link" href="#">ADD RECIPE</a>
+                <div id="recipe__modal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <p class="modal__title modal__title--margins-1">To add a recipe please register</p>
+                        <a class="modal__alert" href="{{ url_for('register', next = request.path) }}">
+                            <button class="btn btn-primary btn-center btn-styled">Register</button>
+                        </a>
+                        <p class="modal__title modal__title--margins-2"> or if you already have an account please</p>
+                        <a class="modal__alert" href="{{ url_for('login', next = request.path) }}">
+                            <button class="btn btn-success btn-styled">Login</button>
+                        </a>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
 
         <!-- Recipe ingredients -->
         <div class="recipe-separator"></div>

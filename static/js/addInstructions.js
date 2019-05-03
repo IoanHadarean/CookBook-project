@@ -59,8 +59,8 @@ function getInstructions() {
         input.placeholder = "Add Instruction";
         input.className = 'form-control';
         input.autocomplete = "off";
-        input.min = "6";
-        input.max = "30";
+        input.minLength = "4";
+        input.maxLength = "100";
 
         // Add properties to icons
         addIcon.className = 'material-icons right';
@@ -116,8 +116,8 @@ function addInstruction(e) {
     input.placeholder = "Add Instruction";
     input.className = 'form-control';
     input.autocomplete = "off";
-    input.min = "6";
-    input.max = "30";
+    input.minLength = "4";
+    input.maxLength = "100";
 
     // Add properties to icons
     addIcon.className = 'material-icons right';
