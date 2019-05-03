@@ -44,6 +44,7 @@ option {
 
 #num-results {
     margin-top: 0;
+    min-height: 20px;
 }
 
 #filter_results {
@@ -61,6 +62,12 @@ option {
 
 #filter-btn {
     background-color: #62a5a1;
+}
+
+#all-recipes {
+    visibility: hidden;
+    pointer-events: none;
+    cursor: pointer;
 }
 
 .all-recipes {

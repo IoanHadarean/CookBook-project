@@ -1,6 +1,5 @@
 // Get HTML elements
 let filterButton = document.getElementById('filter-btn');
-let filterForm = document.getElementById('filter_form');
 let footer = document.getElementsByTagName('footer')[0];
 let selects = document.querySelectorAll('select');
 let container = document.getElementsByClassName('container')[0];
@@ -63,11 +62,13 @@ selects.forEach(select => select.onchange = function() {
         console.log(xhr.status);
         if (this.readyState === 4 && this.status === 200) {
             let filters = xhr.responseText;
+
             if (filters == "0") {
                 if (filterResults) {
                     filterResults.innerHTML = '';
                 }
                 activeFilterResults.innerHTML = 'No recipes found';
+                container.style.marginTop = '80px';
             }
             else {
                 if (filters == "1") {
@@ -75,12 +76,14 @@ selects.forEach(select => select.onchange = function() {
                         filterResults.innerHTML = '';
                     }
                     activeFilterResults.innerHTML = filters + ' recipe was found';
+                    container.style.marginTop = '80px';
                 }
                 else if (filters != "1") {
                     if (filterResults) {
                         filterResults.innerHTML = '';
                     }
                     activeFilterResults.innerHTML = filters + ' recipes were found';
+                    container.style.marginTop = '80px';
                 }
             }
         }

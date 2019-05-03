@@ -26,10 +26,12 @@
         </select>
         <div id="filter-btn-container">
             <button type="submit" id="filter-btn" class="btn btn-block btn-outline-warning" disabled>Filter Recipes</button>
-            {% if args.total_results >= 0 and args.total_results < 24 %}
+            {% if args %}
+            {% if args.total_results >= 0 and args.total_results <= 24 %}
             <a class = "all-recipes" href = "{{ url_for('recipes', pagination_limit=6, pagination_offset=0 ) }}">
-                <button type = "button" class = "btn back-all-button btn-block">Back To All</button>
+                <button type = "button" class = "btn back-all-button btn-block">All Recipes</button>
             </a>
+            {% endif %}
             {% endif %}
         </div>
     </form>
