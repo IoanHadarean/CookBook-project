@@ -77,7 +77,6 @@ else if (screen.height > 500 && screen.height <= 1080 && screen.width >= 768 && 
 }
 
 // Create UTC datetime to localtime for each user
-
 var UTC = date + ' UTC';
 document.getElementById('date-time').innerHTML = new Date(UTC).toLocaleString();
 
@@ -86,6 +85,7 @@ document.getElementById('date-time').innerHTML = new Date(UTC).toLocaleString();
 let resetProgressButton = document.getElementById('reset-progress');
 let profileForm = document.getElementById('profile-form');
 resetProgressButton.addEventListener('click', resetProfileUpdate);
+
 
 function resetProfileUpdate() {
     profileForm.reset();

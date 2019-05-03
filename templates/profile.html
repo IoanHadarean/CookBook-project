@@ -46,12 +46,27 @@
         </div>
         <div class="form-group form-group--responsive">
             <div class="row col-lg-12 row-center">
-                 <a class="cancel-update-button btn btn-default" data-toggle="modal" data-target="#cancelModal">Cancel</a>
+                <a class="cancel-update-button btn btn-default" data-toggle="modal" data-target="#cancelModal">Cancel</a>
                 <button id="submit_profile" type="submit" class="btn btn-primary btn-center">Update</button>
             </div>
         </div>
     </form>
 </section>
+<!-- Cancel Modal -->
+<div id="cancelModal" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <p class="reset-modal-center">Are you sure you want to cancel? All your progress will be lost!</p>
+            </div>
+            <div class="modal-footer">
+                <button id="reset-progress" type="button" class="reset-button-modal btn btn-danger" data-dismiss="modal">Reset Progress</button>
+                <button type="button" class="close cancel-button btn btn-default" data-dismiss="modal">Continue</button>
+            </div>
+        </div>
+    </div>
+</div>
 <section class="adjusted-margins">
     <div class="container">
         {% if args %} {% for recipe in args.recipes_sorted %}
@@ -94,22 +109,6 @@
                             <button type="button" class=" delete-button-modal btn btn-danger">Delete</button>
                         </a>
                         <button type="button" class="close cancel-button btn btn-default" data-dismiss="modal">Cancel</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <!-- Cancel Modal -->
-        <div id="cancelModal" class="modal fade" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <p class="reset-modal-center">Are you sure you want to cancel? All your progress will be lost!</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button id = "reset-progress" type="button" class="reset-button-modal btn btn-danger" data-dismiss="modal">Reset Progress</button>
-                        <button type="button" class="close cancel-button btn btn-default" data-dismiss="modal">Continue</button>
                     </div>
                 </div>
             </div>
