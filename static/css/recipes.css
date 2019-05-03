@@ -203,6 +203,7 @@ section {
         margin-left: 0;
         z-index: 2;
         margin-bottom: 80px;
+        border-radius: 0;
     }
 
     .recipes__pagination {
