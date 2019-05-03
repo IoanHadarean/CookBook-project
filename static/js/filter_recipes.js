@@ -14,7 +14,7 @@ document.addEventListener('click', styleDisabledFilterButton);
 
 // Adding a list of dictionaries for select options
 var fullOptions = [{ "allergen_name": "" }, { "cuisine_name": "" }, { "course_name": "" }];
-selects.forEach(select => select.onchange = function getFilterResults() {
+selects.forEach(select => select.onchange = function() {
     container.innerHTML = '';
     filterButton.disabled = false;
     if (filterResults) {
@@ -89,10 +89,6 @@ selects.forEach(select => select.onchange = function getFilterResults() {
     xhr.onerror = function() {
         console.log('Request error...');
     };
-    // Performed debouncing to avoid unnecessary requests on select change
-    var debounceTimeout = null;
-    clearTimeout(debounceTimeout);
-    debounceTimeout = setTimeout(getFilterResults, 500);
     xhr.send();
 });
 
