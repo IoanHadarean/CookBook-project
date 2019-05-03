@@ -21,7 +21,8 @@ form {
 }
 
  .alert-success,
- .alert-danger {
+ .alert-danger,
+ .alert-info {
   margin-top: 50px;
  }
 
