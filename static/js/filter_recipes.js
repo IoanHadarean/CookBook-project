@@ -7,9 +7,10 @@ let container = document.getElementsByClassName('container')[0];
 let filterRecipes = document.getElementsByClassName('recipes')[0];
 let filterResults = document.getElementById('num-results');
 let activeFilterResults = document.getElementById('filter_results');
+let btnFilterContainer = document.getElementById('filter-btn-container');
 
-
-
+// Event listener for clicking disabled button
+document.addEventListener('click', styleDisabledFilterButton);
 
 // Adding a list of dictionaries for select options
 var fullOptions = [{ "allergen_name": "" }, { "cuisine_name": "" }, { "course_name": "" }];
@@ -101,5 +102,20 @@ selects.forEach(select => select.onchange = function getFilterResults() {
 if (container) {
     if (container.contains(filterRecipes)) {
         footer.style.position = 'relative';
+    }
+}
+
+
+// Style the search button when it's disabled
+function styleDisabledFilterButton() {
+    if (btnFilterContainer) {
+        let clickInside = btnFilterContainer.contains(event.target);
+        if (clickInside) {
+            filterButton.style.borderColor = 'black';
+            filterButton.style.borderWidth = 'thin';
+        }
+        else {
+            filterButton.style.borderColor = 'white';
+        }
     }
 }

@@ -5,7 +5,7 @@ let results = document.getElementsByClassName('container')[0];
 let recipes = document.getElementsByClassName('recipes')[0];
 let searchMessage = document.getElementById('search_message');
 let searchBtn = document.getElementById('btnSearch');
-let btnContainer = document.getElementById('btn-container');
+let btnSearchContainer = document.getElementById('search-btn-container');
 let recipesContainer = document.getElementsByClassName('container')[0];
 let countResults = document.getElementById('count_results');
 
@@ -127,8 +127,8 @@ if (results) {
 
 // Style the search button when it's disabled
 function styleDisabledButton() {
-    if (btnContainer) {
-        let clickInside = btnContainer.contains(event.target);
+    if (btnSearchContainer) {
+        let clickInside = btnSearchContainer.contains(event.target);
         if (clickInside) {
             searchBtn.style.borderColor = 'black';
             searchBtn.style.borderWidth = 'thin';

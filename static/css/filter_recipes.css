@@ -1,1 +1,21 @@
-/* ----------------------------------- Recipe filters --------------------------------- */
+/* ----------------------------------- Special margins and styling --------------------------------- */
+
+select,
+option {
+    background: white;
+     -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    height: 30px;
+    width: 25vw;
+}
+
+.btn:disabled {
+    background-color: #62a5a1;
+    opacity: 1;
+    cursor: pointer;
+    pointer-events: none;
+}
+
+
+
