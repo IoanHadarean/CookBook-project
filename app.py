@@ -345,6 +345,7 @@ def recipes():
         "total_results": total_results
     }
     
+    
     cuisines = mongo.db.cuisines.find()
     courses = mongo.db.courses.find()
     allergens = mongo.db.allergens.find()
@@ -366,6 +367,7 @@ def filter_recipes():
     allergens = mongo.db.allergens.find()
     if request.method == 'POST':
         form = request.form.to_dict()
+        print(form)
         session['filter_form'] = form
         recipes = dumps(recipe_collection.aggregate([{"$match": {"$and": get_results(form)}}]))
         filter_result = json.loads(recipes)
@@ -397,11 +399,12 @@ def filter_recipes():
                 "total_results": results_count
             }
             
+            print(count_filter)
             
             return render_template('recipes.html', form = form, count_filter = count_filter,
             cuisines = cuisines, courses = courses, allergens = allergens, args = args)
         else:
-            return render_template('recipes.html', form = form, count_filter = count_filter,
+            return render_template('recipes.html', form = form, results_count = results_count, count_filter = count_filter,
             cuisines = cuisines, courses = courses, allergens = allergens)
     
     

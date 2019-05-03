@@ -64,12 +64,6 @@ option {
     background-color: #62a5a1;
 }
 
-#all-recipes {
-    visibility: hidden;
-    pointer-events: none;
-    cursor: pointer;
-}
-
 .all-recipes {
     height: 32px;
     color: black;

@@ -47,6 +47,9 @@ footer {
 #search-btn-container {
     height: 34px;
     margin-top: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .btn:disabled {
@@ -60,6 +63,20 @@ footer {
     font-size: 50px;
 }
 
+.all-recipes {
+    height: 32px;
+    color: black;
+    margin-left: 20px;
+}
+
+.all-recipes:hover {
+    text-decoration: none;
+}
+
+.back-all-button {
+    background: white;
+    border: 1px solid black;
+}
 
 /* ---------------------------------- Media Queries ------------------------------ */
 
@@ -76,7 +93,8 @@ footer {
 }
 
 @media (max-width: 768px) and (min-width: 560px) {
-    .uk-search-input {
+    .uk-search-input,
+    #search-btn-container{
         width: 60vw;
     }
 }
@@ -105,13 +123,15 @@ footer {
 }
 
 @media (max-width: 1440px) and (min-width: 769px) {
-    .uk-search-input {
+    .uk-search-input,
+    #search-btn-container{
         width: 40vw;
     }
 }
 
 @media (max-width: 2560px) and (min-width: 1441px) {
-    .uk-search-input {
+    .uk-search-input,
+    #search-btn-container{
         width: 30vw;
     }
 }

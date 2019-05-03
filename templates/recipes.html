@@ -4,37 +4,33 @@
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/filter_recipes.css') }}" type="text/css" />
 <section>
     <h1 class="random-message lifted"></h1>
-    <div id = "filter-form-container">
-    <form id="filter_form" method="POST" action="/filter_recipes" enctype="multipart/form-data">
-        <select name="allergen_name" id="allergen_name">
+    <div id="filter-form-container">
+        <form id="filter_form" method="POST" action="/filter_recipes" enctype="multipart/form-data">
+            <select name="allergen_name" id="allergen_name">
             <option id = "choose-allergens" value="" disabled selected>Choose Allergen</option>
             {% for allergen in allergens %}
                 <option  value="{{ allergen.allergen_name }}" name="allergens-{{ loop.index }}">{{ allergen.allergen_name }}</option>
             {% endfor %}
         </select>
-        <select name="cuisine_name" id="cuisine_name">
+            <select name="cuisine_name" id="cuisine_name">
             <option id = "choose-cuisines" value="" disabled selected>Choose Cuisine</option>
             {% for cuisine in cuisines %}
                 <option value="{{ cuisine.cuisine_name }}" name="cuisines-{{ loop.index }}">{{ cuisine.cuisine_name }}</option>
             {% endfor %}
         </select>
-        <select name="course_name" id="course_name">
+            <select name="course_name" id="course_name">
             <option id = "choose-courses" value="" disabled selected>Choose Course</option>
             {% for course in courses %}
                 <option value="{{ course.course_name }}" name="courses-{{ loop.index }}">{{ course.course_name }}</option>
             {% endfor %}
         </select>
-        <div id="filter-btn-container">
-            <button type="submit" id="filter-btn" class="btn btn-block btn-outline-warning" disabled>Filter Recipes</button>
-            {% if args %}
-            {% if args.total_results >= 0 and args.total_results <= 24 %}
-            <a class = "all-recipes" href = "{{ url_for('recipes', pagination_limit=6, pagination_offset=0 ) }}">
-                <button type = "button" class = "btn back-all-button btn-block">All Recipes</button>
-            </a>
-            {% endif %}
-            {% endif %}
-        </div>
-    </form>
+            <div id="filter-btn-container">
+                <button type="submit" id="filter-btn" class="btn btn-block btn-outline-warning" disabled>Filter Recipes</button>
+                <a class="all-recipes" href="{{ url_for('recipes', pagination_limit=6, pagination_offset=0 ) }}">
+                    <button type = "button" class = "btn back-all-button btn-block">All Recipes</button>
+                </a>
+            </div>
+        </form>
     </div>
     <span id="filter_results"></span> {% if count_filter != "0" and form != '' and form is defined %} {% if count_filter == "1" %}
     <p id="num-results">{{ count_filter }} recipe was found</p>
