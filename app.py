@@ -263,10 +263,7 @@ def profile():
             elif (get_db_email > 0 and email != current_email):
                 flash("That email is already taken. Please choose a different one.", 'danger')
             else:
-                cur.execute("UPDATE users SET name = %s WHERE username = %s", (name, user))
-                cur.execute("UPDATE users SET email = %s WHERE username = %s", (email, user))
-                cur.execute("UPDATE users SET aboutme = %s WHERE username = %s", (about_me, user))
-                cur.execute("UPDATE users SET image = %s WHERE username = %s", (picture_file, user))
+                cur.execute("UPDATE users SET name = %s, email = %s, aboutme = %s, image = %s WHERE username = %s", (name, email, about_me, picture_file, user))
                 flash('Your profile has been updated successfully', 'success')
                 return redirect(url_for('profile'))
         elif email != current_email:
@@ -275,28 +272,20 @@ def profile():
             elif (get_db_name > 0 and form.name.data != current_name):
                 flash("That name is already taken. Please choose a different one.", 'danger')
             else:
-                cur.execute("UPDATE users SET name = %s WHERE username = %s", (name, user))
-                cur.execute("UPDATE users SET email = %s WHERE username = %s", (email, user))
-                cur.execute("UPDATE users SET aboutme = %s WHERE username = %s", (about_me, user))
-                cur.execute("UPDATE users SET image = %s WHERE username = %s", (picture_file, user))
+                cur.execute("UPDATE users SET name = %s, email = %s, aboutme = %s, image = %s WHERE username = %s", (name, email, about_me, picture_file, user))
                 flash('Your profile has been updated successfully', 'success')
                 return redirect(url_for('profile'))
         else:
             flash('Your profile has been updated successfully', 'success')
-            cur.execute("UPDATE users SET aboutme = %s WHERE username = %s", (about_me, user))
-            cur.execute("UPDATE users SET image = %s WHERE username = %s", (picture_file, user))
+            cur.execute("UPDATE users SET aboutme = %s, image = %s WHERE username = %s", (about_me, picture_file, user))
             return redirect(url_for('profile'))
-
         #Commit and close the connection
         connection.commit()
         cur.close()
     
     # Implement pagination for user recipes
-        
     pagination_offset = int(request.args.get('offset', '0'))
     pagination_limit = int(request.args.get('limit', '6'))
-
-
     userMade = user_recipes.find({"username" : user})
     if userMade.count() > 0:
         starting_id = userMade.sort('_id', pymongo.ASCENDING)
@@ -380,46 +369,11 @@ def filter_recipes():
     allergens = mongo.db.allergens.find()
     if request.method == 'POST':
         form = request.form.to_dict()
-        print(form)
         session['filter_form'] = form
         recipes = dumps(recipe_collection.aggregate([{"$match": {"$and": get_results(form)}}]))
         filter_result = json.loads(recipes)
         session['count_filter'] = str(len([x for x in filter_result]))
         count_filter = session['count_filter']
-       
-        #Pagination for filters when the form is submitted
-        pagination_offset = int(request.args.get('offset', '0'))
-        pagination_limit = int(request.args.get('limit', '6'))
-    
-    
-        starting_id = recipe_collection.aggregate([{"$match": {"$and": get_results(form)}}, {"$sort": {"_id": 1}}])
-        results_count = 0
-        result = []
-        for count_item in starting_id:
-            results_count += 1
-            result.append(count_item)
-        
-        if results_count != 0:
-            last_id = result[pagination_offset]['_id']
-        
-        
-            args = {
-                "limit": pagination_limit,
-                "offset": pagination_offset,
-                "recipes_sorted": recipe_collection.aggregate([{"$match": {"$and": [{"$and": get_results(form)}, {"_id": { "$gte": last_id}}]}}, {"$sort": {"_id": 1}}, {"$limit": pagination_limit}]),
-                "next_url": '/filter_recipes?limit=' + str(pagination_limit) + '&offset=' + str(pagination_offset + pagination_limit),
-                "prev_url": '/filter_recipes?limit=' + str(pagination_limit) + '&offset=' + str(pagination_offset - pagination_limit),
-                "total_results": results_count
-            }
-            
-            print(count_filter)
-            
-            return render_template('recipes.html', form = form, count_filter = count_filter,
-            cuisines = cuisines, courses = courses, allergens = allergens, args = args)
-        else:
-            return render_template('recipes.html', form = form, results_count = results_count, count_filter = count_filter,
-            cuisines = cuisines, courses = courses, allergens = allergens)
-    
     
     #Pagination on GET request for filters
     pagination_offset = int(request.args.get('offset', '0'))
@@ -486,7 +440,6 @@ def filter_results(allergenName, cuisineName, courseName):
 
 @app.route('/search_recipes', methods = ['GET', 'POST'])
 def search_recipes():
-    
     result = []
     parsed_result = []
     if request.method == 'POST':
@@ -500,39 +453,6 @@ def search_recipes():
 
         session['count_recipes'] = str(len([x for x in parsed_result]))
         count_recipes = session['count_recipes']
-        
-        
-        
-        #Pagination for search when the form is submitted
-        pagination_offset = int(request.args.get('offset', '0'))
-        pagination_limit = int(request.args.get('limit', '6'))
-    
-    
-        recipes = recipe_collection.find({ "$text": { "$search": str(search_text) }})
-        starting_id = recipe_collection.find({ "$text": { "$search": str(search_text) }}).sort('_id', pymongo.ASCENDING)
-        results_count = starting_id.count()
-        
-        if results_count != 0 and search_text != None:
-            last_id = starting_id[pagination_offset]['_id']
-            total_results = 0
-            for item in recipes:
-                total_results +=1
-        
-        
-            args = {
-                "limit": pagination_limit,
-                "offset": pagination_offset,
-                "recipes_sorted": recipe_collection.find({"$and": [{ "$text": { "$search": str(search_text) }}, {'_id': {'$gte' : last_id}}]}).sort('_id', pymongo.ASCENDING).limit(pagination_limit),
-                "next_url": '/search_recipes?limit=' + str(pagination_limit) + '&offset=' + str(pagination_offset + pagination_limit),
-                "prev_url": '/search_recipes?limit=' + str(pagination_limit) + '&offset=' + str(pagination_offset - pagination_limit),
-                "total_results": total_results
-            }
-        
-            return render_template('search_recipes.html',
-            search_text = search_text, count_recipes = count_recipes, parsed_result = parsed_result, args = args)
-        else:
-            return render_template('search_recipes.html',
-            search_text = search_text, count_recipes = count_recipes)
             
     #Pagination for search on GET request
     pagination_offset = int(request.args.get('offset', '0'))
@@ -1009,7 +929,7 @@ def method_not_allowed(error):
 """ Handle database error """
 
 @app.errorhandler(500)
-def database_error(error):
+def server_error(error):
     return render_template('error500.html'), 500
   
   
