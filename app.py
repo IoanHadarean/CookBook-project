@@ -50,8 +50,8 @@ mongo = PyMongo(app)
 # However, disable it when using Chrome Developer Tools
 # or a similar tool since it automatically clears the session
 # when accessing a different device
-# paranoid = Paranoid(app)
-# paranoid.redirect_view = '/'
+paranoid = Paranoid(app)
+paranoid.redirect_view = '/'
 SESSION_COOKIE_SECURE = True
 SESSION_PERMANENT = False
 
@@ -60,6 +60,9 @@ SESSION_PERMANENT = False
 recipe_collection = mongo.db.recipes
 ratings_collection = mongo.db.ratings
 user_recipes = mongo.db.user_recipes
+
+# Create index for text search
+recipe_collection.create_index([('$**', 'text')])
 
     
 """ RegisterForm class with fields and validators """
@@ -194,7 +197,14 @@ def login():
             
     return render_template('login.html')
     
+
     
+""" Logout """
+@app.route('/logout')
+def logout():
+    session.clear()
+    flash('You are now logged out', 'success')
+    return redirect(url_for('login'))  
     
     
 @app.route('/profile', methods = ['GET', 'POST'])
@@ -316,14 +326,6 @@ def profile():
     
     
     
-""" Logout """
-@app.route('/logout')
-def logout():
-    session.clear()
-    flash('You are now logged out', 'success')
-    return redirect(url_for('login'))
-    
-    
     
     
 """ Get all recipes and implement pagination """
@@ -352,11 +354,8 @@ def recipes():
     }
     
     
-    cuisines = mongo.db.cuisines.find()
-    courses = mongo.db.courses.find()
-    allergens = mongo.db.allergens.find()
-    
-    return render_template('recipes.html', cuisines = cuisines, courses = courses, allergens = allergens, args=args)
+    return render_template('recipes.html', cuisines = mongo.db.cuisines.find(), courses = mongo.db.courses.find(),
+                            allergens = mongo.db.allergens.find(), args=args)
   
   
   
@@ -368,9 +367,6 @@ def recipes():
 def filter_recipes():
     result = []
     filter_result = []
-    cuisines = mongo.db.cuisines.find()
-    courses = mongo.db.courses.find()
-    allergens = mongo.db.allergens.find()
     if request.method == 'POST':
         form = request.form.to_dict()
         session['filter_form'] = form
@@ -405,7 +401,8 @@ def filter_recipes():
             "total_results": results_count
         }
     
-        return render_template('recipes.html', count_filter =  count_filter, form = form, cuisines = cuisines, courses = courses, allergens = allergens, args = args)
+        return render_template('recipes.html', count_filter =  count_filter, form = form, cuisines =  mongo.db.cuisines.find(), 
+                                courses = mongo.db.courses.find(), allergens = mongo.db.allergens.find(), args = args)
     else:
         return render_template('recipes.html', count_filter =  count_filter)
 
@@ -451,7 +448,6 @@ def search_recipes():
         # Get the results from the form according to user input
         search_text = request.form.get('search_input')
         session['search_text'] = search_text
-        recipe_collection.create_index([('$**', 'text')])
         result = dumps(recipe_collection.find({ "$text": { "$search": str(search_text) }}))
         parsed_result = json.loads(result)
 
@@ -493,7 +489,6 @@ def search_recipes():
 @app.route('/search_results/<search_input>', methods = ['POST'])
 def search_results(search_input):
     if request.method == 'POST':
-        recipe_collection.create_index([('$**', 'text')])
         result = recipe_collection.find({ "$text": { "$search": str(search_input) }})
         count_recipes = str(result.count())
         return count_recipes
@@ -504,16 +499,10 @@ def search_results(search_input):
 """ Allow logged in user to add recipe """
 @app.route('/add_recipe', methods = ['GET', 'POST'])
 def add_recipe():
-    cuisines = mongo.db.cuisines.find()
-    courses = mongo.db.courses.find()
-    allergens = mongo.db.allergens.find()
-    user_recipes = mongo.db.user_recipes.find()
-    return render_template('add_recipe.html', user_recipes = user_recipes, courses = courses,
-                            cuisines = cuisines, allergens = allergens)   
+    return render_template('add_recipe.html', user_recipes = mongo.db.user_recipes.find(), courses = mongo.db.courses.find(),
+                            cuisines = mongo.db.cuisines.find(), allergens = mongo.db.allergens.find())   
    
    
-   
-  
    
    
    
@@ -559,11 +548,8 @@ def insert_recipe():
 @app.route("/edit_recipe/<recipe_id>")
 def edit_recipe(recipe_id):
     the_recipe = user_recipes.find_one({"_id": ObjectId(recipe_id)})
-    cuisines = mongo.db.cuisines.find()
-    courses = mongo.db.courses.find()
-    allergens = mongo.db.allergens.find()
-    return render_template("edit_recipe.html", the_recipe = the_recipe, cuisines = cuisines,
-                            allergens = allergens, courses = courses)
+    return render_template("edit_recipe.html", the_recipe = the_recipe, cuisines = mongo.db.cuisines.find(),
+                            allergens = mongo.db.allergens.find(), courses = mongo.db.courses.find())
 
 
 

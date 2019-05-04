@@ -192,6 +192,10 @@ section {
     font-size: 20px;
 }
 
+.font-size-icon {
+    font-size: 70px;
+}
+
 /* ---------------------------------------Media Queries ------------------------------ */
 
 @media (min-width: 320px) and (max-width: 560px) {
