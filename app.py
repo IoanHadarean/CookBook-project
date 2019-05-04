@@ -3,6 +3,7 @@ from base64 import b64encode
 from PIL import Image
 from os import urandom
 from datetime import datetime, timedelta
+from flask_paranoid import Paranoid
 from flask.logging import create_logger
 from flask_login import current_user, login_required, login_user, logout_user
 from werkzeug.datastructures import CombinedMultiDict
@@ -41,7 +42,13 @@ app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 app.config["MONGO_DBNAME"] = os.getenv("MONGO_DBNAME")
 app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 
+
 mongo = PyMongo(app)
+
+# Cookie Security Implementation
+paranoid = Paranoid(app)
+paranoid.redirect_view = '/'
+SESSION_COOKIE_SECURE = True
 
 # Get MongoDB collections
 
@@ -164,6 +171,7 @@ def login():
             if sha256_crypt.verify(password_candidate, password):
                 session['logged_in'] = True
                 session['username'] = username
+                session.permanent = False
                 
                 next_page = request.args.get('next')
                 if not next_page or url_parse(next_page).netloc != '':

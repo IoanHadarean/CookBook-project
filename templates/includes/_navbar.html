@@ -20,13 +20,12 @@
         {% if session.logged_in %}
         <li class="add_recipe-tag"><a href="/add_recipe">Add Recipe</a></li>
         <li class="profile-tag"><a href="/profile">Profile</a></li>
-        <li><a class = "logout" href="/logout">Logout</a></li>
+        <li><a id = "logout-button" class = "logout" href="/logout">Logout</a></li>
         {% else %}
-        <li><a href="/register">Register</a></li>
-        <li><a class = "login" href="/login">Login</a></li>
+        <li><a id = "register-button" class= "register" href="/register">Register</a></li>
+        <li><a id = "login-button" class = "login" href="/login">Login</a></li>
         {% endif %}
       </ul>
     </div>
-    <!--/.nav-collapse -->
   </div>
 </nav>
