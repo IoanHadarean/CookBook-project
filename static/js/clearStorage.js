@@ -30,13 +30,13 @@
  }
  
  if (editRecipeForm) {
-  editRecipeForm.addEventListener('submit', clearLocalInformation);
+  editRecipeForm.addEventListener('submit', clearPartialInformation);
  }
 
  // Clear local storage when any edit button is clicked
  if (editRecipeButtons) {
   for (var i = 0; i < editRecipeButtons.length; i++) {
-   editRecipeButtons[i].addEventListener('click', clearLocalInformation);
+   editRecipeButtons[i].addEventListener('click', clearPartialInformation);
   }
  }
 
@@ -46,3 +46,11 @@
   localStorage.clear();
  }
  
+ // Clear just the editIngredients and editInstructions
+ // from local storage so the user can go back to adding a recipe
+ // This way, the user's inputs are saved even if the user decides
+ // to leave the add recipe form and edit another recipe
+ function clearPartialInformation() {
+ localStorage.removeItem('editedIngredients');
+ localStorage.removeItem('editedInstructions');
+ }
