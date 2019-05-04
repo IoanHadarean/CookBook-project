@@ -1,5 +1,5 @@
 // Add global variables
-/* global localStorage */
+/* global sessionStorage */
 
 
 // Get HTML Elements
@@ -24,16 +24,16 @@ function loadEventListeners() {
 }
 
 
-// Get Instructions from local storage
+// Get Instructions from session storage
 
 function getInstructions() {
     let instructions;
 
-    if (localStorage.getItem('editedInstructions') === null) {
+    if (sessionStorage.getItem('editedInstructions') === null) {
         instructions = [];
     }
     else {
-        instructions = JSON.parse(localStorage.getItem('editedInstructions'));
+        instructions = JSON.parse(sessionStorage.getItem('editedInstructions'));
     }
 
     instructions.forEach(function(instruction) {
@@ -141,27 +141,27 @@ function addInstruction(e) {
     instructionsList.appendChild(instruction);
 
     // Store Ingredient in local storage
-    storeInstructionInLocalStorage(input.name);
+    storeInstructionInSessionStorage(input.name);
 
     e.preventDefault();
 }
 
 
-// Store Instruction in local storage
-function storeInstructionInLocalStorage(instruction) {
+// Store Instruction in session storage
+function storeInstructionInSessionStorage(instruction) {
     let instructions;
 
-    if (localStorage.getItem('editedInstructions') === null) {
+    if (sessionStorage.getItem('editedInstructions') === null) {
         instructions = [];
     }
     else {
-        instructions = JSON.parse(localStorage.getItem('editedInstructions'));
+        instructions = JSON.parse(sessionStorage.getItem('editedInstructions'));
     }
 
 
     instructions.push(instruction);
 
-    localStorage.setItem('editedInstructions', JSON.stringify(instructions));
+    sessionStorage.setItem('editedInstructions', JSON.stringify(instructions));
 }
 
 
@@ -174,11 +174,11 @@ function removeInstruction(e) {
     }
     else if (e.target.parentElement.classList.contains('delete-instruction')) {
         e.target.parentElement.parentElement.remove();
-        removeInstructionFromLocalStorage(e.target.parentElement.parentElement.firstChild);
+        removeInstructionFromSessionStorage(e.target.parentElement.parentElement.firstChild);
     }
     else {
         e.target.parentElement.remove();
-        removeInstructionFromLocalStorage(e.target.parentElement.firstChild);
+        removeInstructionFromSessionStorage(e.target.parentElement.firstChild);
     }
 
     e.preventDefault();
@@ -186,15 +186,15 @@ function removeInstruction(e) {
 
 
 
-// Remove Instruction from local storage
-function removeInstructionFromLocalStorage(instructionItem) {
+// Remove Instruction from session storage
+function removeInstructionFromSessionStorage(instructionItem) {
     let instructions;
 
-    if (localStorage.getItem('editedInstructions') === null) {
+    if (sessionStorage.getItem('editedInstructions') === null) {
         instructions = [];
     }
     else {
-        instructions = JSON.parse(localStorage.getItem('editedInstructions'));
+        instructions = JSON.parse(sessionStorage.getItem('editedInstructions'));
     }
 
     instructions.forEach(function(instruction, index) {
@@ -203,5 +203,5 @@ function removeInstructionFromLocalStorage(instructionItem) {
         }
     });
 
-    localStorage.setItem('editedInstructions', JSON.stringify(instructions));
+    sessionStorage.setItem('editedInstructions', JSON.stringify(instructions));
 }

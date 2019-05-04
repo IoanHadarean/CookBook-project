@@ -1,5 +1,5 @@
 // Add global variables
-/* global localStorage */
+/* global sessionStorage */
 
 
 // Get HTML Elements
@@ -24,16 +24,16 @@ function loadEventListeners() {
 }
 
 
-// Get Ingredients from local storage
+// Get Ingredients from session storage
 
 function getIngredients() {
     let ingredients;
 
-    if (localStorage.getItem('addedIngredients') === null) {
+    if (sessionStorage.getItem('addedIngredients') === null) {
         ingredients = [];
     }
     else {
-        ingredients = JSON.parse(localStorage.getItem('addedIngredients'));
+        ingredients = JSON.parse(sessionStorage.getItem('addedIngredients'));
     }
     ingredients.forEach(function(ingredient) {
         // Create elements
@@ -141,28 +141,28 @@ function addIngredient(e) {
     ingredientsList.appendChild(ingredient);
 
     // Store Ingredient in local storage
-    storeIngredientInLocalStorage(input.name);
+    storeIngredientInSessionStorage(input.name);
 
     e.preventDefault();
 }
 
 
 
-// Store Ingredient in local storage
-function storeIngredientInLocalStorage(ingredient) {
+// Store Ingredient in session storage
+function storeIngredientInSessionStorage(ingredient) {
     let ingredients;
 
-    if (localStorage.getItem('addedIngredients') === null) {
+    if (sessionStorage.getItem('addedIngredients') === null) {
         ingredients = [];
     }
     else {
-        ingredients = JSON.parse(localStorage.getItem('addedIngredients'));
+        ingredients = JSON.parse(sessionStorage.getItem('addedIngredients'));
     }
 
 
     ingredients.push(ingredient);
 
-    localStorage.setItem('addedIngredients', JSON.stringify(ingredients));
+    sessionStorage.setItem('addedIngredients', JSON.stringify(ingredients));
 }
 
 
@@ -175,25 +175,25 @@ function removeIngredient(e) {
     }
     else if (e.target.parentElement.classList.contains('delete-ingredient')) {
         e.target.parentElement.parentElement.remove();
-        removeIngredientFromLocalStorage(e.target.parentElement.parentElement.firstChild);
+        removeIngredientFromSessionStorage(e.target.parentElement.parentElement.firstChild);
     }
     else {
         e.target.parentElement.remove();
-        removeIngredientFromLocalStorage(e.target.parentElement.firstChild);
+        removeIngredientFromSessionStorage(e.target.parentElement.firstChild);
     }
 
     e.preventDefault();
 }
 
 
-// Remove Ingredient from local storage
-function removeIngredientFromLocalStorage(ingredientItem) {
+// Remove Ingredient from session storage
+function removeIngredientFromSessionStorage(ingredientItem) {
     let ingredients;
-    if (localStorage.getItem('addedIngredients') === null) {
+    if (sessionStorage.getItem('addedIngredients') === null) {
         ingredients = [];
     }
     else {
-        ingredients = JSON.parse(localStorage.getItem('addedIngredients'));
+        ingredients = JSON.parse(sessionStorage.getItem('addedIngredients'));
     }
 
     ingredients.forEach(function(ingredient, index) {
@@ -202,5 +202,5 @@ function removeIngredientFromLocalStorage(ingredientItem) {
         }
     });
 
-    localStorage.setItem('addedIngredients', JSON.stringify(ingredients));
+    sessionStorage.setItem('addedIngredients', JSON.stringify(ingredients));
 }
