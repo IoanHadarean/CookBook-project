@@ -45,10 +45,11 @@ app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 
 mongo = PyMongo(app)
 
-# Cookie Security Implementation
+# Cookie and Session Security Implementation
 paranoid = Paranoid(app)
 paranoid.redirect_view = '/'
 SESSION_COOKIE_SECURE = True
+SESSION_PERMANENT = False
 
 # Get MongoDB collections
 

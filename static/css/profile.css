@@ -251,7 +251,7 @@ label {
         margin-top: 10%;
     }
     
-    #reset-progress,
+    .reset-progress,
     .cancel-button,
     .delete-button-modal {
         margin-top: 0;
