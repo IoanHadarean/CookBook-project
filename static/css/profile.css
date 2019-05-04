@@ -11,12 +11,11 @@ body {
 form {
     width: 100%;
     top: auto;
-    height: 400px;
     position: relative;
+    margin-bottom: 60px !important;
 }
 
 section {
-    overflow-y: initial;
     height: 100%;
 }
 
