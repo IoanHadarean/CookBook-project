@@ -47,7 +47,7 @@
             </div>
             <div class="recipes__image">
                 <a href="{{ url_for('get_recipe', recipe_id=recipe._id) }}">
-                    <img class = "image__inline" src = {{ recipe.recipe_image }} alt = "recipe-image">
+                    <img class = "image__inline" src = "{{ recipe.recipe_image }}" onerror="this.onerror=null;this.src='static/images/recipe.jpg';" alt = "recipe-image">
                 </a>
             </div>
             <div class="recipes__author">

@@ -50,8 +50,8 @@ mongo = PyMongo(app)
 # However, disable it when using Chrome Developer Tools
 # or a similar tool since it automatically clears the session
 # when accessing a different device
-paranoid = Paranoid(app)
-paranoid.redirect_view = '/'
+# paranoid = Paranoid(app)
+# paranoid.redirect_view = '/'
 SESSION_COOKIE_SECURE = True
 SESSION_PERMANENT = False
 
@@ -242,7 +242,6 @@ def profile():
         new_picture_fn = picture_fn.replace("/", "|")
         app.root_path = os.path.dirname(os.path.abspath(__file__))
         picture_path = os.path.abspath(os.path.join(app.root_path, 'static/images', new_picture_fn))
-        
         output_size = (180, 180)
         
         i = Image.open(picture)
@@ -251,7 +250,6 @@ def profile():
         i.save(picture_path)
         picture_file = new_picture_fn
 
-        
         #Get session username
         user = session.get('username')
         
@@ -301,6 +299,7 @@ def profile():
     pagination_offset = int(request.args.get('offset', '0'))
     pagination_limit = int(request.args.get('limit', '6'))
     userMade = user_recipes.find({"username" : user})
+    print(userMade.count())
     if userMade.count() > 0:
         starting_id = userMade.sort('_id', pymongo.ASCENDING)
         last_id = starting_id[pagination_offset]['_id']

@@ -15,3 +15,15 @@ resetProgressButton.addEventListener('click', resetProfileUpdate);
 function resetProfileUpdate() {
     profileForm.reset();
 }
+
+// Set a default picture in case the user picture is broken
+
+let imageInline = document.getElementsByClassName('rounded-circle')[0];
+
+function imgError(image) {
+    image.onerror = null;
+    image.src = "static/images/avatar.jpg";
+    return true;
+}
+
+imgError(imageInline);
