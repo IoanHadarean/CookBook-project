@@ -28,6 +28,7 @@
  if (addRecipeForm) {
   addRecipeForm.addEventListener('submit', clearLocalInformation);
  }
+ 
  if (editRecipeForm) {
   editRecipeForm.addEventListener('submit', clearLocalInformation);
  }

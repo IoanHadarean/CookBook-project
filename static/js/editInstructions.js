@@ -29,11 +29,11 @@ function loadEventListeners() {
 function getInstructions() {
     let instructions;
 
-    if (localStorage.getItem('addedInstructions') === null) {
+    if (localStorage.getItem('editedInstructions') === null) {
         instructions = [];
     }
     else {
-        instructions = JSON.parse(localStorage.getItem('addedInstructions'));
+        instructions = JSON.parse(localStorage.getItem('editedInstructions'));
     }
 
     instructions.forEach(function(instruction) {
@@ -151,17 +151,17 @@ function addInstruction(e) {
 function storeInstructionInLocalStorage(instruction) {
     let instructions;
 
-    if (localStorage.getItem('addedInstructions') === null) {
+    if (localStorage.getItem('editedInstructions') === null) {
         instructions = [];
     }
     else {
-        instructions = JSON.parse(localStorage.getItem('addedInstructions'));
+        instructions = JSON.parse(localStorage.getItem('editedInstructions'));
     }
 
 
     instructions.push(instruction);
 
-    localStorage.setItem('addedInstructions', JSON.stringify(instructions));
+    localStorage.setItem('editedInstructions', JSON.stringify(instructions));
 }
 
 
@@ -190,11 +190,11 @@ function removeInstruction(e) {
 function removeInstructionFromLocalStorage(instructionItem) {
     let instructions;
 
-    if (localStorage.getItem('addedInstructions') === null) {
+    if (localStorage.getItem('editedInstructions') === null) {
         instructions = [];
     }
     else {
-        instructions = JSON.parse(localStorage.getItem('addedInstructions'));
+        instructions = JSON.parse(localStorage.getItem('editedInstructions'));
     }
 
     instructions.forEach(function(instruction, index) {
@@ -203,5 +203,5 @@ function removeInstructionFromLocalStorage(instructionItem) {
         }
     });
 
-    localStorage.setItem('addedInstructions', JSON.stringify(instructions));
+    localStorage.setItem('editedInstructions', JSON.stringify(instructions));
 }

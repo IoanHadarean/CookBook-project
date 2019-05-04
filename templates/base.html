@@ -46,9 +46,13 @@
     <script src="https://kozea.github.com/pygal.js/latest/pygal-tooltips.min.js" async></script>
     <script src="{{ url_for('static', filename = 'js/navbar.js') }}" async></script>
     <script type="text/javascript" src="{{ url_for('static', filename = 'js/alert.js') }}" async></script>
-    {% if request.endpoint == 'add_recipe' or request.endpoint == 'edit_recipe' %}
+    {% if request.endpoint == 'add_recipe' %}
     <script type="text/javascript" src="{{ url_for('static', filename = 'js/addIngredients.js') }}" async></script>
     <script type="text/javascript" src="{{ url_for('static', filename = 'js/addInstructions.js') }}" async></script>
+    {% endif %}
+    {% if request.endpoint == 'edit_recipe' %}
+    <script type="text/javascript" src="{{ url_for('static', filename = 'js/editIngredients.js') }}" async></script>
+    <script type="text/javascript" src="{{ url_for('static', filename = 'js/editInstructions.js') }}" async></script>
     {% endif %}
     {% if request.endpoint == 'register' %}
     <script type="text/javascript" src="{{ url_for('static', filename = 'js/helpInlineRegister.js') }}" async></script>

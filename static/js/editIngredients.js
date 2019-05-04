@@ -29,11 +29,11 @@ function loadEventListeners() {
 function getIngredients() {
     let ingredients;
 
-    if (localStorage.getItem('addedIngredients') === null) {
+    if (localStorage.getItem('editedIngredients') === null) {
         ingredients = [];
     }
     else {
-        ingredients = JSON.parse(localStorage.getItem('addedIngredients'));
+        ingredients = JSON.parse(localStorage.getItem('editedIngredients'));
     }
     ingredients.forEach(function(ingredient) {
         // Create elements
@@ -152,17 +152,17 @@ function addIngredient(e) {
 function storeIngredientInLocalStorage(ingredient) {
     let ingredients;
 
-    if (localStorage.getItem('addedIngredients') === null) {
+    if (localStorage.getItem('editedIngredients') === null) {
         ingredients = [];
     }
     else {
-        ingredients = JSON.parse(localStorage.getItem('addedIngredients'));
+        ingredients = JSON.parse(localStorage.getItem('editedIngredients'));
     }
 
 
     ingredients.push(ingredient);
 
-    localStorage.setItem('addedIngredients', JSON.stringify(ingredients));
+    localStorage.setItem('editedIngredients', JSON.stringify(ingredients));
 }
 
 
@@ -189,11 +189,11 @@ function removeIngredient(e) {
 // Remove Ingredient from local storage
 function removeIngredientFromLocalStorage(ingredientItem) {
     let ingredients;
-    if (localStorage.getItem('addedIngredients') === null) {
+    if (localStorage.getItem('editedIngredients') === null) {
         ingredients = [];
     }
     else {
-        ingredients = JSON.parse(localStorage.getItem('addedIngredients'));
+        ingredients = JSON.parse(localStorage.getItem('editedIngredients'));
     }
 
     ingredients.forEach(function(ingredient, index) {
@@ -202,5 +202,5 @@ function removeIngredientFromLocalStorage(ingredientItem) {
         }
     });
 
-    localStorage.setItem('addedIngredients', JSON.stringify(ingredients));
+    localStorage.setItem('editedIngredients', JSON.stringify(ingredients));
 }
