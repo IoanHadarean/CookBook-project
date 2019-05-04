@@ -46,8 +46,12 @@ app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 mongo = PyMongo(app)
 
 # Cookie and Session Security Implementation
-paranoid = Paranoid(app)
-paranoid.redirect_view = '/'
+# Note: paranoid is necessary in terms of security for the project.
+# However, disable it when using Chrome Developer Tools
+# or a similar tool since it automatically clears the session
+# when accessing a different device
+# paranoid = Paranoid(app)
+# paranoid.redirect_view = '/'
 SESSION_COOKIE_SECURE = True
 SESSION_PERMANENT = False
 
