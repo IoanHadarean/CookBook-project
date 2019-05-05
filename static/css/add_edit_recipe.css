@@ -6,6 +6,11 @@
     padding-right: 0;
 }
 
+.container {
+    padding-right: 0;
+    padding-left: 0;
+}
+
 .vh100 {
     margin-top: 150px;
     min-height: 100vh;
@@ -32,6 +37,13 @@ footer {
     height: 34px;
 }
 
+/* ---------------------------------------------- Alerts ---------------------------------------- */
+
+#alert-message {
+    visibility: hidden;
+    text-align: center;
+    margin-top: 0;
+}
 
 /* ----------------------------------------------- Add and Edit Recipe Forms -------------------------------------------- */
 

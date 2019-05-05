@@ -833,8 +833,6 @@ def update_rating(recipe_id):
         
         recipe_collection.update({"_id": ObjectId(recipe_id)},
                                     { "$set": { "rating": formatted_average}})
-                                    
-        
     return redirect(url_for('get_recipe', recipe_id = recipe_id))
 
 

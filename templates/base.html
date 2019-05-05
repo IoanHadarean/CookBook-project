@@ -45,7 +45,9 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://kozea.github.com/pygal.js/latest/pygal-tooltips.min.js" async></script>
     <script src="{{ url_for('static', filename = 'js/navbar.js') }}" async></script>
+    {% if request.endpoint != 'add_recipe' and request.endpoint != 'edit_recipe' %}
     <script type="text/javascript" src="{{ url_for('static', filename = 'js/alert.js') }}" async></script>
+    {% endif %}
     {% if request.endpoint == 'add_recipe' %}
     <script type="text/javascript" src="{{ url_for('static', filename = 'js/addIngredients.js') }}" async></script>
     <script type="text/javascript" src="{{ url_for('static', filename = 'js/addInstructions.js') }}" async></script>

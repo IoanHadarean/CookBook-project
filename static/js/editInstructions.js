@@ -3,9 +3,11 @@
 
 
 // Get HTML Elements
-const firstInstruction = document.getElementsByClassName('add-instruction')[0];
-const firstDeleteInstruction = document.getElementsByClassName('delete-instruction')[0];
+const instructionAddButtons = document.getElementsByClassName('add-instruction');
+const instructionDeleteButtons = document.getElementsByClassName('delete-instruction');
 const instructionsList = document.getElementById('instructions-list');
+let instructionsEditText = document.getElementsByClassName('edit-recipe__instructions')[0];
+const firstRemoveButton = document.getElementsByClassName('add-instruction')[0];
 
 
 // Add event listeners
@@ -15,11 +17,11 @@ loadEventListeners();
 
 function loadEventListeners() {
     window.addEventListener('load', getInstructions);
-    if (firstInstruction) {
-        firstInstruction.addEventListener('click', addInstruction);
+    for (var i = 0; i < instructionAddButtons.length; i++) {
+        instructionAddButtons[i].addEventListener('click', addInstruction);
     }
-    if (firstDeleteInstruction) {
-        firstDeleteInstruction.addEventListener('click', removeInstruction);
+    for (var j = 0; j < instructionDeleteButtons.length; j++) {
+        instructionDeleteButtons[j].addEventListener('click', removeInstruction);
     }
 }
 
@@ -165,12 +167,19 @@ function storeInstructionInSessionStorage(instruction) {
 }
 
 
+
+
 // Remove Instruction
 function removeInstruction(e) {
     let instructionsListLength = document.getElementsByClassName('instruction').length;
 
+
     if (instructionsListLength == 1) {
-        console.log("Not Allowed");
+        let alertMessage = document.getElementById('alert-message');
+        alertMessage.style.visibility = 'visible';
+        setTimeout(function() {
+            alertMessage.style.visibility = 'hidden';
+        }, 5000);
     }
     else if (e.target.parentElement.classList.contains('delete-instruction')) {
         e.target.parentElement.parentElement.remove();
