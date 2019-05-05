@@ -39,8 +39,6 @@
             </div>
         </div>
     </footer>
-
-
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://kozea.github.com/pygal.js/latest/pygal-tooltips.min.js" async></script>
@@ -51,13 +49,13 @@
     {% if request.endpoint == 'add_recipe' %}
     <script type="text/javascript" src="{{ url_for('static', filename = 'js/addIngredients.js') }}" async></script>
     <script type="text/javascript" src="{{ url_for('static', filename = 'js/addInstructions.js') }}" async></script>
-    {% endif %} {% if request.endpoint == 'edit_recipe' %}
-    <script type="text/javascript" src="{{ url_for('static', filename = 'js/editIngredients.js') }}" async></script>
-    <script type="text/javascript" src="{{ url_for('static', filename = 'js/editInstructions.js') }}" async></script>
     {% endif %} {% if request.endpoint == 'register' %}
     <script type="text/javascript" src="{{ url_for('static', filename = 'js/helpInlineRegister.js') }}" async></script>
     {% endif %}
-    
+    {% if request.endpoint == 'edit_recipe' %}
+    <script type="text/javascript" src="{{ url_for('static', filename = 'js/editIngredients.js') }}" async></script>
+    <script type="text/javascript" src="{{ url_for('static', filename = 'js/editInstructions.js') }}" async></script>
+    {% endif %}
     <script type="text/javascript" src="{{ url_for('static', filename = 'js/clearSessionStorage.js') }}" async></script>
 </body>
 

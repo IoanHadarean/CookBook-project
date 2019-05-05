@@ -1,13 +1,13 @@
 // Add global variables
 /* global sessionStorage */
+/* global clicked */
 
 
 // Get HTML Elements
 const instructionAddButtons = document.getElementsByClassName('add-instruction');
 const instructionDeleteButtons = document.getElementsByClassName('delete-instruction');
 const instructionsList = document.getElementById('instructions-list');
-let instructionsEditText = document.getElementsByClassName('edit-recipe__instructions')[0];
-const firstRemoveButton = document.getElementsByClassName('add-instruction')[0];
+let firstRemoveButton = document.getElementsByClassName('delete-instruction')[0];
 
 
 // Add event listeners
@@ -175,10 +175,11 @@ function removeInstruction(e) {
 
 
     if (instructionsListLength == 1) {
-        let alertMessage = document.getElementById('alert-message');
-        alertMessage.style.visibility = 'visible';
+        firstRemoveButton.disabled = true;
+        document.getElementById('alert-message').style.visibility = 'visible';
         setTimeout(function() {
-            alertMessage.style.visibility = 'hidden';
+            firstRemoveButton.disabled = false;
+            document.getElementById('alert-message').style.visibility = 'hidden';
         }, 5000);
     }
     else if (e.target.parentElement.classList.contains('delete-instruction')) {
@@ -214,3 +215,4 @@ function removeInstructionFromSessionStorage(instructionItem) {
 
     sessionStorage.setItem('editedInstructions', JSON.stringify(instructions));
 }
+

@@ -171,18 +171,16 @@ function storeIngredientInSessionStorage(ingredient) {
 function removeIngredient(e) {
     let ingredientsListLength = document.getElementsByClassName('ingredient').length;
 
-    if (ingredientsListLength == 1) {
-        console.log('Not Allowed');
+    if (ingredientsListLength != 1) {
+        if (e.target.parentElement.classList.contains('delete-ingredient')) {
+            e.target.parentElement.parentElement.remove();
+            removeIngredientFromSessionStorage(e.target.parentElement.parentElement.firstChild);
+        }
+        else {
+            e.target.parentElement.remove();
+            removeIngredientFromSessionStorage(e.target.parentElement.firstChild);
+        }
     }
-    else if (e.target.parentElement.classList.contains('delete-ingredient')) {
-        e.target.parentElement.parentElement.remove();
-        removeIngredientFromSessionStorage(e.target.parentElement.parentElement.firstChild);
-    }
-    else {
-        e.target.parentElement.remove();
-        removeIngredientFromSessionStorage(e.target.parentElement.firstChild);
-    }
-
     e.preventDefault();
 }
 

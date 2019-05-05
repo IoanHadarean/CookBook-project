@@ -12,8 +12,8 @@
 }
 
 .vh100 {
-    margin-top: 150px;
     min-height: 100vh;
+    margin-top: 150px;
 }
 
 footer {
@@ -40,9 +40,12 @@ footer {
 /* ---------------------------------------------- Alerts ---------------------------------------- */
 
 #alert-message {
-    visibility: hidden;
     text-align: center;
-    margin-top: 0;
+    margin-top: -100px;
+    height: 50px;
+    position: fixed;
+    width: 100%;
+    visibility: hidden;
 }
 
 /* ----------------------------------------------- Add and Edit Recipe Forms -------------------------------------------- */
