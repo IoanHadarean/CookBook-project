@@ -30,7 +30,7 @@
                 {% if allergen.allergen_name == the_recipe.allergen_name %}
                 <option  value="{{ allergen.allergen_name }}" name="allergens-{{ loop.index }}" selected>{{ allergen.allergen_name }}</option>
                 {% else %}
-                <option  value="{{ allergen.allergen_name }}" name="allergens-{{ loop.index }}" selected>{{ allergen.allergen_name }}</option>
+                <option  value="{{ allergen.allergen_name }}" name="allergens-{{ loop.index }}">{{ allergen.allergen_name }}</option>
                 {% endif %}
             {% endfor %}
         </select>

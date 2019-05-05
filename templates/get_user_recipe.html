@@ -1,13 +1,25 @@
 {% extends 'base.html' %} {% block content %} {% include 'includes/_messages.html' %}
-    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/special_styling.css') }}" type="text/css" />
+<link rel="stylesheet" href="{{ url_for('static', filename = 'css/special_styling.css') }}" type="text/css" />
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}" type="text/css" />
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/get_user_recipe.css') }}" type="text/css" />
 <section>
     <!-- Recipe image -->
     <div class="recipe__image">
-        <img class="image__inline" src= "{{ user_recipe.recipe_image }}" onerror="this.onerror=null;this.src='static/images/recipe.jpg';" alt="recipe-image">
+        <img class="image__inline" src="{{ user_recipe.recipe_image }}" onerror="this.onerror=null;this.src='static/images/recipe.jpg';" alt="recipe-image">
     </div>
 
+    <!-- Recipe delete and edit buttons -->
+    <div class="inline actions">
+        <div class="edit-container">
+            <a href="{{url_for('edit_recipe', recipe_id=user_recipe._id)}}" class="edit-button btn btn-primary">Edit</a>
+        </div>
+        <div class="delete-container">
+            <a class="delete-button btn btn-danger" data-toggle="modal" data-target="#deleteModal-{{user_recipe.recipe_name}}">Delete</a>
+        </div>
+    </div>
+    
+     <!-- Delete recipe modal -->
+    {% include 'includes/_deletemodalrecipe.html' %}
 
     <!-- Recipe Info -->
     <div class="recipe__info">
@@ -18,9 +30,9 @@
         <div class="recipe__author">
             <p class="author__description">By {{ user_recipe.username }}</p>
         </div>
-        
-        
-        
+
+
+
         <!-- Recipe specification -->
         <div class="info__specs">
             <div class="specs__cuisine">
@@ -36,7 +48,7 @@
                 <span class="is-spec">{{ user_recipe.allergen_name }}</span>
             </div>
         </div>
-        
+
         <!-- Recipe alert -->
         <div class="recipe-separator"></div>
         <div class="recipe__alert">
