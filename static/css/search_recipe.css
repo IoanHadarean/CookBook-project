@@ -29,6 +29,8 @@ footer {
     align-items: center;
     justify-content: center;
     padding-bottom: 10px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 
@@ -93,9 +95,11 @@ footer {
 }
 
 @media (max-width: 768px) and (min-width: 560px) {
+    .uk-search,
     .uk-search-input,
     #search-btn-container{
         width: 60vw;
+        max-width: 60vw;
     }
 }
 
@@ -123,20 +127,24 @@ footer {
 }
 
 @media (max-width: 1440px) and (min-width: 769px) {
+    .uk-search,
     .uk-search-input,
     #search-btn-container{
         width: 40vw;
+        max-width: 40vw;
     }
 }
 
-@media (max-width: 2560px) and (min-width: 1441px) {
+@media (max-width: 4000px) and (min-width: 1441px) {
+    .uk-search,
     .uk-search-input,
     #search-btn-container{
         width: 30vw;
+        max-width: 30vw;
     }
 }
 
-@media (min-width: 1921px) and (max-width: 2560px) {
+@media (min-width: 1921px) and (max-width: 4000px) {
     .recipes__image {
         height: 300px !important;
     }

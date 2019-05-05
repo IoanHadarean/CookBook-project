@@ -130,7 +130,7 @@ option {
 }
 
 
-@media(min-height: 600px)  and (max-height: 1366px) and (min-width: 768px) and (max-width: 2560px) {
+@media(min-height: 600px)  and (max-height: 1366px) and (min-width: 768px) and (max-width: 4000px) {
     #filter_results {
         margin-top: 260px;
     }
@@ -141,3 +141,4 @@ option {
       top: 14vh;
   }
 }
+

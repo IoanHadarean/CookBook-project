@@ -25,7 +25,7 @@ html, body {
  }
 }
 
-@media (min-width: 1920px) and (max-width: 2560px) {
+@media (min-width: 1920px) and (max-width: 4000px) {
  .form-control {
   margin-bottom: 60px;
  }

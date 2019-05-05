@@ -17,6 +17,7 @@ form {
 }
 
 .vh100 {
+ max-width: 100%;
  min-height: 100vh;
 }
 
@@ -265,7 +266,7 @@ form {
   }
  }
 
- @media (min-width: 1440px) and (max-width: 2560px) {
+ @media (min-width: 1440px) and (max-width: 4000px) {
   .navbar-middle {
    left: 30vw;
    right: 30vw;
@@ -291,7 +292,7 @@ form {
   }
  }
 
- @media (min-width: 768px) and (max-width: 2560px) {
+ @media (min-width: 768px) and (max-width: 4000px) {
   .navbar-middle {
    display: flex;
    align-items: center;
@@ -312,7 +313,7 @@ form {
   }
  }
 
- @media (min-width: 1920px) and (max-width: 2560px) {
+ @media (min-width: 1920px) and (max-width: 4000px) {
   .form-group--responsive {
    width: 30vw;
    margin-left: 35vw;
@@ -321,7 +322,7 @@ form {
  }
 
 
- @media (min-width: 1080px) and (max-width: 2560px) {
+ @media (min-width: 1080px) and (max-width: 4000px) {
   .form-group--responsive {
    margin-top: 1%;
   }
@@ -379,4 +380,6 @@ form {
    top: 25vh;
   }
  }
+ 
+ 
  
