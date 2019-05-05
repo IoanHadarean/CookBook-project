@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}" type="text/css" />
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/add_edit_recipe.css') }}" type="text/css" />
-<div id ="alert-message" class = "alert alert-danger">You need to add at least one instruction</div>
+<div id ="alert-message" class = "alert alert-danger"></div>
 <section class="vh100 container-fluid">
     <form id="edit-recipe" class = "container" action="{{url_for('update_recipe', recipe_id = the_recipe._id) }}" method="POST">
         <div class="container">

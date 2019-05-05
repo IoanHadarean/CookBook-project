@@ -1,13 +1,12 @@
 // Add global variables
 /* global sessionStorage */
-/* global clicked */
 
 
 // Get HTML Elements
 const instructionAddButtons = document.getElementsByClassName('add-instruction');
 const instructionDeleteButtons = document.getElementsByClassName('delete-instruction');
 const instructionsList = document.getElementById('instructions-list');
-let firstRemoveButton = document.getElementsByClassName('delete-instruction')[0];
+let firstRemoveInstructionButton = document.getElementsByClassName('delete-instruction')[0];
 
 
 // Add event listeners
@@ -175,10 +174,11 @@ function removeInstruction(e) {
 
 
     if (instructionsListLength == 1) {
-        firstRemoveButton.disabled = true;
+        firstRemoveInstructionButton.disabled = true;
+        document.getElementById('alert-message').innerHTML = 'You need to add at least one instruction';
         document.getElementById('alert-message').style.visibility = 'visible';
         setTimeout(function() {
-            firstRemoveButton.disabled = false;
+            firstRemoveInstructionButton.disabled = false;
             document.getElementById('alert-message').style.visibility = 'hidden';
         }, 5000);
     }

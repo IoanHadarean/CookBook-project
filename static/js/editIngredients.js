@@ -6,6 +6,7 @@
 const ingredientAddButtons = document.getElementsByClassName('add-ingredient');
 const ingredientDeleteButtons = document.getElementsByClassName('delete-ingredient');
 const ingredientsList = document.getElementById('ingredients-list');
+const firstRemoveIngredientButton = document.getElementsByClassName('delete-ingredient')[0];
 
 
 
@@ -171,16 +172,24 @@ function storeIngredientInSessionStorage(ingredient) {
 function removeIngredient(e) {
     let ingredientsListLength = document.getElementsByClassName('ingredient').length;
 
-    if (ingredientsListLength != 1) {
-        if (e.target.parentElement.classList.contains('delete-ingredient')) {
-            e.target.parentElement.parentElement.remove();
-            removeIngredientFromSessionStorage(e.target.parentElement.parentElement.firstChild);
-        }
-        else {
-            e.target.parentElement.remove();
-            removeIngredientFromSessionStorage(e.target.parentElement.firstChild);
-        }
+    if (ingredientsListLength == 1) {
+        firstRemoveIngredientButton.disabled = true;
+        document.getElementById('alert-message').innerHTML = 'You need to add at least one ingredient';
+        document.getElementById('alert-message').style.visibility = 'visible';
+        setTimeout(function() {
+            firstRemoveIngredientButton.disabled = false;
+            document.getElementById('alert-message').style.visibility = 'hidden';
+        }, 5000);
     }
+    else if (e.target.parentElement.classList.contains('delete-ingredient')) {
+        e.target.parentElement.parentElement.remove();
+        removeIngredientFromSessionStorage(e.target.parentElement.parentElement.firstChild);
+    }
+    else {
+        e.target.parentElement.remove();
+        removeIngredientFromSessionStorage(e.target.parentElement.firstChild);
+    }
+
     e.preventDefault();
 }
 
