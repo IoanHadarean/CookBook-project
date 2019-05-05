@@ -129,15 +129,15 @@ def register():
         #Create cursor
         cur = connection.cursor()
         
-        get_db_username = cur.execute("SELECT username FROM users WHERE username = %s", form.username.data)
-        get_db_email = cur.execute("SELECT email FROM users WHERE email = %s", form.email.data)
+        get_db_username = cur.execute("SELECT username FROM users WHERE username = %s;", (form.username.data,))
+        get_db_email = cur.execute("SELECT email FROM users WHERE email = %s;", (form.email.data,))
         
         if get_db_username > 0:
             flash("That username is already taken. Please choose a different one.")
         elif get_db_email > 0:
             flash("That email is already taken. Please choose a different one.")
         else:
-            cur.execute("INSERT INTO users(name, email, username, password) VALUES(%s, %s, %s, %s)", (name, email, username, password))
+            cur.execute("INSERT INTO users(name, email, username, password) VALUES(%s, %s, %s, %s);", (name, email, username, password,))
             # Save the connection
             connection.commit()
             session['logged_in'] = True
@@ -168,7 +168,7 @@ def login():
         cur = connection.cursor()
         
         # Get user by username
-        result = cur.execute("SELECT * FROM users WHERE username = %s", username)
+        result = cur.execute("SELECT * FROM users WHERE username = %s;", (username,))
         
         if result > 0:
             # Get stored hash
@@ -219,13 +219,13 @@ def profile():
     date = datetime.utcnow()
     
     #Get current username and email from db
-    cur.execute("SELECT name FROM users  WHERE username = %s", user)
+    cur.execute("SELECT name FROM users  WHERE username = %s;", (user,))
     current_name = cur.fetchall()[0]['name']
-    cur.execute("SELECT email FROM users  WHERE username = %s", user)
+    cur.execute("SELECT email FROM users  WHERE username = %s;", (user,))
     current_email = cur.fetchall()[0]['email']
-    cur.execute("SELECT aboutme FROM users  WHERE username = %s", user)
+    cur.execute("SELECT aboutme FROM users  WHERE username = %s;", (user,))
     profile_description = cur.fetchall()[0]['aboutme']
-    cur.execute("SELECT image FROM users  WHERE username = %s", user)
+    cur.execute("SELECT image FROM users  WHERE username = %s;", (user,))
     image_file = cur.fetchall()[0]['image']
     connection.commit()
     cur.close()
@@ -257,16 +257,16 @@ def profile():
         cur = connection.cursor() 
     
         #Get current username and email from db
-        cur.execute("SELECT name FROM users  WHERE username = %s", user)
+        cur.execute("SELECT name FROM users  WHERE username = %s;", (user,))
         current_name = cur.fetchall()[0]['name']
-        cur.execute("SELECT email FROM users  WHERE username = %s", user)
+        cur.execute("SELECT email FROM users  WHERE username = %s;", (user,))
         current_email = cur.fetchall()[0]['email']
         
         
         #Check the name and email that come from the form to make sure everything is updated correctly
         
-        get_db_name = cur.execute("SELECT name FROM users WHERE name = %s", name)
-        get_db_email = cur.execute("SELECT email FROM users WHERE email = %s", email)
+        get_db_name = cur.execute("SELECT name FROM users WHERE name = %s;", (name,))
+        get_db_email = cur.execute("SELECT email FROM users WHERE email = %s;", (email,))
         
          
         if name != current_name:
@@ -275,7 +275,7 @@ def profile():
             elif (get_db_email > 0 and email != current_email):
                 flash("That email is already taken. Please choose a different one.", 'danger')
             else:
-                cur.execute("UPDATE users SET name = %s, email = %s, aboutme = %s, image = %s WHERE username = %s", (name, email, about_me, picture_file, user))
+                cur.execute("UPDATE users SET name = %s, email = %s, aboutme = %s, image = %s WHERE username = %s;", (name, email, about_me, picture_file, user,))
                 flash('Your profile has been updated successfully', 'success')
                 return redirect(url_for('profile'))
         elif email != current_email:
@@ -284,12 +284,12 @@ def profile():
             elif (get_db_name > 0 and form.name.data != current_name):
                 flash("That name is already taken. Please choose a different one.", 'danger')
             else:
-                cur.execute("UPDATE users SET name = %s, email = %s, aboutme = %s, image = %s WHERE username = %s", (name, email, about_me, picture_file, user))
+                cur.execute("UPDATE users SET name = %s, email = %s, aboutme = %s, image = %s WHERE username = %s;", (name, email, about_me, picture_file, user,))
                 flash('Your profile has been updated successfully', 'success')
                 return redirect(url_for('profile'))
         else:
             flash('Your profile has been updated successfully', 'success')
-            cur.execute("UPDATE users SET aboutme = %s, image = %s WHERE username = %s", (about_me, picture_file, user))
+            cur.execute("UPDATE users SET aboutme = %s, image = %s WHERE username = %s;", (about_me, picture_file, user,))
             return redirect(url_for('profile'))
         #Commit and close the connection
         connection.commit()
@@ -684,7 +684,7 @@ def get_recipe(recipe_id):
     if user != None:
         # Get MySQL connection
         cur = connection.cursor()
-        cur.execute("SELECT id FROM users WHERE username = %s", user)
+        cur.execute("SELECT id FROM users WHERE username = %s;", (user,))
         # Close the connection
         connection.commit()
         cur.close()
@@ -724,20 +724,20 @@ def like(recipe_id):
     # If it's 1 then update the number of likes
     # Finally, set the liked flag to 0 so a recipe can not be liked anymore
     # Commit to the database and redirect
-    cur.execute("SELECT id FROM users WHERE username = %s", user)
+    cur.execute("SELECT id FROM users WHERE username = %s;", (user,))
     user_id = cur.fetchall()[0]['id']
-    cur.execute("SELECT userId, recipeId, liked, unliked FROM userlikes WHERE userId = %s AND recipeId = %s", (user_id, recipe_number))
+    cur.execute("SELECT userId, recipeId, liked, unliked FROM userlikes WHERE userId = %s AND recipeId = %s;", (user_id, recipe_number,))
     result = cur.fetchall()
     if len(result) == 0:
-        cur.execute("INSERT INTO userlikes(userId, recipeId) VALUES(%s, %s)", (user_id, recipe_number))
-    cur.execute("SELECT userId, recipeId, liked, unliked FROM userlikes WHERE userId = %s AND recipeId = %s", (user_id, recipe_number))
+        cur.execute("INSERT INTO userlikes(userId, recipeId) VALUES(%s, %s);", (user_id, recipe_number))
+    cur.execute("SELECT userId, recipeId, liked, unliked FROM userlikes WHERE userId = %s AND recipeId = %s;", (user_id, recipe_number,))
     likedFlag = cur.fetchall()[0]['liked']
     if (likedFlag != 0):
         likes = likes + 1
         recipe_collection.update({'_id': ObjectId(recipe_id)}, {
                                   "$set": {"likes": likes}})
-        cur.execute("UPDATE userlikes SET liked = '0' WHERE userId = %s AND recipeId = %s", (user_id, recipe_number))
-        cur.execute("UPDATE userlikes SET unliked = '1' WHERE userId = %s AND recipeId = %s", (user_id, recipe_number))
+        cur.execute("UPDATE userlikes SET liked = '0' WHERE userId = %s AND recipeId = %s;", (user_id, recipe_number,))
+        cur.execute("UPDATE userlikes SET unliked = '1' WHERE userId = %s AND recipeId = %s;", (user_id, recipe_number,))
         
         connection.commit()
     cur.close()
@@ -766,20 +766,20 @@ def dislike(recipe_id):
     # If it's 1 then update the number of likes
     # Finally, set the unliked flag to 0 so a recipe can not be disliked anymore
     # Commit to the database and redirect
-    cur.execute("SELECT id FROM users WHERE username = %s", user)
+    cur.execute("SELECT id FROM users WHERE username = %s;", (user,))
     user_id = cur.fetchall()[0]['id']
-    cur.execute("SELECT userId, recipeId, liked, unliked FROM userlikes WHERE userId = %s AND recipeId = %s", (user_id, recipe_number))
+    cur.execute("SELECT userId, recipeId, liked, unliked FROM userlikes WHERE userId = %s AND recipeId = %s;", (user_id, recipe_number,))
     result = cur.fetchall()
     if len(result) == 0:
-        cur.execute("INSERT INTO userlikes(userId, recipeId) VALUES(%s, %s)", (user_id, recipe_number))
-    cur.execute("SELECT userId, recipeId, liked, unliked FROM userlikes WHERE userId = %s AND recipeId = %s", (user_id, recipe_number))
+        cur.execute("INSERT INTO userlikes(userId, recipeId) VALUES(%s, %s);", (user_id, recipe_number,))
+    cur.execute("SELECT userId, recipeId, liked, unliked FROM userlikes WHERE userId = %s AND recipeId = %s;", (user_id, recipe_number,))
     unlikedFlag = cur.fetchall()[0]['unliked']
     if (unlikedFlag != 0):
         likes = likes - 1
         recipe_collection.update({'_id': ObjectId(recipe_id)}, {
                                   "$set": {"likes": likes}})
-        cur.execute("UPDATE userlikes SET unliked = '0' WHERE userId = %s AND recipeId = %s", (user_id, recipe_number))
-        cur.execute("UPDATE userlikes SET liked = '1' WHERE userId = %s AND recipeId = %s", (user_id, recipe_number))
+        cur.execute("UPDATE userlikes SET unliked = '0' WHERE userId = %s AND recipeId = %s;", (user_id, recipe_number,))
+        cur.execute("UPDATE userlikes SET liked = '1' WHERE userId = %s AND recipeId = %s;", (user_id, recipe_number,))
         connection.commit()
     cur.close()
         
@@ -806,7 +806,7 @@ def update_rating(recipe_id):
         formatted_average = 0
         numbers_array = [1, 2, 3, 4, 5]
         
-        cur.execute("SELECT id FROM users WHERE username = %s", user)
+        cur.execute("SELECT id FROM users WHERE username = %s;", (user,))
         user_id = cur.fetchall()[0]['id']
         
         instance_record = ratings_collection.find_one({"user_id": user_id, "recipe_id": recipe_number})
