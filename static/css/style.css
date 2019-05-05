@@ -9,17 +9,6 @@
   padding: 0;
  }
 
-form {
- position: absolute;
- z-index: 3;
- margin: 0;
- top: 15vh;
-}
-
-.vh100 {
- max-width: 100%;
- min-height: 100vh;
-}
 
  .alert-success,
  .alert-danger,
@@ -141,6 +130,7 @@ form {
   margin-bottom: -2%;
   margin-left: 15vw;
   margin-right: 15vw;
+  min-height: 5vh;
  }
 
  .form-row {
@@ -174,11 +164,6 @@ form {
   margin-left: 10px;
  }
 
- footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
- }
 
  /* --------------------------------------------------Media Queries------------------------------- */
 

@@ -1,4 +1,5 @@
 {% extends 'base.html' %} {% block content %}
+<link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}" type="text/css" />
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/add_edit_recipe.css') }}" type="text/css" />
 <section class="vh100 container-fluid">
     <form id="add-recipe" action="{{ url_for('insert_recipe') }}" method="POST">
