@@ -299,7 +299,6 @@ def profile():
     pagination_offset = int(request.args.get('offset', '0'))
     pagination_limit = int(request.args.get('limit', '6'))
     userMade = user_recipes.find({"username" : user})
-    print(userMade.count())
     if userMade.count() > 0:
         starting_id = userMade.sort('_id', pymongo.ASCENDING)
         last_id = starting_id[pagination_offset]['_id']
@@ -826,7 +825,6 @@ def update_rating(recipe_id):
         instance_count = ratings_collection.count_documents({"recipe_id": recipe_number })
         sum_rating = 0
         for doc in instance_recipe:
-            print(doc)
             sum_rating = sum_rating + int(doc["rating"])
         average_rating = sum_rating / instance_count
         if average_rating not in numbers_array:
