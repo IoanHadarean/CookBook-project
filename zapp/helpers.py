@@ -18,7 +18,3 @@ def get_results(data):
         print(filters)
     return filters
         
-        
-# """ Create list of dictionaries from the filter form data """
-# def getFilters(filterData):
-#     return filterData

@@ -1,4 +1,4 @@
-import os, json
+import os, json, env
 from flask_pymongo import PyMongo, pymongo
 from flask import Flask
 
@@ -6,8 +6,8 @@ app = Flask(__name__)
 
 #Connect to MongoDB database
 
-app.config["MONGO_DBNAME"] = "recipes"
-app.config["MONGO_URI"] = "mongodb://me:1403Goagl@ds145923.mlab.com:45923/recipes"
+app.config["MONGO_DBNAME"] = os.getenv("MONGO_DBNAME")
+app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 
 mongo = PyMongo(app)
 
