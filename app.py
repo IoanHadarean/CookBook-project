@@ -684,20 +684,18 @@ def get_recipe(recipe_id):
     if user != None:
         # Get MySQL connection
         cur = connection.cursor()
-        user = session.get('username')
         cur.execute("SELECT id FROM users WHERE username = %s", user)
+        # Close the connection
+        connection.commit()
+        cur.close()
         user_id = cur.fetchall()[0]['id']
     
         instance_rating = ratings_collection.find_one({"user_id": user_id, "recipe_id": recipe_number})
         if instance_rating == None:
             ratings_collection.insert_one({"user_id": user_id, "recipe_id": recipe_number, "rating" : "0", "rateText": "Rate Recipe"})
-
-        # Close the connection
-        connection.commit()
-        cur.close()
     else:
         return render_template('get_recipe.html', user =  user, recipe=the_recipe, total = total, full_quantities = full_quantities,
-                            full_ingredients = full_ingredients)
+                                full_ingredients = full_ingredients)
             
     return render_template('get_recipe.html', user =  user, recipe=the_recipe, total = total, full_quantities = full_quantities,
                             full_ingredients = full_ingredients, instance_rating = instance_rating)
@@ -742,7 +740,7 @@ def like(recipe_id):
         cur.execute("UPDATE userlikes SET unliked = '1' WHERE userId = %s AND recipeId = %s", (user_id, recipe_number))
         
         connection.commit()
-        cur.close()
+    cur.close()
         
     return json.jsonify({'likes': likes, 'recipe_id': recipe_id})
     
@@ -783,7 +781,7 @@ def dislike(recipe_id):
         cur.execute("UPDATE userlikes SET unliked = '0' WHERE userId = %s AND recipeId = %s", (user_id, recipe_number))
         cur.execute("UPDATE userlikes SET liked = '1' WHERE userId = %s AND recipeId = %s", (user_id, recipe_number))
         connection.commit()
-        cur.close()
+    cur.close()
         
     return json.jsonify({'likes': likes, 'recipe_id': recipe_id})
 

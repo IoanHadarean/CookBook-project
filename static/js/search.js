@@ -146,5 +146,5 @@ var debounceTimeout = null;
 
 input.addEventListener('input', function(event) {
     clearTimeout(debounceTimeout);
-    debounceTimeout = setTimeout(getInputResults, 500);
+    debounceTimeout = setTimeout(getInputResults, 100);
 });
