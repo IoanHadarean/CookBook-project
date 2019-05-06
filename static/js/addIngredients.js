@@ -6,6 +6,7 @@
 const ingredientAddButtons = document.getElementsByClassName('add-ingredient');
 const ingredientDeleteButtons = document.getElementsByClassName('delete-ingredient');
 const ingredientsList = document.getElementById('ingredients-list');
+let firstRemoveIngredientButton = document.getElementsByClassName('delete-ingredient')[0];
 
 
 // Add event listeners
@@ -171,7 +172,13 @@ function removeIngredient(e) {
     let ingredientsListLength = document.getElementsByClassName('ingredient').length;
 
     if (ingredientsListLength == 1) {
-        console.log("Not Allowed");
+        firstRemoveIngredientButton.disabled = true;
+        document.getElementById('alert-message-add').innerHTML = 'You need to add at least one ingredient';
+        document.getElementById('alert-message-add').style.visibility = 'visible';
+        setTimeout(function() {
+            firstRemoveIngredientButton.disabled = false;
+            document.getElementById('alert-message-add').style.visibility = 'hidden';
+        }, 5000);
     }
     else if (e.target.parentElement.classList.contains('delete-ingredient')) {
         e.target.parentElement.parentElement.remove();

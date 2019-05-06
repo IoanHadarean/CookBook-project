@@ -174,11 +174,11 @@ function removeIngredient(e) {
 
     if (ingredientsListLength == 1) {
         firstRemoveIngredientButton.disabled = true;
-        document.getElementById('alert-message').innerHTML = 'You need to add at least one ingredient';
-        document.getElementById('alert-message').style.visibility = 'visible';
+        document.getElementById('alert-message-edit').innerHTML = 'You need to add at least one ingredient';
+        document.getElementById('alert-message-edit').style.visibility = 'visible';
         setTimeout(function() {
             firstRemoveIngredientButton.disabled = false;
-            document.getElementById('alert-message').style.visibility = 'hidden';
+            document.getElementById('alert-message-edit').style.visibility = 'hidden';
         }, 5000);
     }
     else if (e.target.parentElement.classList.contains('delete-ingredient')) {

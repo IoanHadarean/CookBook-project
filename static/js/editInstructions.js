@@ -175,11 +175,11 @@ function removeInstruction(e) {
 
     if (instructionsListLength == 1) {
         firstRemoveInstructionButton.disabled = true;
-        document.getElementById('alert-message').innerHTML = 'You need to add at least one instruction';
-        document.getElementById('alert-message').style.visibility = 'visible';
+        document.getElementById('alert-message-edit').innerHTML = 'You need to add at least one instruction';
+        document.getElementById('alert-message-edit').style.visibility = 'visible';
         setTimeout(function() {
             firstRemoveInstructionButton.disabled = false;
-            document.getElementById('alert-message').style.visibility = 'hidden';
+            document.getElementById('alert-message-edit').style.visibility = 'hidden';
         }, 5000);
     }
     else if (e.target.parentElement.classList.contains('delete-instruction')) {
