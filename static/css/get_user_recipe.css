@@ -21,6 +21,16 @@ ul {
     display: inline;
 }
 
+
+.btn {
+    margin-top: 0;
+}
+
+.inline {
+    margin-left: auto;
+    margin-right: auto;
+}
+
 /*------------------------------------- Recipe Image ----------------------- */
 
 .image__inline {
@@ -97,7 +107,7 @@ ul {
     width: 30vw;
 }
 
- 
+
 .specs__course {
     margin-left: 30vw;
     width: 40vw;
@@ -119,7 +129,7 @@ ul {
 
 
 .ingredients__description,
-.instructions__description{
+.instructions__description {
     font-size: 24px;
     font-weight: 700;
     margin-bottom: 20px;
@@ -297,7 +307,21 @@ ul {
 }
 
 
+@media (max-width: 1000px) and (min-width: 560px) {
+    .inline {
+        width: 50%;
+    }
+}
 
 
+@media (min-width: 1001px) and (max-width: 1440px) {
+    .inline {
+        width: 35%;
+    }
+}
 
-
+@media (min-width: 1441px) {
+    .inline {
+        width: 20%;
+    }
+}
