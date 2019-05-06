@@ -71,7 +71,7 @@ function getIngredients() {
 
         // Add properties to buttons
         addButton.className = 'add-ingredient secondary-content';
-        removeButton.className = 'delete-ingredient secondary-content';
+        removeButton.className = 'delete-ingredient-edit secondary-content';
         removeButton.style.marginLeft = '4px';
         addButton.type = 'button';
         removeButton.type = 'button';
@@ -129,7 +129,7 @@ function addIngredient(e) {
 
     // Add properties to buttons
     addButton.className = 'add-ingredient secondary-content';
-    removeButton.className = 'delete-ingredient secondary-content';
+    removeButton.className = 'delete-ingredient-edit secondary-content';
     removeButton.style.marginLeft = '4px';
     addButton.type = 'button';
     removeButton.type = 'button';

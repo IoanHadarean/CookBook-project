@@ -71,7 +71,7 @@ function getInstructions() {
 
         // Add properties to buttons
         addButton.className = 'add-instruction secondary-content';
-        removeButton.className = 'delete-instruction secondary-content';
+        removeButton.className = 'delete-instruction-edit secondary-content';
         removeButton.style.marginLeft = '4px';
         addButton.type = 'button';
         removeButton.type = 'button';
@@ -128,7 +128,7 @@ function addInstruction(e) {
 
     // Add properties to buttons
     addButton.className = 'add-instruction secondary-content';
-    removeButton.className = 'delete-instruction secondary-content';
+    removeButton.className = 'delete-instruction-edit secondary-content';
     removeButton.style.marginLeft = '4px';
     addButton.type = 'button';
     removeButton.type = 'button';

@@ -2,7 +2,6 @@
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}" type="text/css" />
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/add_edit_recipe.css') }}" type="text/css" />
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/modals.css') }}" type="text/css" />
-<div id ="alert-message-add" class = "alert alert-danger"></div>
 <section class="vh100 container-fluid">
     <form id="add-recipe" action="{{ url_for('insert_recipe') }}" method="POST">
         <div class="container">

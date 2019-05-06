@@ -6,7 +6,6 @@
 const instructionAddButtons = document.getElementsByClassName('add-instruction');
 const instructionDeleteButtons = document.getElementsByClassName('delete-instruction');
 const instructionsList = document.getElementById('instructions-list');
-let firstRemoveInstructionButton = document.getElementsByClassName('delete-instruction')[0];
 
 
 // Add event listeners
@@ -171,13 +170,14 @@ function removeInstruction(e) {
     let instructionsListLength = document.getElementsByClassName('instruction').length;
 
     if (instructionsListLength == 1) {
-        firstRemoveInstructionButton.disabled = true;
-        document.getElementById('alert-message-add').innerHTML = 'You need to add at least one instruction';
-        document.getElementById('alert-message-add').style.visibility = 'visible';
-        setTimeout(function() {
-            firstRemoveInstructionButton.disabled = false;
-            document.getElementById('alert-message-add').style.visibility = 'hidden';
-        }, 5000);
+        let nav = document.getElementsByTagName('nav')[0];
+        instructionDeleteButtons[0].disabled = true;
+        // sessionStorage.setItem('addedInstructions', '');
+        nav.insertAdjacentHTML('afterend', '<div id ="alert-message-add" class = "alert alert-danger">You need to add at least one instruction</div>');
+        setTimeout(()=> {
+            document.getElementById('alert-message-add').remove();
+            instructionDeleteButtons[0].disabled = false;
+        }, 3000);
     }
     else if (e.target.parentElement.classList.contains('delete-instruction')) {
         e.target.parentElement.parentElement.remove();
@@ -211,4 +211,12 @@ function removeInstructionFromSessionStorage(instructionItem) {
     });
 
     sessionStorage.setItem('addedInstructions', JSON.stringify(instructions));
+}
+
+
+instructionDeleteButtons[0].addEventListener('click', clearSessionStorage);
+
+
+function clearSessionStorage() {
+    sessionStorage.removeItem('addedInstructions');
 }
