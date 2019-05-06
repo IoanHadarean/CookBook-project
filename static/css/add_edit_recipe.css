@@ -39,8 +39,10 @@ footer {
 
 /* ---------------------------------------------- Alerts ---------------------------------------- */
 
-#alert-message-edit,
-#alert-message-add {
+#alert-edit-ingredient,
+#alert-add-ingredient,
+#alert-add-instruction,
+#alert-edit-instruction {
     text-align: center;
     margin-top: -100px;
     height: 50px;

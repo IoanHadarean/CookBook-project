@@ -93,8 +93,6 @@ function getInstructions() {
 
 function addInstruction(e) {
 
-    let instructionsListLength = document.getElementsByClassName('instruction').length;
-
     // Create elements
     const instruction = document.createElement('div');
     const input = document.createElement('input');
@@ -174,11 +172,11 @@ function removeInstruction(e) {
         instructionDeleteButtons[0].disabled = true;
 
         // Insert alert after nav and set a 3 second timeout
-        nav.insertAdjacentHTML('afterend', '<div id ="alert-message-add" class = "alert alert-danger">You need to add at least one instruction</div>');
+        nav.insertAdjacentHTML('afterend', '<div id ="alert-add-instruction" class = "alert alert-danger">You need to add at least one instruction</div>');
         setTimeout(() => {
-            document.getElementById('alert-message-add').remove();
+            document.getElementById('alert-add-instruction').remove();
             instructionDeleteButtons[0].disabled = false;
-        }, 3000);
+        }, 1000);
     }
     else if (e.target.parentElement.classList.contains('delete-instruction')) {
         e.target.parentElement.parentElement.remove();

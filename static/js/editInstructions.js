@@ -2,12 +2,11 @@
 /* global sessionStorage */
 
 
+
 // Get HTML Elements
 const instructionAddButtons = document.getElementsByClassName('add-instruction');
 const instructionDeleteButtons = document.getElementsByClassName('delete-instruction');
 const instructionsList = document.getElementById('instructions-list');
-let firstRemoveInstructionButton = document.getElementsByClassName('delete-instruction')[0];
-
 
 // Add event listeners
 
@@ -93,7 +92,6 @@ function getInstructions() {
 
 function addInstruction(e) {
 
-    let instructionsListLength = document.getElementsByClassName('instruction').length;
 
     // Create elements
     const instruction = document.createElement('div');
@@ -174,13 +172,15 @@ function removeInstruction(e) {
 
 
     if (instructionsListLength == 1) {
-        firstRemoveInstructionButton.disabled = true;
-        document.getElementById('alert-message-edit').innerHTML = 'You need to add at least one instruction';
-        document.getElementById('alert-message-edit').style.visibility = 'visible';
-        setTimeout(function() {
-            firstRemoveInstructionButton.disabled = false;
-            document.getElementById('alert-message-edit').style.visibility = 'hidden';
-        }, 5000);
+       let nav = document.getElementsByTagName('nav')[0];
+        instructionDeleteButtons[0].disabled = true;
+
+        // Insert alert after nav and set a 3 second timeout
+        nav.insertAdjacentHTML('afterend', '<div id ="alert-edit-instruction" class = "alert alert-danger">You need to add at least one instruction</div>');
+        setTimeout(() => {
+            document.getElementById('alert-edit-instruction').remove();
+            instructionDeleteButtons[0].disabled = false;
+        }, 1000);
     }
     else if (e.target.parentElement.classList.contains('delete-instruction')) {
         e.target.parentElement.parentElement.remove();
@@ -215,4 +215,3 @@ function removeInstructionFromSessionStorage(instructionItem) {
 
     sessionStorage.setItem('editedInstructions', JSON.stringify(instructions));
 }
-

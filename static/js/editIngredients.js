@@ -6,7 +6,6 @@
 const ingredientAddButtons = document.getElementsByClassName('add-ingredient');
 const ingredientDeleteButtons = document.getElementsByClassName('delete-ingredient');
 const ingredientsList = document.getElementById('ingredients-list');
-const firstRemoveIngredientButton = document.getElementsByClassName('delete-ingredient')[0];
 
 
 
@@ -71,7 +70,7 @@ function getIngredients() {
 
         // Add properties to buttons
         addButton.className = 'add-ingredient secondary-content';
-        removeButton.className = 'delete-ingredient-edit secondary-content';
+        removeButton.className = 'delete-ingredient secondary-content';
         removeButton.style.marginLeft = '4px';
         addButton.type = 'button';
         removeButton.type = 'button';
@@ -92,8 +91,6 @@ function getIngredients() {
 // Add Ingredient
 
 function addIngredient(e) {
-
-    let ingredientsListLength = document.getElementsByClassName('ingredient').length;
 
     // Create elements
     const ingredient = document.createElement('div');
@@ -129,7 +126,7 @@ function addIngredient(e) {
 
     // Add properties to buttons
     addButton.className = 'add-ingredient secondary-content';
-    removeButton.className = 'delete-ingredient-edit secondary-content';
+    removeButton.className = 'delete-ingredient secondary-content';
     removeButton.style.marginLeft = '4px';
     addButton.type = 'button';
     removeButton.type = 'button';
@@ -173,13 +170,15 @@ function removeIngredient(e) {
     let ingredientsListLength = document.getElementsByClassName('ingredient').length;
 
     if (ingredientsListLength == 1) {
-        firstRemoveIngredientButton.disabled = true;
-        document.getElementById('alert-message-edit').innerHTML = 'You need to add at least one ingredient';
-        document.getElementById('alert-message-edit').style.visibility = 'visible';
-        setTimeout(function() {
-            firstRemoveIngredientButton.disabled = false;
-            document.getElementById('alert-message-edit').style.visibility = 'hidden';
-        }, 5000);
+        let nav = document.getElementsByTagName('nav')[0];
+        ingredientDeleteButtons[0].disabled = true;
+
+        // Insert alert after nav and set a 3 second timeout
+        nav.insertAdjacentHTML('afterend', '<div id ="alert-edit-ingredient" class = "alert alert-danger">You need to add at least one ingredient</div>');
+        setTimeout(() => {
+            document.getElementById('alert-edit-ingredient').remove();
+            ingredientDeleteButtons[0].disabled = false;
+        }, 1000);
     }
     else if (e.target.parentElement.classList.contains('delete-ingredient')) {
         e.target.parentElement.parentElement.remove();

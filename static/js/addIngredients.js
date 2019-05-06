@@ -91,8 +91,6 @@ function getIngredients() {
 
 function addIngredient(e) {
 
-    let ingredientsListLength = document.getElementsByClassName('ingredient').length;
-
     // Create elements
     const ingredient = document.createElement('div');
     const input = document.createElement('input');
@@ -173,11 +171,11 @@ function removeIngredient(e) {
     if (ingredientsListLength == 1) {
         let nav = document.getElementsByTagName('nav')[0];
         ingredientDeleteButtons[0].disabled = true;
-        nav.insertAdjacentHTML('afterend', '<div id ="alert-message-add" class = "alert alert-danger">You need to add at least one instruction</div>');
+        nav.insertAdjacentHTML('afterend', '<div id ="alert-add-ingredient" class = "alert alert-danger">You need to add at least one ingredient</div>');
         setTimeout(()=> {
-            document.getElementById('alert-message-add').remove();
+            document.getElementById('alert-add-ingredient').remove();
             ingredientDeleteButtons[0].disabled = false;
-        }, 3000);
+        }, 1000);
     }
     else if (e.target.parentElement.classList.contains('delete-ingredient')) {
         e.target.parentElement.parentElement.remove();
