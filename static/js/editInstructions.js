@@ -71,7 +71,7 @@ function getInstructions() {
 
         // Add properties to buttons
         addButton.className = 'add-instruction secondary-content';
-        removeButton.className = 'delete-instruction-edit secondary-content';
+        removeButton.className = 'delete-instruction secondary-content';
         removeButton.style.marginLeft = '4px';
         addButton.type = 'button';
         removeButton.type = 'button';
@@ -113,7 +113,7 @@ function addInstruction(e) {
     input.type = "text";
     input.required = true;
     input.style.marginTop = '5px';
-    input.name = `instruction-${instructionsListLength + 1}`;
+    input.name = `instruction-${Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)}`;
     input.placeholder = "Add Instruction";
     input.className = 'form-control';
     input.autocomplete = "off";
@@ -128,7 +128,7 @@ function addInstruction(e) {
 
     // Add properties to buttons
     addButton.className = 'add-instruction secondary-content';
-    removeButton.className = 'delete-instruction-edit secondary-content';
+    removeButton.className = 'delete-instruction secondary-content';
     removeButton.style.marginLeft = '4px';
     addButton.type = 'button';
     removeButton.type = 'button';

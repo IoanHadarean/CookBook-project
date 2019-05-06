@@ -503,7 +503,6 @@ def add_recipe():
    
    
    
-   
 """ Insert a recipe in the user_recipe collection """   
    
 @app.route("/insert_recipe", methods=["POST"])

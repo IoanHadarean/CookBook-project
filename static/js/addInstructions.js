@@ -34,6 +34,7 @@ function getInstructions() {
     }
     else {
         instructions = JSON.parse(sessionStorage.getItem('addedInstructions'));
+
     }
 
     instructions.forEach(function(instruction) {
@@ -112,7 +113,7 @@ function addInstruction(e) {
     input.type = "text";
     input.required = true;
     input.style.marginTop = '5px';
-    input.name = `instruction-${instructionsListLength + 1}`;
+    input.name = `instruction-${Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)}`;
     input.placeholder = "Add Instruction";
     input.className = 'form-control';
     input.autocomplete = "off";
@@ -168,13 +169,13 @@ function storeInstructionInSessionStorage(instruction) {
 // Remove Instruction
 function removeInstruction(e) {
     let instructionsListLength = document.getElementsByClassName('instruction').length;
-
     if (instructionsListLength == 1) {
         let nav = document.getElementsByTagName('nav')[0];
         instructionDeleteButtons[0].disabled = true;
-        // sessionStorage.setItem('addedInstructions', '');
+
+        // Insert alert after nav and set a 3 second timeout
         nav.insertAdjacentHTML('afterend', '<div id ="alert-message-add" class = "alert alert-danger">You need to add at least one instruction</div>');
-        setTimeout(()=> {
+        setTimeout(() => {
             document.getElementById('alert-message-add').remove();
             instructionDeleteButtons[0].disabled = false;
         }, 3000);
@@ -187,6 +188,7 @@ function removeInstruction(e) {
         e.target.parentElement.remove();
         removeInstructionFromSessionStorage(e.target.parentElement.firstChild);
     }
+
 
     e.preventDefault();
 }
@@ -213,10 +215,3 @@ function removeInstructionFromSessionStorage(instructionItem) {
     sessionStorage.setItem('addedInstructions', JSON.stringify(instructions));
 }
 
-
-instructionDeleteButtons[0].addEventListener('click', clearSessionStorage);
-
-
-function clearSessionStorage() {
-    sessionStorage.removeItem('addedInstructions');
-}

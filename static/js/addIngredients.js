@@ -112,7 +112,7 @@ function addIngredient(e) {
     input.type = "text";
     input.style.marginTop = '5px';
     input.required = true;
-    input.name = `ingredient-${ingredientsListLength + 1}`;
+    input.name = `ingredient-${Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)}`;
     input.placeholder = "Add Ingredient";
     input.className = 'form-control';
     input.autocomplete = "off";
