@@ -25,7 +25,7 @@ html, body {
  }
 }
 
-@media (min-width: 1920px) and (max-width: 4000px) {
+@media (min-width: 1920px) {
  .form-control {
   margin-bottom: 60px;
  }
@@ -41,13 +41,13 @@ html, body {
  }
 }
 
-@media (min-height: 768px) and (max-height: 3000px) {
+@media (min-height: 768px) {
  form {
   top: 30vh;
  }
 }
 
-@media (min-height: 1024px) and (max-height: 3000px) and (min-width:768px) and (max-width: 1200px) {
+@media (min-height: 1024px) and (min-width:768px) and (max-width: 1200px) {
  .form-control {
   margin-bottom: 25px;
  }

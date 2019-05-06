@@ -232,13 +232,13 @@ label {
 }
 
 
-@media (max-width: 4000px) and (min-width: 1001px) {
+@media (min-width: 1001px) {
     .inline {
         width: 26.66vw;
     }
 }
 
-@media (min-width: 1080px) and (max-width: 4000px) {
+@media (min-width: 1080px) {
     .btn {
         margin-top: 10%;
     }

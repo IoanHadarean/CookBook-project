@@ -98,7 +98,7 @@ footer {
 }
 
 
-@media (min-height: 1025px) and (max-height: 3000px) {
+@media (min-height: 1025px) {
     form {
         top: 25vh;
     }

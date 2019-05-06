@@ -26,7 +26,7 @@
 
  /* ----------------------------Media Queries-------------------------------*/
 
- @media (min-width: 768px) and (max-width: 4000px) {
+ @media (min-width: 768px) {
   #dot_chart,
   #gauge_chart,
   #solid_gauge_chart {

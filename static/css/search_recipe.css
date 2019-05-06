@@ -82,7 +82,7 @@ footer {
 
 /* ---------------------------------- Media Queries ------------------------------ */
 
-@media (max-height: 3000px) and (min-height: 1024px) {
+@media (min-height: 1024px) {
     form {
         top: 15vh;
     }
@@ -135,7 +135,7 @@ footer {
     }
 }
 
-@media (max-width: 4000px) and (min-width: 1441px) {
+@media (min-width: 1441px) {
     .uk-search,
     .uk-search-input,
     #search-btn-container{
@@ -144,7 +144,7 @@ footer {
     }
 }
 
-@media (min-width: 1921px) and (max-width: 4000px) {
+@media (min-width: 1921px) {
     .recipes__image {
         height: 300px !important;
     }
