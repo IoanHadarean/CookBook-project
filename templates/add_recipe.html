@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/add_edit_recipe.css') }}" type="text/css" />
 <section class="vh100 container-fluid">
     <form id="add-recipe" action="{{ url_for('insert_recipe') }}" method="POST">
-        <div class="container">
+        <div class="container recipe-name">
             <p class = "add-recipe__name">Recipe Name</p>
             <input type="text" autocomplete = "off" name="recipe_name" class="form-control" id="recipe__name" placeholder="Add Recipe Name" minlength = "6" maxlength = "25" required>
         </div>
@@ -22,7 +22,7 @@
                 </div>
             </div>
         </div>
-        <div class="container">
+        <div class="container filter-select">
             <select name="allergen_name" required>
             <option id = "choose-allergens" value="" disabled selected>Choose Allergen</option>
             {% for allergen in allergens %}
@@ -46,7 +46,7 @@
             <p class = "add-recipe__instructions">Cooking Instructions</p>
             <div id="instructions-list" class="form-group">
                 <div class="instruction">
-                    <input type="text" autocomplete = "off" name="instruction-1" class="form-control" placeholder="Add Instruction" minlength = "4" maxlength = "100" required>
+                    <input type="text" autocomplete = "off" name="instruction-1" class="form-control" placeholder="Add Instruction" minlength = "4" maxlength = "50" required>
                     <button class="add-instruction secondary-content" type="button">
                     <i class="material-icons right">add</i>
                 </button>
