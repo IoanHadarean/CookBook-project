@@ -501,6 +501,19 @@ def add_recipe():
                             cuisines = mongo.db.cuisines.find(), allergens = mongo.db.allergens.find())   
    
    
+""" Allow user to cancel adding a recipe """
+@app.route('/cancel_add_recipe')
+def cancel_add_recipe():
+    return redirect(request.referrer)
+    
+    
+    
+    
+""" Allow user to cancel editing a recipe """
+@app.route('/cancel_edit_recipe')
+def cancel_edit_recipe():
+    return redirect(request.referrer)
+   
    
    
 """ Insert a recipe in the user_recipe collection """   

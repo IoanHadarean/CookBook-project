@@ -172,15 +172,15 @@ function removeInstruction(e) {
 
 
     if (instructionsListLength == 1) {
-       let nav = document.getElementsByTagName('nav')[0];
+        let nav = document.getElementsByTagName('nav')[0];
         instructionDeleteButtons[0].disabled = true;
 
-        // Insert alert after nav and set a 3 second timeout
+        // Insert alert after nav and set one second timeout
         nav.insertAdjacentHTML('afterend', '<div id ="alert-edit-instruction" class = "alert alert-danger">You need to add at least one instruction</div>');
         setTimeout(() => {
             document.getElementById('alert-edit-instruction').remove();
             instructionDeleteButtons[0].disabled = false;
-        }, 1000);
+        }, 1200);
     }
     else if (e.target.parentElement.classList.contains('delete-instruction')) {
         e.target.parentElement.parentElement.remove();

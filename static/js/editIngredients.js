@@ -173,12 +173,12 @@ function removeIngredient(e) {
         let nav = document.getElementsByTagName('nav')[0];
         ingredientDeleteButtons[0].disabled = true;
 
-        // Insert alert after nav and set a 3 second timeout
+        // Insert alert after nav and set one second timeout
         nav.insertAdjacentHTML('afterend', '<div id ="alert-edit-ingredient" class = "alert alert-danger">You need to add at least one ingredient</div>');
         setTimeout(() => {
             document.getElementById('alert-edit-ingredient').remove();
             ingredientDeleteButtons[0].disabled = false;
-        }, 1000);
+        }, 1200);
     }
     else if (e.target.parentElement.classList.contains('delete-ingredient')) {
         e.target.parentElement.parentElement.remove();
