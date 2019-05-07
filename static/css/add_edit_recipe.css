@@ -75,7 +75,7 @@ option {
 .add-instruction,
 .add-ingredient,
 .delete-ingredient {
-    border: 0;
+    border: 1px solid black;
     margin-right: 10px;
 }
 

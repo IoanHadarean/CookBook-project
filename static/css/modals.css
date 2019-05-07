@@ -12,10 +12,6 @@
 }
 
 
-.btn {
-    border-radius: 0;
-}
-
 .delete-button,
 .edit-button {
     width: 100%;
@@ -88,6 +84,7 @@
     color: black;
     margin-top: 0;
     width: 120px;
+    border: 1px solid black;
 }
 
 .cancel-update-button:hover {

@@ -170,7 +170,7 @@ function removeIngredient(e) {
         ingredientDeleteButtons[0].disabled = true;
 
         // Insert alert after nav and set one second timeout
-        nav.insertAdjacentHTML('afterend', '<div id ="alert-edit-ingredient" class = "alert alert-danger">You need to add at least one ingredient</div>');
+        nav.insertAdjacentHTML('afterend', '<div id ="alert-edit-ingredient" class = "alert alert-danger">Please add at least one ingredient</div>');
         setTimeout(() => {
             document.getElementById('alert-edit-ingredient').remove();
             ingredientDeleteButtons[0].disabled = false;

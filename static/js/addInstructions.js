@@ -167,7 +167,7 @@ function removeInstruction(e) {
         let nav = document.getElementsByTagName('nav')[0];
         instructionDeleteButtons[0].disabled = true;
         // Insert alert after nav and set one second timeout
-        nav.insertAdjacentHTML('afterend', '<div id ="alert-add-instruction" class = "alert alert-danger">You need to add at least one instruction</div>');
+        nav.insertAdjacentHTML('afterend', '<div id ="alert-add-instruction" class = "alert alert-danger">At least one instruction is needed</div>');
         setTimeout(() => {
             document.getElementById('alert-add-instruction').remove();
             instructionDeleteButtons[0].disabled = false;
