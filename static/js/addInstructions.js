@@ -28,8 +28,6 @@ function loadEventListeners() {
 
 function getInstructions() {
     
-    document.getElementById('first-instruction-add').remove();
-    
     let instructions;
 
     if (sessionStorage.getItem('addedInstructions') === null) {
