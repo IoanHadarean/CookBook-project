@@ -1,6 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}" type="text/css" />
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/add_edit_recipe.css') }}" type="text/css" />
+<link rel="stylesheet" href="{{ url_for('static', filename = 'css/modals.css') }}" type="text/css" />
 <section class="vh100 container-fluid">
     <form id="edit-recipe" class = "container" action="{{url_for('update_recipe', recipe_id = the_recipe._id) }}" method="POST">
         <div class="container">
@@ -72,6 +73,7 @@
             </div>
         </div>
        <div class = "update-button-container">
+            <a href = "{{url_for('cancel_edit_recipe', recipe_id = the_recipe._id)}}" class="cancel-update-button btn btn-default">Cancel</a>
             <button id="submit_recipe" type="submit" class="update-button btn btn-primary btn-center">Update Recipe</button>
         </div>
     </form>

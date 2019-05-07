@@ -500,19 +500,14 @@ def add_recipe():
     return render_template('add_recipe.html', user_recipes = mongo.db.user_recipes.find(), courses = mongo.db.courses.find(),
                             cuisines = mongo.db.cuisines.find(), allergens = mongo.db.allergens.find())   
    
-   
-""" Allow user to cancel adding a recipe """
-@app.route('/cancel_add_recipe')
-def cancel_add_recipe():
-    return redirect(request.referrer)
-    
-    
-    
+
     
 """ Allow user to cancel editing a recipe """
-@app.route('/cancel_edit_recipe')
-def cancel_edit_recipe():
-    return redirect(request.referrer)
+@app.route('/cancel_edit_recipe/<recipe_id>', methods = ['GET'])
+def cancel_edit_recipe(recipe_id):
+    recipe = user_recipes.find_one({"_id": ObjectId(recipe_id)})
+    return render_template('get_user_recipe.html', user_recipe = recipe)
+   
    
    
    

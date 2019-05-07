@@ -1,7 +1,7 @@
 {% extends 'base.html' %} {% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}" type="text/css" />
-<link rel="stylesheet" href="{{ url_for('static', filename = 'css/add_edit_recipe.css') }}" type="text/css" />
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/modals.css') }}" type="text/css" />
+<link rel="stylesheet" href="{{ url_for('static', filename = 'css/add_edit_recipe.css') }}" type="text/css" />
 <section class="vh100 container-fluid">
     <form id="add-recipe" action="{{ url_for('insert_recipe') }}" method="POST">
         <div class="container">
@@ -57,7 +57,7 @@
             </div>
         </div>
         <div class = "add-button-container">
-             <a class="cancel-update-button btn btn-default" data-toggle="modal" data-target="#cancelModal">Cancel</a>
+            <button type="button" class="reset-progress reset-button-modal top-10 btn btn-danger" data-toggle="modal" data-target="#cancelModal">Reset Progress</button>
             <button id="submit_recipe" type="submit" class="add-button btn btn-primary btn-center">Add Recipe</button>
         </div>
     </form>
