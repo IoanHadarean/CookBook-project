@@ -56,7 +56,6 @@ function getInstructions() {
         input.type = "text";
         input.required = true;
         input.name = instruction;
-        input.style.marginTop = '5px';
         input.placeholder = "Add Instruction";
         input.className = 'form-control';
         input.autocomplete = "off";
@@ -70,9 +69,8 @@ function getInstructions() {
         deleteIcon.innerHTML = 'clear';
 
         // Add properties to buttons
-        addButton.className = 'add-instruction secondary-content';
-        removeButton.className = 'delete-instruction secondary-content';
-        removeButton.style.marginLeft = '4px';
+        addButton.className = 'add-instruction btn-success secondary-content';
+        removeButton.className = 'delete-instruction btn-danger secondary-content';
         addButton.type = 'button';
         removeButton.type = 'button';
 
@@ -110,7 +108,6 @@ function addInstruction(e) {
     // Add properties to input
     input.type = "text";
     input.required = true;
-    input.style.marginTop = '5px';
     input.name = `instruction-${Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)}`;
     input.placeholder = "Add Instruction";
     input.className = 'form-control';
@@ -125,9 +122,8 @@ function addInstruction(e) {
     deleteIcon.innerHTML = 'clear';
 
     // Add properties to buttons
-    addButton.className = 'add-instruction secondary-content';
-    removeButton.className = 'delete-instruction secondary-content';
-    removeButton.style.marginLeft = '4px';
+    addButton.className = 'add-instruction btn-success secondary-content';
+    removeButton.className = 'delete-instruction btn-danger secondary-content';
     addButton.type = 'button';
     removeButton.type = 'button';
 

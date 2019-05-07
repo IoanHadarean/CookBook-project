@@ -53,7 +53,6 @@ function getIngredients() {
         // Add properties to input
         input.type = "text";
         input.name = ingredient;
-        input.style.marginTop = '5px';
         input.required = true;
         input.placeholder = "Add Ingredient";
         input.className = 'form-control';
@@ -68,9 +67,8 @@ function getIngredients() {
         deleteIcon.innerHTML = 'clear';
 
         // Add properties to buttons
-        addButton.className = 'add-ingredient secondary-content';
-        removeButton.className = 'delete-ingredient secondary-content';
-        removeButton.style.marginLeft = '4px';
+        addButton.className = 'add-ingredient btn-success secondary-content';
+        removeButton.className = 'delete-ingredient btn-danger secondary-content';
         addButton.type = 'button';
         removeButton.type = 'button';
 
@@ -108,7 +106,6 @@ function addIngredient(e) {
 
     // Add properties to input
     input.type = "text";
-    input.style.marginTop = '5px';
     input.required = true;
     input.name = `ingredient-${Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)}`;
     input.placeholder = "Add Ingredient";
@@ -124,9 +121,8 @@ function addIngredient(e) {
     deleteIcon.innerHTML = 'clear';
 
     // Add properties to buttons
-    addButton.className = 'add-ingredient secondary-content';
-    removeButton.className = 'delete-ingredient secondary-content';
-    removeButton.style.marginLeft = '4px';
+    addButton.className = 'add-ingredient btn-success secondary-content';
+    removeButton.className = 'delete-ingredient btn-danger secondary-content';
     addButton.type = 'button';
     removeButton.type = 'button';
 

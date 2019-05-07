@@ -3,21 +3,21 @@
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/add_edit_recipe.css') }}" type="text/css" />
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/modals.css') }}" type="text/css" />
 <section class="vh100 container-fluid">
-    <form id="edit-recipe" class = "container" action="{{url_for('update_recipe', recipe_id = the_recipe._id) }}" method="POST">
-        <div class="container">
-            <p class = "edit-recipe__name">Recipe Name</p>
-            <input type="text" autocomplete = "off" name="recipe_name" value="{{the_recipe.recipe_name }}" class="form-control" id="recipe__name" min = "6" max = "30" required>
+    <form id="edit-recipe" class="container" action="{{url_for('update_recipe', recipe_id = the_recipe._id) }}" method="POST">
+        <div class="container recipe-name">
+            <p class="edit-recipe__name">Recipe Name</p>
+            <input type="text" autocomplete="off" name="recipe_name" value="{{the_recipe.recipe_name }}" class="form-control" id="recipe__name" min="6" max="30" required>
         </div>
         <div class="container">
-            <p class = "edit-recipe__ingredients">Ingredients</p>
+            <p class="edit-recipe__ingredients">Ingredients</p>
             <div id="ingredients-list" class="form-group">
                 {% for ingredient in the_recipe.ingredients %}
                 <div class="ingredient">
-                    <input type="text" autocomplete = "off" name="ingredient-{{loop.index}}" class="form-control" value="{{ ingredient }}" minlength = "3" maxlength = "50" required>
-                    <button class="add-ingredient secondary-content" type="button">
+                    <input type="text" autocomplete="off" name="ingredient-{{loop.index}}" class="form-control" value="{{ ingredient }}" minlength="3" maxlength="50" required>
+                    <button class="add-ingredient btn-success secondary-content" type="button">
                     <i class="material-icons right">add</i>
                     </button>
-                    <button class="delete-ingredient secondary-content" type="button">
+                    <button class="delete-ingredient btn-danger secondary-content" type="button">
                     <i class="material-icons right">clear</i>
                 </button>
                 </div>
@@ -57,23 +57,23 @@
         </select>
         </div>
         <div class="container">
-            <p class = "edit-recipe__instructions">Cooking Instructions</p>
+            <p class="edit-recipe__instructions">Cooking Instructions</p>
             <div id="instructions-list" class="form-group">
                 {% for instruction in the_recipe.instructions %}
                 <div class="instruction">
-                    <input type="text" autocomplete = "off" name="instruction-{{loop.index}}" class="form-control" value="{{ instruction }}" minlength = "4" maxlength = "50" required>
-                    <button class="add-instruction secondary-content" type="button">
+                    <input type="text" autocomplete="off" name="instruction-{{loop.index}}" class="form-control" value="{{ instruction }}" minlength="4" maxlength="50" required>
+                    <button class="add-instruction btn-success secondary-content" type="button">
                         <i class="material-icons right">add</i>
                     </button>
-                    <button class="delete-instruction secondary-content" type="button">
+                    <button class="delete-instruction btn-danger secondary-content" type="button">
                         <i class="material-icons right">clear</i>
                     </button>
                 </div>
                 {% endfor %}
             </div>
         </div>
-       <div class = "update-button-container">
-            <a href = "{{url_for('cancel_edit_recipe', recipe_id = the_recipe._id)}}" class="cancel-update-button btn btn-default">Cancel</a>
+        <div class="update-button-container">
+            <a href="{{url_for('cancel_edit_recipe', recipe_id = the_recipe._id)}}" class="cancel-update-button btn btn-default">Cancel</a>
             <button id="submit_recipe" type="submit" class="update-button btn btn-primary btn-center">Update Recipe</button>
         </div>
     </form>

@@ -64,6 +64,26 @@ option {
     margin-right: auto;
 }
 
+.ingredient,
+.instruction {
+    display: flex;
+    margin-top: 5px;
+    height: 34px;
+}
+
+.delete-instruction,
+.add-instruction,
+.add-ingredient,
+.delete-ingredient {
+    border: 0;
+    margin-right: 10px;
+}
+
+.add-instruction,
+.add-ingredient {
+    margin-left: 20px;
+}
+
 .filter-select {
     display: flex;
     align-items: center;
