@@ -28,6 +28,7 @@ function loadEventListeners() {
 // Get Ingredients from session storage
 
 function getIngredients() {
+    
     let ingredients;
 
     if (sessionStorage.getItem('editedIngredients') === null) {

@@ -27,6 +27,9 @@ function loadEventListeners() {
 // Get Ingredients from session storage
 
 function getIngredients() {
+    
+    document.getElementById('first-ingredient-add').remove();
+    
     let ingredients;
 
     if (sessionStorage.getItem('addedIngredients') === null) {

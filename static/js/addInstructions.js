@@ -27,6 +27,9 @@ function loadEventListeners() {
 // Get Instructions from session storage
 
 function getInstructions() {
+    
+    document.getElementById('first-instruction-add').remove();
+    
     let instructions;
 
     if (sessionStorage.getItem('addedInstructions') === null) {
