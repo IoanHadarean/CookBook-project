@@ -33,7 +33,6 @@ connection = pymysql.connect(host = os.getenv("DB_HOST"),
                             user = os.getenv("DB_USERNAME"),
                             password = os.getenv("DB_PASS"),
                             db = os.getenv("DB_NAME"),
-                            port =  os.getenv("DB_PORT"),
                             cursorclass = pymysql.cursors.DictCursor)
 
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
