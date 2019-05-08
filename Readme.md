@@ -115,6 +115,31 @@ adding a function that clears markers after each time another country is clicked
    Note:  The command that was run for finding the version of pymongo was *pip freeze | grep PyMySQL*
 
 
+
+## Database Schema
+Two types of database were used in the creation of this project: a non-relational (NOSQL) database and a relational database(MYSQL).
+1. NOSQL database [MONGODB](https://mlab.com/welcome/) - was used for storing the information related to the recipes, including the
+connections with MYSQL that were constructed with the Python logic. The recipe database consists of six collection:
+..* allergens
+    ...Each allergen has an *`_id`* and an *`allergen_name`*. There are 4 allergens in the collection:
+       ..*`egg`
+       ..*`milk`
+       ..*`garlic`
+       ..*`nuts`
+..* courses
+    ...Each course has an *`_id`* and an *`allergen_name`*
+..* cuisines
+    ...
+..* ratings
+    ...
+..* recipes
+    ...
+..* user_recipes
+    ...
+
+
+
+
 ## Testing
 
 1. Prototype code was written and tested using Cloud9 and Chrome Developer Tools.
