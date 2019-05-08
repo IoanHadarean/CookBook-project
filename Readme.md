@@ -174,7 +174,7 @@ connections with MYSQL that were constructed with the Python logic. The recipe d
 connections with MYSQL that were constructed with the Python logic. It consists of 3 tables:
 * users
 * userRatings
-* userlikes
+* userlikes\
 For more information about MySQL database schema please refer to [flaskapp.sql](../master/flaskapp.sql) script.
 
 
@@ -195,6 +195,9 @@ For more information about MySQL database schema please refer to [flaskapp.sql](
 6. SendMail function was tested using Jasmine Framework.
 7. Postman was used for sending GET and POST requests to the website in order to test it
 
+
+
+
 ## Deployment
 Note: the coding for the project was done in Cloud9. 
 1. Created a new git repository by typing *`git init`* in the terminal.
@@ -203,32 +206,26 @@ Note: the coding for the project was done in Cloud9.
 since it allowed Heroku to figure out what packages should be installed when deploying the app on the production server.
 4. Created a Procfile that declared the type of application, in this case a web application. The command used for initialising the Procfile
 was *`echo web: python app.py > Procfile`*.
-5. Logged in on [Heroku](https://www.heroku.com/home) by typing *`heroku login`* in the terminal. 
+5. Logged in to [Heroku](https://www.heroku.com/home) by typing *`heroku login`* in the terminal. 
 6. Pushed the code from git master branch to Heroku by using the following command:
 *`git push heroku master`*.
 Note: Heroku is a cloud-based platform that makes it easy to deploy and scale Python apps, regardless if the framework used is
 Flask or Django.
 7. Added the config variables to Heroku in the settings option:
+                    Config Vars
 
-..* *`CLEARDB-DATABASE-URL`*
-
-*`DBHOST`*
-
-*`DBNAME`*
-
-*`DBPASS`*
-
-*`DBUSERNAME`*
-
-*`IP`*
-
-*`PORT`*
-
-*`SECRET_KEY`*
-
-*`MONGO_URI`*
-
-*`MONGO_DBNAME`*.
+| Key      | Value          |
+| ------------- |:-------------:|
+|  *`CLEARDB-DATABASE-URL`* |                       |
+|      *`DBHOST`*           |                       |
+|      *`DBPASS`*           |                       |
+|        *`DBNAME`*         |                       |
+|     *`DBUSERNAME`*        |                       |
+|          *`IP`*           |                       |
+|        *`PORT`*           |                       |
+|     *`SECRET_KEY`*        |                       |
+|        *`MONGO_URI`*      |                       |
+|       *`MONGO_DBNAME`*    |                       |
 8. Exported the local database to Heroku by using the free ClearDB add-on provided by the platform.
 9. Dumped all the MYSQL scripts that were used for creating the *`flaskapp`* database locally by running 
 *`mysqldump -u $C9_USER -p flaskapp > flaskapp.sql`* in the CLI.
