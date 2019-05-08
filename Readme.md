@@ -22,8 +22,8 @@ to find particular destinations on Google Maps and to search for accommodation, 
 The website can be viewed [here](https://ioanhadarean.github.io/Interactive-Front-End-Milestone-Project/).
 
 ### User Stories
-1. The *`/`* route directs the user to all the recipes
-2. 
+1. The *`index`* route directs the user to all the recipes
+2. The *`register`*
 
 ### Wireframe
 
@@ -34,7 +34,7 @@ The website can be viewed [here](https://ioanhadarean.github.io/Interactive-Fron
 The application consists of 14 HTML templates, 15 CSS files, 17 JavaScript files, 1 utility written in JavaScript
 and 5 Python files, including the env file which stores the environment variables and connection strings
 #### HTML Templates
-1. Register page - [register.html](../master/static/templates/register.html)
+1. [Register page](../master/static/templates/register.html)
 * Consists of a form that allows the user to create an account
 * It's constructed following a defensive design, each of the fields in the register form
 will produce an inline error if the required checks are not met (For example: Passwords do not match)
@@ -43,34 +43,16 @@ will produce an inline error if the required checks are not met (For example: Pa
 * The form fields are required, so an empty form can not be submitted.
 * The form checks are achieved using a class named RegisterForm, created with the help of 
 [Flask-WTF](https://flask-wtf.readthedocs.io/en/stable/) and [WTForms](https://wtforms.readthedocs.io/en/stable/)
-2. Login page - [login.html](..master/static/templates/login.html)
+2. [Login page](../master/static/templates/login.html)
 * Has a form that allows the user to login to the website
 * It's constructed following a defensive design, each of the fields in the login form
 will produce an error if the required checks are not met( if the user entered the wrong password
 the error will be invalid login| if the user does not exist in the database the error shown will be invalid login)
 * The form fields are required, so an empty form can not be submitted.
 * When clicking login, the user is automatically redirected to the profile page
-3. Profile page - [profile.html](..master/static/templates/profile.html)
+3. [Profile page](../master/static/templates/profile.html)
+* 
 
-* Sticky navbar when scrolling on the page
-* Internal links to different sections on the page
-* Radio buttons that are used to filter museums, restaurants, bars, hotels, airports and banks
-* Logo for travel agency in order to make it unique
-* Search location box for entering a location
-* Dropdown list with destination countries
-* Google Maps
-* Autocomplete function for cities (Note: The function eventually autocompletes everything)
-* Google Map markers for finding the rating of a certain place, address and more details
-* Sections for every destination
-* Tariffs for each destination(UK, USA, Romania and Australia)
-* Itinerary for every destination
-* HD images used for every destination
-* Bounce animation effect for each destination header
-* Contact form with submit button
-* Sending emails function
-* Reset form and alert when submitting an email
-* Responsive web design
-* Grid system 
 
 ### Features Left To Implement
 
