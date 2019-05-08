@@ -218,15 +218,13 @@ def profile():
     user = session.get('username')
     date = datetime.utcnow()
     
-    #Get current username and email from db
-    cur.execute("SELECT name FROM users  WHERE username = %s;", (user,))
-    current_name = cur.fetchall()[0]['name']
-    cur.execute("SELECT email FROM users  WHERE username = %s;", (user,))
-    current_email = cur.fetchall()[0]['email']
-    cur.execute("SELECT aboutme FROM users  WHERE username = %s;", (user,))
-    profile_description = cur.fetchall()[0]['aboutme']
-    cur.execute("SELECT image FROM users  WHERE username = %s;", (user,))
-    image_file = cur.fetchall()[0]['image']
+    #Get current username details from db
+    cur.execute("SELECT name, email, aboutme, image FROM users  WHERE username = %s;", (user,))
+    user_details = cur.fetchall()[0]
+    current_name = user_details['name']
+    current_email = user_details['email']
+    profile_description = user_details['aboutme']
+    image_file = user_details['image']
     connection.commit()
     cur.close()
     
