@@ -131,9 +131,36 @@ adding a function that clears markers after each time another country is clicked
 7. Postman was used for sending GET and POST requests to the website in order to test it
 
 ## Deployment
+Note: the coding for the project was done in Cloud9. 
+1. Created a new git repository by typing *`git init`* in the terminal.
+2. Added the git remote by typing *`git remote add origin https://github.com/IoanHadarean/CookBook-project.git`* in the CLI.
+3. Created a requirements.txt file using *`(sudo) pip3 freeze --local > requirements.txt`*. This file was necessary for the deployment process
+since it allowed Heroku to figure out what packages should be installed when deploying the app on the production server.
+4. Created a Procfile that declared the type of application, in this case a web application. The command used for initialising the Procfile
+was *`echo web: python app.py > Procfile`*.
+5. Logged in on [Heroku](https://www.heroku.com/home) by typing *`heroku login`* in the terminal. 
+6. Pushed the code from git master branch to Heroku by using the following command:
+*`git push heroku master`*.
+Note: Heroku is a cloud-based platform that makes it easy to deploy and scale Python apps, regardless if the framework used is
+Flask or Django.
+7. Added the config variables to Heroku in the settings option:
+*`CLEARDB-DATABASE-URL`*
+*`DBHOST`*
+*`DBNAME`*
+*`DBPASS`*
+*`DBUSERNAME`*
+*`IP`*
+*`PORT`*
+*`SECRET_KEY`*
+*`MONGO_URI`*
+*`MONGO_DBNAME`*.
+8. Exported the local database to Heroku by using the free ClearDB add-on provided by the platform.
+9. Dumped all the MYSQL scripts that were used for creating the *`flaskapp`* database locally by running 
+*`mysqldump -u $C9_USER -p flaskapp > flaskapp.sql`* in the CLI.
+10. Connected to the ClearDB database by typing *`mysql -u username -h cleardbhost -p heroku_9f1934449cd3875`* in the terminal.
+11. Ran the scripts from [flaskapp.sql](../master/flaskapp.sql) into MySQL terminal to repopulate the data.
 
-The coding for the project was done in Cloud9. The code has been committed and pushed to https://github.com/IoanHadarean/Interactive-Front-End-Milestone-Project. 
-The website has been published using GitHub Pages at the following address: https://ioanhadarean.github.io/Interactive-Front-End-Milestone-Project/
+
 
 ### Getting the code up and running
 The project runs on a production server called Heroku. If you want to run the project locally please follow these instructions.
@@ -141,9 +168,10 @@ Note the fact that you would need to contact the app administrator in order to g
 of this app.
 1. Download and install Python3 via the Command Line Interface(CLI) (Make sure you are using Python3, the project won't run on Python2). 
 2. In order to check the version of Python installed type python --version in the terminal.
-2. Clone the following project using https://github.com/IoanHadarean/CookBook-project.git or download it and then unzip it
+2. Clone the following project using *`git clone https://github.com/IoanHadarean/CookBook-project.git`* or download it and then unzip it
 3. Install the packaged needed for the project via the terminal by typing (sudo) pip3 install -r requirements.txt.
 4. Add all environment variables to an env.py file that is in the following format:
+Note: all connection details must be in a string format
 ***
 ```import os
 os.environ["SECRET_KEY"] = SECRET
@@ -155,9 +183,8 @@ os.environ["DB_PASS"] =  'DBPASS'
 os.environ["DB_NAME"] = 'DBNAME'
 ```
 ***
-
-Note: all connection details must be in a string format
-5. Run the app by typing `*python3 app.py*` in the terminal
+Additional Note: you don't need to import the env file as it is already imported in the project
+5. Run the app by typing *`python3 app.py`* in the terminal
 Note: the debug is by default set to FALSE, but you can set it to TRUE to allow debugging
 Additional Note: If the editor you are working on does not have a virtual environment already set up,
 you would need to create one yourself. Please refer to this documentation for creating a venv 
@@ -167,7 +194,10 @@ you would need to create one yourself. Please refer to this documentation for cr
 
 I would like to thank all Code Institute Students for helping me along this project and for providing feedback. Some of those people are JoWings, ShaneMuirhead, 
 JohnL3, robinz, Sean, Kevin Stewart and Sammy Dartnall, who found quite a lot of bugs in my project. Special thanks goes to my mentor Moosa Hassan for his amazing support
-and guidance and to Miro_lead for the sessions that we had each Sunday covering different development topics and for his constructive criticism and feedback.
+and guidance and to Miro_lead for the sessions that we had each Sunday covering different development topics and for his constructive criticism and feedback. I would also like
+to thank Graffino(Sibiu) for offering me an internship during the time I was doing the project. The internship really helped me improve my UI speed and design skills.
+I also learnt a few tricks from them such as [CSS BEM](http://getbem.com/introduction/). Even though the project does not follow the BEM standards, some of the naming 
+conventions used in the project are derived from BEM.
 
 ### Media
 
