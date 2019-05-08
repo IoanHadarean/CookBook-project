@@ -4,8 +4,7 @@
 
 ### Overview
 
-This is a website designed for people that are looking to visit new places and to discover new tourist attractions. The website provides 
-tariffs and an itinerary for the following destinations: USA, UK, Australia and Romania.
+Relish is a website that is desi
 
 ### What is this website for?
 
@@ -137,21 +136,43 @@ The coding for the project was done in Cloud9. The code has been committed and p
 The website has been published using GitHub Pages at the following address: https://ioanhadarean.github.io/Interactive-Front-End-Milestone-Project/
 
 ### Getting the code up and running
+The project runs on a production server called Heroku. If you want to run the project locally please follow these instructions.
+Note the fact that you would need to contact the app administrator in order to get the connection details that were used in the construction
+of this app.
+1. Download and install Python3 via the Command Line Interface(CLI) (Make sure you are using Python3, the project won't run on Python2). 
+2. In order to check the version of Python installed type python --version in the terminal.
+2. Clone the following project using https://github.com/IoanHadarean/CookBook-project.git or download it and then unzip it
+3. Install the packaged needed for the project via the terminal by typing (sudo) pip3 install -r requirements.txt.
+4. Add all environment variables to an env.py file that is in the following format:
+***
+```import os
+os.environ["SECRET_KEY"] = SECRET
+os.environ["MONGO_URI"] = "mongodb://username:password@ds136786.mlab.com:36786/database"
+os.environ["MONGO_DBNAME"] = "MONGODBNAME"
+os.environ["DB_USERNAME"] = 'DBUSERNAME'
+os.environ["DB_HOST"] = 'DBHOST'
+os.environ["DB_PASS"] =  'DBPASS'
+os.environ["DB_NAME"] = 'DBNAME'
+```
+***
 
-1. Copy the GitHub clone link.
-2. Create a new working space in Cloud9 and add a description.
-2. Open a new terminal in Cloud9 and type **git clone https://github.com/IoanHadarean/Interactive-Front-End-Milestone-Project.git**
-3. Open the index.html from the cloned project and click Run.
+Note: all connection details must be in a string format
+5. Run the app by typing `*python3 app.py*` in the terminal
+Note: the debug is by default set to FALSE, but you can set it to TRUE to allow debugging
+Additional Note: If the editor you are working on does not have a virtual environment already set up,
+you would need to create one yourself. Please refer to this documentation for creating a venv 
+[Virtual Environment and Packages] (https://docs.python.org/3/tutorial/venv.html)
 
 ## Credits
 
-I would like to thank all code institute students for helping me along this project. Special thanks goes to my mentor Moosa Hassan for his amazing support
-and guidance and to my girlfriend for amazing design ideas. I would also like to thank Marcin and Shane, two students from the Code Institute who helped me by providing documentation.
+I would like to thank all Code Institute Students for helping me along this project and for providing feedback. Some of those people are JoWings, ShaneMuirhead, 
+JohnL3, robinz, Sean, Kevin Stewart and Sammy Dartnall, who found quite a lot of bugs in my project. Special thanks goes to my mentor Moosa Hassan for his amazing support
+and guidance and to Miro_lead for the sessions that we had each Sunday covering different development topics and for his constructive criticism and feedback.
 
 ### Media
 
-The HD `images` used on this site were obtained from [Google Images](https://images.google.com/).
+The `images` used on this site were obtained from [Google Images](https://images.google.com/).
 
 ### Information
 
-The information used to create this site was from [Google Travel Guide](https://www.google.co.uk/destination).
+The information used to create this site was from [Allrecipes | Food, friends, and recipe inspiration](https://www.allrecipes.com).

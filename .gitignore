@@ -1,5 +1,2 @@
 env.py
-urls.json
 __pycache__
-recipes.json
-flaskapp.sql
