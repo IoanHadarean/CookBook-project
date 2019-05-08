@@ -118,24 +118,40 @@ adding a function that clears markers after each time another country is clicked
 
 ## Database Schema
 Two types of database were used in the creation of this project: a non-relational (NOSQL) database and a relational database(MYSQL).
-1. NOSQL database [MONGODB](https://mlab.com/welcome/) - was used for storing the information related to the recipes, including the
+1. NOSQL database - [MONGODB](https://mlab.com/welcome/) - was used for storing the information related to the recipes, including the
 connections with MYSQL that were constructed with the Python logic. The recipe database consists of six collection:
-..* allergens
-    ...Each allergen has an *`_id`* and an *`allergen_name`*. There are 4 allergens in the collection:
-       ..*`egg`
-       ..*`milk`
-       ..*`garlic`
-       ..*`nuts`
-..* courses
-    ...Each course has an *`_id`* and an *`allergen_name`*
-..* cuisines
-    ...
-..* ratings
-    ...
-..* recipes
-    ...
-..* user_recipes
-    ...
+* allergens
+    Each allergen has an *`_id`*(object) and an *`allergen_name`*(string). There are 4 allergens in the collection:
+       egg
+       milk
+       garlic
+       nuts
+* courses
+    Each course has an *`_id`*(object) and a *`course_name`*(string). There are 5 courses in 	the collection:
+		appetizer
+		soup
+		dinner
+		dessert
+		main dish
+* cuisines
+    Each cuisine has an *`_id`*(object) and a *`cuisine_name`*(string). There are 8 cuisines in the collection:
+		Mexican
+		French
+		Asian
+		Italian
+		Greek
+		Irish
+		Indian
+		English
+* ratings
+    Each rating has the following keys:
+		_id(object)
+		rateText(string)
+		user_id(string)
+		rating(string)
+		recipe_id(string)
+	Note: rateText is initially set to *`Rate Recipe`* and it changes to *`Edit Rating`* when the user already rated a recipe
+
 
 
 
@@ -169,15 +185,25 @@ was *`echo web: python app.py > Procfile`*.
 Note: Heroku is a cloud-based platform that makes it easy to deploy and scale Python apps, regardless if the framework used is
 Flask or Django.
 7. Added the config variables to Heroku in the settings option:
-*`CLEARDB-DATABASE-URL`*
+
+..* *`CLEARDB-DATABASE-URL`*
+
 *`DBHOST`*
+
 *`DBNAME`*
+
 *`DBPASS`*
+
 *`DBUSERNAME`*
+
 *`IP`*
+
 *`PORT`*
+
 *`SECRET_KEY`*
+
 *`MONGO_URI`*
+
 *`MONGO_DBNAME`*.
 8. Exported the local database to Heroku by using the free ClearDB add-on provided by the platform.
 9. Dumped all the MYSQL scripts that were used for creating the *`flaskapp`* database locally by running 
