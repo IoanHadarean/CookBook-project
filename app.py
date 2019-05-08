@@ -33,7 +33,6 @@ connection = pymysql.connect(host = os.getenv("DB_HOST"),
                             user = os.getenv("DB_USERNAME"),
                             password = os.getenv("DB_PASS"),
                             db = os.getenv("DB_NAME"),
-                            connect_timeout=6000,
                             cursorclass = pymysql.cursors.DictCursor)
 
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
@@ -138,7 +137,7 @@ def register():
         elif get_db_email > 0:
             flash("That email is already taken. Please choose a different one.")
         else:
-            cur.execute("INSERT INTO users(name, email, username, password) VALUES(%s, %s, %s, %s);", (name, email, username, password,))
+            cur.execute("INSERT INTO users(name, email, username, password, likes) VALUES(%s, %s, %s, %s, %s);", (name, email, username, password, 0,))
             # Save the connection
             connection.commit()
             session['logged_in'] = True
@@ -213,7 +212,7 @@ def profile():
     form = EditForm(CombinedMultiDict((request.files,request.form)))
     
     #Create cursor
-    cur = connection.cursor() 
+    cur = connection.cursor()
     
     #Get session username
     user = session.get('username')
