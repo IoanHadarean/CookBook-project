@@ -50,8 +50,8 @@ mongo = PyMongo(app)
 # However, disable it when using Chrome Developer Tools
 # or a similar tool since it automatically clears the session
 # when accessing a different device
-# paranoid = Paranoid(app)
-# paranoid.redirect_view = '/'
+paranoid = Paranoid(app)
+paranoid.redirect_view = '/'
 SESSION_COOKIE_SECURE = True
 SESSION_PERMANENT = False
 
