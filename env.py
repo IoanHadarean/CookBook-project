@@ -6,7 +6,7 @@ os.environ["SECRET_KEY"] = "HadareanIoan1403Goagl"
 os.environ["MONGO_URI"] = "mongodb://me:1403Goagl@ds145923.mlab.com:45923/recipes"
 os.environ["MONGO_DBNAME"] = "recipes"
 # Storing MySQL connection details in an environment variable
-os.environ["DB_USERNAME"] = '$C9_USER'
-os.environ["DB_HOST"] = "localhost"
-os.environ["DB_PASS"] =  ''
-os.environ["DB_NAME"] = 'flaskapp'
+os.environ["DB_USERNAME"] = 'b928fe973015c4'
+os.environ["DB_HOST"] = 'eu-cdbr-west-02.cleardb.net'
+os.environ["DB_PASS"] =  '1948e87'
+os.environ["DB_NAME"] = 'heroku_8d9395611c0babe'
