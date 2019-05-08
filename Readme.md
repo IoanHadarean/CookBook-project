@@ -22,22 +22,36 @@ to find particular destinations on Google Maps and to search for accommodation, 
 The website can be viewed [here](https://ioanhadarean.github.io/Interactive-Front-End-Milestone-Project/).
 
 ### User Stories
-1. User is able to go to the main page 
-2. User is able to navigate to different destinations on the same page
-3. User is able to send emails using the contact form
-4. User is able to search locations in different countries using the search fieldbox
-5. User is able to find touristique attractions, bars, restaurants and accomodation for a dream holiday
-6. User is able to get the rating of the searched places and to click on markers to view more details
+1. The *`/`* route directs the user to all the recipes
+2. 
 
 ### Wireframe
 
 <a href="https://imgbb.com/"><img src="https://image.ibb.co/h8dRfA/Bullet-Travel.png" alt="Bullet-Travel" border="0"></a>
 
 
-### Existing Features
+### Existing Features and Functionalities
+The application consists of 14 HTML templates, 15 CSS files, 17 JavaScript files, 1 utility written in JavaScript
+and 5 Python files, including the env file which stores the environment variables and connection strings
+#### HTML Templates
+1. Register page - [register.html](../master/static/templates/register.html)
+* Consists of a form that allows the user to create an account
+* It's constructed following a defensive design, each of the fields in the register form
+will produce an inline error if the required checks are not met (For example: Passwords do not match)
+* If the username or the email are already in the database, the user can not register to the website
+* When clicking register, the user is automatically redirected to the profile page, without having to go through login
+* The form fields are required, so an empty form can not be submitted.
+* The form checks are achieved using a class named RegisterForm, created with the help of 
+[Flask-WTF](https://flask-wtf.readthedocs.io/en/stable/) and [WTForms](https://wtforms.readthedocs.io/en/stable/)
+2. Login page - [login.html](..master/static/templates/login.html)
+* Has a form that allows the user to login to the website
+* It's constructed following a defensive design, each of the fields in the login form
+will produce an error if the required checks are not met( if the user entered the wrong password
+the error will be invalid login| if the user does not exist in the database the error shown will be invalid login)
+* The form fields are required, so an empty form can not be submitted.
+* When clicking login, the user is automatically redirected to the profile page
+3. Profile page - [profile.html](..master/static/templates/profile.html)
 
-**Single Page Application(SPI) that surprises with the user centric design and visual content**
-* Easy-to-use navigation system
 * Sticky navbar when scrolling on the page
 * Internal links to different sections on the page
 * Radio buttons that are used to filter museums, restaurants, bars, hotels, airports and banks
@@ -175,7 +189,7 @@ connections with MYSQL that were constructed with the Python logic. It consists 
 * users
 * userRatings
 * userlikes\
-For more information about MySQL database schema please refer to [flaskapp.sql](../master/flaskapp.sql) script.
+For more information about MySQL database schema please refer to the [flaskapp.sql](../master/flaskapp.sql) script.
 
 
 
@@ -212,6 +226,7 @@ was *`echo web: python app.py > Procfile`*.
 Note: Heroku is a cloud-based platform that makes it easy to deploy and scale Python apps, regardless if the framework used is
 Flask or Django.
 7. Added the config variables to Heroku in the settings option:
+
                     Config Vars
 
 | Key      | Value          |
@@ -243,6 +258,7 @@ of this app.
 2. Clone the following project using *`git clone https://github.com/IoanHadarean/CookBook-project.git`* or download it and then unzip it
 3. Install the packaged needed for the project via the terminal by typing (sudo) pip3 install -r requirements.txt.
 4. Add all environment variables to an env.py file that is in the following format:
+
 Note: all connection details must be in a string format
 ***
 ```import os
