@@ -220,11 +220,11 @@ def profile():
     
     #Get current username details from db
     cur.execute("SELECT name, email, aboutme, image FROM users  WHERE username = %s;", (user,))
-    user_details = cur.fetchall()[0]
-    current_name = user_details['name']
-    current_email = user_details['email']
-    profile_description = user_details['aboutme']
-    image_file = user_details['image']
+    user_details = cur.fetchall()
+    current_name = user_details[0].get('name')
+    current_email = user_details[0].get('email')
+    profile_description = user_details[0].get('aboutme')
+    image_file = user_details[0].get('image')
     connection.commit()
     cur.close()
     
@@ -255,10 +255,10 @@ def profile():
         cur = connection.cursor() 
     
         #Get current username and email from db
-        cur.execute("SELECT name FROM users  WHERE username = %s;", (user,))
-        current_name = cur.fetchall()[0]['name']
-        cur.execute("SELECT email FROM users  WHERE username = %s;", (user,))
-        current_email = cur.fetchall()[0]['email']
+        cur.execute("SELECT name, email FROM users  WHERE username = %s;", (user,))
+        result = cur.fetchall()
+        current_name = result[0].get('name')
+        current_email = result[0].get('email')
         
         
         #Check the name and email that come from the form to make sure everything is updated correctly
