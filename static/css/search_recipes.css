@@ -121,8 +121,8 @@ footer {
         margin-top: 20px;
     }
 
-    .container {
-        margin-top: 100px !important;
+    footer {
+        margin-bottom: -100px;
     }
 }
 
@@ -141,12 +141,6 @@ footer {
     #search-btn-container{
         width: 30vw;
         max-width: 30vw;
-    }
-}
-
-@media (min-width: 1921px) {
-    .recipes__image {
-        height: 300px !important;
     }
 }
 

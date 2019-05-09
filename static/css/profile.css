@@ -35,6 +35,10 @@ label {
     background-color: white;
 }
 
+#fixed-margin {
+    margin-top: 20px;
+}
+
 
 /* --------------------------------------- Profile ------------------------------ */
 
@@ -65,18 +69,6 @@ label {
 
 .update-group {
     margin-bottom: 20px;
-}
-
-/* ---------------------------------------- Recipes ---------------------------------- */
-
-.recipes {
-    border-bottom-left-radius: 0 !important;
-    border-bottom-right-radius: 0 !important;
-}
-
-
-.container {
-    margin-top: 20px !important;
 }
 
 
