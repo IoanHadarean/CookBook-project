@@ -210,7 +210,8 @@ def logout():
 @app.route('/profile', methods = ['GET', 'POST'])
 def profile():
     form = EditForm(CombinedMultiDict((request.files,request.form)))
-    
+    print(request.files)
+    print(request.form)
     #Create cursor
     cur = connection.cursor()
     
