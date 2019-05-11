@@ -239,7 +239,7 @@ x-star-rating>.star.full:after {
     justify-content: center;
 }
 
-/* ----------------------------------- Recipe Cooking Time and Specs ---------------------------- */
+/* ----------------------------------- Recipe Cooking Time, Nutrition and Specs ---------------------------- */
 
 .recipe-separator {
     width: 95%;
@@ -248,7 +248,8 @@ x-star-rating>.star.full:after {
 }
 
 .info__time,
-.info__specs {
+.info__specs,
+.info__nutrition {
     text-align: center;
     font-size: 40px;
     margin-top: 15px;
@@ -260,7 +261,8 @@ x-star-rating>.star.full:after {
     height: 140px;
 }
 
-.info__specs {
+.info__specs,
+.info__nutrition {
     height: 70px;
 }
 
@@ -269,7 +271,9 @@ x-star-rating>.star.full:after {
 .time__ready,
 .specs__cuisine,
 .specs__course,
-.specs__allergens {
+.specs__allergens,
+.nutrition__calories,
+.nutrition__servings {
     height: 100px;
     font-size: 20px;
     display: flex;
@@ -281,6 +285,15 @@ x-star-rating>.star.full:after {
 .specs__cuisine {
     margin-left: 2.5vw;
     width: 30vw;
+}
+
+.nutrition__calories {
+    width: 50vw;
+}
+
+.nutrition__servings {
+    margin-left: 50vw;
+    width: 50vw;
 }
 
 .time__clock {
@@ -300,12 +313,11 @@ x-star-rating>.star.full:after {
 .time__ready,
 .specs__allergens {
     margin-left: 70vw;
-    margin-right: 2.5vw;
-    width: 22vw;
 }
 
 .is-time,
-.is-spec {
+.is-spec,
+.is-nutrition {
     margin-top: 10px;
     color: #009978;
     font-size: 16px;
@@ -320,7 +332,9 @@ x-star-rating>.star.full:after {
     margin-bottom: 20px;
 }
 
-.alert__description {
+.alert__description,
+.ingredients__description,
+.instructions__description {
     font-size: 24px;
     font-weight: 700;
     margin-top: 25px;
@@ -427,7 +441,6 @@ x-star-rating>.star.full:after {
 .recipe__instructions {
     margin-bottom: 50px;
     margin-left: 2.5%;
-    margin-right: 5%;
     width: 92.5%;
 }
 

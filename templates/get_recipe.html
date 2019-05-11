@@ -148,7 +148,7 @@
 
         <!-- Recipe ingredients -->
         <div class="recipe-separator"></div>
-        <h3 class="alert__description ingredients">Ingredients</h3>
+        <h3 class="ingredients__description ingredients">Ingredients</h3>
         <div class="recipe__quantities">
             <ul class="quantities__container">
                 {% for quantity in full_quantities %}
@@ -166,18 +166,21 @@
         <div class="recipe-separator"></div>
         
         <!-- Recipe calories and servings -->
-        <div class = "recipe-separator">
-            <div class = "recipe__calories">
-                <span class = "calories__description">{{ recipe.calories }}</span>
+        <div class = "info__nutrition">
+            <div class = "nutrition__calories">
+                <span>Calories</span>
+                <span class = "is-nutrition">{{ recipe.calories }}</span>
             </div>
-            <div class = "recipe__servings">
-                <span class = "servings__description">{{ recipe.servings }}</span>
+            <div class = "nutrition__servings">
+                <span>Servings</span>
+                <span class = "is-nutrition">{{ recipe.servings }}</span>
             </div>
         </div>
+        <div class = "recipe-separator"></div>
 
         <!-- Recipe instructions -->
         <div class="recipe__instructions">
-            <h3 class="alert__description cooking">Cooking Instructions</h3>
+            <h3 class="instructions__description cooking">Cooking Instructions</h3>
             {% for instruction in recipe.cooking_directions %}
             <div class="instructions__full">
                 <span class="instructions__index">{{ loop.index }}</span>
