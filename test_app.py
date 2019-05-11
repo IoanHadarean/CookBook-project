@@ -1,7 +1,10 @@
-import unittest, inspect, requests, urllib
+import unittest, inspect, requests, urllib, json
 from werkzeug.datastructures import ImmutableMultiDict
 import app
-from app import RegisterForm, EditForm
+from unittest.mock import patch
+from app import RegisterForm, EditForm, filter_results
+from flask import request
+from bson.objectid import ObjectId
 
 """ Test App Class  for unitesting """
 class TestApp(unittest.TestCase):
@@ -132,7 +135,7 @@ class TestApp(unittest.TestCase):
             
                             
     def test_getRecipe(self):
-        url = 'http://datacentricmilestoneproject-ioan1997.c9users.io:8080/get_recipe/5c7ad43efb6fc072012c862f'
+        url = 'https://relish-cookbook.herokuapp.com/get_recipe/5c7ad43efb6fc072012c862f'
         response = requests.get(url)
         if response.ok:
             return response.text
@@ -142,11 +145,17 @@ class TestApp(unittest.TestCase):
             
             
     def test_getUserRecipe(self):
-        url = 'http://datacentricmilestoneproject-ioan1997.c9users.io:8080/get_user_recipe/12483f483c543a857e352'
+        url = 'https://relish-cookbook.herokuapp.com/get_user_recipe/12483f483c543a857e352'
         response = requests.get(url)
         if response.ok:
             return response.text
         else:
             return 'Bad Response'
-        
-        
+    
+    
+    
+            
+  
+    
+    
+    

@@ -59,9 +59,9 @@ function loadResults() {
 var getInputResults = function() {
     let xhr = new XMLHttpRequest();
     var searchRequest = null;
-    let trimmedInput = input.value.replace(/\s/g, "", true);
-    if (trimmedInput.length >= 3) {
-        searchRequest = xhr.open("POST", "/search_results/" + trimmedInput, true);
+    let searchText = input.value;
+    if (searchText.length >= 3) {
+        searchRequest = xhr.open("POST", "/search_results/" + searchText, true);
         // Abort old pending requests
         if (searchRequest) {
             searchRequest.abort();

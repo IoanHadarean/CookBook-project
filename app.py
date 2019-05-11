@@ -378,7 +378,6 @@ def filter_recipes():
     
     starting_id = recipe_collection.aggregate([{"$match": {"$and": get_results(form)}}, {"$sort": {"_id": 1}}])
     results_count = 0
-    result = []
     for count_item in starting_id:
         results_count += 1
         result.append(count_item)
@@ -395,9 +394,13 @@ def filter_recipes():
             "prev_url": '/filter_recipes?limit=' + str(pagination_limit) + '&offset=' + str(pagination_offset - pagination_limit),
             "total_results": results_count
         }
+        
+        cuisines =  mongo.db.cuisines.find()
+        courses = mongo.db.courses.find()
+        allergens = mongo.db.allergens.find()
     
-        return render_template('recipes.html', count_filter =  count_filter, form = form, cuisines =  mongo.db.cuisines.find(), 
-                                courses = mongo.db.courses.find(), allergens = mongo.db.allergens.find(), args = args)
+        return render_template('recipes.html', count_filter =  count_filter, form = form, cuisines =  cuisines, 
+                                courses = courses, allergens = allergens, args = args)
     else:
         return render_template('recipes.html', count_filter =  count_filter)
 
