@@ -37,7 +37,7 @@
     <p id="num-results">{{ count_filter }} recipe was found</p>
     {% else %}
     <p id="num-results">{{ count_filter }} recipes were found</p>
-    {% endif %} {% elif count_filter == "0" and form != '' and form is defined %}
+    {% endif %} {% elif count_filter == "0" %}
     <p id="num-results">No recipes found</p>
     {% endif %}
     <div class="container">

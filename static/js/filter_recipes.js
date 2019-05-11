@@ -1,6 +1,5 @@
 // Get HTML elements
 let filterButton = document.getElementById('filter-btn');
-let filterForm = document.getElementById('filter_form');
 let footer = document.getElementsByTagName('footer')[0];
 let selects = document.querySelectorAll('select');
 let container = document.getElementsByClassName('container')[0];
