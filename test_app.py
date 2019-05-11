@@ -1,6 +1,6 @@
-import unittest, inspect
+import unittest, inspect, requests, urllib
 from werkzeug.datastructures import ImmutableMultiDict
-import app, re
+import app
 from app import RegisterForm, EditForm
 
 """ Test App Class  for unitesting """
@@ -128,4 +128,25 @@ class TestApp(unittest.TestCase):
                                         if i == 'picture':
                                             assert isinstance(j, object)
                                             self.assertEqual(inspect.getmembers(j, predicate=inspect.ismethod), [])
+            
+            
                             
+    def test_getRecipe(self):
+        url = 'http://datacentricmilestoneproject-ioan1997.c9users.io:8080/get_recipe/5c7ad43efb6fc072012c862f'
+        response = requests.get(url)
+        if response.ok:
+            return response.text
+        else:
+            return 'Bad Response'
+            
+            
+            
+    def test_getUserRecipe(self):
+        url = 'http://datacentricmilestoneproject-ioan1997.c9users.io:8080/get_user_recipe/12483f483c543a857e352'
+        response = requests.get(url)
+        if response.ok:
+            return response.text
+        else:
+            return 'Bad Response'
+        
+        
