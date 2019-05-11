@@ -4,6 +4,8 @@
  // This script is a reference for clearing localStorage, therefore
  // it's preserved as an utility for any further use, but since sessionStorage 
  // is a better solution, it's no longer needed in the app
+ 
+ 
  // Clear local storage when user logs out, logs in or register
  // to prevent users from getting multiple ingredient inputs or instruction inputs
  // Note: even if not all the code below might be necessary, it's better to be preventive

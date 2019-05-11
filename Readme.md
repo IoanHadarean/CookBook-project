@@ -32,27 +32,84 @@ The website can be viewed [here](https://ioanhadarean.github.io/Interactive-Fron
 
 ### Existing Features and Functionalities
 The application consists of 14 HTML templates, 15 CSS files, 17 JavaScript files, 1 utility written in JavaScript
-and 5 Python files, including the env file which stores the environment variables and connection strings
-#### HTML Templates
-1. [Register page](../master/static/templates/register.html)
-* Consists of a form that allows the user to create an account
+and 6 Python files, including the env file which stores the environment variables and connection strings and 
+[tests.py](/zapp/tests.py), which incorporates automated tests used to measure the performance and behaviour of the project.
+The main [app.py](../master/app.py) file includes a collection of all the functions and routes that have been used for
+creating the logics of the website. The [models.py](/zapp/models.py) file incorporates the scripts that have been used for
+the creating the statistics charts created in [Pygal](http://pygal.org/en/stable/), which is a Python library for designing
+and creating charts. Last but not least, the [values.py](/zapp/values.py) file was used for modifying the point dimensions from the statistics page.
+Finally, the [helpers.py](/zapp/helpers.py) file has been used for returning the dictionary that has been used for filtering recipes.
+
+#### Website Pages
+1. [Register Page](/templates/register.html)
+* Consists of a form that allows the user to create an account.
 * It's constructed following a defensive design, each of the fields in the register form
-will produce an inline error if the required checks are not met (For example: Passwords do not match)
-* If the username or the email are already in the database, the user can not register to the website
+will produce an inline error if the required checks are not met (For example: Passwords do not match).
+* If the username or the email are already in the database, the user can not register to the website.
 * When clicking register, the user is automatically redirected to the profile page, without having to go through login
 * The form fields are required, so an empty form can not be submitted.
 * The form checks are achieved using a class named RegisterForm, created with the help of 
-[Flask-WTF](https://flask-wtf.readthedocs.io/en/stable/) and [WTForms](https://wtforms.readthedocs.io/en/stable/)
-2. [Login page](../master/static/templates/login.html)
-* Has a form that allows the user to login to the website
+[Flask-WTF](https://flask-wtf.readthedocs.io/en/stable/) and [WTForms](https://wtforms.readthedocs.io/en/stable/).
+2. [Login Page](/templates/login.html)
+* Has a form that allows the user to login to the website.
 * It's constructed following a defensive design, each of the fields in the login form
 will produce an error if the required checks are not met( if the user entered the wrong password
-the error will be invalid login| if the user does not exist in the database the error shown will be invalid login)
+the error will be invalid login| if the user does not exist in the database the error shown will be invalid login).
 * The form fields are required, so an empty form can not be submitted.
-* When clicking login, the user is automatically redirected to the profile page
-3. [Profile page](../master/static/templates/profile.html)
-* 
-
+* When clicking login, the user is automatically redirected to the profile page.
+3. [Profile Page](/templates/profile.html)
+* Allows the logged in user to update his profile
+* The update profile form is constructed following a defensive design, each of the fields 
+in the login form will produce an error if the required checks are not met, except the about me field
+(for example if the user does not choose a png, jpeg or jpg file, an error is rendered below the input file field)
+* The form checks are achieved using a class named EditForm, created with the help of 
+[Flask-WTF](https://flask-wtf.readthedocs.io/en/stable/) and [WTForms](https://wtforms.readthedocs.io/en/stable/)
+* The local date is shown on each user's profile.
+* When clicking the update button, the user's profile is automatically updated, provided there are no errors.
+* When clicking the cancel button, a modal opens asking the user for confirmation (if the users clicks reset progress
+the form is resetted, if the user clicks continue he/she can proceed to updating his/her profile).
+* The recipe cards for each user are shown on the profile page.
+* If the user clicks on the edit recipe button she/he will be redirected to the edit page for that specific recipe.
+* If the user clicks on the delete button, the recipe will be deleted from the page and from the database.
+* If the user clicks on the recipe image or the view recipe button, she/he will be redirected to the view
+for that specific recipe.
+4. [Recipes Page](/templates/recipes.html)
+* It has a form with three selects that allow the user to filter recipes by a combination of three: 
+allergens, cuisines and courses.
+* The filter results are shown on active input, the recipe container is cleared
+when the select options change.
+* When clicking the filter recipes button, the corresponding recipes are shown according to the filters,
+as well as the number of results. 
+* Users can go back to all recipes at any time by clicking the all recipes button.
+* User can navigate through the recipes with the help of pagination, which is implemented
+both for all recipes and the filtered recipes. ( 6 recipes per pagination page)
+* The filter button is disabled, unless the user clicks on a filter.
+* The header welcome message changes every time the user accesses or refreshes the page.
+* If a user clicks on the image of the recipe or the view recipe button, he/she is redirected to the
+view for that specific recipe.
+* All users can view the recipes page and filter through recipes, regardless if they are logged in or not.
+5. [Search Page](/templates/search_recipes.html)
+* It has an input that allows users to search recipes when clicking on the search button.
+* The number of results are shown on active input, as well as after clicking the search button.
+* All users can view the search page and search recipes, logged in or not.
+* The search button is disabled if the input is empty or if the input has less than three characters.
+The input is also trimmed of white spaces.
+* The recipe container is cleared on input change.
+* Users can go back to all recipes at any time by clicking the all recipes button.
+* Pagination is implemented for the search recipes results. (6 recipes per pagination page)
+* If a user clicks on the image of the recipe or the view recipe button, he/she is redirected to the
+view for that specific recipe.
+6. [Statistics Page](/templates/statistics.html)
+* Has three graphs that have been constructed with the help of the functions existens in the 
+[models.py](/zapp/models.py) Python file.
+* The first graph (dot chart) shows the recipe statistics ingredients per cuisine. That is explained by how
+many recipes from a specific cuisine contain egg, milk, sugar, flour, salt, water, garlic, vanilla or butter.
+(For example: 2 out of 4 French recipes contain egg).
+* The second graph (solid gauge chart) illustrates the recipes allergens statistics in %. (For example: the garlic
+allergen is found in 41.66% of the recipes.)
+* The third graph (gauge chart) displays the average calories by cuisine. (For example: the Greek cuisine has an average
+of 599 calories)
+* Logged in or not, all users can look at the statistics page.
 
 ### Features Left To Implement
 
@@ -162,14 +219,13 @@ connections with MYSQL that were constructed with the Python logic. The recipe d
     * author_name(string)
     * preparation_time(string)
     * cooking_time(string)
-    * servings(string) - not shown in the app
-    * calories(string) - not shown in the app
+    * servings(string) 
+    * calories(string) 
     * likes(int) - initially set to 0
     * rating(int) - initially set to 0/ or to the initial recipe rating
 2. MySQL database - [ClearDB](https://w2.cleardb.net) - was used for storing the information related to the users, including the
-connections with MYSQL that were constructed with the Python logic. It consists of 3 tables:
+connections with MYSQL that were constructed with the Python logic. It consists of 2 tables:
 * users
-* userRatings
 * userlikes\
 For more information about MySQL database schema please refer to the [flaskapp.sql](../master/flaskapp.sql) script.
 
@@ -187,9 +243,7 @@ For more information about MySQL database schema please refer to the [flaskapp.s
 <br>    ii Mozilla Firefox
 <br>    iii Opera
 <br>    iv Internet Explorer
-5. Sending emails functionality was tested using Gmail and EmailJS.
-6. SendMail function was tested using Jasmine Framework.
-7. Postman was used for sending GET and POST requests to the website in order to test it
+5. Postman was used for sending GET and POST requests to the website in order to test it
 
 
 
@@ -209,7 +263,6 @@ Note: Heroku is a cloud-based platform that makes it easy to deploy and scale Py
 Flask or Django.
 7. Added the config variables to Heroku in the settings option:
 
-                    Config Vars
 
 | Key      | Value          |
 | ------------- |:-------------:|
@@ -236,7 +289,7 @@ The project runs on a production server called Heroku. If you want to run the pr
 Note the fact that you would need to contact the app administrator in order to get the connection details that were used in the construction
 of this app.
 1. Download and install Python3 via the Command Line Interface(CLI) (Make sure you are using Python3, the project won't run on Python2). 
-2. In order to check the version of Python installed type python --version in the terminal.
+In order to check the version of Python installed type python --version in the terminal.
 2. Clone the following project using *`git clone https://github.com/IoanHadarean/CookBook-project.git`* or download it and then unzip it
 3. Install the packaged needed for the project via the terminal by typing (sudo) pip3 install -r requirements.txt.
 4. Add all environment variables to an env.py file that is in the following format:
