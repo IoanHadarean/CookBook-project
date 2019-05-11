@@ -100,7 +100,7 @@ The input is also trimmed of white spaces.
 * If a user clicks on the image of the recipe or the view recipe button, he/she is redirected to the
 view for that specific recipe.
 6. [Statistics Page](/templates/statistics.html)
-* Has three graphs that have been constructed with the help of the functions existens in the 
+* Has three graphs that have been constructed with the help of functions existent in the 
 [models.py](/zapp/models.py) Python file.
 * The first graph (dot chart) shows the recipe statistics ingredients per cuisine. That is explained by how
 many recipes from a specific cuisine contain egg, milk, sugar, flour, salt, water, garlic, vanilla or butter.
@@ -110,6 +110,9 @@ allergen is found in 41.66% of the recipes.)
 * The third graph (gauge chart) displays the average calories by cuisine. (For example: the Greek cuisine has an average
 of 599 calories)
 * Logged in or not, all users can look at the statistics page.
+
+
+
 
 ### Features Left To Implement
 
@@ -223,7 +226,7 @@ connections with MYSQL that were constructed with the Python logic. The recipe d
     * calories(string) 
     * likes(int) - initially set to 0
     * rating(int) - initially set to 0/ or to the initial recipe rating
-2. MySQL database - [ClearDB](https://w2.cleardb.net) - was used for storing the information related to the users, including the
+2. MySQL database - [JawsDB](https://www.jawsdb.com) - was used for storing the information related to the users, including the
 connections with MYSQL that were constructed with the Python logic. It consists of 2 tables:
 * users
 * userlikes\
@@ -266,7 +269,7 @@ Flask or Django.
 
 | Key      | Value          |
 | ------------- |:-------------:|
-|  *`CLEARDB-DATABASE-URL`* |                       |
+|  *`JAWSDB-DATABASE-URL`* |                       |
 |      *`DBHOST`*           |                       |
 |      *`DBPASS`*           |                       |
 |        *`DBNAME`*         |                       |
@@ -276,10 +279,10 @@ Flask or Django.
 |     *`SECRET_KEY`*        |                       |
 |        *`MONGO_URI`*      |                       |
 |       *`MONGO_DBNAME`*    |                       |
-8. Exported the local database to Heroku by using the free ClearDB add-on provided by the platform.
+8. Exported the local database to Heroku by using the free JawsDB add-on provided by the platform.
 9. Dumped all the MYSQL scripts that were used for creating the *`flaskapp`* database locally by running 
 *`mysqldump -u $C9_USER -p flaskapp > flaskapp.sql`* in the CLI.
-10. Connected to the ClearDB database by typing *`mysql -u username -h cleardbhost -p heroku_9f1934449cd3875`* in the terminal.
+10. Connected to the JawsDB database by typing *`mysql -u username -h JawsDBhost -p JawsDBname `* in the terminal.
 11. Ran the scripts from [flaskapp.sql](../master/flaskapp.sql) into MySQL terminal to repopulate the data.
 
 
