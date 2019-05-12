@@ -870,7 +870,7 @@ def charts():
     dot_chart.add('Indian', Indian_values)
     dot_chart.add('Irish', Irish_values)
     dot_chart.add('Italian', Italian_values)
-    dot_chart = dot_chart.render(is_unicode=True)
+    dot_chart = dot_chart.render_data_uri()
     
     """ Recipe allergens statistics (in %) """
     
@@ -885,7 +885,7 @@ def charts():
     solid_gauge_chart.add('Nuts', [{'value': 4.16, 'max_value': 100}])
     solid_gauge_chart.add('Garlic', [{'value': 41.66, 'max_value': 100}])
     solid_gauge_chart.add('No allergens', [{'value': 25, 'max_value': 100}])
-    solid_gauge_chart = solid_gauge_chart.render(is_unicode=True)
+    solid_gauge_chart = solid_gauge_chart.render_data_uri()
     
     """ Average calories by cuisine """
     
@@ -901,7 +901,7 @@ def charts():
     gauge_chart.add('Indian', 204.66)
     gauge_chart.add('Irish', 413.5)
     gauge_chart.add('All', 344.91)
-    gauge_chart = gauge_chart.render(is_unicode=True)
+    gauge_chart = gauge_chart.render_data_uri()
     
     
     return render_template('statistics.html', dot_chart=dot_chart, solid_gauge_chart=solid_gauge_chart, gauge_chart = gauge_chart)

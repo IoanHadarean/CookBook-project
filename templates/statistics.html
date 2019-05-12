@@ -5,13 +5,13 @@
 <!-- Don't forget the "|safe"! -->
 <div class="container_fluid">
     <div id="dot_chart">
-        {{ dot_chart|safe }}
+         <embed type="image/svg+xml" src={{dot_chart|safe}} /> 
     </div>
     <div id="solid_gauge_chart">
-        {{ solid_gauge_chart|safe }}
+        <embed type="image/svg+xml" src={{solid_gauge_chart|safe}} />
     </div>
     <div id="gauge_chart">
-        {{ gauge_chart|safe }}
+        <embed type="image/svg+xml" src={{gauge_chart|safe}} />
     </div>
 </div>
 {% endblock %}
