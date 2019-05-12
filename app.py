@@ -933,7 +933,12 @@ def server_error(error):
 """ Main function for running the app """      
 
 if __name__ == "__main__":
-    app.run(host=os.environ.get('IP'),
-        port=int(os.environ.get('PORT')),
-        debug=False)
+    if os.environ.get("DEVELOPMENT"):
+        app.run(host=os.environ.get('IP'),
+                port=os.environ.get('PORT'),
+                debug=True)
+    else:
+        app.run(host=os.environ.get('IP'),
+                port=os.environ.get('PORT'),
+                debug=False)
         
