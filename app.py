@@ -936,9 +936,11 @@ if __name__ == "__main__":
     if os.environ.get("DEVELOPMENT"):
         app.run(host=os.environ.get('IP'),
                 port=os.environ.get('PORT'),
+                ssl_context=('cert.pem', 'key.pem'),
                 debug=True)
     else:
         app.run(host=os.environ.get('IP'),
                 port=os.environ.get('PORT'),
+                ssl_context=('cert.pem', 'key.pem'),
                 debug=False)
         
