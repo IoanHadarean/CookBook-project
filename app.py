@@ -1,4 +1,4 @@
-import os, pymysql, requests, pygal, re
+import os, pymysql, requests, pygal, re, env
 from base64 import b64encode
 from PIL import Image
 from os import urandom
@@ -21,9 +21,11 @@ from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationE
 from passlib.hash import sha256_crypt
 from functools import wraps
 from werkzeug.urls import url_parse
+from flask_sslify import SSLify
 
 
 app = Flask(__name__)
+sslify = SSLify(app)
 LOG = create_logger(app)
 moment = Moment(app)
 
