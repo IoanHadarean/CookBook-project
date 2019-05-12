@@ -10,7 +10,6 @@ Flask-WTF==0.14.2
 Jinja2==2.10
 MarkupSafe==1.1.0
 Pillow==2.3.0
-PyICU==1.5
 PyMySQL==0.9.3
 WTForms==2.2.1
 Werkzeug==0.14.1
