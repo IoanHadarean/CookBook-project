@@ -301,12 +301,12 @@ def profile():
     # Implement pagination for user recipes
     pagination_offset = int(request.args.get('offset', '0'))
     pagination_limit = int(request.args.get('limit', '6'))
-    userMade = user_recipes.find({"username" : user})
-    if userMade.count() > 0:
-        starting_id = userMade.sort('_id', pymongo.ASCENDING)
+    user_made = user_recipes.find({"username" : user})
+    if user_made.count() > 0:
+        starting_id = user_made.sort('_id', pymongo.ASCENDING)
         last_id = starting_id[pagination_offset]['_id']
         total_results = 0
-        for recipe in userMade:
+        for recipe in user_made:
             total_results += 1
     
         args = {
@@ -315,11 +315,11 @@ def profile():
             "recipes_sorted": user_recipes.find({"$and" : [{"username" : user}, {'_id': {'$gte' : last_id}}]}).sort('_id', pymongo.ASCENDING).limit(pagination_limit),
             "next_url": '/profile?limit=' + str(pagination_limit) + '&offset=' + str(pagination_offset + pagination_limit),
             "prev_url": '/profile?limit=' + str(pagination_limit) + '&offset=' + str(pagination_offset - pagination_limit),
-            "recipes": userMade,
+            "recipes": user_made,
             "total_results": total_results
         }
         
-        return render_template('profile.html', args = args, userMade = userMade, current_name = current_name, image_file = image_file, 
+        return render_template('profile.html', args = args, user_made = user_made, current_name = current_name, image_file = image_file, 
                             date = date, current_email = current_email, profile_description = profile_description, form=form)
     else:
          return render_template('profile.html', current_name = current_name, image_file = image_file, 
@@ -417,26 +417,25 @@ def filter_recipes():
   
 
 """ Get the number of filter results for recipes """
-@app.route('/filter_results/<allergenName>/<cuisineName>/<courseName>', methods = ['POST'])
-def filter_results(allergenName, cuisineName, courseName):
+@app.route('/filter_results/<allergen_name>/<cuisine_name>/<course_name>', methods = ['POST'])
+def filter_results(allergen_name, cuisine_name, course_name):
     if request.method == 'POST':
         recipes = []
-        if allergenName == 'None' and cuisineName == 'None':
-            recipes = dumps(recipe_collection.find({'course_name': courseName}))
-        elif allergenName == 'None' and courseName == 'None':
-            recipes = dumps(recipe_collection.find({'cuisine_name': cuisineName}))
-        elif (courseName == 'None' and cuisineName == 'None'):
-            recipes = dumps(recipe_collection.find({'allergen_name': allergenName}))
-        elif (allergenName == 'None' and cuisineName != 'None' and courseName != 'None'):
-            recipes = dumps(recipe_collection.aggregate([{"$match": {"$and": [{"cuisine_name": cuisineName}, {"course_name": courseName}]}}]))
-        elif (cuisineName == 'None' and allergenName != 'None' and courseName != 'None'):
-            recipes = dumps(recipe_collection.aggregate([{"$match": {"$and": [{"allergen_name": allergenName}, {"course_name": courseName}]}}]))
-        elif (courseName == 'None' and allergenName != 'None' and cuisineName != 'None'):
-             recipes = dumps(recipe_collection.aggregate([{"$match": {"$and": [{"allergen_name": allergenName}, {"cuisine_name": cuisineName}]}}]))
+        if allergen_name == 'None' and cuisine_name == 'None':
+            recipes = dumps(recipe_collection.find({'course_name': course_name}))
+        elif allergen_name == 'None' and course_name == 'None':
+            recipes = dumps(recipe_collection.find({'cuisine_name': cuisine_name}))
+        elif (course_name == 'None' and cuisine_name == 'None'):
+            recipes = dumps(recipe_collection.find({'allergen_name': allergen_name}))
+        elif (allergen_name == 'None' and cuisine_name != 'None' and course_name != 'None'):
+            recipes = dumps(recipe_collection.aggregate([{"$match": {"$and": [{"cuisine_name": cuisine_name}, {"course_name": course_name}]}}]))
+        elif (cuisine_name == 'None' and allergen_name != 'None' and course_name != 'None'):
+            recipes = dumps(recipe_collection.aggregate([{"$match": {"$and": [{"allergen_name": allergen_name}, {"course_name": course_name}]}}]))
+        elif (course_name == 'None' and allergen_name != 'None' and cuisine_name != 'None'):
+             recipes = dumps(recipe_collection.aggregate([{"$match": {"$and": [{"allergen_name": allergen_name}, {"cuisine_name": cuisine_name}]}}]))
         else: 
-            recipes = dumps(recipe_collection.aggregate([{"$match": {"$and": [{"allergen_name": allergenName}, {"cuisine_name": cuisineName}, {"course_name": courseName}]}}]))
+            recipes = dumps(recipe_collection.aggregate([{"$match": {"$and": [{"allergen_name": allergen_name}, {"cuisine_name": cuisine_name}, {"course_name": course_name}]}}]))
         filter_result = json.loads(recipes)
-        print(filter_result)
         count_recipes = str(len([x for x in filter_result]))
         return count_recipes
 
@@ -749,8 +748,8 @@ def like(recipe_id):
     if len(result) == 0:
         cur.execute("INSERT INTO userlikes(userId, recipeId) VALUES(%s, %s);", (user_id, recipe_number))
     cur.execute("SELECT userId, recipeId, liked, unliked FROM userlikes WHERE userId = %s AND recipeId = %s;", (user_id, recipe_number,))
-    likedFlag = cur.fetchall()[0]['liked']
-    if (likedFlag != 0):
+    liked_flag = cur.fetchall()[0]['liked']
+    if (liked_flag != 0):
         likes = likes + 1
         recipe_collection.update({'_id': ObjectId(recipe_id)}, {
                                   "$set": {"likes": likes}})
@@ -791,8 +790,8 @@ def dislike(recipe_id):
     if len(result) == 0:
         cur.execute("INSERT INTO userlikes(userId, recipeId) VALUES(%s, %s);", (user_id, recipe_number,))
     cur.execute("SELECT userId, recipeId, liked, unliked FROM userlikes WHERE userId = %s AND recipeId = %s;", (user_id, recipe_number,))
-    unlikedFlag = cur.fetchall()[0]['unliked']
-    if (unlikedFlag != 0):
+    unliked_flag = cur.fetchall()[0]['unliked']
+    if (unliked_flag != 0):
         likes = likes - 1
         recipe_collection.update({'_id': ObjectId(recipe_id)}, {
                                   "$set": {"likes": likes}})

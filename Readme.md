@@ -307,11 +307,13 @@ For more information about MySQL database schema please refer to the [flaskapp.s
 
 ## Testing
 
-1. Prototype code was written and tested using Cloud9 and Chrome Developer Tools.
+1. Code was written and tested using Cloud9 and Cloud9 debugger tools.
 2. All HTML and CSS code used on the site has been tested using [The W3 CSS Validation Service](https://jigsaw.w3.org/css-validator/) 
             and [The W3 Markup Validation Service](https://validator.w3.org/).
-3. All Javascript and jQuery code on the website has been tested using [JSHint](https://jshint.com/).
-4. Site viewed and tested in the following browsers(including toggle functionality, filtering type places and using Google Maps):
+3. All Javascript code on the website has been tested using [JSHint](https://jshint.com/). There were no errors found, the warnings found
+state the fact that class, arrow functions and template literals are only available in ES6. There are also warnings about let and const related
+to ES6 JavaScript.
+4. Site viewed and tested in the following browsers:
 <br>    i Google Chrome
 <br>    ii Mozilla Firefox
 <br>    iii Opera

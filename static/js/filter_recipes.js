@@ -25,22 +25,22 @@ selects.forEach(select => select.onchange = function() {
     let parsedSelects = selectedOptions.filter(parsed => !(constraints.includes(parsed.id)));
     if (select.id == 'course_name') {
         for (let i = 0; i < parsedSelects.length; i++) {
-            fullOptions[2]["course_name"] = parsedSelects[i].value;
+            fullOptions[2].course_name = parsedSelects[i].value;
         }
     }
     if (select.id == 'cuisine_name') {
         for (let i = 0; i < parsedSelects.length; i++) {
-            fullOptions[1]["cuisine_name"] = parsedSelects[i].value;
+            fullOptions[1].cuisine_name = parsedSelects[i].value;
         }
     }
     if (select.id == 'allergen_name') {
         for (let i = 0; i < parsedSelects.length; i++) {
-            fullOptions[0]["allergen_name"] = parsedSelects[i].value;
+            fullOptions[0].allergen_name = parsedSelects[i].value;
         }
     }
-    let allergenName = fullOptions[0]["allergen_name"];
-    let cuisineName = fullOptions[1]["cuisine_name"];
-    let courseName = fullOptions[2]["course_name"];
+    let allergenName = fullOptions[0].allergen_name;
+    let cuisineName = fullOptions[1].cuisine_name;
+    let courseName = fullOptions[2].course_name;
     if (allergenName == '') {
         allergenName = 'None';
     }
