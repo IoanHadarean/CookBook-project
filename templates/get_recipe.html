@@ -193,8 +193,8 @@
 <script src="{{ url_for('static', filename = 'js/ratings.js') }}" async></script>
 <script src="{{ url_for('static', filename = 'js/modal.js') }}" async></script>
 <script src="{{ url_for('static', filename = 'js/starRating.js') }}" async></script>
-<script type="text/javascript">
+<script>
     var recipeId = '{{ recipe._id }}';
 </script>
-<script type="text/javascript" src="{{ url_for('static', filename = 'js/likes.js') }}"></script>
+<script src="{{ url_for('static', filename = 'js/likes.js') }}"></script>
 {% endblock %}

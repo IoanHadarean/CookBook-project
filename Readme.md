@@ -309,8 +309,11 @@ For more information about MySQL database schema please refer to the [flaskapp.s
 
 1. Code was written and tested using Cloud9 and Cloud9 debugger tools.
 2. All HTML and CSS code used on the site has been tested using [The W3 CSS Validation Service](https://jigsaw.w3.org/css-validator/) 
-and [The W3 Markup Validation Service](https://validator.w3.org/). The CSS warnings relate to box-shadow, border-radius, transform
-and object-fit unknown vendor extensions.
+and [The W3 Markup Validation Service](https://validator.w3.org/). There were no CSS errors, the CSS warnings relate to box-shadow, border-radius, transform
+and object-fit unknown vendor extensions. There were a number of HTML errors, but most of them were related to unclosed elements due to for loops in Jinja templates.
+Some of the errors and warnings have been solved, such as style and script unnecessary type issues or empty form actions and inexistent alt tags for images, 
+but most of them could not be fixed because they would have created bugs in the functionality and overall aspect of the project. It's also important to mention the fact that [Tidy](https://github.com/htacg/tidy-html5), 
+another HTML validator does not count some of the errors that the W3 does. 
 3. All Javascript code on the website has been tested using [JSHint](https://jshint.com/). There were no errors found, the warnings found
 state the fact that class, arrow functions and template literals are only available in ES6. There are also warnings about let and const related
 to ES6 JavaScript.

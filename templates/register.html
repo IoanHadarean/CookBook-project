@@ -1,8 +1,8 @@
 {% extends 'base.html' %} {% block content %} {% from "includes/_formhelpers.html" import render_field %} {% include 'includes/_messages.html' %}
-    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/special_styling.css') }}" type="text/css" />
-<link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}" type="text/css" />
-<link rel="stylesheet" href="{{ url_for('static', filename = 'css/register.css') }}" type="text/css" />
-<form method="POST" action="">
+<link rel="stylesheet" href="{{ url_for('static', filename = 'css/special_styling.css') }}" />
+<link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}" />
+<link rel="stylesheet" href="{{ url_for('static', filename = 'css/register.css') }}" />
+<form method="POST">
     <div class="form-group form-group--responsive">
         <div class="row col-lg-12">
             <h4>{{render_field(form.name, class_="form-control")}}</h4>

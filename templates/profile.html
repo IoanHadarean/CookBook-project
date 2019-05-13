@@ -7,7 +7,7 @@
 <section class="no-margin-top">
     <div class="content-section">
         <div class="media">
-            <img class="rounded-circle account-img" onerror="this.onerror=null;this.src='static/images/avatar.jpg';" src="{{ url_for('static', filename = 'images/' + image_file) }}" />
+            <img class="rounded-circle account-img" onerror="this.onerror=null;this.src='static/images/avatar.jpg';" alt = "avatar-image" src="{{ url_for('static', filename = 'images/' + image_file) }}" />
         </div>
         <div class="media-body">
             <h2 class="account-heading">{{ current_name }}</h2>
@@ -23,7 +23,7 @@
 
     <!-- Edit Profile Form -->
 
-    <form id="profile-form" method="POST" action="" enctype="multipart/form-data">
+    <form id="profile-form" method="POST" enctype="multipart/form-data">
         <div class="form-group form-group--responsive">
             <div class="row col-lg-12">
                 <h4>{{render_field(form.name, class_="form-control")}}</h4>
@@ -104,8 +104,8 @@
     </div>
     {% endif %} {% endif %}
 </section>
-<script type="text/javascript">
+<script>
     var date = '{{ date }}';
 </script>
-<script type="text/javascript" src="{{ url_for('static', filename = 'js/profile.js') }}" async></script>
+<script src="{{ url_for('static', filename = 'js/profile.js') }}" async></script>
 {% endblock %}
