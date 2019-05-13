@@ -21,9 +21,6 @@ function and to send emails via the contact form. Furthermore, these technologie
 to find particular destinations on Google Maps and to search for accommodation, hotels, restaurants, points of interest etc.
 The website can be viewed [here](https://ioanhadarean.github.io/Interactive-Front-End-Milestone-Project/).
 
-### User Stories
-1. The *`index`* route directs the user to all the recipes
-2. The *`register`*
 
 ### Wireframe
 
@@ -42,7 +39,7 @@ Finally, the [helpers.py](/zapp/helpers.py) file has been used for returning the
 Even though the initial plan was not to use any CSS frameworks, it turned out that it would take too much time to make everything from scratch.
 The project tried to focus more on functionalities and it reflects a steep learning curve.
 
-#### Website Pages
+#### Website Pages + User Stories
 1. [Register Page](/templates/register.html)
 * Consists of a form that allows the user to create an account.
 * It's constructed following a defensive design, each of the fields in the register form
@@ -72,7 +69,8 @@ in the login form will produce an error if the required checks are not met, exce
 the form is resetted, if the user clicks continue he/she can proceed to updating his/her profile).
 * The recipe cards for each user are shown on the profile page.
 * If the user clicks on the edit recipe button she/he will be redirected to the edit page for that specific recipe.
-* If the user clicks on the delete button, the recipe will be deleted from the page and from the database.
+* Whenever a user clicks on the delete button, a modal pops up asking the user for confirmation(if the user clicks delete
+the recipe is deleted from the database and his/her profile, if the user clicks cancel the delete modal closes).
 * If the user clicks on the recipe image or the view recipe button, she/he will be redirected to the view
 for that specific recipe.
 4. [Recipes Page](/templates/recipes.html)
@@ -117,15 +115,45 @@ of 599 calories)
 to login if he/she has an account or to register if he/she does not have an account.
 * The user is redirected back to the recipe he was viewing after registering/logging in to the website.
 * The user can view all the details of the recipe and he can also click on the add recipe button to add her/his own recipes.
-* A logged in user can like and dislike a recipe the following way: when she/he clicks on the like button, the number of likes goes up by 1,
-when he/she clicks on the disliked button the number of dislikes goes down by 1. Note: the page does not refresh on like/dislike due to AJAX.
-* When a logged in user tries to click on the rate button, a modal pops up that allows the user to fill the number of stars according to his/her rating.
-Upon clicking on save and continue, the rating is saved and the average rating for that recipe is updated.
-* When a logged in user tries to rate a recipe, the initial rate text is set to `Rate Recipe`, but if the user tries to update his previous
-rating, the rate text changes to `Edit Rating`. Note: this happens for every recipe a logged in user tries to rate.
+* A logged in user can like and dislike a recipe the following way: when she/he clicks on the like button, the number of likes
+goes up by 1, when he/she clicks on the disliked button the number of dislikes goes down by 1. Note: the page does not refresh 
+on like/dislike due to AJAX.
+* When a logged in user tries to click on the rate button, a modal pops up that allows the user to fill the number of stars 
+according to his/her rating. Upon clicking on save and continue, the rating is saved and the average rating for that recipe is 
+updated.
+* When a logged in user tries to rate a recipe, the initial rate text is set to `Rate Recipe`, but if the user tries to update
+his previous rating, the rate text changes to `Edit Rating`. Note: this happens for every recipe a logged in user tries to rate.
 8. [User Recipe Page](/templates/get_user_recipe.html)
+* The user can view all the details of his/her recipe and he can also click on the add recipe button to add another recipe.
+* If the user clicks on the edit recipe button she/he will be redirected to the edit page for her/his specific recipe.
+* Whenever a user clicks on the delete button, a modal pops up asking the user for confirmation(if the user clicks delete
+the recipe is deleted from the database and his/her profile, if the user clicks cancel the delete modal closes).
 9. [Add Recipe Page](/templates/add_recipe.html)
+* It has a form that allows a user to fill the recipe name, add ingredients and instructions, as well as choose the cuisine,
+course for the recipe that they are trying to add.
+* The user can add instructions and ingredients by clicking on the add icons and can delete ingredients and instructions
+by clicking on the clear icons.
+* The user has the ingredient and instruction fields preserved through sessionStorage. (Note: this feature needs to be 
+modified by allowing the user to save his progress, so the form values are saved as well).
+* Whenever a user clicks on the reset progress button, a modal pops up asking for confirmation(if the user clicks on the reset
+progress button, the form is cleared, if the user clicks on the continue button, she/he can proceed to add her/his recipe).
+* A recipe needs to have at least one instruction and at least one ingredient, so when a user clicks on the first ingredient or 
+the first instruction an alert is shown at the top of the page.
+* It's constructed following a defensive design, each of the fields in the add recipe form will produce an error if the required 
+checks are not met(the recipe name needs to have at least 6 characters, an ingredient must have at least 3 characters, an
+instruction must have at least 4 characters, all the form fields are required).
+* When the user clicks on the add recipe button, the recipe is added in the user recipes collection and the user is redirected to
+his/her profile, where he/she can see the recipe.
 10. [Edit Recipe Page](/templates/edit_recipe.html)
+* It's constructed following a defensive design, each of the fields in the edit recipe form will produce an error if the required 
+checks are not met(the recipe name needs to have at least 6 characters, an ingredient must have at least 3 characters, an
+instruction must have at least 4 characters, all the form fields are required).
+* A recipe needs to have at least one instruction and at least one ingredient, so when a user clicks on the first ingredient or 
+the first instruction an alert is shown at the top of the page.
+* When a user clicks on the cancel button, he/she is redirected to the view for that recipe (The redirect could have been to the
+previous page, but this allows the user to find out that his/her modifications were recorded to the database).
+* The user has the ingredient and instruction fields preserved through sessionStorage. (Note: for the edit recipe form, the inputs
+are not preserved when he/she leaves the edit page. An extra feature could be added so each user could save his/her edit progress).
 11. [Error 404 Page](/templates/error404.html)
 * Comprises a custom page not found error.
 12. [Error 405 Page](/templates/error405.html)
@@ -322,8 +350,12 @@ to ES6 JavaScript.
 <br>    ii Mozilla Firefox
 <br>    iii Opera
 <br>    iv Internet Explorer
+<br>    v Safari
+The website has limited support for Internet Explorer and no support for Safari.
 5. Postman was used for sending GET and POST requests to the website in order to test it
-
+6. Added automated tests for the register and edit forms, as well as basic tests for GET requests.
+It's admittable that the tests performed for the app are not the most extensive tests, but having 
+any tests is better than having none at all.
 
 
 

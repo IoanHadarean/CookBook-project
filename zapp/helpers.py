@@ -15,6 +15,5 @@ def get_results(data):
         search_filter[key] = data[value_key]
         # Append the filter to the list of filters
         filters.append(search_filter)
-        print(filters)
     return filters
         

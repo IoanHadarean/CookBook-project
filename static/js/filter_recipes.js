@@ -10,7 +10,6 @@ let btnFilterContainer = document.getElementById('filter-btn-container');
 
 // Event listener for clicking disabled button
 document.addEventListener('click', styleDisabledFilterButton);
-
 // Adding a list of dictionaries for select options
 var fullOptions = [{ "allergen_name": "" }, { "cuisine_name": "" }, { "course_name": "" }];
 selects.forEach(select => select.onchange = function() {

@@ -33,6 +33,8 @@
 
 .delete-button-modal {
     color: black;
+    margin-right: 5px;
+    border: 1px solid black;
 }
 
 .modal-dialog {
