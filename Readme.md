@@ -39,6 +39,8 @@ creating the logics of the website. The [models.py](/zapp/models.py) file incorp
 the creating the statistics charts created in [Pygal](http://pygal.org/en/stable/), which is a Python library for designing
 and creating charts. Last but not least, the [values.py](/zapp/values.py) file was used for modifying the point dimensions from the statistics page.
 Finally, the [helpers.py](/zapp/helpers.py) file has been used for returning the dictionary that has been used for filtering recipes.
+Even though the initial plan was not to use any CSS frameworks, it turned out that it would take too much time to make everything from scratch.
+The project tried to focus more on functionalities and it reflects a steep learning curve.
 
 #### Website Pages
 1. [Register Page](/templates/register.html)
@@ -113,30 +115,95 @@ of 599 calories)
 7. [Database Recipe Page](/templates/get_recipe.html)
 * When a user who is not logged in clicks on like/dislike or rate recipe button, a modal pops up which requires the user
 to login if he/she has an account or to register if he/she does not have an account.
-* It is important to mention that the user is redirected back 
+* The user is redirected back to the recipe he was viewing after registering/logging in to the website.
+* The user can view all the details of the recipe and he can also click on the add recipe button to add her/his own recipes.
+* A logged in user can like and dislike a recipe the following way: when she/he clicks on the like button, the number of likes goes up by 1,
+when he/she clicks on the disliked button the number of dislikes goes down by 1. Note: the page does not refresh on like/dislike due to AJAX.
+* When a logged in user tries to click on the rate button, a modal pops up that allows the user to fill the number of stars according to his/her rating.
+Upon clicking on save and continue, the rating is saved and the average rating for that recipe is updated.
+* When a logged in user tries to rate a recipe, the initial rate text is set to `Rate Recipe`, but if the user tries to update his previous
+rating, the rate text changes to `Edit Rating`. Note: this happens for every recipe a logged in user tries to rate.
+8. [User Recipe Page](/templates/get_user_recipe.html)
+9. [Add Recipe Page](/templates/add_recipe.html)
+10. [Edit Recipe Page](/templates/edit_recipe.html)
+11. [Error 404 Page](/templates/error404.html)
+* Comprises a custom page not found error.
+12. [Error 405 Page](/templates/error405.html)
+* Comprises a custom method not allowed error.
+13. [Error 500 Page](/templates/error500.html)
+* Comprises a custom server error.
+14. [Base Template](/templates/base.html)
+* Includes all the scripts and css files that have been used for the construction of the other templates.
+Note: 6 additional helper templates have been used for creating the cancel and delete modals, navbar, as well as
+inline errors and alerts. They can be found [here](/templates/includes)
+15. Additional Notes
+* When clicking logout, the user is automatically removed from the session.
+* Added longer set timeout for alerts for improved user experience.
+* Paranoid was added to automatically log out the user on a different device. (See notes in 
+[app.py](../master/app.py))
+* Added SSL certificates and Flask-SSLify that turned out to be no longer needed, but the packages
+and imports were kept in case of further uses.
+* Added timeout after an hour for a logged in user.
 
 
 ### Features Left To Implement
 
-1. SVG can be added as a feature because -webkit-text-stroke-width doesn't work in Internet Explorer.
-2. Minor fixes can be made to make the website look pixel perfect.
+1. A thing can be added to the website is a functionality for saving progress when the user tries to add a recipe.
+2. Another functionality that can be implemented is to create an admin that would approve user recipes in order to add them
+to the database recipes.
+3. Website design can be improved and CSS fixes can also be made.(It's admittable that the website creator is not particularly
+good with colurs, design and CSS.)
+4. Pages on screen resizing should look much better, but since the project focused more on functionalities, this aspect was
+neglected. 
+5. The Python code could be better structured with the help of classes.
+6. A comments section (that also contains likes and dislikes) can be added to each recipe so users can post their opinions.
+7. A chat could be added so that users could interact with each other.
+8. A remember me functionality can be added for login, as well as reset password.
+Note: the creator of the website is planning to implement all these functionalities in the future.
+
+
 
 ## Bugs Fixed
 
-1. When a user types a location in the empty fieldbox and wants to select a different country, 
-the location does not clear out(fixed with an eventListener function that would clear out the
-location field when a new country is selected).
-2. When a user clicks on a radio button, the markers and locations are shown on the map even if 
-the location is not selected(fixed with a function that would enable the radio buttons when the
-length of the autocomplete string is more than 0).
-3. When the contact form is about to be submitted, the form does not reset. Therefore, the user does
-not know if the email was sent or not and he could spam a lot of emails(fixed by adding an alert
-mentioning if the email was sent or not and a reset for the contact form).
-4. When a user clicks on a place type and that place type does not exist for that specific location, the results 
-and markers from the previous place don't clear out(fixed by adding clearMarkers() and markers = []
-after each time a radio button changes its value).
-5. When a user clicks on another country, the markers from the previous country don't clear out(fixed by
-adding a function that clears markers after each time another country is clicked).
+* Fixed footer span alignment issues.
+* Needed to import create_logger from flask.loggings since app.logger.info was not working and the inline
+errors would not display for the form helpers.
+* Fixed welcome message and styled login and logout buttons flickering bug by adding a hidden class 
+to html and then removing it on load. This was an issue related to the fact that the HTML needed to be hidden
+before the random message would actually show up on the page.
+* Fixed bug with pagination (pagination buttons added even if the number of results exceeded the total number
+of recipes) by checking if the offset + limit is less than the total number of recipes.
+* Added fix for footer positioning (in the middle of the page) when searching and filtering recipes by adding a custom
+`vh100` class for the footer, setting the min-height to `100vh`.
+* Fixed overflow for recipe section.
+* Implemented fix for bug with likes/dislikes by adding liked and unliked flags for each recipe, so that users could not like 
+or dislike a recipe more than once.
+* Fixed bug with edit rating text, which actually needed to be inserted into the database before the user would
+click on the rate button.
+* Added fix for view recipe bug when the user was not in session.
+* Fixed image path bug on profile causes by `urandom` by replacing "/" from the random string with "|".
+* Implemented fix for bug with rate text changing for each user after one user already rated a specific recipe.
+* Fixed bug for pagination when filtering and searching recipes. This was accomplished with some checks in the
+[recipes](/templates/recipes.html)  and [search_recipes](/templates/search_recipes.html) and by revising the 
+pagination logic in the filter and search routes.
+* Fixed bug with local time not being shown, converted date from `datetime.utcnow()` to local string using JavaScript.
+* Implemented fix for broken image links by adding a custom image on error for the recipe images and profile image.
+* Fixed bug with clear and add icons when removing an ingredient or instruction. Needed to find both of the parent of the
+button when the button was clicked and the parent.parent of the icon when the icon was clicked.
+* Added fix for global MySQL cursor not being closed in the profile route.
+* Added fix for search results on active filtering by performing debouncing for the AJAX requests. Also aborted the null requests.
+* Fixed flash of original content (FOOC) when trying to remove the first ingredient and instruction from the add and edit
+recipe forms by disabling the remove button. It is to be agreed that the fix could have been better since the alerts timeout is 
+slightly too fast. jQuery could have been used to prevent it, but only vanilla JS was used for the project.
+* Fixed delete recipe bug caused by the ID of the recipe.
+* Fixed rating bug caused by not initialising the rating of a recipe to 0.
+* Fixed bug with cancel update modal not firing up.
+* Fixed localStorage bug not being cleared by adding sessionStorage (this was also fixed with the JavaScript utility,
+but it turned out that sessionStorage is a much better solution, at least for the scope of this project. It is to be 
+mentioned that for the next improvements on the website, localStorage will be used, hence why the utility was not deleted)
+
+
+
 
 ## Tech Used
 
@@ -144,10 +211,11 @@ adding a function that clears markers after each time another country is clicked
 
 1. **HTML**, **CSS** and **JavaScript**
     <br>Languages that were used to improve the feel of the Relish website. Pure HTML and CSS was predominantly
-    used for designing the recipe views. Note: no jQuery was used for this
-    project because the intention to improve the learning curve with vanilla JavaScript.
+    used for designing the recipe views. Note: no jQuery was used for this project because the intention to improve 
+    the learning curve with vanilla JavaScript.
 2. **Bootstrap v3.3.7**(https://getbootstrap.com/docs/3.3/getting-started/#download)
-    <br>**Bootstrap** was used to give the project a responsive layout. The original intention was to not use 
+    <br>**Bootstrap** was used to give the project a responsive layout. As previously specified in the
+    existing featured and functionalities section, the original intention was to not use 
     any HTML and CSS libraries in order to make the website from scratch. However, that would have taken a lot of
     time so in the end it all came to a mix of libraries for web design and pure HTML and CSS.
 3. **Font Awesome v4.7.0**(https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css)
