@@ -144,8 +144,13 @@ def register():
             connection.commit()
             session['logged_in'] = True
             session['username'] = username
-            flash('You are now logged in', 'success')
-            return redirect(url_for('profile'))
+            
+            
+            next_page = request.args.get('next')
+            if not next_page or url_parse(next_page).netloc != '':
+                flash('You are now logged in', 'success')
+                next_page = url_for('profile')
+            return redirect(next_page)
             
             
         #Close the connection
@@ -181,7 +186,6 @@ def login():
             if sha256_crypt.verify(password_candidate, password):
                 session['logged_in'] = True
                 session['username'] = username
-                session.permanent = False
                 
                 next_page = request.args.get('next')
                 if not next_page or url_parse(next_page).netloc != '':

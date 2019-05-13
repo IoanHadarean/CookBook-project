@@ -110,8 +110,10 @@ allergen is found in 41.66% of the recipes.)
 * The third graph (gauge chart) displays the average calories by cuisine. (For example: the Greek cuisine has an average
 of 599 calories)
 * Logged in or not, all users can look at the statistics page.
-
-
+7. [Database Recipe Page](/templates/get_recipe.html)
+* When a user who is not logged in clicks on like/dislike or rate recipe button, a modal pops up which requires the user
+to login if he/she has an account or to register if he/she does not have an account.
+* It is important to mention that the user is redirected back 
 
 
 ### Features Left To Implement
