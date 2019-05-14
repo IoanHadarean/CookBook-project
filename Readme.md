@@ -24,7 +24,7 @@ The website can be viewed [here](https://ioanhadarean.github.io/Interactive-Fron
 
 ### Wireframe
 
-<img src="https://github.com/IoanHadarean/CookBook-project/tree/master/static/wireframe/relish-cookbook.png" alt="Relish-CookBook" border="0">
+<img src="relish-cookbook.png" alt="Relish-CookBook" border="0">
 
 
 ### Existing Features and Functionalities
