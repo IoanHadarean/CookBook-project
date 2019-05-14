@@ -24,7 +24,8 @@ The website can be viewed [here](https://ioanhadarean.github.io/Interactive-Fron
 
 ### Wireframe
 
-![alt text](https://github.com/IoanHadarean/CookBook-project/tree/master/static/wireframe/relish-cookbook.png "Relish-CookBook")
+<img src="https://github.com/IoanHadarean/CookBook-project/tree/master/static/wireframe/relish-cookbook.png" alt="Relish-CookBook" border="0">
+
 
 ### Existing Features and Functionalities
 The application consists of 14 HTML templates, 15 CSS files, 17 JavaScript files, 1 utility written in JavaScript
