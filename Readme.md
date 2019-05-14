@@ -20,8 +20,14 @@ The website can be viewed [here](https://relish-cookbook.herokuapp.com/recipes?l
 
 ### Wireframe
 
-<img src="/static/wireframe/relish-cookbook.png" alt="Relish-CookBook" border="0">
+Note: the wireframes are not entirely accurate, they only give a brief insight on how the website will look on mobile/tablet/desktop.
 
+#### Wireframe for desktop
+<img src="/static/wireframe/relish-cookbook-desktop.png" alt="Relish-CookBook" border="0">
+#### Wireframe for tablet
+<img src="/static/wireframe/relish-cookbook-desktop.png" alt="Relish-CookBook" border="0">
+#### Wireframe for mobile
+<img src="/static/wireframe/relish-cookbook-mobile.png" alt="Relish-CookBook" border="0">
 
 ### Existing Features and Functionalities
 The application consists of 14 HTML templates, 15 CSS files, 17 JavaScript files, 1 utility written in JavaScript
