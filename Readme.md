@@ -20,12 +20,14 @@ The website can be viewed [here](https://relish-cookbook.herokuapp.com/recipes?l
 
 ### Wireframe
 
-Note: the wireframes are not entirely accurate, they only give a brief insight on how the website will look on mobile/tablet/desktop.
+Note: the wireframes are not entirely accurate, they only give a rough estimate on how the website will look on mobile/tablet/desktop.
 
 #### Wireframe for desktop
 <img src="/static/wireframe/relish-cookbook-desktop.png" alt="Relish-CookBook" border="0">
+
 #### Wireframe for tablet
-<img src="/static/wireframe/relish-cookbook-desktop.png" alt="Relish-CookBook" border="0">
+<img src="/static/wireframe/relish-cookbook-tablet.png" alt="Relish-CookBook" border="0">
+
 #### Wireframe for mobile
 <img src="/static/wireframe/relish-cookbook-mobile.png" alt="Relish-CookBook" border="0">
 
