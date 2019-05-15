@@ -5,6 +5,8 @@
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/recipes.css') }}" type="text/css" />
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/modals.css') }}" type="text/css" />
 <section class="no-margin-top">
+    
+    <!-- Profile image and info -->
     <div class="content-section">
         <div class="media">
             <img class="rounded-circle account-img" onerror="this.onerror=null;this.src='static/images/avatar.jpg';" alt = "avatar-image" src="{{ url_for('static', filename = 'images/' + image_file) }}" />
@@ -58,6 +60,8 @@
 {% include 'includes/_cancelmodal.html' %}
 
 <section class="adjusted-margins">
+    
+    <!-- User Recipes -->
     <div class="container" id = "fixed-margin">
         {% if args %} {% for recipe in args.recipes_sorted %}
         <div class="recipes">

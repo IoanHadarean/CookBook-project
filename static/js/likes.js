@@ -12,8 +12,6 @@ let likesSpan = document.getElementById('likes__number');
 var url_string = recipeId;
 
 
-
-
 // Add event listeners
 thumbsUpButton.addEventListener('click', loadLike);
 thumbsDownButton.addEventListener('click', loadDislike);

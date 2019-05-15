@@ -26,13 +26,13 @@ accounts if he/she would use different devices to prevent fraudulent activity. T
 Note: the wireframes are not entirely accurate, they only give a rough estimate on how the website will look on mobile/tablet/desktop.
 
 #### Wireframe for desktop
-<img src="/static/wireframe/relish-cookbook-desktop.png" alt="Relish-CookBook" border="0">
+<img src="/static/wireframes/relish-cookbook-desktop.png" alt="Relish-CookBook" border="0">
 
 #### Wireframe for tablet
-<img src="/static/wireframe/relish-cookbook-tablet.png" alt="Relish-CookBook" border="0">
+<img src="/static/wireframes/relish-cookbook-tablet.png" alt="Relish-CookBook" border="0">
 
 #### Wireframe for mobile
-<img src="/static/wireframe/relish-cookbook-mobile.png" alt="Relish-CookBook" border="0">
+<img src="/static/wireframes/relish-cookbook-mobile.png" alt="Relish-CookBook" border="0">
 
 ### Existing Features and Functionalities
 The application consists of 14 HTML templates, 15 CSS files, 17 JavaScript files, 1 utility written in JavaScript
@@ -246,9 +246,9 @@ on the `0` counter. If you dislike a recipe the counter gets to -1, but when lik
 creator of the website does not know how to fix these bugs. He does, but due to the time pressure and due to the fact that these bugs were 
 discovered later in the testing process, he will explain in the following lines the approach for doing that. For the like/dislike inconsistency,
 there are two approaches:
-- One approach would be to just allow the users to only give positive likes for recipes.
-- The second approach would be to create separate HTML elements for the likes and dislikes, so users can give only positive likes/dislikes.
-For the first inconsistency/bug, however it might be called, the approach is to just use one input for adding recipes, and then append the 
+  * One approach would be to just allow the users to only give positive likes for recipes.
+  * The second approach would be to create separate HTML elements for the likes and dislikes, so users can give only positive likes/dislikes.
+For the first inconsistency/bug, the approach is to just use one input for adding recipes, and then append the 
 deletion icon to each one of them.
 Additional Note: even if the creator of the website is going to get marked down for this aspect, he believes it was worth mentioning, and since he
 tries to be critical about himself, it was the right choice to make.
@@ -367,15 +367,16 @@ another HTML validator does not count some of the errors that the W3 does.
 3. All Javascript code on the website has been tested using [JSHint](https://jshint.com/). There were no errors found, the warnings found
 state the fact that class, arrow functions and template literals are only available in ES6. There are also warnings about let and const related
 to ES6 JavaScript.
-4. Site viewed and tested in the following browsers:
+4. A lot of manual testing has been done for this project to ensure the website looks well on all devices and to ensure that the functionalities of the project are working
+correctly. Therefore, site was viewed and tested in the following browsers:
 <br>    i Google Chrome
 <br>    ii Mozilla Firefox
 <br>    iii Opera
 <br>    iv Internet Explorer
-<br>    v Safari
+<br>    v Safari\
 The website has limited support for Internet Explorer and no support for Safari.
 5. Postman was used for sending GET and POST requests to the website in order to test it
-6. Added automated tests for the register and edit forms, as well as basic tests for GET requests.
+6. Added automated unit tests for the register and edit forms in Python, as well as basic tests for GET requests.
 It's admittable that the tests performed for the app are not the most extensive tests, but having 
 any tests is better than having none at all.
 

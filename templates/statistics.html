@@ -2,7 +2,8 @@
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/special_styling.css') }}" type="text/css" />
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}" type="text/css" />
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/statistics.css') }}" type="text/css" />
-<!-- Don't forget the "|safe"! -->
+
+<!-- Statistics charts -->
 <div class="container_fluid">
     <div id="dot_chart">
          <embed type="image/svg+xml" src={{dot_chart|safe}} /> 
