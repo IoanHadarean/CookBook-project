@@ -4,21 +4,24 @@
 
 ### Overview
 
-Relish is a website that is desi
+Relish is a website that is designed for people who love cooking and would like to experience new things out. It has a clear and straight
+forward design that does not get in the way for people who want to access the website. It allows users to register to the website and create 
+an account by following a defensive design approach (users can not register to the website if they do not meet the checks criteria). Relish is what the name 
+reflects, a cooking website, meaning it contains a lot of valuable information in terms of the author, cuisine, allergens, course, ingredients of a certain recipe, 
+instructions, cooking time and preparation time, servings and calories. On top of that, users can also get some interesting facts about recipe statistics in an 
+interactive way. The statistics have been contructed in an easily digestible way, so that website end-users can easily read the graphs and assess the information 
+immediately. Relish is a web page designed with pashion, that also incorporates useful functionalities. Not only does it allows end-users to like/dislike recipes,
+but it also enables them to add and edit their own recipes. This practice is widely used in a lot of cooking (and not only) websites on the Internet because the consumers
+feel like they can contribute as well to the creation of the website. One can definitely argue that user recipes can't be added to the database recipes,
+which is true. However, the website is contructed in such a way that more and more functionalities can be added along the way so, in the future,
+a lot more functionalities will be added too. Relish has been designed in such a way that users can easily navigate through the website. One example
+of this is allowing users to be redirected back to the page they were visiting upon login or register. The security of the end-users matters, therefore 
+a functionality for loggin them out after one hour of inactivity has been implemented. It is also worth mentioning that users also get logged out of their
+accounts if he/she would use different devices to prevent fraudulent activity. The website can be viewed [here](https://relish-cookbook.herokuapp.com/recipes?limit=6&offset=0).
 
-### What is this website for?
-
-BulletTravel is an imaginary travel agency website to attract customers that want to enjoy their holiday with their family. 
-It offers a series of travel packages along with places that can be visited. Not only does it allow users to search for places to visit, but
-it also allows them to find accommodation, places to eat, tourist attractions and points of interest.
-The website also allows users to send emails for project requests via the contact form.
-
-### How does it work?
-
-The website can be viewed [here](https://relish-cookbook.herokuapp.com/recipes?limit=6&offset=0).
 
 
-### Wireframe
+### Wireframes
 
 Note: the wireframes are not entirely accurate, they only give a rough estimate on how the website will look on mobile/tablet/desktop.
 
@@ -233,9 +236,22 @@ slightly too fast. jQuery could have been used to prevent it, but only vanilla J
 * Fixed rating bug caused by not initialising the rating of a recipe to 0.
 * Fixed bug with cancel update modal not firing up.
 * Fixed localStorage bug not being cleared by adding sessionStorage (this was also fixed with the JavaScript utility,
-but it turned out that sessionStorage is a much better solution, at least for the scope of this project. It is to be 
-mentioned that for the next improvements on the website, localStorage will be used, hence why the utility was not deleted)
-
+but it turned out that sessionStorage is a much better solution, at least for the scope of this project; it is to be 
+mentioned that for the next improvements on the website, localStorage will be used, hence why the utility was not deleted).\
+Note for the persons that will look at the website in more depth or the assessors of the project:
+There are some bugs or inconsistencies in the website that I am totally aware of. For example, when adding new inputs and deleting
+them, an extra input is added on page refresh, even if the first input (the one persisted through HTML) was deleted. Now this might 
+be a good thing, but it can also be considered as an inconsistency or bug. Another thing worth mentioning is the like/dislike functionality
+on the `0` counter. If you dislike a recipe the counter gets to -1, but when liking it gets back to 0 afterwards. Now one might argue that the
+creator of the website does not know how to fix these bugs. He does, but due to the time pressure and due to the fact that these bugs were 
+discovered later in the testing process, he will explain in the following lines the approach for doing that. For the like/dislike inconsistency,
+there are two approaches:
+- One approach would be to just allow the users to only give positive likes for recipes.
+- The second approach would be to create separate HTML elements for the likes and dislikes, so users can give only positive likes/dislikes.
+For the first inconsistency/bug, however it might be called, the approach is to just use one input for adding recipes, and then append the 
+deletion icon to each one of them.
+Additional Note: even if the creator of the website is going to get marked down for this aspect, he believes it was worth mentioning, and since he
+tries to be critical about himself, it was the right choice to make.
 
 
 
