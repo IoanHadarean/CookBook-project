@@ -379,6 +379,8 @@ The website has limited support for Internet Explorer and no support for Safari.
 6. Added automated unit tests for the register and edit forms in Python, as well as basic tests for GET requests.
 It's admittable that the tests performed for the app are not the most extensive tests, but having 
 any tests is better than having none at all.
+7. Tested the Python code for [PEP8](https://pypi.org/project/pep8/) standards and solved numerous issues regarding
+beautifying the code. There were a number of errors that I could not solve however, related to the length of the lines.
 
 
 
