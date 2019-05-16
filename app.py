@@ -745,12 +745,8 @@ def get_recipe(recipe_id):
         cur.execute("SELECT id FROM users WHERE username = %s;", (user,))
         user_id = cur.fetchall()[0]['id']
         instance_like = cur.execute("SELECT * FROM userlikes WHERE userId = %s AND recipeId = %s;", (user_id, recipe_number,))
-        print(instance_like)
-        
         if instance_like == 0:
             cur.execute("INSERT INTO userlikes(userId, recipeId) VALUES(%s, %s);", (user_id, recipe_number))
-            
-
         connection.commit()
         cur.close()
 
@@ -798,7 +794,7 @@ def like(recipe_id):
     # Commit to the database and redirect.
     cur.execute("SELECT id FROM users WHERE username = %s;", (user,))
     user_id = cur.fetchall()[0]['id']
-    cur.execute("SELECT userId, recipeId, liked, unliked FROM userlikes WHERE userId = %s AND recipeId = %s;", (user_id, recipe_number,))
+    cur.execute("SELECT liked FROM userlikes WHERE userId = %s AND recipeId = %s;", (user_id, recipe_number,))
     liked_flag = cur.fetchall()[0]['liked']
     cur.execute("SELECT count_liked FROM userlikes WHERE userId = %s AND recipeId = %s;", (user_id, recipe_number,))
     count_liked =  cur.fetchall()[0]['count_liked']
@@ -842,17 +838,16 @@ def dislike(recipe_id):
     # Commit to the database and redirect.
     cur.execute("SELECT id FROM users WHERE username = %s;", (user,))
     user_id = cur.fetchall()[0]['id']
-    cur.execute("SELECT userId, recipeId, liked, unliked FROM userlikes WHERE userId = %s AND recipeId = %s;", (user_id, recipe_number,))
+    cur.execute("SELECT unliked FROM userlikes WHERE userId = %s AND recipeId = %s;", (user_id, recipe_number,))
     unliked_flag = cur.fetchall()[0]['unliked']
     cur.execute("SELECT count_liked FROM userlikes WHERE userId = %s AND recipeId = %s;", (user_id, recipe_number,))
-    count_liked =  cur.fetchall()[0]['count_liked']
+    count_liked = cur.fetchall()[0]['count_liked']
     if unliked_flag == 1:
         if count_liked == 0:
             dislikes = dislikes + 1
         elif count_liked > 0 and likes != 0:
             dislikes = dislikes + 1
-            likes =  likes - 1
-            
+            likes = likes - 1
         recipe_collection.update({'_id': ObjectId(recipe_id)}, {
                                   "$set": {"likes": likes, "dislikes": dislikes}})
         cur.execute("UPDATE userlikes SET unliked = '0', liked = '1', count_liked = 1 WHERE userId = %s AND recipeId = %s;", (user_id, recipe_number,))
