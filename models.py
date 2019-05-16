@@ -13,15 +13,16 @@ app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 
 mongo = PyMongo(app)
 
-
+recipes = mongo.db.recipes
 recipes_collection = mongo.db.recipes.find()
 ratings_collection = mongo.db.ratings.find()
 
 
 """ Note: Use these scripts one by one
-    (It's not a good idea to leave out print statements,
-    but print has been used in this case to
-    reflect the count) """
+    (It's not a good idea to leave out print statements
+    and commented code, but they have been used in this case to
+    reflect the count and to contribute to the assessment of this
+    project by showcasing my logic) """
 
 
 """ Find ingredients by cuisine """
@@ -196,4 +197,10 @@ for recipe in recipes_collection:
 
 with open("urls.json", 'w') as file:
     json.dump(full_recipeIds, file)
-    
+
+
+""" Script for updating multiple values in MongoDB collection """
+
+recipes.update({}, {"$set": {"dislikes": 0}}, upsert=False, multi=True)
+recipes.update({}, {"$set": {"likes": 0}}, upsert=False, multi=True)
+recipes.update({}, {"$set": {"rating": "0"}}, upsert=False, multi=True)

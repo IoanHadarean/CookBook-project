@@ -245,7 +245,7 @@ Note for the persons that will look at the website in more depth or the assessor
 There is a bug/inconsistency in the website that I am totally aware of. When adding new inputs and deleting
 them, an extra input is added on page refresh, even if the first input (the one persisted through HTML) was deleted. 
 For solving this inconsistency/bug, the approach is to just use one input for adding recipes, and then append the 
-deletion icon to each one of them.
+deletion icon to each added input.
 Additional Note: even if the creator of the website is going to get marked down for this aspect, he believes it was 
 worth mentioning, and since he tries to be critical about himself, it was the right choice to make.
 
@@ -285,6 +285,71 @@ worth mentioning, and since he tries to be critical about himself, it was the ri
 4. **PyMySQL**(https://pymysql.readthedocs.io/en/latest/)
    <br>**PyMySQL** is a Python library that liaised MySQL with Flask and Python.
    Note:  The command that was run for finding the version of pymongo was *pip freeze | grep PyMySQL*
+5. Packages used in the project:
+*Click==7.0
+*ConfigArgParse==0.11.0
+*Flask==1.0.2
+*Flask-Login==0.4.1
+*Flask-Moment==0.7.0
+*Flask-MySQLdb==0.2.0
+*Flask-Paranoid==0.2.0
+*Flask-PyMongo==2.2.0
+*Flask-SSLify==0.1.5
+*Flask-WTF==0.14.2
+*Jinja2==2.10
+*MarkupSafe==1.1.0
+*Pillow==2.3.0
+*PyMySQL==0.9.3
+*WTForms==2.2.1
+*Werkzeug==0.14.1
+*acme==0.31.0
+*asn1crypto==0.24.0
+*autocommand==2.2.1
+*beautifulsoup4==4.7.1
+*certbot==0.31.0
+*certifi==2017.4.17
+*cffi==1.12.3
+*chardet==3.0.4
+*colorama==0.2.5
+*configobj==5.0.6
+*future==0.15.2
+*html5lib==0.999
+*idna==2.5
+*importlib-metadata==0.9
+*importlib-resources==1.0.2
+*itsdangerous==1.1.0
+*josepy==1.1.0
+*matplotlib==1.3.1
+*mock==1.0.1
+*mongo-connector==3.1.1
+*mysqlclient==1.4.2.post1
+*ndg-httpsclient==0.4.2
+*nose==1.3.1
+*numpy==1.8.2
+*parsedatetime==2.4
+*passlib==1.7.1
+*pyRFC3339==1.0
+*pyasn1==0.1.9
+*pycparser==2.19
+*pycurl==7.19.3
+*pygal==2.4.0
+*pymongo==3.7.2
+*pyparsing==2.0.1
+*pytz==2012rc0
+*requests==2.18.1
+*requests-toolbelt==0.8.0
+*six==1.11.0
+*soupsieve==1.7.3
+*tornado==3.1.1
+*typing==3.6.6
+*urllib3==1.21.1
+*virtualenv==16.4.0
+*wheel==0.24.0
+*zipp==0.3.3
+*zope.component==4.3.0
+*zope.event==4.0.1
+*zope.hookable==4.0.4
+*zope.interface==4.3.2
 
 
 
