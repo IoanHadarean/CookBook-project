@@ -375,12 +375,15 @@ correctly. Therefore, site was viewed and tested in the following browsers:
 <br>    iv Internet Explorer
 <br>    v Safari\
 The website has limited support for Internet Explorer and no support for Safari.
+Manual testing also included registering a user to the website, logging in to the website, updating the profile, adding and editing new recipes, as well as liking/disliking
+database recipes and rating them. The pagination, search and filter results and functionalities were thoroughly tested to check for any bugs.
 5. Postman was used for sending GET and POST requests to the website in order to test it
 6. Added automated unit tests for the register and edit forms in Python, as well as basic tests for GET requests.
 It's admittable that the tests performed for the app are not the most extensive tests, but having 
-any tests is better than having none at all.
+some tests is better than having none at all.
 7. Tested the Python code for [PEP8](https://pypi.org/project/pep8/) standards and solved numerous issues regarding
-beautifying the code. There were a number of errors that I could not solve however, related to the length of the lines.
+beautifying the code. There were a number of errors related to the length of the lines that I did not solve because they 
+would decrease readability of the code, not increase it.
 
 
 
