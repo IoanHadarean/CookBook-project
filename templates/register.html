@@ -1,4 +1,7 @@
-{% extends 'base.html' %} {% block content %} {% from "includes/_formhelpers.html" import render_field %} {% include 'includes/_messages.html' %}
+{% extends 'base.html' %} 
+{% block content %} 
+{% from "includes/_formhelpers.html" import render_field %} 
+{% include 'includes/_messages.html' %}
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/special_styling.css') }}" />
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}" />
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/register.css') }}" />

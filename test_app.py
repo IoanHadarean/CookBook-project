@@ -77,7 +77,7 @@ class TestApp(unittest.TestCase):
                                 if attr == 'data':
                                     self.assertEqual(value, 'random')
                                     self.assertNotEqual(value, 'randoms')
-    """ Test the edit form values """           
+    """ Test the edit form values """
     def test_updateForm(self):
         for self.item in self.updateForms:
             for key, dictionary in self.item.items():
@@ -106,7 +106,7 @@ class TestApp(unittest.TestCase):
                                 if attr == 'data':
                                     self.assertEqual(value, 'jdoe95@yahoo.com')
                                     self.assertNotEqual(value, 'jdoe@yahoo.com')
-    """ Test profile image from edit form """                   
+    """ Test profile image from edit form """
     def test_profileImage(self):
         for self.item in self.profileImages:
             for key, dictionary in self.item.items():
@@ -121,16 +121,32 @@ class TestApp(unittest.TestCase):
                                             assert isinstance(j, object)
                                             self.assertEqual(inspect.getmembers(j, predicate=inspect.ismethod), [])
     """ Test get request for get_recipe route """
-    def test_getRecipe(self):
+    def test_get_recipe(self):
         url = 'https://relish-cookbook.herokuapp.com/get_recipe/5c7ad43efb6fc072012c862f'
         response = requests.get(url)
         if response.ok:
             return response.text
         else:
             return 'Bad Response'
-    """ Test get request for get_user_recipe route """    
-    def test_getUserRecipe(self):
+    """ Test get request for get_user_recipe route """
+    def test_get_user_recipe(self):
         url = 'https://relish-cookbook.herokuapp.com/get_user_recipe/12483f483c543a857e352'
+        response = requests.get(url)
+        if response.ok:
+            return response.text
+        else:
+            return 'Bad Response'
+    """ Test get request for profile route """
+    def test_profile(self):
+        url = 'https://relish-cookbook.herokuapp.com/profile'
+        response = requests.get(url)
+        if response.ok:
+            return response.text
+        else:
+            return 'Bad Response'
+    """ Test get request for add recipe route """
+    def test_index(self):
+        url = 'https://datacentricmilestoneproject-ioan1997.c9users.io:8080/recipes?pagination_offset=0&pagination_limit=6'
         response = requests.get(url)
         if response.ok:
             return response.text

@@ -7,6 +7,7 @@ let url_array = ["5c7ad2bffb6fc072012c83cc", "5c7ad43efb6fc072012c862f", "5c7b94
 let thumbsUpButton = document.getElementsByClassName('fa-thumbs-up')[0];
 let thumbsDownButton = document.getElementsByClassName('fa-thumbs-down')[0];
 let likesSpan = document.getElementById('likes__number');
+let dislikesSpan = document.getElementById('dislikes__number');
 
 // Get recipe id from Jinja template
 var url_string = recipeId;
@@ -24,7 +25,8 @@ function loadLike(e) {
     xhr.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
             let response = JSON.parse(xhr.responseText);
-            likesSpan.innerHTML = "Likes " + response.likes;
+            likesSpan.innerHTML = response.likes;
+            dislikesSpan.innerHTML = response.dislikes;
         }
         else {
             console.log("Response not received");
@@ -55,7 +57,8 @@ function loadDislike(e) {
     xhr.onreadystatechange = function() {
         if (this.readyState === 4 && this.status === 200) {
             let response = JSON.parse(xhr.responseText);
-            likesSpan.innerHTML = "Likes " + response.likes;
+            likesSpan.innerHTML = response.likes;
+            dislikesSpan.innerHTML = response.dislikes;
         }
     };
     url_array.forEach(function(url) {

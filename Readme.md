@@ -124,8 +124,8 @@ to login if he/she has an account or to register if he/she does not have an acco
 * The user is redirected back to the recipe he was viewing after registering/logging in to the website.
 * The user can view all the details of the recipe and he can also click on the add recipe button to add her/his own recipes.
 * A logged in user can like and dislike a recipe the following way: when she/he clicks on the like button, the number of likes
-goes up by 1, when he/she clicks on the disliked button the number of dislikes goes down by 1 (Note: the page does not refresh 
-on like/dislike due to AJAX).
+goes up by 1 and dislikes go down by 1 if they are not 0, when he/she clicks on the dislike button the number of dislikes goes up by 1
+and the number of likes goes down by 1 if the number is not 0 (Note: the page does not refresh on like/dislike due to AJAX).
 * When a logged in user tries to click on the rate button, a modal pops up that allows the user to fill the number of stars 
 according to his/her rating. Upon clicking on save and continue, the rating is saved and the average rating for that recipe is 
 updated.
@@ -235,23 +235,19 @@ slightly too fast. jQuery could have been used to prevent it, but only vanilla J
 * Fixed delete recipe bug caused by the ID of the recipe.
 * Fixed rating bug caused by not initialising the rating of a recipe to 0.
 * Fixed bug with cancel update modal not firing up.
+* Fixed bug with likes (dislikes would not go down by 1 after liking a recipe and likes would not go up by 1 after disliking
+a recipe). The approach was to use two separate spans for likes and dislikes and to toggle the number of likes and dislikes.
+The only condition was for likes and dislikes to be greater than or equal to 0.
 * Fixed localStorage bug not being cleared by adding sessionStorage (this was also fixed with the JavaScript utility,
 but it turned out that sessionStorage is a much better solution, at least for the scope of this project; it is to be 
 mentioned that for the next improvements on the website, localStorage will be used, hence why the utility was not deleted).\
 Note for the persons that will look at the website in more depth or the assessors of the project:
-There are some bugs or inconsistencies in the website that I am totally aware of. For example, when adding new inputs and deleting
-them, an extra input is added on page refresh, even if the first input (the one persisted through HTML) was deleted. Now this might 
-be a good thing, but it can also be considered as an inconsistency or bug. Another thing worth mentioning is the like/dislike functionality
-on the `0` counter. If you dislike a recipe the counter gets to -1, but when liking it gets back to 0 afterwards. Now one might argue that the
-creator of the website does not know how to fix these bugs. He does, but due to the time pressure and due to the fact that these bugs were 
-discovered later in the testing process, he will explain in the following lines the approach for doing that. For the like/dislike inconsistency,
-there are two approaches:
-  * One approach would be to just allow the users to only give positive likes for recipes.
-  * The second approach would be to create separate HTML elements for the likes and dislikes, so users can give only positive likes/dislikes.
-For the first inconsistency/bug, the approach is to just use one input for adding recipes, and then append the 
+There is a bug/inconsistency in the website that I am totally aware of. When adding new inputs and deleting
+them, an extra input is added on page refresh, even if the first input (the one persisted through HTML) was deleted. 
+For solving this inconsistency/bug, the approach is to just use one input for adding recipes, and then append the 
 deletion icon to each one of them.
-Additional Note: even if the creator of the website is going to get marked down for this aspect, he believes it was worth mentioning, and since he
-tries to be critical about himself, it was the right choice to make.
+Additional Note: even if the creator of the website is going to get marked down for this aspect, he believes it was 
+worth mentioning, and since he tries to be critical about himself, it was the right choice to make.
 
 
 
@@ -345,6 +341,7 @@ connections with MYSQL that were constructed with the Python logic. The recipe d
     * servings(string) 
     * calories(string) 
     * likes(int) - initially set to 0
+    * dislikes(int) - initially set to 0
     * rating(int) - initially set to 0/ or to the initial recipe rating
 2. MySQL database - [JawsDB](https://www.jawsdb.com) - was used for storing the information related to the users, including the
 connections with MYSQL that were constructed with the Python logic. It consists of 2 tables:

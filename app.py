@@ -413,7 +413,7 @@ def filter_recipes():
         args = {
             "limit": pagination_limit,
             "offset": pagination_offset,
-            "recipes_sorted": recipe_collection.aggregate([{"$match": {"$and": [{"$and": get_results(form)}, 
+            "recipes_sorted": recipe_collection.aggregate([{"$match": {"$and": [{"$and": get_results(form)},
                                                            {"_id": {"$gte": last_id}}]}},
                                                            {"$sort": {"_id": 1}},
                                                            {"$limit": pagination_limit}]),
@@ -779,16 +779,17 @@ def like(recipe_id):
     recipe = recipe_collection.find_one({"_id": ObjectId(recipe_id)})
     recipe_number = recipe["id"]
     likes = recipe["likes"]
+    dislikes = recipe["dislikes"]
 
-    # Check if a record with the user and the recipe
-    # exists in the user likes table in the flaskapp database
+    # Check if a record with the session user and the recipe
+    # exists in the userlikes table from the database.
     # If it does not then insert the new record into
     # the user likes table
-    # Get the liked flag and check if it's 0 or 1
-    # If it's 1 then update the number of likes
+    # Get the liked flag and check if it's 0 or 1.
+    # If it's 1 then update the number of likes.
     # Finally, set the liked flag to 0 so a recipe can
-    # not be liked anymore
-    # Commit to the database and redirect
+    # not be liked anymore.
+    # Commit to the database and redirect.
     cur.execute("SELECT id FROM users WHERE username = %s;", (user,))
     user_id = cur.fetchall()[0]['id']
     cur.execute("SELECT userId, recipeId, liked, unliked FROM userlikes WHERE userId = %s AND recipeId = %s;", (user_id, recipe_number,))
@@ -799,14 +800,15 @@ def like(recipe_id):
     liked_flag = cur.fetchall()[0]['liked']
     if (liked_flag != 0):
         likes = likes + 1
+        if dislikes != 0:
+            dislikes = dislikes - 1
         recipe_collection.update({'_id': ObjectId(recipe_id)}, {
-                                  "$set": {"likes": likes}})
-        cur.execute("UPDATE userlikes SET liked = '0' WHERE userId = %s AND recipeId = %s;", (user_id, recipe_number,))
-        cur.execute("UPDATE userlikes SET unliked = '1' WHERE userId = %s AND recipeId = %s;", (user_id, recipe_number,))
+                                  "$set": {"likes": likes, "dislikes": dislikes}})
+        cur.execute("UPDATE userlikes SET liked = '0', unliked = '1' WHERE userId = %s AND recipeId = %s;", (user_id, recipe_number,))
         connection.commit()
     cur.close()
 
-    return json.jsonify({'likes': likes, 'recipe_id': recipe_id})
+    return json.jsonify({'likes': likes, 'dislikes': dislikes, 'recipe_id': recipe_id})
 
 """ Dislike recipe """
 
@@ -821,16 +823,17 @@ def dislike(recipe_id):
     recipe = recipe_collection.find_one({"_id": ObjectId(recipe_id)})
     recipe_number = recipe["id"]
     likes = recipe["likes"]
+    dislikes = recipe["dislikes"]
 
-    # Check if a record with the user and the recipe exists
-    # in the user likes table in the flaskapp database
+    # Check if a record with the session user and the recipe exists
+    # in the userlikes table from the database.
     # If it does not then insert the new record into
-    # the user likes table
-    # Get the unliked flag and check if it's 0 or 1
-    # If it's 1 then update the number of likes
+    # the user likes table.
+    # Get the unliked flag and check if it's 0 or 1.
+    # If it's 1 then update the number of likes.
     # Finally, set the unliked flag to 0 so a recipe
-    # can not be disliked anymore
-    # Commit to the database and redirect
+    # can not be disliked anymore.
+    # Commit to the database and redirect.
     cur.execute("SELECT id FROM users WHERE username = %s;", (user,))
     user_id = cur.fetchall()[0]['id']
     cur.execute("SELECT userId, recipeId, liked, unliked FROM userlikes WHERE userId = %s AND recipeId = %s;", (user_id, recipe_number,))
@@ -840,14 +843,15 @@ def dislike(recipe_id):
     cur.execute("SELECT userId, recipeId, liked, unliked FROM userlikes WHERE userId = %s AND recipeId = %s;", (user_id, recipe_number,))
     unliked_flag = cur.fetchall()[0]['unliked']
     if (unliked_flag != 0):
-        likes = likes - 1
+        dislikes = dislikes + 1
+        if likes != 0:
+            likes = likes - 1
         recipe_collection.update({'_id': ObjectId(recipe_id)}, {
-                                  "$set": {"likes": likes}})
-        cur.execute("UPDATE userlikes SET unliked = '0' WHERE userId = %s AND recipeId = %s;", (user_id, recipe_number,))
-        cur.execute("UPDATE userlikes SET liked = '1' WHERE userId = %s AND recipeId = %s;", (user_id, recipe_number,))
+                                  "$set": {"likes": likes, "dislikes": dislikes}})
+        cur.execute("UPDATE userlikes SET unliked = '0', liked = '1' WHERE userId = %s AND recipeId = %s;", (user_id, recipe_number,))
         connection.commit()
     cur.close()
-    return json.jsonify({'likes': likes, 'recipe_id': recipe_id})
+    return json.jsonify({'likes': likes, 'dislikes': dislikes, 'recipe_id': recipe_id})
 
 """  Get ratings from users and store them in the database
      then return the average rating for a recipe"""

@@ -1,4 +1,6 @@
-{% extends 'base.html' %} {% block content %} {% include 'includes/_messages.html' %}
+{% extends 'base.html' %} 
+{% block content %} 
+{% include 'includes/_messages.html' %}
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/special_styling.css') }}" type="text/css" />
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}" type="text/css" />
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/modals.css') }}" type="text/css" />
@@ -57,7 +59,8 @@
             <h3 class="alert__description">Add your own recipes</h3>
             <div class="alert__box">
                 {% if session.logged_in %}
-                <a class="box__link" href="/add_recipe">ADD RECIPE</a> {% else %}
+                <a class="box__link" href="/add_recipe">ADD RECIPE</a> 
+                {% else %}
                 <a class="box__link" href="#">ADD RECIPE</a>
                 <div id="recipe__modal" class="modal">
                     <div class="modal-content">
@@ -82,7 +85,7 @@
         <div class="recipe__ingredients">
             <ul class="ingredients__container">
                 {% for ingredient in user_recipe.ingredients %}
-                <li>{{ ingredient }}</li>
+                    <li>{{ ingredient }}</li>
                 {% endfor %}
             </ul>
         </div>
@@ -92,10 +95,10 @@
         <div class="recipe__instructions">
             <h3 class="instructions__description cooking">Cooking Instructions</h3>
             {% for instruction in user_recipe.instructions %}
-            <div class="instructions__full">
-                <span class="instructions__index">{{ loop.index }}</span>
-                <li>{{ instruction }}</li>
-            </div>
+                <div class="instructions__full">
+                    <span class="instructions__index">{{ loop.index }}</span>
+                    <li>{{ instruction }}</li>
+                </div>
             {% endfor %}
         </div>
     </div>

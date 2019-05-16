@@ -1,4 +1,7 @@
-{% extends 'base.html' %} {% block content %} {% from "includes/_formhelpers.html" import render_field %} {% include 'includes/_messages.html' %}
+{% extends 'base.html' %} 
+{% block content %} 
+{% from "includes/_formhelpers.html" import render_field %} 
+{% include 'includes/_messages.html' %}
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/special_styling.css') }}" type="text/css" />
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}" type="text/css" />
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/profile.css') }}" type="text/css" />
@@ -63,7 +66,8 @@
     
     <!-- User Recipes -->
     <div class="container" id = "fixed-margin">
-        {% if args %} {% for recipe in args.recipes_sorted %}
+        {% if args %} 
+        {% for recipe in args.recipes_sorted %}
         <div class="recipes">
             <div class="recipes__name">
                 <h3 class="name__inline">{{ recipe.recipe_name }}</h3>
@@ -91,22 +95,26 @@
 
 
         <!-- Delete recipe modal -->
-        {% include 'includes/_deletemodal.html' %} {% endfor %} {% if args.total_results > args.limit %}
+        {% include 'includes/_deletemodal.html' %} 
+        {% endfor %} 
+        {% if args.total_results > args.limit %}
         <div class="recipes__pagination">
             <ul class="pagination__list">
                 {% if args.offset > 0 %}
                 <li class="list__prev">
                     <a class="font-size-icon" href="{{args.prev_url}}"><i class = "fa fa-angle-left"></i></a>
                 </li>
-                {% endif %} {% if args.offset + args.limit
-                < args.total_results %} <li class="list__next">
+                {% endif %} 
+                {% if args.offset + args.limit < args.total_results %} 
+                <li class="list__next">
                     <a class="font-size-icon" href="{{args.next_url}}"><i class = "fa fa-angle-right"></i></a>
-                    </li>
-                    {% endif %}
+                </li>
+                {% endif %}
             </ul>
         </div>
     </div>
-    {% endif %} {% endif %}
+    {% endif %} 
+    {% endif %}
 </section>
 <script>
     var date = '{{ date }}';

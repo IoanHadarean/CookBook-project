@@ -1,4 +1,5 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} 
+{% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/special_styling.css') }}" type="text/css" />
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}" type="text/css" />
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/recipes.css') }}" type="text/css" />
@@ -12,23 +13,23 @@
     <div id="filter-form-container">
         <form id="filter_form" method="POST" action="/filter_recipes" enctype="multipart/form-data">
             <select name="allergen_name" id="allergen_name">
-            <option id = "choose-allergens" value="" disabled selected>Choose Allergen</option>
-            {% for allergen in allergens %}
-                <option  value="{{ allergen.allergen_name }}" name="allergens-{{ loop.index }}">{{ allergen.allergen_name }}</option>
-            {% endfor %}
-        </select>
+                <option id = "choose-allergens" value="" disabled selected>Choose Allergen</option>
+                {% for allergen in allergens %}
+                    <option  value="{{ allergen.allergen_name }}" name="allergens-{{ loop.index }}">{{ allergen.allergen_name }}</option>
+                {% endfor %}
+            </select>
             <select name="cuisine_name" id="cuisine_name">
-            <option id = "choose-cuisines" value="" disabled selected>Choose Cuisine</option>
-            {% for cuisine in cuisines %}
-                <option value="{{ cuisine.cuisine_name }}" name="cuisines-{{ loop.index }}">{{ cuisine.cuisine_name }}</option>
-            {% endfor %}
-        </select>
-            <select name="course_name" id="course_name">
-            <option id = "choose-courses" value="" disabled selected>Choose Course</option>
-            {% for course in courses %}
-                <option value="{{ course.course_name }}" name="courses-{{ loop.index }}">{{ course.course_name }}</option>
-            {% endfor %}
-        </select>
+                <option id = "choose-cuisines" value="" disabled selected>Choose Cuisine</option>
+                {% for cuisine in cuisines %}
+                    <option value="{{ cuisine.cuisine_name }}" name="cuisines-{{ loop.index }}">{{ cuisine.cuisine_name }}</option>
+                {% endfor %}
+            </select>
+                <select name="course_name" id="course_name">
+                <option id = "choose-courses" value="" disabled selected>Choose Course</option>
+                {% for course in courses %}
+                    <option value="{{ course.course_name }}" name="courses-{{ loop.index }}">{{ course.course_name }}</option>
+                {% endfor %}
+            </select>
             <div id="filter-btn-container">
                 <button type="submit" id="filter-btn" class="btn btn-block btn-outline-warning" disabled>Filter Recipes</button>
                 <a class="all-recipes" href="{{ url_for('recipes', pagination_limit=6, pagination_offset=0 ) }}">
@@ -39,17 +40,21 @@
     </div>
     
     <!-- Filter results -->
-    <span id="filter_results"></span> {% if count_filter != "0" and form != '' and form is defined %} {% if count_filter == "1" %}
+    <span id="filter_results"></span> 
+    {% if count_filter != "0" and form != '' and form is defined %} 
+    {% if count_filter == "1" %}
     <p id="num-results">{{ count_filter }} recipe was found</p>
     {% else %}
     <p id="num-results">{{ count_filter }} recipes were found</p>
-    {% endif %} {% elif count_filter == "0" %}
+    {% endif %} 
+    {% elif count_filter == "0" %}
     <p id="num-results">No recipes found</p>
     {% endif %}
     
     <!-- Filter recipes and pagination -->
     <div class="container">
-        {% if args %} {% for recipe in args.recipes_sorted %}
+        {% if args %} 
+        {% for recipe in args.recipes_sorted %}
         <div class="recipes">
             <div class="recipes__name">
                 <h3 class="name__inline">{{ recipe.recipe_name }}</h3>
@@ -66,22 +71,25 @@
                 <a class="view__details" href="{{ url_for('get_recipe', recipe_id=recipe._id) }}">View Recipe</a>
             </div>
         </div>
-        {% endfor %} {% if args.total_results > args.limit %}
+        {% endfor %} 
+        {% if args.total_results > args.limit %}
         <div class="recipes__pagination">
             <ul class="pagination__list">
                 {% if args.offset > 0 %}
                 <li class="list__prev">
                     <a class="font-size-icon" href="{{args.prev_url}}"><i class = "fa fa-angle-left"></i></a>
                 </li>
-                {% endif %} {% if args.offset + args.limit
-                < args.total_results %} <li class="list__next">
-                    <a class="font-size-icon" href="{{args.next_url}}"><i class = "fa fa-angle-right"></i></a>
+                {% endif %} 
+                {% if args.offset + args.limit < args.total_results %} 
+                    <li class="list__next">
+                        <a class="font-size-icon" href="{{args.next_url}}"><i class = "fa fa-angle-right"></i></a>
                     </li>
-                    {% endif %}
+                {% endif %}
             </ul>
         </div>
     </div>
-    {% endif %} {% endif %}
+    {% endif %} 
+    {% endif %}
 </section>
 <script src="{{ url_for('static', filename = 'js/random_message.js') }}" async></script>
 <script src="{{ url_for('static', filename = 'js/filter_recipes.js') }}" async></script>

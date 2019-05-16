@@ -1,4 +1,5 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} 
+{% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/special_styling.css') }}" type="text/css" />
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}" type="text/css" />
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/search_recipes.css') }}" type="text/css" />
@@ -7,8 +8,10 @@
 <!-- Search form -->
 <form id="search_form" class="uk-search uk-search-default" action="{{ url_for('search_recipes', limit=6, offset=0) }}" method="POST">
     {% if search_text != None %}
-    <input autocomplete="off" id="search_input" class="uk-search-input" type="text" value="{{ search_text }}" name="search_input" placeholder="Search Recipes..."> {% else %}
-    <input autocomplete="off" id="search_input" class="uk-search-input" type="text" value="" name="search_input" placeholder="Search Recipes..."> {% endif %}
+    <input autocomplete="off" id="search_input" class="uk-search-input" type="text" value="{{ search_text }}" name="search_input" placeholder="Search Recipes..."> 
+    {% else %}
+    <input autocomplete="off" id="search_input" class="uk-search-input" type="text" value="" name="search_input" placeholder="Search Recipes..."> 
+    {% endif %}
     <div id="search-btn-container">
         <button id="btnSearch" type="submit" class="btn btn-primary btn-center">Search</button>
         <a class="all-recipes" href="{{ url_for('recipes', pagination_limit=6, pagination_offset=0 ) }}">
@@ -18,22 +21,28 @@
 </form>
 
 <!-- Search results -->
-<span id="search_message"></span> {% if count_recipes != "0" and count_recipes != None and search_text != '' and search_text is defined %} {% if count_recipes == "1" %}
-<span id="count-results">{{ count_recipes }} recipe was found </span> {% else %}
-<span id="count_results">{{ count_recipes }} recipes were found </span> {% endif %} {% elif count_recipes == "0" and search_text != '' and search_text is defined %}
-<span id="count_results">No recipes found</span> {% endif %}
+<span id="search_message"></span> 
+{% if count_recipes != "0" and count_recipes != None and search_text != '' and search_text is defined %} 
+{% if count_recipes == "1" %}
+<span id="count-results">{{ count_recipes }} recipe was found </span> 
+{% else %}
+<span id="count_results">{{ count_recipes }} recipes were found </span> {% endif %} 
+{% elif count_recipes == "0" and search_text != '' and search_text is defined %}
+<span id="count_results">No recipes found</span> 
+{% endif %}
 
 <!-- Search recipes and pagination -->
 <div class="container">
-    {% if args %} {% for recipe in args.recipes_sorted %}
+    {% if args %} 
+    {% for recipe in args.recipes_sorted %}
     <div class="recipes">
         <div class="recipes__name">
             <h3 class="name__inline">{{ recipe.recipe_name }}</h3>
         </div>
         <div class="recipes__image">
             <a href="{{ url_for('get_recipe', recipe_id = recipe._id) }}">
-                    <img class = "image__inline" src = "{{ recipe.recipe_image }}" onerror="this.onerror=null;this.src='static/images/recipe.jpg';" alt = "recipe-image">
-                </a>
+                <img class = "image__inline" src = "{{ recipe.recipe_image }}" onerror="this.onerror=null;this.src='static/images/recipe.jpg';" alt = "recipe-image">
+            </a>
         </div>
         <div class="recipes__author">
             <p class="author__inline">By {{ recipe.author_name }}</p>
@@ -42,22 +51,25 @@
             <a class="view__details" href="{{ url_for('get_recipe', recipe_id = recipe._id) }}">View Recipe</a>
         </div>
     </div>
-    {% endfor %} {% if args.total_results > args.limit %}
+    {% endfor %} 
+    {% if args.total_results > args.limit %}
     <div class="recipes__pagination">
         <ul class="pagination__list">
             {% if args.offset > 0 %}
             <li class="list__prev">
                 <a class="font-size-icon" href="{{args.prev_url}}"><i class = "fa fa-angle-left"></i></a>
             </li>
-            {% endif %} {% if args.offset + args.limit
-            < args.total_results %} <li class="list__next">
+            {% endif %} 
+            {% if args.offset + args.limit < args.total_results %} 
+            <li class="list__next">
                 <a class="font-size-icon" href="{{args.next_url}}"><i class = "fa fa-angle-right"></i></a>
-                </li>
-                {% endif %}
+            </li>
+            {% endif %}
         </ul>
     </div>
 </div>
-{% endif %} {% endif %}
+{% endif %} 
+{% endif %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.3/js/uikit.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/uikit/3.0.3/js/uikit-icons.min.js"></script>
 <script src="{{ url_for('static', filename = 'js/search.js') }}" async></script>

@@ -1,5 +1,7 @@
-{% extends 'base.html' %} {% block content %} {% include 'includes/_messages.html' %}
-    <link rel="stylesheet" href="{{ url_for('static', filename = 'css/special_styling.css') }}" type="text/css" />
+{% extends 'base.html' %} 
+{% block content %} 
+{% include 'includes/_messages.html' %}
+<link rel="stylesheet" href="{{ url_for('static', filename = 'css/special_styling.css') }}" type="text/css" />
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}" type="text/css" />
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/get_recipe.css') }}" type="text/css" />
 <section>
@@ -10,10 +12,15 @@
 
     <!-- Recipe likes -->
     <div class="recipe__likes">
-        <span id="likes__number">Likes {{ recipe.likes |int }}</span> {% if session.logged_in %}
+        {% if session.logged_in %}
+        <span id="likes__number">{{ recipe.likes |int }}</span>
         <a class="fa fa-thumbs-up" href="/like/{{ recipe._id }}" data-name = {{ recipe_id }}>Like</a>
-        <a class="fa fa-thumbs-down" href="/dislike/{{ recipe._id }}" data-name = {{ recipe_id }}>Dislike</a> {% else %}
+        <span id="dislikes__number">{{ recipe.dislikes |int }}</span>
+        <a class="fa fa-thumbs-down" href="/dislike/{{ recipe._id }}" data-name = {{ recipe_id }}>Dislike</a> 
+        {% else %}
+        <span id="likes__number">{{ recipe.likes |int }}</span>
         <a class="fa fa-thumbs-up" href="#">Like</a>
+        <span id="dislikes__number">{{ recipe.dislikes |int }}</span>
         <a class="fa fa-thumbs-down" href="#">Dislike</a>
         <div id="like__modal" class="modal">
             <div class="modal-content">
@@ -127,7 +134,8 @@
             <h3 class="alert__description">Add your own recipes</h3>
             <div class="alert__box">
                 {% if session.logged_in %}
-                <a class="box__link" href="/add_recipe">ADD RECIPE</a> {% else %}
+                <a class="box__link" href="/add_recipe">ADD RECIPE</a> 
+                {% else %}
                 <a class="box__link" href="#">ADD RECIPE</a>
                 <div id="recipe__modal" class="modal">
                     <div class="modal-content">
@@ -152,14 +160,14 @@
         <div class="recipe__quantities">
             <ul class="quantities__container">
                 {% for quantity in full_quantities %}
-                <li>{{ quantity }}</li>
+                    <li>{{ quantity }}</li>
                 {% endfor %}
                 <ul>
         </div>
         <div class="recipe__ingredients">
             <ul class="ingredients__container">
                 {% for ingredient in full_ingredients %}
-                <li>{{ ingredient }}</li>
+                    <li>{{ ingredient }}</li>
                 {% endfor %}
             </ul>
         </div>

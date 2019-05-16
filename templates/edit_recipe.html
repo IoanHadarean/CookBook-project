@@ -1,4 +1,5 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} 
+{% block content %}
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}" type="text/css" />
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/add_edit_recipe.css') }}" type="text/css" />
 <link rel="stylesheet" href="{{ url_for('static', filename = 'css/modals.css') }}" type="text/css" />
@@ -17,11 +18,11 @@
                 <div class="ingredient">
                     <input type="text" autocomplete="off" name="ingredient-{{loop.index}}" class="form-control" value="{{ ingredient }}" minlength="3" maxlength="50" required>
                     <button class="add-ingredient btn-success secondary-content" type="button">
-                    <i class="material-icons right">add</i>
+                        <i class="material-icons right">add</i>
                     </button>
                     <button class="delete-ingredient btn-danger secondary-content" type="button">
-                    <i class="material-icons right">clear</i>
-                </button>
+                        <i class="material-icons right">clear</i>
+                    </button>
                 </div>
                 {% endfor %}
             </div>
@@ -31,22 +32,22 @@
             <option id="choose-allergens-edit" value="" disabled selected>Choose Allergen</option>
             {% for allergen in allergens %}
                 {% if allergen.allergen_name == the_recipe.allergen_name %}
-                <option  value="{{ allergen.allergen_name }}" name="allergens-{{ loop.index }}" selected>{{ allergen.allergen_name }}</option>
+                    <option  value="{{ allergen.allergen_name }}" name="allergens-{{ loop.index }}" selected>{{ allergen.allergen_name }}</option>
                 {% else %}
-                <option  value="{{ allergen.allergen_name }}" name="allergens-{{ loop.index }}">{{ allergen.allergen_name }}</option>
+                    <option  value="{{ allergen.allergen_name }}" name="allergens-{{ loop.index }}">{{ allergen.allergen_name }}</option>
                 {% endif %}
             {% endfor %}
-        </select>
+            </select>
             <select name="cuisine_name" required>
             <option id="choose-cuisines-edit" value="" disabled selected>Choose Cuisine</option>
             {% for cuisine in cuisines %}
                 {% if cuisine.cuisine_name == the_recipe.cuisine_name %}
-                <option value="{{ cuisine.cuisine_name }}" name="cuisines-{{ loop.index }}" selected>{{ cuisine.cuisine_name }}</option>
+                    <option value="{{ cuisine.cuisine_name }}" name="cuisines-{{ loop.index }}" selected>{{ cuisine.cuisine_name }}</option>
                 {% else %}
-                 <option value="{{ cuisine.cuisine_name }}" name="cuisines-{{ loop.index }}">{{ cuisine.cuisine_name }}</option>
+                     <option value="{{ cuisine.cuisine_name }}" name="cuisines-{{ loop.index }}">{{ cuisine.cuisine_name }}</option>
                 {% endif %}
             {% endfor %}
-        </select>
+            </select>
             <select name="course_name" required>
             <option id="choose-courses-edit" value="" disabled selected>Choose Course</option>
             {% for course in courses %}
@@ -56,7 +57,7 @@
                 <option value="{{ course.course_name }}" name="courses-{{ loop.index }}">{{ course.course_name }}</option>
                 {% endif %}
             {% endfor %}
-        </select>
+            </select>
         </div>
         <div class="container">
             <p class="edit-recipe__instructions">Cooking Instructions</p>
