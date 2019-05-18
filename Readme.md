@@ -257,7 +257,7 @@ worth mentioning, and since he tries to be critical about himself, it was the ri
 
 1. **HTML**, **CSS** and **JavaScript**
     <br>Languages that were used to improve the feel of the Relish website. Pure HTML and CSS was predominantly
-    used for designing the recipe views. Note: no jQuery was used for this project because the intention to improve 
+    used for designing the recipe views. Note: no jQuery was used for this project because the intention was to improve 
     the learning curve with vanilla JavaScript.
 2. **Bootstrap v3.3.7**(https://getbootstrap.com/docs/3.3/getting-started/#download)
     <br>**Bootstrap** was used to give the project a responsive layout. As previously specified in the
@@ -285,72 +285,7 @@ worth mentioning, and since he tries to be critical about himself, it was the ri
 4. **PyMySQL**(https://pymysql.readthedocs.io/en/latest/)
    <br>**PyMySQL** is a Python library that liaised MySQL with Flask and Python.
    Note:  The command that was run for finding the version of pymongo was *pip freeze | grep PyMySQL*
-5. Packages used in the project:
-    *Click==7.0
-    *ConfigArgParse==0.11.0
-    *Flask==1.0.2
-    *Flask-Login==0.4.1
-    *Flask-Moment==0.7.0
-    *Flask-MySQLdb==0.2.0
-    *Flask-Paranoid==0.2.0
-    *Flask-PyMongo==2.2.0
-    *Flask-SSLify==0.1.5
-    *Flask-WTF==0.14.2
-    *Jinja2==2.10
-    *MarkupSafe==1.1.0
-    *Pillow==2.3.0
-    *PyMySQL==0.9.3
-    *WTForms==2.2.1
-    *Werkzeug==0.14.1
-    *acme==0.31.0
-    *asn1crypto==0.24.0
-    *autocommand==2.2.1
-    *beautifulsoup4==4.7.1
-    *certbot==0.31.0
-    *certifi==2017.4.17
-    *cffi==1.12.3
-    *chardet==3.0.4
-    *colorama==0.2.5
-    *configobj==5.0.6
-    *future==0.15.2
-    *html5lib==0.999
-    *idna==2.5
-    *importlib-metadata==0.9
-    *importlib-resources==1.0.2
-    *itsdangerous==1.1.0
-    *josepy==1.1.0
-    *matplotlib==1.3.1
-    *mock==1.0.1
-    *mongo-connector==3.1.1
-    *mysqlclient==1.4.2.post1
-    *ndg-httpsclient==0.4.2
-    *nose==1.3.1
-    *numpy==1.8.2
-    *parsedatetime==2.4
-    *passlib==1.7.1
-    *pyRFC3339==1.0
-    *pyasn1==0.1.9
-    *pycparser==2.19
-    *pycurl==7.19.3
-    *pygal==2.4.0
-    *pymongo==3.7.2
-    *pyparsing==2.0.1
-    *pytz==2012rc0
-    *requests==2.18.1
-    *requests-toolbelt==0.8.0
-    *six==1.11.0
-    *soupsieve==1.7.3
-    *tornado==3.1.1
-    *typing==3.6.6
-    *urllib3==1.21.1
-    *virtualenv==16.4.0
-    *wheel==0.24.0
-    *zipp==0.3.3
-    *zope.component==4.3.0
-    *zope.event==4.0.1
-    *zope.hookable==4.0.4
-    *zope.interface==4.3.2
-
+5. All packages used in this project can be seen in the [requirements file](../master/requirements.txt)
 
 
 
@@ -413,6 +348,7 @@ connections with MYSQL that were constructed with the Python logic. It consists 
 * users
 * userlikes\
 For more information about MySQL database schema please refer to the [flaskapp.sql](../master/flaskapp.sql) script.
+Note: for the userlikes table a new column has been added, `count_liked`, defaulted to 0.
 
 
 
@@ -438,8 +374,9 @@ correctly. Therefore, site was viewed and tested in the following browsers:
 <br>    v Safari\
 The website has limited support for Internet Explorer and no support for Safari.
 Manual testing also included registering a user to the website, logging in to the website, updating the profile, adding and editing new recipes, as well as liking/disliking
-database recipes and rating them. The pagination, search and filter results and functionalities were thoroughly tested to check for any bugs.
-5. Postman was used for sending GET and POST requests to the website in order to test it
+database recipes and rating them. The pagination, search and filter results and functionalities were thoroughly tested to check for any bugs. The tests have been done with 
+multiple accounts to see if the functionalities persist between users.
+5. Postman was used for sending GET and POST requests to the website in order to test it.
 6. Added automated unit tests for the register and edit forms in Python, as well as basic tests for GET requests.
 It's admittable that the tests performed for the app are not the most extensive tests, but having 
 some tests is better than having none at all.

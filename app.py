@@ -55,11 +55,12 @@ app.config["MONGO_URI"] = os.getenv("MONGO_URI")
 
 mongo = PyMongo(app)
 
-# Cookie and Session Security Implementation
-# Note: paranoid is necessary in terms of security for the project.
-# However, disable it when using Chrome Developer Tools
-# or a similar tool since it automatically clears the session
-# when accessing a different device
+""" Cookie and Session Security Implementation
+Note: paranoid is necessary in terms of security for the project.
+However, disable it when using Chrome Developer Tools
+or a similar tool since it automatically clears the session
+when accessing a different device.
+"""
 paranoid = Paranoid(app)
 paranoid.redirect_view = '/'
 SESSION_COOKIE_SECURE = True
@@ -623,7 +624,7 @@ def update_recipe(recipe_id):
     form = request.form.to_dict()
     instructions = []
     ingredients = []
-
+    
     # Loop through the keys in the form
     # If the key matches instruction append
     # instruction to instructions list
@@ -783,21 +784,22 @@ def like(recipe_id):
     likes = recipe["likes"]
     dislikes = recipe["dislikes"]
 
-    # Check if a record with the session user and the recipe
-    # exists in the userlikes table from the database.
-    # If it does not then insert the new record into
-    # the user likes table
-    # Get the liked flag and check if it's 0 or 1.
-    # If it's 1 then update the number of likes.
-    # Finally, set the liked flag to 0 so a recipe can
-    # not be liked anymore.
-    # Commit to the database and redirect.
+    """ Check if a record with the session user and the recipe
+    exists in the userlikes table from the database.
+    If it does not then insert the new record into
+    the user likes table
+    Get the liked flag and check if it's 0 or 1.
+    If it's 1 then update the number of likes.
+    Finally, set the liked flag to 0 so a recipe can
+    not be liked anymore.
+    Commit to the database and redirect.
+    """
     cur.execute("SELECT id FROM users WHERE username = %s;", (user,))
     user_id = cur.fetchall()[0]['id']
     cur.execute("SELECT liked FROM userlikes WHERE userId = %s AND recipeId = %s;", (user_id, recipe_number,))
     liked_flag = cur.fetchall()[0]['liked']
     cur.execute("SELECT count_liked FROM userlikes WHERE userId = %s AND recipeId = %s;", (user_id, recipe_number,))
-    count_liked =  cur.fetchall()[0]['count_liked']
+    count_liked = cur.fetchall()[0]['count_liked']
     if liked_flag == 1:
         if count_liked == 0:
             likes = likes + 1
@@ -827,15 +829,16 @@ def dislike(recipe_id):
     likes = recipe["likes"]
     dislikes = recipe["dislikes"]
 
-    # Check if a record with the session user and the recipe exists
-    # in the userlikes table from the database.
-    # If it does not then insert the new record into
-    # the user likes table.
-    # Get the unliked flag and check if it's 0 or 1.
-    # If it's 1 then update the number of likes.
-    # Finally, set the unliked flag to 0 so a recipe
-    # can not be disliked anymore.
-    # Commit to the database and redirect.
+    """ Check if a record with the session user and the
+    recipe exists in the userlikes table from the database.
+    If it does not then insert the new record into
+    the user likes table.
+    Get the unliked flag and check if it's 0 or 1.
+    If it's 1 then update the number of likes.
+    Finally, set the unliked flag to 0 so a recipe
+    can not be disliked anymore.
+    Commit to the database and redirect.
+    """
     cur.execute("SELECT id FROM users WHERE username = %s;", (user,))
     user_id = cur.fetchall()[0]['id']
     cur.execute("SELECT unliked FROM userlikes WHERE userId = %s AND recipeId = %s;", (user_id, recipe_number,))

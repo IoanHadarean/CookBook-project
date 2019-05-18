@@ -203,4 +203,4 @@ with open("urls.json", 'w') as file:
 
 recipes.update({}, {"$set": {"dislikes": 0}}, upsert=False, multi=True)
 recipes.update({}, {"$set": {"likes": 0}}, upsert=False, multi=True)
-# recipes.update({}, {"$set": {"rating": "0"}}, upsert=False, multi=True)
+recipes.update({}, {"$set": {"rating": "0"}}, upsert=False, multi=True)
