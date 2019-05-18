@@ -823,8 +823,7 @@ def dislike(recipe_id):
     cur = connection.cursor()
 
     # Get variables
-    if session:
-        user = session['username']
+    user = session['username']
     recipe = recipe_collection.find_one({"_id": ObjectId(recipe_id)})
     recipe_number = recipe["id"]
     likes = recipe["likes"]
