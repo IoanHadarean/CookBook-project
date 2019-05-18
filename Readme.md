@@ -285,7 +285,7 @@ worth mentioning, and since he tries to be critical about himself, it was the ri
 4. **PyMySQL**(https://pymysql.readthedocs.io/en/latest/)
    <br>**PyMySQL** is a Python library that liaised MySQL with Flask and Python.
    Note:  The command that was run for finding the version of pymongo was *pip freeze | grep PyMySQL*
-5. All packages used in this project can be seen in the [requirements file](../master/requirements.txt)
+5. All packages used in this project can be seen in the [requirements.txt](../master/requirements.txt) file.
 
 
 

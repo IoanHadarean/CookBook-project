@@ -42,7 +42,7 @@ class TestApp(unittest.TestCase):
     """ Additional function to run after tests have been finished """
     def tearDown(self):
         pass
-    
+
     """ Test the registration form for errors """
     def test_registerErrors(self):
         for self.item in self.registerForms:
@@ -52,7 +52,7 @@ class TestApp(unittest.TestCase):
                     for k, v in vars(dictionary).items():
                         if k == '_errors':
                             self.assertEqual(v, None)
-                            
+
     """ Test the registration form name """
     def test_registerName(self):
         for self.item in self.registerForms:
@@ -65,7 +65,7 @@ class TestApp(unittest.TestCase):
                                 if attr == 'data':
                                     self.assertEqual(value, 'John Doe')
                                     self.assertNotEqual(value, 'J1995Doe')
-                                    
+
     """ Test the registration form username """
     def test_registerUsername(self):
         for self.item in self.registerForms:
@@ -78,7 +78,7 @@ class TestApp(unittest.TestCase):
                                 if attr == 'data':
                                     self.assertEqual(value, 'J1995Doe')
                                     self.assertNotEqual(value, 'John Doe')
-                                
+
     """ Test the registration form email """
     def test_registerEmail(self):
         for self.item in self.registerForms:
@@ -91,7 +91,7 @@ class TestApp(unittest.TestCase):
                                 if attr == 'data':
                                     self.assertEqual(value, 'jdoe@yahoo.com')
                                     self.assertNotEqual(value, 'jdoe95@yahoo.com')
-                                    
+
     """ Test the registration form password """
     def test_registerPassword(self):
         for self.item in self.registerForms:
