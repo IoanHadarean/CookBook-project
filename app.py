@@ -624,7 +624,7 @@ def update_recipe(recipe_id):
     form = request.form.to_dict()
     instructions = []
     ingredients = []
-    
+
     # Loop through the keys in the form
     # If the key matches instruction append
     # instruction to instructions list
@@ -888,10 +888,11 @@ def update_rating(recipe_id):
         else:
             ratings_collection.insert_one({"user_id": user_id, "recipe_id": recipe_number, "rating": rating})
         instance_recipe = ratings_collection.find({"recipe_id": recipe_number})
-        instance_count = ratings_collection.count_documents({"recipe_id": recipe_number})
+        instance_count = ratings_collection.count_documents({"recipe_id": recipe_number, "rating": {"$ne": "0"}})
         sum_rating = 0
         for doc in instance_recipe:
-            sum_rating = sum_rating + int(doc["rating"])
+            if doc["rating"] != "0":
+                sum_rating = sum_rating + int(doc["rating"])
         average_rating = sum_rating / instance_count
         if average_rating not in numbers_array:
             formatted_average = "{:.1f}".format(average_rating)

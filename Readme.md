@@ -235,6 +235,7 @@ slightly too fast. jQuery could have been used to prevent it, but only vanilla J
 * Fixed delete recipe bug caused by the ID of the recipe.
 * Fixed rating bug caused by not initialising the rating of a recipe to 0.
 * Fixed bug with cancel update modal not firing up.
+* Fixed average rating bug caused by the instance count of ratings for a certain recipe that also included `0`.
 * Fixed bug with likes (dislikes would not go down by 1 after liking a recipe and likes would not go up by 1 after disliking
 a recipe). The approach was to use two separate spans for likes and dislikes and to toggle the number of likes and dislikes.
 The only condition was for likes and dislikes to be greater than or equal to 0.
@@ -375,7 +376,8 @@ correctly. Therefore, site was viewed and tested in the following browsers:
 The website has limited support for Internet Explorer and no support for Safari.
 Manual testing also included registering a user to the website, logging in to the website, updating the profile, adding and editing new recipes, as well as liking/disliking
 database recipes and rating them. The pagination, search and filter results and functionalities were thoroughly tested to check for any bugs. The tests have been done with 
-multiple accounts to see if the functionalities persist between users.
+multiple accounts to see if the functionalities persist between users. Manual testing helped in finding two bugs within the project, a bug with the likes/dislikes functionality
+and another one with the ratings for each recipe.
 5. Postman was used for sending GET and POST requests to the website in order to test it.
 6. Added automated unit tests for the register and edit forms in Python, as well as basic tests for GET requests.
 It's admittable that the tests performed for the app are not the most extensive tests, but having 
