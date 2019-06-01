@@ -28,3 +28,4 @@ for (let i = 0; i < navLinks.length; i++) {
         navLinks[i].style.justifyContent = 'center';
     }
 }
+

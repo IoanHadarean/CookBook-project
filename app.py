@@ -1000,16 +1000,3 @@ def method_not_allowed(error):
 @app.errorhandler(500)
 def server_error(error):
     return render_template('error500.html'), 500
-
-""" Main function for running the app """
-
-
-if __name__ == "__main__":
-    if os.environ.get("DEVELOPMENT"):
-        app.run(host=os.environ.get('IP'),
-                port=os.environ.get('PORT'),
-                debug=True)
-    else:
-        app.run(host=os.environ.get('IP'),
-                port=os.environ.get('PORT'),
-                debug=False)
