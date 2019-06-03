@@ -438,7 +438,7 @@ In order to check the version of Python installed type python --version in the t
 Note: all connection details must be in a string format
 ***
 ```import os
-os.environ["SECRET_KEY"] = SECRET
+os.environ["SECRET_KEY"] = 'SECRET'
 os.environ["MONGO_URI"] = "mongodb://username:password@ds136786.mlab.com:36786/database"
 os.environ["MONGO_DBNAME"] = "MONGODBNAME"
 os.environ["DB_USERNAME"] = 'DBUSERNAME'
@@ -447,12 +447,12 @@ os.environ["DB_PASS"] =  'DBPASS'
 os.environ["DB_NAME"] = 'DBNAME'
 ```
 ***
-Additional Note: you don't need to import the env file as it is already imported in the project
-5. Run the app by typing *`python3 app.py`* in the terminal
+Additional Note: you don't need to import the env file as it is already imported in the project/
+5. Run the app by typing *`python3 run.py`* in the terminal
 Note: the debug is by default set to FALSE, but you can set it to TRUE to allow debugging
 Additional Note: If the editor you are working on does not have a virtual environment already set up,
 you would need to create one yourself. Please refer to this documentation for creating a venv 
-[Virtual Environment and Packages](https://docs.python.org/3/tutorial/venv.html).
+([Virtual Environment and Packages](https://docs.python.org/3/tutorial/venv.html)).
 
 ## Credits
 
