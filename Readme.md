@@ -26,13 +26,13 @@ accounts if he/she would use different devices to prevent fraudulent activity. T
 Note: the wireframes are not entirely accurate, they only give a rough estimate on how the website will look on mobile/tablet/desktop.
 
 #### Wireframe for desktop
-<img src="/static/wireframes/relish-cookbook-desktop.png" alt="Relish-CookBook" border="0">
+<img src="/app/static/wireframes/relish-cookbook-desktop.png" alt="Relish-CookBook" border="0">
 
 #### Wireframe for tablet
-<img src="/static/wireframes/relish-cookbook-tablet.png" alt="Relish-CookBook" border="0">
+<img src="/app/static/wireframes/relish-cookbook-tablet.png" alt="Relish-CookBook" border="0">
 
 #### Wireframe for mobile
-<img src="/static/wireframes/relish-cookbook-mobile.png" alt="Relish-CookBook" border="0">
+<img src="/app/static/wireframes/relish-cookbook-mobile.png" alt="Relish-CookBook" border="0">
 
 ### Existing Features and Functionalities
 The application consists of 14 HTML templates, 15 CSS files, 17 JavaScript files, 1 utility written in JavaScript
