@@ -37,15 +37,16 @@ Note: the wireframes are not entirely accurate, they only give a rough estimate 
 ### Existing Features and Functionalities
 The application consists of 14 HTML templates, 15 CSS files, 17 JavaScript files, 1 utility written in JavaScript
 and 6 Python files, including the env file which stores the environment variables and connection strings plus
-[tests.py](/zapp/tests.py), which incorporates automated tests used to measure the performance and behaviour of the project.
-The main [app.py](../master/app.py) file includes a collection of all the functions and routes that have been used for
-creating the logic of the website. The [models.py](/zapp/models.py) file incorporates the scripts that have been used for
-the statistics charts designed with [Pygal](http://pygal.org/en/stable/), which is a Python library for designing
-and creating charts. Last but not least, the [values.py](/zapp/values.py) file was used for modifying the point dimensions from 
-the statistics page. Finally, the [helpers.py](/zapp/helpers.py) file has been used for returning the dictionary that has been used
-for filtering recipes. Even though the initial plan was not to use any CSS frameworks, it turned out that it would take too much time
-to make everything from scratch. Hence the project focused more on functionalities and it reflects a steep learning curve.
-
+[test_app.py](/app/tests/test_app.py), which incorporates automated tests used to measure the performance and behaviour of the project.
+The main [__init__.py](/app/__init__.py) file includes a collection of all the functions and routes that have been used for
+creating the logic of the website and it also stores the connections to MongoDB and MySQL. The [graphs.py](/app/models/graphs.py) file incorporates 
+the functions that have been used for the creation of the statistics graphs designed with [Pygal](http://pygal.org/en/stable/), which is a Python library for designing
+and creating charts. The [forms.py](/app/models/forms.py) includes the forms that have been used for registration and editing the user profiles.
+Last but not least, the [values.py](/app/models/values.py) file was used for modifying the point dimensions from 
+the statistics page. Finally, the [helpers.py](/app/models/helpers.py) file has been used for returning the dictionary that has been used
+for filtering recipes and also includes the scripts that have been used for the statistics charts. Even though the initial plan was not to use any CSS frameworks, 
+it turned out that it would take too much time to make everything from scratch. Hence the project focused more on functionalities and it reflects a steep learning curve.
+Note: the [run.py](../master/run.py) has been later added for running the application and to ensure a better project structure.
 
 
 #### Website Pages + User Stories
@@ -172,7 +173,7 @@ are not preserved when he/she leaves the edit page. An extra feature could be ad
 14. [Base Template](/app/templates/base.html)
 * Includes all the scripts and css files that have been used for the construction of the other templates.
 (Note: 6 additional helper templates have been used for creating the cancel and delete modals, navbar, as well as
-inline errors and alerts. They can be found [here](/templates/includes)).
+inline errors and alerts. They can be found [here](/app/templates/includes)).
 15. Additional Notes
 * When clicking logout, the user is automatically removed from the session.
 * Added longer set timeout for alerts for improved user experience.
