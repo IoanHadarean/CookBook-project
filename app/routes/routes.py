@@ -1,70 +1,29 @@
-import os
 import pymysql
-import requests
-import pygal
 import re
-import env
+import os
+import requests
+from app import app, connection, mongo
+from flask_login import current_user, login_required, login_user, logout_user
+from flask_pymongo import PyMongo, pymongo
 from base64 import b64encode
 from PIL import Image
 from os import urandom
 from datetime import datetime, timedelta
-from flask_paranoid import Paranoid
-from flask.logging import create_logger
-from flask_login import current_user, login_required, login_user, logout_user
-from werkzeug.datastructures import CombinedMultiDict
-from flask_wtf.file import FileField, FileRequired, FileAllowed
-from zapp import values
-from zapp.helpers import get_results
-from zapp.values import French_val, Mexican_val, Greek_val, English_val
-from zapp.values import Asian_val, Indian_val, Irish_val, Italian_val
 from flask_pymongo import PyMongo, pymongo
-from flask import Flask, redirect, render_template, render_template_string
+from app.models.helpers import get_results
+from flask import redirect, render_template, render_template_string
 from flask import request, url_for, flash, session, logging, json, jsonify
 from bson.json_util import dumps
 from bson.objectid import ObjectId
-from flask_moment import Moment
-from wtforms import Form, StringField, TextAreaField, PasswordField
+from flask_wtf.file import FileField, FileRequired, FileAllowed
 from wtforms.validators import DataRequired, Length, Email, EqualTo
 from wtforms.validators import ValidationError
 from passlib.hash import sha256_crypt
 from functools import wraps
 from werkzeug.urls import url_parse
-from flask_sslify import SSLify
-
-
-app = Flask(__name__)
-sslify = SSLify(app)
-LOG = create_logger(app)
-moment = Moment(app)
-
-
-# Connect to MySQL database
-connection = pymysql.connect(host=os.getenv("DB_HOST"),
-                             user=os.getenv("DB_USERNAME"),
-                             password=os.getenv("DB_PASS"),
-                             db=os.getenv("DB_NAME"),
-                             cursorclass=pymysql.cursors.DictCursor)
-
-app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
-
-# Connect to MongoDB database
-
-app.config["MONGO_DBNAME"] = os.getenv("MONGO_DBNAME")
-app.config["MONGO_URI"] = os.getenv("MONGO_URI")
-
-
-mongo = PyMongo(app)
-
-""" Cookie and Session Security Implementation
-Note: paranoid is necessary in terms of security for the project.
-However, disable it when using Chrome Developer Tools
-or a similar tool since it automatically clears the session
-when accessing a different device.
-"""
-paranoid = Paranoid(app)
-paranoid.redirect_view = '/'
-SESSION_COOKIE_SECURE = True
-SESSION_PERMANENT = False
+from werkzeug.datastructures import CombinedMultiDict
+from app.models.forms import RegisterForm, EditForm
+from app.models.graphs import Graphs
 
 # Get MongoDB collections
 
@@ -74,38 +33,6 @@ user_recipes = mongo.db.user_recipes
 
 # Create index for text search
 recipe_collection.create_index([('$**', 'text')])
-
-
-""" RegisterForm class with fields and validators """
-
-
-class RegisterForm(Form):
-    name = StringField('Name',
-                       validators=[DataRequired(), Length(min=6, max=50)])
-    username = StringField('Username',
-                           validators=[DataRequired(), Length(min=6, max=25)])
-    email = StringField('Email',
-                        validators=[DataRequired(),
-                                    Email(), Length(min=15, max=50)])
-    password = PasswordField('Password', validators=[DataRequired()])
-    confirm = PasswordField('Confirm Password',
-                            validators=[DataRequired(), EqualTo('password',
-                                        message='Passwords do not match')])
-
-
-""" Edit Profile Form class with fields and validators """
-
-
-class EditForm(Form):
-    name = StringField('Name',
-                       validators=[DataRequired(), Length(min=6, max=50)])
-    email = StringField('Email',
-                        validators=[DataRequired(), Email(),
-                                    Length(min=11, max=50)])
-    about_me = TextAreaField('About Me', validators=[Length(min=12, max=140)])
-    picture = FileField('Update Profile Picture',
-                        validators=[FileRequired(),
-                                    FileAllowed(['jpg', 'jpeg', 'png'])])
 
 
 """ Log out the user from session after 1 hour """
@@ -902,83 +829,14 @@ def update_rating(recipe_id):
                                  {"$set": {"rating": formatted_average}})
     return redirect(url_for('get_recipe', recipe_id=recipe_id))
 
-
-""" Recipe ingredients statistics by cuisine """
+""" Recipe statistics """
 
 
 @app.route('/statistics')
-def charts():
-    """ Recipe ingredients statistics by cuisine """
-
-    dot_chart = pygal.Dot(x_label_rotation=30, print_values=False,
-                          show_legend=False,
-                          style=pygal.style.styles['default']
-                          (value_font_size=30,
-                           title_font_size=30,
-                           legend_font_size=30,
-                           dots_size=3000,
-                           background='transparent',
-                           tooltip_font_size=30,
-                           label_font_size=22))
-    dot_chart.title = 'Recipe Ingredients Statistics by Cuisine'
-    dot_chart.y_title = 'Recipes by cuisine'
-    dot_chart.x_labels = ['milk', 'egg', 'sugar',
-                          'flour', 'salt', 'water',
-                          'garlic', 'vanilla', 'butter']
-    dot_chart.y_labels = ['French - 4', 'Mexican - 2', 'Greek - 2',
-                          'English - 2', 'Asian - 4', 'Indian - 3',
-                          'Irish - 2', 'Italian - 5']
-    dot_chart.add('French', French_val)
-    dot_chart.add('Mexican', Mexican_val)
-    dot_chart.add('Greek', Greek_val)
-    dot_chart.add('English', English_val)
-    dot_chart.add('Asian', Asian_val)
-    dot_chart.add('Indian', Indian_val)
-    dot_chart.add('Irish', Irish_val)
-    dot_chart.add('Italian', Italian_val)
-    dot_chart = dot_chart.render_data_uri()
-
-    """ Recipe allergens statistics (in %) """
-
-    solid_gauge_chart = pygal.SolidGauge(inner_radius=0.70,
-                                         style=pygal.style.styles['default']
-                                         (value_font_size=25,
-                                          title_font_size=30,
-                                          legend_font_size=30,
-                                          background='transparent',
-                                          tooltip_font_size=30))
-    solid_gauge_chart.title = 'Recipe Allergens Statistics (in %)'
-    percent_formatter = lambda x: '{:.10g}%'.format(x)
-    solid_gauge_chart.value_formatter = percent_formatter
-
-    solid_gauge_chart.add('Egg', [{'value': 37.5, 'max_value': 100}])
-    solid_gauge_chart.add('Milk', [{'value': 8.33, 'max_value': 100}])
-    solid_gauge_chart.add('Nuts', [{'value': 4.16, 'max_value': 100}])
-    solid_gauge_chart.add('Garlic', [{'value': 41.66, 'max_value': 100}])
-    solid_gauge_chart.add('No allergens', [{'value': 25, 'max_value': 100}])
-    solid_gauge_chart = solid_gauge_chart.render_data_uri()
-
-    """ Average calories by cuisine """
-
-    gauge_chart = pygal.Gauge(human_readable=True,
-                              style=pygal.style.styles['default']
-                              (value_font_size=30, title_font_size=30,
-                               legend_font_size=30, background='transparent',
-                               tooltip_font_size=30, label_font_size=25))
-    gauge_chart.title = 'Average calories by cuisine'
-    gauge_chart.range = [0, 1000]
-    gauge_chart.add('French', 393.5)
-    gauge_chart.add('Mexican', 296)
-    gauge_chart.add('Greek', 599)
-    gauge_chart.add('English', 476)
-    gauge_chart.add('Asian', 292)
-    gauge_chart.add('Indian', 204.66)
-    gauge_chart.add('Irish', 413.5)
-    gauge_chart.add('All', 344.91)
-    gauge_chart = gauge_chart.render_data_uri()
-    return render_template('statistics.html', dot_chart=dot_chart,
-                           solid_gauge_chart=solid_gauge_chart,
-                           gauge_chart=gauge_chart)
+def statistics():
+    return render_template('statistics.html', dot_chart=Graphs.dot_chart(),
+                           solid_gauge_chart=Graphs.solid_gauge_chart(),
+                           gauge_chart=Graphs.gauge_chart())
 
 """ Handle error 404 """
 

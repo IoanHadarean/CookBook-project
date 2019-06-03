@@ -1,6 +1,6 @@
 import os
 import json
-import env
+from app import env
 from flask_pymongo import PyMongo, pymongo
 from flask import Flask
 
@@ -18,11 +18,9 @@ recipes_collection = mongo.db.recipes.find()
 ratings_collection = mongo.db.ratings.find()
 
 
-""" Note: Use these scripts one by one
-    (It's not a good idea to leave out print statements
-    and commented code, but they have been used in this case to
-    reflect the count and to contribute to the assessment of this
-    project by showcasing my logic) """
+""" Scripts that have been used for the statistics charts
+    (Finding out the allergen percentages, ingredients count
+    and average calories per cuisine) """
 
 
 """ Find ingredients by cuisine """
@@ -43,13 +41,11 @@ def count_ingredients():
         # Change the name of the cuisine to look for other cuisines
         if recipe["cuisine_name"] == "Italian":
             count_cuisine = count_cuisine + 1
-            print(count_cuisine)
             items = []
             for ingredient in recipe["ingredients"]:
                 itemSplit = ingredient.split(",")
                 itemSplitAtSpace = itemSplit[0].split(" ")
                 items.append(itemSplitAtSpace)
-            # print(items)
                 mergedItems = []
                 removedDuplicates = []
                 for item in items:
@@ -57,8 +53,6 @@ def count_ingredients():
                     for mergedItem in mergedItems:
                         if mergedItem not in removedDuplicates:
                             removedDuplicates.append(mergedItem)
-            # print(mergedItems)
-            print(removedDuplicates)
             # Print the count for each ingredient based on the cuisine selected
             if "milk" in removedDuplicates:
                 count_milk += 1
@@ -105,7 +99,7 @@ def count_ingredients():
             else:
                 count_butter += 0
             print(count_butter)
-count_ingredients()
+# count_ingredients()
 
 """ Percentage of allergens (from all recipes) """
 
@@ -122,19 +116,14 @@ def percent_allergens():
     count_milk_allergen = 0
     for recipe in recipes_collection:
         count_recipes += 1
-        # print(count_recipes)
         if recipe.get('allergen_name') is None:
             count_none += 1
-            # print(count_none)
         else:
             allergens.append(recipe["allergen_name"])
-    # print(allergens)
     mergedAllergens = []
     for allergen in allergens:
         allergenSplit = allergen.split(" ")
-        # print(allergenSplit)
         mergedAllergens.append(allergenSplit)
-    # print(mergedAllergens)
     splitAllergens = []
     for item in mergedAllergens:
         splitAllergens += item
@@ -142,16 +131,12 @@ def percent_allergens():
     for word in splitAllergens:
         if word == "egg":
             count_egg_allergen += 1
-            # print(count_egg_allergen)
         elif word == "garlic":
             count_garlic_allergen += 1
-            print(count_garlic_allergen)
         elif word == "nuts":
             count_nuts_allergen += 1
-            # print(count_nuts_allergen)
         elif word == "milk":
             count_milk_allergen += 1
-            # print(count_milk_allergen)
     percent_egg = (count_egg_allergen / count_recipes) * 100
     print(percent_egg)
     percent_milk = (count_milk_allergen / count_recipes) * 100
@@ -162,7 +147,7 @@ def percent_allergens():
     print(percent_garlic)
     percent_no_allergens = (count_none / count_recipes) * 100
     print(percent_no_allergens)
-percent_allergens()
+# percent_allergens()
 
 
 """ Average calories by cuisine """
@@ -178,13 +163,11 @@ def average_calories():
         if recipe["cuisine_name"] == "Irish":
             count_recipes_by_cuisine += 1
             wordSplit = recipe["calories"].split(" ")
-            # print(wordSplit)
             calories = int(wordSplit[0])
             calories_total += calories
-            # print(calories_total)
             average_calories = calories_total / count_recipes_by_cuisine
     print(average_calories)
-average_calories()
+# average_calories()
 
 
 """ Script for dumping recipe ids into a JSON file """
@@ -193,7 +176,6 @@ full_recipeIds = []
 for recipe in recipes_collection:
     recipeId = str(recipe["_id"])
     full_recipeIds.append(recipeId)
-    print(full_recipeIds)
 
 with open("urls.json", 'w') as file:
     json.dump(full_recipeIds, file)
@@ -204,3 +186,23 @@ with open("urls.json", 'w') as file:
 recipes.update({}, {"$set": {"dislikes": 0}}, upsert=False, multi=True)
 recipes.update({}, {"$set": {"likes": 0}}, upsert=False, multi=True)
 recipes.update({}, {"$set": {"rating": "0"}}, upsert=False, multi=True)
+
+""" Create list of dictionaries from the search form data """
+def get_results(data):
+    # Create temporary list for filters storage
+    filters = list()
+    # Loop through each of the keys from the form
+    for key in data:
+        # Store the original key for later use
+        value_key = key
+        # Split the key by "-"
+        key = key.split("-")
+        # Take the first value from the list
+        key = key[0]
+        # Create temporary dictionary for storing the filter
+        search_filter = dict()
+        search_filter[key] = data[value_key]
+        # Append the filter to the list of filters
+        filters.append(search_filter)
+    return filters
+        

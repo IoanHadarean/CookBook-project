@@ -4,9 +4,9 @@ import requests
 import urllib
 import json
 from werkzeug.datastructures import ImmutableMultiDict
-import app
 from unittest.mock import patch
-from app import RegisterForm, EditForm, filter_results
+from app import app
+from app.models.forms import RegisterForm, EditForm
 from flask import request
 from bson.objectid import ObjectId
 
