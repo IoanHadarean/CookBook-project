@@ -447,7 +447,7 @@ os.environ["DB_PASS"] =  'DBPASS'
 os.environ["DB_NAME"] = 'DBNAME'
 ```
 ***
-Additional Note: you don't need to import the env file as it is already imported in the project/
+Additional Note: you don't need to import the env file as it is already imported in the project\
 5. Run the app by typing *`python3 run.py`* in the terminal
 Note: the debug is by default set to FALSE, but you can set it to TRUE to allow debugging
 Additional Note: If the editor you are working on does not have a virtual environment already set up,

@@ -1,12 +1,13 @@
 import os
 import pymysql
-from app import env
 from flask_paranoid import Paranoid
 from flask.logging import create_logger
 from flask import Flask
 from flask_pymongo import PyMongo, pymongo
 from flask_sslify import SSLify
 
+if not os.environ.get("DEVELOPMENT"):
+    from app import env
 
 app = Flask(__name__)
 sslify = SSLify(app)
