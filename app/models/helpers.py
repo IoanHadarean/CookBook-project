@@ -99,7 +99,7 @@ def count_ingredients():
             else:
                 count_butter += 0
             print(count_butter)
-# count_ingredients()
+count_ingredients()
 
 """ Percentage of allergens (from all recipes) """
 
@@ -147,7 +147,7 @@ def percent_allergens():
     print(percent_garlic)
     percent_no_allergens = (count_none / count_recipes) * 100
     print(percent_no_allergens)
-# percent_allergens()
+percent_allergens()
 
 
 """ Average calories by cuisine """
@@ -167,7 +167,7 @@ def average_calories():
             calories_total += calories
             average_calories = calories_total / count_recipes_by_cuisine
     print(average_calories)
-# average_calories()
+average_calories()
 
 
 """ Script for dumping recipe ids into a JSON file """
