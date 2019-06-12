@@ -41,6 +41,7 @@ def count_ingredients():
         # Change the name of the cuisine to look for other cuisines
         if recipe["cuisine_name"] == "Italian":
             count_cuisine = count_cuisine + 1
+            print(count_cuisine)
             items = []
             for ingredient in recipe["ingredients"]:
                 itemSplit = ingredient.split(",")
@@ -125,16 +126,15 @@ def percent_allergens():
         allergenSplit = allergen.split(" ")
         mergedAllergens.append(allergenSplit)
     splitAllergens = []
-    for item in mergedAllergens:
-        splitAllergens += item
+    splitAllergens = [item for item in mergedAllergens]
     for word in splitAllergens:
-        if word == "egg":
+        if "egg" in word:
             count_egg_allergen += 1
-        elif word == "garlic":
+        if "garlic" in word:
             count_garlic_allergen += 1
-        elif word == "nuts":
+        if "nuts" in word:
             count_nuts_allergen += 1
-        elif word == "milk":
+        if "milk" in word:
             count_milk_allergen += 1
     percent_egg = (count_egg_allergen / count_recipes) * 100
     print(percent_egg)
@@ -146,7 +146,7 @@ def percent_allergens():
     print(percent_garlic)
     percent_no_allergens = (count_none / count_recipes) * 100
     print(percent_no_allergens)
-percent_allergens()
+# percent_allergens()
 
 
 """ Average calories by cuisine """
@@ -161,27 +161,28 @@ def average_calories():
             average calories for all recipes) """
         if recipe["cuisine_name"] == "Irish":
             count_recipes_by_cuisine += 1
+            print(count_recipes_by_cuisine)
             wordSplit = recipe["calories"].split(" ")
             calories = int(wordSplit[0])
             calories_total += calories
             average_calories = calories_total / count_recipes_by_cuisine
     print(average_calories)
-# average_calories()
+average_calories()
 
 
 """ Script for dumping recipe ids into a JSON file """
 
-# full_recipeIds = []
-# for recipe in recipes_collection:
-#     recipeId = str(recipe["_id"])
-#     full_recipeIds.append(recipeId)
+full_recipeIds = []
+for recipe in recipes_collection:
+    recipeId = str(recipe["_id"])
+    full_recipeIds.append(recipeId)
 
-# with open("urls.json", 'w') as file:
-#     json.dump(full_recipeIds, file)
+with open("urls.json", 'w') as file:
+    json.dump(full_recipeIds, file)
 
 
 """ Script for updating multiple values in MongoDB collection """
 
-# recipes.update({}, {"$set": {"dislikes": 0}}, upsert=False, multi=True)
-# recipes.update({}, {"$set": {"likes": 0}}, upsert=False, multi=True)
-# recipes.update({}, {"$set": {"rating": "0"}}, upsert=False, multi=True)
+recipes.update({}, {"$set": {"dislikes": 0}}, upsert=False, multi=True)
+recipes.update({}, {"$set": {"likes": 0}}, upsert=False, multi=True)
+recipes.update({}, {"$set": {"rating": "0"}}, upsert=False, multi=True)
