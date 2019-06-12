@@ -4,7 +4,6 @@ import os
 import requests
 from app import app, connection, mongo
 from flask_login import current_user, login_required, login_user, logout_user
-from flask_pymongo import PyMongo, pymongo
 from base64 import b64encode
 from PIL import Image
 from os import urandom
@@ -15,9 +14,6 @@ from flask import redirect, render_template, render_template_string
 from flask import request, url_for, flash, session, logging, json, jsonify
 from bson.json_util import dumps
 from bson.objectid import ObjectId
-from flask_wtf.file import FileField, FileRequired, FileAllowed
-from wtforms.validators import DataRequired, Length, Email, EqualTo
-from wtforms.validators import ValidationError
 from passlib.hash import sha256_crypt
 from functools import wraps
 from werkzeug.urls import url_parse
@@ -186,8 +182,7 @@ def profile():
         _, f_ext = os.path.splitext(picture.filename)
         picture_fn = token + f_ext
         new_picture_fn = picture_fn.replace("/", "|")
-        app.root_path = os.path.dirname(os.path.abspath(__file__))
-        picture_path = os.path.abspath(os.path.join(app.root_path, 'static/images', new_picture_fn))
+        picture_path = os.path.abspath(os.path.join('app/static/images', new_picture_fn))
         output_size = (180, 180)
 
         i = Image.open(picture)
@@ -247,8 +242,7 @@ def profile():
         starting_id = user_made.sort('_id', pymongo.ASCENDING)
         last_id = starting_id[pagination_offset]['_id']
         total_results = 0
-        for recipe in user_made:
-            total_results += 1
+        total_results = len([total_results + 1 for recipe in user_made])
 
         args = {
             "limit": pagination_limit,
@@ -288,8 +282,7 @@ def recipes():
     starting_id = recipe_collection.find().sort('_id', pymongo.ASCENDING)
     last_id = starting_id[pagination_offset]['_id']
     total_results = 0
-    for item in recipes:
-        total_results += 1
+    total_results = len([total_results + 1 for item in recipes])
 
     args = {
         "limit": pagination_limit,
@@ -442,8 +435,7 @@ def search_recipes():
     if results_count != 0 and search_text is not None:
         last_id = starting_id[pagination_offset]['_id']
         total_results = 0
-        for item in recipes:
-            total_results += 1
+        total_results = [total_results + 1 for item in recipes]
         args = {
             "limit": pagination_limit,
             "offset": pagination_offset,
@@ -452,7 +444,7 @@ def search_recipes():
                                                .limit(pagination_limit),
             "next_url": '/search_recipes?limit=' + str(pagination_limit) + '&offset=' + str(pagination_offset + pagination_limit),
             "prev_url": '/search_recipes?limit=' + str(pagination_limit) + '&offset=' + str(pagination_offset - pagination_limit),
-            "total_results": total_results
+            "total_results": len(total_results)
         }
 
         return render_template('search_recipes.html',
@@ -817,9 +809,7 @@ def update_rating(recipe_id):
         instance_recipe = ratings_collection.find({"recipe_id": recipe_number})
         instance_count = ratings_collection.count_documents({"recipe_id": recipe_number, "rating": {"$ne": "0"}})
         sum_rating = 0
-        for doc in instance_recipe:
-            if doc["rating"] != "0":
-                sum_rating = sum_rating + int(doc["rating"])
+        sum_rating = sum([sum_rating + int(doc["rating"]) for doc in instance_recipe if doc["rating"] != "0"])
         average_rating = sum_rating / instance_count
         if average_rating not in numbers_array:
             formatted_average = "{:.1f}".format(average_rating)
