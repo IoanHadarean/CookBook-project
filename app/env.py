@@ -1,7 +1,7 @@
 import os
 
 # Create a secret key
-os.environ["SECRET_KEY"] = "3markHero"
+os.environ["SECRET_KEY"] = "MonkaS"
 # Storing the MONGO_URI environment variable
 os.environ["MONGO_URI"] = "mongodb://admin_recipe:3markHero@ds145923.mlab.com:45923/recipes"
 os.environ["MONGO_DBNAME"] = "recipes"
