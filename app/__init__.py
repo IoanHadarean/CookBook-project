@@ -6,17 +6,10 @@ from flask.logging import create_logger
 from flask import Flask
 from flask_pymongo import PyMongo, pymongo
 from flask_sslify import SSLify
-from sassutils.wsgi import SassMiddleware
 
 app = Flask(__name__)
 sslify = SSLify(app)
 LOG = create_logger(app)
-
-
-# Add sass compiler
-app.wsgi_app = SassMiddleware(app.wsgi_app, {
-    'myapp': ('static/sass', 'static/css', '/static/css')
-})
 
 # Connect to MySQL database
 connection = pymysql.connect(host=os.getenv("DB_HOST"),

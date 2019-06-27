@@ -260,8 +260,8 @@ worth mentioning, and since he tries to be critical about himself, it was the ri
 1. **HTML**, **CSS**, **SCSS** and **JavaScript**
     <br>Languages that were used to improve the feel of the Relish website. Pure HTML and CSS was predominantly
     used for designing the recipe views. Note: no jQuery was used for this project because the intention was to improve 
-    the learning curve with vanilla JavaScript. CSS was later converted into SCSS using **BeautifyTools**
-    (http://beautifytools.com/css-to-scss-converter.php).
+    the learning curve with vanilla JavaScript. SCSS was converted into CSS using **pyScss**(https://pypi.org/project/pyScss/).
+    The command used for converting SCSS into CSS was *`python3 -mscss < app/static/scss/name_of_scss_file > app/static/css/name_of_css_file`*.
 2. **Bootstrap v3.3.7**(https://getbootstrap.com/docs/3.3/getting-started/#download)
     <br>**Bootstrap** was used to give the project a responsive layout. As previously specified in the
     existing featured and functionalities section, the original intention was to not use 

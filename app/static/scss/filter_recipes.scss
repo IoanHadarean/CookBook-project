@@ -38,34 +38,30 @@ option {
 /* ---------------------------------------- Recipe filters -------------------------- */
 
 #filter-btn-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 10%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 10%;
 }
-
-
-#num-results,
-#filter_results {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
 #num-results {
-    margin-top: 0;
-    min-height: 1.25rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 0;
+	min-height: 1.25rem;
 }
-
 #filter_results {
-    margin-top: 12.5rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 12.5rem;
+}
+#filter-form-container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 
-#filter-form-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
 
 
 /* ----------------------------------- Filter Buttons ------------------------------------------ */
@@ -131,12 +127,12 @@ option {
 		top: 7vh;
 	}
 }
-@media min-height: 600px) and (max-width: 767px) {
+@media (min-height: 600px) and (max-width: 767px) {
 	#filter_results {
 		margin-top: 13.75rem;
 	}
 }
-@media min-height: 600px) and (min-width: 768px) {
+@media (min-height: 600px) and (min-width: 768px) {
 	#filter_results {
 		margin-top: 16.25rem;
 	}

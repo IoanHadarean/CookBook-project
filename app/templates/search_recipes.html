@@ -1,9 +1,9 @@
 {% extends 'base.html' %} 
 {% block content %}
-<link rel="stylesheet" href="{{ url_for('static', filename = 'css/special_styling.scss.css') }}" type="text/css" />
-<link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.scss.css') }}" type="text/css" />
-<link rel="stylesheet" href="{{ url_for('static', filename = 'css/search_recipes.scss.css') }}" type="text/css" />
-<link rel="stylesheet" href="{{ url_for('static', filename = 'css/search_results.scss.css') }}" type="text/css" />
+<link rel="stylesheet" href="{{ url_for('static', filename = 'css/special_styling.css') }}" type="text/css" />
+<link rel="stylesheet" href="{{ url_for('static', filename = 'css/style.css') }}" type="text/css" />
+<link rel="stylesheet" href="{{ url_for('static', filename = 'css/search_recipes.css') }}" type="text/css" />
+<link rel="stylesheet" href="{{ url_for('static', filename = 'css/search_results.css') }}" type="text/css" />
 
 <!-- Search form -->
 <form id="search_form" class="uk-search uk-search-default" action="{{ url_for('search_recipes', limit=6, offset=0) }}" method="POST">
