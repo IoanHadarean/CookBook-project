@@ -12,8 +12,8 @@
  .alert-success,
  .alert-danger,
  .alert-info {
-  margin-top: 50px;
-  font-size: 16px;
+  margin-top: 3.125rem;
+  font-size: 1rem;
   text-align: center;
  }
 
@@ -22,7 +22,7 @@
  }
 
  .alert-message {
-  margin-top: 50px;
+  margin-top: 3.125rem;
   color: #721c24;
   background: #f5c6cb;
  }
@@ -39,11 +39,11 @@
  #navbar {
   background-color: #62a5a1;
   width: 100%;
-  margin: 0px;
+  margin: 0rem;
   z-index: 4;
-  -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+  -webkit-box-shadow: 0 0.0625rem 0.25rem rgba(0, 0, 0, 0.3), 0 0 2.5rem rgba(0, 0, 0, 0.1) inset;
+  -moz-box-shadow: 0 0.0625rem 0.25rem rgba(0, 0, 0, 0.3), 0 0 2.5rem rgba(0, 0, 0, 0.1) inset;
+  box-shadow: 0 0.0625rem 0.25rem rgba(0, 0, 0, 0.3), 0 0 2.5rem rgba(0, 0, 0, 0.1) inset;
  }
 
  nav {
@@ -59,13 +59,13 @@
  }
 
  .container--nav {
-  padding-right: 0px;
-  padding-left: 0px;
+  padding-right: 0rem;
+  padding-left: 0rem;
  }
 
  .navbar-header a {
   color: black;
-  font-size: 24px;
+  font-size: 1.5rem;
   font-family: "Arial";
  }
 
@@ -75,7 +75,7 @@
 
  #navbar a {
   color: black;
-  font-size: 20px;
+  font-size: 1.25rem;
   font-family: "Arial";
  }
 
@@ -85,7 +85,7 @@
  }
 
  .navbar-middle li a {
-  height: 50px;
+  height: 3.125rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -102,9 +102,9 @@
  /* -------------------------------------------Buttons--------------------------------------- */
 
  .btn {
-  padding-left: 0px;
-  padding-right: 0px;
-  width: 100px;
+  padding-left: 0rem;
+  padding-right: 0rem;
+  width: 6.25rem;
   margin-top: 10%;
  }
 
@@ -146,7 +146,7 @@
   position: relative;
   text-align: center;
   line-height: 10%;
-  height: 100px;
+  height: 6.25rem;
  }
 
  .footer__copyright {
@@ -155,12 +155,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100px;
+  height: 6.25rem;
  }
 
  .footer__copyright a {
   color: white;
-  margin-left: 10px;
+  margin-left: 0.625rem;
  }
 
 
@@ -168,11 +168,11 @@
 
  @media only screen and (max-width: 360px) {
   .navbar-toggle {
-   margin-right: 5px;
+   margin-right: 0.3125rem;
   }
 
   #navbar a {
-   font-size: 17.5px;
+   font-size: 1.09375rem;
   }
  }
 
@@ -186,16 +186,16 @@
   }
 
   .navbar-middle {
-   margin-top: 23px;
+   margin-top: 1.4375rem;
   }
 
   .navbar-right {
-   margin-bottom: 23px;
+   margin-bottom: 1.4375rem;
   }
 
   .add_recipe-tag,
   .profile-tag {
-   height: 30px;
+   height: 1.875rem;
   }
 
  }
@@ -203,7 +203,7 @@
 
  @media screen and (max-width: 500px) {
   .form-control {
-   margin-bottom: -5px;
+   margin-bottom: -0.3125rem;
   }
 
   label {
@@ -222,11 +222,11 @@
 
  @media (min-width: 768px) and (max-width: 1024px) {
   .navbar-header a {
-   font-size: 20px;
+   font-size: 1.25rem;
   }
 
   #navbar a {
-   font-size: 16px;
+   font-size: 1rem;
   }
  }
 
@@ -284,8 +284,8 @@
   }
 
   .navbar-right {
-   margin-right: 15px;
-   height: 50px;
+   margin-right: 0.9375rem;
+   height: 3.125rem;
   }
 
   .navbar-brand {
@@ -293,7 +293,7 @@
   }
 
   .footer__copyright a {
-   font-size: 24px;
+   font-size: 1.5rem;
   }
  }
 
@@ -320,8 +320,8 @@
  @media screen and (max-height: 768px) and (min-width: 768px) {
   label {
    position: absolute;
-   margin-top: 10px;
-   margin-left: -180px;
+   margin-top: 0.625rem;
+   margin-left: -11.25rem;
   }
  }
 
@@ -343,7 +343,7 @@
   }
 
   .form-control {
-   margin-bottom: 5px;
+   margin-bottom: 0.3125rem;
   }
  }
 
@@ -354,7 +354,7 @@
   }
 
   .form-control {
-   margin-bottom: 5px;
+   margin-bottom: 0.3125rem;
   }
  }
 
@@ -364,6 +364,4 @@
    top: 25vh;
   }
  }
- 
- 
  

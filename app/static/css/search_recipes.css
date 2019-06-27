@@ -15,7 +15,7 @@ footer {
 }
 
 #search_message {
-    margin-top: 80px;
+    margin-top: 5rem;
 }
 
 #count_results {
@@ -28,7 +28,7 @@ footer {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding-bottom: 10px;
+    padding-bottom: 0.625rem;
     margin-left: auto;
     margin-right: auto;
 }
@@ -36,19 +36,19 @@ footer {
 
 .uk-search-input {
     width: 100vw;
-    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
+    -webkit-box-shadow: 0 0.0625rem 0.25rem rgba(0, 0, 0, 0.3), 0 0 2.5rem rgba(0, 0, 0, 0.1) inset;
+    -moz-box-shadow: 0 0.0625rem 0.25rem rgba(0, 0, 0, 0.3), 0 0 2.5rem rgba(0, 0, 0, 0.1) inset;
+    box-shadow: 0 0.0625rem 0.25rem rgba(0, 0, 0, 0.3), 0 0 2.5rem rgba(0, 0, 0, 0.1) inset;
 }
 
 .btn {
-    width: 120px;
+    width: 7.5rem;
     margin-top: 0;
 }
 
 #search-btn-container {
-    height: 34px;
-    margin-top: 80px;
+    height: 2.125rem;
+    margin-top: 5rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -62,13 +62,13 @@ footer {
 }
 
 .font-size-icon {
-    font-size: 50px;
+    font-size: 3.125rem;
 }
 
 .all-recipes {
-    height: 32px;
+    height: 2rem;
     color: black;
-    margin-left: 20px;
+    margin-left: 1.25rem;
 }
 
 .all-recipes:hover {
@@ -77,7 +77,7 @@ footer {
 
 .back-all-button {
     background: white;
-    border: 1px solid black;
+    border: 0.0625rem solid black;
 }
 
 /* ---------------------------------- Media Queries ------------------------------ */
@@ -97,39 +97,39 @@ footer {
 @media (max-width: 768px) and (min-width: 560px) {
     .uk-search,
     .uk-search-input,
-    #search-btn-container{
+    #search-btn-container {
         width: 60vw;
         max-width: 60vw;
     }
 }
 
 @media (min-height: 641px) and (max-height: 960px) and (min-width: 375px) {
-    #search_message{
-        margin-top: 40px;
+    #search_message {
+        margin-top: 2.5rem;
     }
 }
 
 
 @media only screen and (max-width: 320px) {
-    #search_message{
-        margin-top: 35px;
+    #search_message {
+        margin-top: 2.1875rem;
     }
 }
 
 @media only screen and (max-height: 360px) {
-    #search_message{
-        margin-top: 20px;
+    #search_message {
+        margin-top: 1.25rem;
     }
 
     footer {
-        margin-bottom: -100px;
+        margin-bottom: -6.25rem;
     }
 }
 
 @media (max-width: 1440px) and (min-width: 769px) {
     .uk-search,
     .uk-search-input,
-    #search-btn-container{
+    #search-btn-container {
         width: 40vw;
         max-width: 40vw;
     }
@@ -138,7 +138,7 @@ footer {
 @media (min-width: 1441px) {
     .uk-search,
     .uk-search-input,
-    #search-btn-container{
+    #search-btn-container {
         width: 30vw;
         max-width: 30vw;
     }

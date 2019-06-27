@@ -3,17 +3,17 @@
 select,
 option {
     background: white;
-    -webkit-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-    -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3), 0 0 40px rgba(0, 0, 0, 0.1) inset;
-    height: 30px;
-    margin-top: 120px;
-    margin-left: 10px;
-    font-size: 11px;
+    -webkit-box-shadow: 0 0.0625rem 0.25rem rgba(0, 0, 0, 0.3), 0 0 2.5rem rgba(0, 0, 0, 0.1) inset;
+    -moz-box-shadow: 0 0.0625rem 0.25rem rgba(0, 0, 0, 0.3), 0 0 2.5rem rgba(0, 0, 0, 0.1) inset;
+    box-shadow: 0 0.0625rem 0.25rem rgba(0, 0, 0, 0.3), 0 0 2.5rem rgba(0, 0, 0, 0.1) inset;
+    height: 1.875rem;
+    margin-top: 7.5rem;
+    margin-left: 0.625rem;
+    font-size: 0.6875rem;
 }
 
 .container {
-    margin-top: 100px;
+    margin-top: 6.25rem;
 }
 
 .btn:disabled {
@@ -44,11 +44,11 @@ option {
 
 #num-results {
     margin-top: 0;
-    min-height: 20px;
+    min-height: 1.25rem;
 }
 
 #filter_results {
-    margin-top: 200px;
+    margin-top: 12.5rem;
 }
 
 #filter-form-container {
@@ -65,9 +65,9 @@ option {
 }
 
 .all-recipes {
-    height: 32px;
+    height: 2rem;
     color: black;
-    margin-left: 20px;
+    margin-left: 1.25rem;
 }
 
 .all-recipes:hover {
@@ -80,7 +80,7 @@ option {
 
 .back-all-button {
     background: white;
-    border: 1px solid black;
+    border: 0.0625rem solid black;
 }
 
 /* -----------------------------------  Media Queries --------------------- */
@@ -88,26 +88,26 @@ option {
 @media only screen and (max-width: 360px) {
     select,
     option {
-        font-size: 10px;
+        font-size: 0.625rem;
         margin-left: 0;
     }
     
     form {
-        margin-top: 30px;
+        margin-top: 1.875rem;
     }
 }
 
 @media (min-width: 412px) and (max-width: 1440px) {
     select,
     option {
-        font-size: 14px;
+        font-size: 0.875rem;
     }
 }
 
 @media (min-width: 1441px) {
     select,
     option {
-        font-size: 18px;
+        font-size: 1.125rem;
     }
 }
 
@@ -125,14 +125,14 @@ option {
 
 @media(min-height: 600px) and (max-width: 767px) {
     #filter_results {
-        margin-top: 220px;
+        margin-top: 13.75rem;
     }
 }
 
 
 @media(min-height: 600px) and (min-width: 768px) {
     #filter_results {
-        margin-top: 260px;
+        margin-top: 16.25rem;
     }
 }
 

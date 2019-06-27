@@ -12,16 +12,16 @@
  /* ----------------------------Charts-------------------------------*/
 
  #dot_chart {
-  margin-top: 100px;
+  margin-top: 6.25rem;
  }
 
  #gauge_chart {
-  margin-bottom: 50px;
+  margin-bottom: 3.125rem;
  }
 
  #gauge_chart,
  #solid_gauge_chart {
-  margin-top: 25px;
+  margin-top: 1.5625rem;
  }
 
  /* ----------------------------Media Queries-------------------------------*/
@@ -39,7 +39,7 @@
 
  @media (max-height: 667px) and (min-height: 360px) {
   footer {
-   bottom: 0px;
+   bottom: 0rem;
   }
  }
  

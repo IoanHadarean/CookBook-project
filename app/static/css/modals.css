@@ -1,7 +1,7 @@
 /* ---------------------------------------- Buttons ----------------------------------- */
 
 .inline {
-    height: 34px;
+    height: 2.125rem;
 }
 
 .inline>.edit-container,
@@ -16,7 +16,7 @@
 .edit-button {
     width: 100%;
     margin-top: 0;
-    box-shadow: 0 0 11px rgba(33, 33, 33, .2);
+    box-shadow: 0 0 0.6875rem rgba(33, 33, 33, .2);
     color: black;
     border-radius: 0;
 }
@@ -28,13 +28,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
+    font-size: 1.25rem;
 }
 
 .delete-button-modal {
     color: black;
-    margin-right: 5px;
-    border: 1px solid black;
+    margin-right: 0.3125rem;
+    border: 0.0625rem solid black;
 }
 
 .modal-dialog {
@@ -42,7 +42,7 @@
 }
 
 .modal-body {
-    padding: 15px 15px 0 15px;
+    padding: 0.9375rem 0.9375rem 0 0.9375rem;
 }
 
 .modal-open {
@@ -51,11 +51,11 @@
 }
 
 .cancel-button {
-    height: 34px;
+    height: 2.125rem;
     color: black;
     opacity: 0.7;
-    font-size: 14px;
-    border: 1px solid black !important;
+    font-size: 0.875rem;
+    border: 0.0625rem solid black !important;
 }
 
 .cancel-button:hover {
@@ -70,9 +70,9 @@
 /* ----------------------------------------- Cancel Update Modal ------------------------- */
 .cancel-update-button {
     margin-top: 10%;
-    margin-right: 20px;
+    margin-right: 1.25rem;
     opacity: 1;
-    border: 1px solid black;
+    border: 0.0625rem solid black;
     color: black;
 }
 
@@ -80,18 +80,18 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 20px;
+    font-size: 1.25rem;
 }
 
 .reset-button-modal {
     color: black;
     margin-top: 0;
-    width: 120px;
-    border: 1px solid black;
+    width: 7.5rem;
+    border: 0.0625rem solid black;
 }
 
 .cancel-update-button:hover {
-    border: 1px solid gray;
+    border: 0.0625rem solid gray;
     color: gray;
     background: white;
 }

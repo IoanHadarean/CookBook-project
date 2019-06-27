@@ -7,7 +7,7 @@ body {
 }
 
 section {
-    margin-top: 50px;
+    margin-top: 3.125rem;
     overflow: hidden;
 }
 
@@ -25,11 +25,11 @@ ul {
 /*------------------------------------- Recipe Image ----------------------- */
 
 .image__inline {
-    max-height: 322px;
+    max-height: 20.125rem;
     width: 80vw;
     margin-left: 10vw;
     margin-right: 10vw;
-    margin-top: 30px;
+    margin-top: 1.875rem;
     border-radius: 25%;
     -moz-object-fit: cover;
     -webkit-object-fit: cover;
@@ -39,7 +39,7 @@ ul {
 /* ------------------------------------- Recipe Likes ------------------------------ */
 
 .recipe__likes {
-    margin-top: 10px;
+    margin-top: 0.625rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -61,19 +61,19 @@ ul {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 10px;
+    margin-top: 0.625rem;
 }
 
 .ratings__title,
 .numbers-rating {
-    margin-right: 10px;
+    margin-right: 0.625rem;
 }
 
 
 .stars-outer {
     position: relative;
     display: inline-block;
-    margin-right: 10px;
+    margin-right: 0.625rem;
 }
 
 .stars-inner {
@@ -114,10 +114,10 @@ ul {
 
 .modal-content {
     background-color: #fefefe;
-    margin-top: 50px;
-    border: 1px solid #888;
+    margin-top: 3.125rem;
+    border: 0.0625rem solid #888;
     width: 100%;
-    height: 300px;
+    height: 18.75rem;
 }
 
 .modal__title {
@@ -163,7 +163,7 @@ ul {
 #rating__button {
     background-color: #009978;
     color: black;
-    border-radius: 4px;
+    border-radius: 0.25rem;
 }
 
 .modal__submit:hover,
@@ -176,8 +176,8 @@ ul {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100px;
-    height: 35px;
+    width: 6.25rem;
+    height: 2.1875rem;
     margin-left: auto;
     margin-right: auto;
 }
@@ -189,9 +189,9 @@ ul {
 .close {
     color: #aaa;
     float: right;
-    font-size: 28px;
+    font-size: 1.75rem;
     font-weight: bold;
-    padding: 10px;
+    padding: 0.625rem;
 }
 
 .close:hover,
@@ -205,7 +205,7 @@ x-star-rating {
     display: inline-flex;
     cursor: pointer;
     font-family: "Ionicons";
-    font-size: 30px;
+    font-size: 1.875rem;
 }
 
 x-star-rating>.star:after {
@@ -221,7 +221,7 @@ x-star-rating>.star.full:after {
 /* -------------------------------------- Recipe Info ------------------------- */
 
 .title__description {
-    font-size: 30px;
+    font-size: 1.875rem;
     margin-left: 5vw;
     margin-right: 5vw;
     font-weight: bold;
@@ -229,7 +229,7 @@ x-star-rating>.star.full:after {
 }
 
 .author__description {
-    font-size: 16px;
+    font-size: 1rem;
 }
 
 .recipe__author,
@@ -244,26 +244,26 @@ x-star-rating>.star.full:after {
 .recipe-separator {
     width: 95%;
     margin-left: 2.5%;
-    border: 1px solid gray;
+    border: 0.0625rem solid gray;
 }
 
 .info__time,
 .info__specs,
 .info__nutrition {
     text-align: center;
-    font-size: 40px;
-    margin-top: 15px;
-    margin-bottom: 20px;
+    font-size: 2.5rem;
+    margin-top: 0.9375rem;
+    margin-bottom: 1.25rem;
     position: sticky;
 }
 
 .info__time {
-    height: 140px;
+    height: 8.75rem;
 }
 
 .info__specs,
 .info__nutrition {
-    height: 70px;
+    height: 4.375rem;
 }
 
 .time__cooking,
@@ -274,8 +274,8 @@ x-star-rating>.star.full:after {
 .specs__allergens,
 .nutrition__calories,
 .nutrition__servings {
-    height: 100px;
-    font-size: 20px;
+    height: 6.25rem;
+    font-size: 1.25rem;
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -300,7 +300,7 @@ x-star-rating>.star.full:after {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
 }
 
 .time__preparation,
@@ -318,9 +318,9 @@ x-star-rating>.star.full:after {
 .is-time,
 .is-spec,
 .is-nutrition {
-    margin-top: 10px;
+    margin-top: 0.625rem;
     color: #009978;
-    font-size: 16px;
+    font-size: 1rem;
 }
 
 /* ------------------------------------------ Recipe Alert ----------------------------- */
@@ -328,17 +328,17 @@ x-star-rating>.star.full:after {
 .recipe__alert {
     margin-right: 2.5vw;
     width: 95vw;
-    height: 100px;
-    margin-bottom: 20px;
+    height: 6.25rem;
+    margin-bottom: 1.25rem;
 }
 
 .alert__description,
 .ingredients__description,
 .instructions__description {
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: 700;
-    margin-top: 25px;
-    margin-bottom: 25px;
+    margin-top: 1.5625rem;
+    margin-bottom: 1.5625rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -350,7 +350,7 @@ x-star-rating>.star.full:after {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 35px;
+    height: 2.1875rem;
     background: #f26226;
     width: 50vw;
     margin-left: 25vw;
@@ -359,7 +359,7 @@ x-star-rating>.star.full:after {
 .box__link {
     text-decoration: none;
     color: white;
-    font-size: 16px;
+    font-size: 1rem;
     height: 100%;
     width: 100%;
     display: flex;
@@ -375,21 +375,21 @@ x-star-rating>.star.full:after {
 /* ------------------------------------------------ Recipe Ingredients ---------------------- */
 
 .recipe__quantities {
-    margin-top: 20px;
+    margin-top: 1.25rem;
     margin-left: 5%;
     width: 30%;
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
     display: inline-block;
     float: left;
 }
 
 .ingredients {
-    margin-top: 50px;
+    margin-top: 3.125rem;
 }
 
 .recipe__quantities li,
 .recipe__ingredients li {
-    min-height: 40px;
+    min-height: 2.5rem;
 }
 
 .recipe__quantities li {
@@ -403,9 +403,9 @@ x-star-rating>.star.full:after {
 }
 
 .recipe__ingredients {
-    margin-top: 20px;
+    margin-top: 1.25rem;
     width: 65vw;
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
     display: inline-block;
 }
 
@@ -417,29 +417,29 @@ x-star-rating>.star.full:after {
 /* ------------------------------------------Recipe instructions -------------------- */
 
 .instructions__index {
-    padding: 5px 10px 5px 10px;
-    border: 1px solid gray;
+    padding: 0.3125rem 0.625rem 0.3125rem 0.625rem;
+    border: 0.0625rem solid gray;
     border-radius: 50%;
 }
 
 .cooking {
     margin-left: 0;
-    margin-bottom: 50px;
+    margin-bottom: 3.125rem;
 }
 
 .instructions__full {
     width: 90vw;
-    margin-top: 30px;
+    margin-top: 1.875rem;
 }
 
 .instructions__full li {
     list-style-type: none;
-    margin-left: 50px;
-    margin-top: -20px;
+    margin-left: 3.125rem;
+    margin-top: -1.25rem;
 }
 
 .recipe__instructions {
-    margin-bottom: 50px;
+    margin-bottom: 3.125rem;
     margin-left: 2.5%;
     width: 92.5%;
 }
@@ -541,26 +541,26 @@ x-star-rating>.star.full:after {
 
 @media only screen and (max-width: 320px) and (min-height: 361px) {
     .modal-content {
-        height: 250px;
+        height: 15.625rem;
     }
 }
 
 @media (min-width: 321px) and (max-width: 380px) and (min-height: 361px) {
     .modal-content {
-        height: 270px;
+        height: 16.875rem;
     }
 }
 
 
 @media (min-width: 381px) and (max-width: 420px) and (min-height: 361px) {
     .modal-content {
-        height: 290px;
+        height: 18.125rem;
     }
 }
 
 @media (min-width: 421px) and (max-width: 490px) and (min-height: 361px) {
     .modal-content {
-        height: 320px;
+        height: 20rem;
     }
 }
 
@@ -572,7 +572,7 @@ x-star-rating>.star.full:after {
 
 @media (min-width: 491px) and (max-width: 560px) and (min-height: 361px) {
     .modal-content {
-        height: 350px;
+        height: 21.875rem;
     }
 }
 
@@ -585,7 +585,7 @@ x-star-rating>.star.full:after {
 
 @media (min-width: 561px) and (max-width: 600px) and (min-height: 361px) {
     .modal-content {
-        height: 370px;
+        height: 23.125rem;
     }
 }
 
@@ -601,7 +601,7 @@ x-star-rating>.star.full:after {
 
 @media (min-width: 601px) and (max-width: 1280px) and (min-height: 361px) {
     .modal-content {
-        height: 400px;
+        height: 25rem;
     }
 }
 
@@ -631,7 +631,7 @@ x-star-rating>.star.full:after {
 
 @media (min-width: 1281px) and (min-height: 361px) {
     .modal-content {
-        height: 420px;
+        height: 26.25rem;
     }
 }
 

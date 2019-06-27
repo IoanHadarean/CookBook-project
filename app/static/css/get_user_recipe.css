@@ -6,7 +6,7 @@ body {
 }
 
 section {
-    margin-top: 50px;
+    margin-top: 3.125rem;
     overflow: hidden;
 }
 
@@ -34,11 +34,11 @@ ul {
 /*------------------------------------- Recipe Image ----------------------- */
 
 .image__inline {
-    max-height: 322px;
+    max-height: 20.125rem;
     width: 80vw;
     margin-left: 10vw;
     margin-right: 10vw;
-    margin-top: 30px;
+    margin-top: 1.875rem;
     border-radius: 25%;
     -moz-object-fit: cover;
     -webkit-object-fit: cover;
@@ -49,7 +49,7 @@ ul {
 /* -------------------------------------- Recipe Info ------------------------- */
 
 .title__description {
-    font-size: 30px;
+    font-size: 1.875rem;
     margin-left: 5vw;
     margin-right: 5vw;
     font-weight: bold;
@@ -57,7 +57,7 @@ ul {
 }
 
 .author__description {
-    font-size: 16px;
+    font-size: 1rem;
 }
 
 .recipe__author,
@@ -72,30 +72,30 @@ ul {
 .recipe-separator {
     width: 95%;
     margin-left: 2.5%;
-    border: 1px solid gray;
+    border: 0.0625rem solid gray;
 }
 
 .info__specs {
     text-align: center;
-    font-size: 40px;
-    margin-top: 15px;
-    margin-bottom: 20px;
+    font-size: 2.5rem;
+    margin-top: 0.9375rem;
+    margin-bottom: 1.25rem;
     position: sticky;
 }
 
 .info__time {
-    height: 140px;
+    height: 8.75rem;
 }
 
 .info__specs {
-    height: 70px;
+    height: 4.375rem;
 }
 
 .specs__cuisine,
 .specs__course,
 .specs__allergens {
-    height: 100px;
-    font-size: 20px;
+    height: 6.25rem;
+    font-size: 1.25rem;
     display: flex;
     flex-direction: column;
     position: absolute;
@@ -122,17 +122,17 @@ ul {
 
 
 .is-spec {
-    margin-top: 10px;
+    margin-top: 0.625rem;
     color: #009978;
-    font-size: 16px;
+    font-size: 1rem;
 }
 
 
 .ingredients__description,
 .instructions__description {
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: 700;
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -145,15 +145,15 @@ ul {
 .recipe__alert {
     margin-right: 2.5vw;
     width: 95vw;
-    height: 100px;
-    margin-bottom: 20px;
+    height: 6.25rem;
+    margin-bottom: 1.25rem;
 }
 
 .alert__description {
-    font-size: 24px;
+    font-size: 1.5rem;
     font-weight: 700;
-    margin-top: 25px;
-    margin-bottom: 25px;
+    margin-top: 1.5625rem;
+    margin-bottom: 1.5625rem;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -165,7 +165,7 @@ ul {
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 35px;
+    height: 2.1875rem;
     background: #f26226;
     width: 50vw;
     margin-left: 25vw;
@@ -174,7 +174,7 @@ ul {
 .box__link {
     text-decoration: none;
     color: white;
-    font-size: 16px;
+    font-size: 1rem;
     height: 100%;
     width: 100%;
     display: flex;
@@ -194,7 +194,7 @@ ul {
 }
 
 .recipe__ingredients li {
-    min-height: 40px;
+    min-height: 2.5rem;
 }
 
 
@@ -203,9 +203,9 @@ ul {
 }
 
 .recipe__ingredients {
-    margin-top: 20px;
+    margin-top: 1.25rem;
     width: 100%;
-    margin-bottom: 20px;
+    margin-bottom: 1.25rem;
     display: inline-block;
     text-align: center;
 }
@@ -217,29 +217,29 @@ ul {
 /* ------------------------------------------Recipe instructions -------------------- */
 
 .instructions__index {
-    padding: 5px 10px 5px 10px;
-    border: 1px solid gray;
+    padding: 0.3125rem 0.625rem 0.3125rem 0.625rem;
+    border: 0.0625rem solid gray;
     border-radius: 50%;
 }
 
 .cooking {
     margin-left: 0;
-    margin-bottom: 50px;
+    margin-bottom: 3.125rem;
 }
 
 .instructions__full {
     width: 90vw;
-    margin-top: 30px;
+    margin-top: 1.875rem;
 }
 
 .instructions__full li {
     list-style-type: none;
-    margin-left: 50px;
-    margin-top: -20px;
+    margin-left: 3.125rem;
+    margin-top: -1.25rem;
 }
 
 .recipe__instructions {
-    margin: 50px 5% 50px 2.5%;
+    margin: 3.125rem 5% 3.125rem 2.5%;
     width: 92.5%;
 }
 
