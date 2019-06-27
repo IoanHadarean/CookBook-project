@@ -1,9 +1,11 @@
 /* --------------------------------------- Special stylings and margins---------------------------*/
 
-html, body {
- overflow-x: hidden;
+html {
+	overflow-x: hidden;
 }
-
+body {
+	overflow-x: hidden;
+}
 .register-button {
- margin-top: 0.9375rem;
+	margin-top: 0.9375rem;
 }

@@ -35,7 +35,7 @@ Note: the wireframes are not entirely accurate, they only give a rough estimate 
 <img src="/app/static/wireframes/relish-cookbook-mobile.png" alt="Relish-CookBook" border="0">
 
 ### Existing Features and Functionalities
-The application consists of 14 HTML templates, 15 CSS files, 17 JavaScript files, 1 utility written in JavaScript
+The application consists of 14 HTML templates, 15 SCSS files, 17 JavaScript files, 1 utility written in JavaScript
 and 6 Python files, including the env file which stores the environment variables and connection strings plus
 [test_app.py](/app/tests/test_app.py), which incorporates automated tests used to measure the performance and behaviour of the project.
 The main [__init__.py](/app/__init__.py) file includes a collection of all the functions and routes that have been used for
@@ -257,10 +257,11 @@ worth mentioning, and since he tries to be critical about himself, it was the ri
 
 ### Front-End Technologies
 
-1. **HTML**, **CSS** and **JavaScript**
+1. **HTML**, **CSS**, **SCSS** and **JavaScript**
     <br>Languages that were used to improve the feel of the Relish website. Pure HTML and CSS was predominantly
     used for designing the recipe views. Note: no jQuery was used for this project because the intention was to improve 
-    the learning curve with vanilla JavaScript.
+    the learning curve with vanilla JavaScript. CSS was later converted into SCSS using **BeautifyTools**
+    (http://beautifytools.com/css-to-scss-converter.php).
 2. **Bootstrap v3.3.7**(https://getbootstrap.com/docs/3.3/getting-started/#download)
     <br>**Bootstrap** was used to give the project a responsive layout. As previously specified in the
     existing featured and functionalities section, the original intention was to not use 

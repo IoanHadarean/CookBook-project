@@ -1,27 +1,30 @@
 /* ------------------------------------------- Special margins/styling ------------------------- */
 
-html, body {
-    margin: 0;
-    padding: 0;
-    overflow-x: hidden;
+html {
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden;
 }
-
+body {
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden;
+}
 p {
-    width: 100vw;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+	width: 100vw;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
-
 a {
-    text-decoration: none;
-    color: blue;
-    text-align: center;
+	text-decoration: none;
+	color: blue;
+	text-align: center;
+	&:visited {
+		color: blue;
+	}
 }
 
-a:visited { 
-    color: blue;
-}
 
 /* -------------------------------------------- Error text ------------------------------ */
 

@@ -1,54 +1,49 @@
 /* --------------------------------------- Stylings and margins---------------------------*/
 
-html, body {
- overflow-x: hidden;
+html {
+	overflow-x: hidden;
+}
+body {
+	overflow-x: hidden;
 }
 
 /* --------------------------------------- Media Queries --------------------------------- */
 
 @media only screen and (max-width: 767px) {
- form {
-  top: 25vh;
- }
+	form {
+		top: 25vh;
+	}
 }
-
 @media only screen and (max-width: 768px) {
- .form-group--responsive {
-  margin-bottom: 0.625rem;
- }
+	.form-group--responsive {
+		margin-bottom: 0.625rem;
+	}
 }
-
-
 @media (min-width: 768px) and (max-width: 1920px) {
- .form-control {
-  margin-bottom: 2.625rem;
- }
+	.form-control {
+		margin-bottom: 2.625rem;
+	}
 }
-
 @media (min-width: 1920px) {
- .form-control {
-  margin-bottom: 3.75rem;
- }
+	.form-control {
+		margin-bottom: 3.75rem;
+	}
 }
-
 @media screen and (max-height: 768px) and (min-width: 768px) {
- label {
-  margin-left: -6.25rem;
- }
-
- form {
-  top: 30vh;
- }
+	label {
+		margin-left: -6.25rem;
+	}
+	form {
+		top: 30vh;
+	}
 }
-
 @media (min-height: 768px) {
- form {
-  top: 30vh;
- }
+	form {
+		top: 30vh;
+	}
 }
-
 @media (min-height: 1024px) and (min-width:768px) and (max-width: 1200px) {
- .form-control {
-  margin-bottom: 1.5625rem;
- }
+	.form-control {
+		margin-bottom: 1.5625rem;
+	}
 }

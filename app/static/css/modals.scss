@@ -1,0 +1,131 @@
+/* ---------------------------------------- Buttons ----------------------------------- */
+
+.inline {
+	height: 2.125rem;
+	>.edit-container {
+		float: left;
+		display: inline;
+		width: 50%;
+	}
+	>.delete-container {
+		float: left;
+		display: inline;
+		width: 50%;
+	}
+}
+.delete-button {
+	width: 100%;
+	margin-top: 0;
+	box-shadow: 0 0 0.6875rem rgba(33, 33, 33, .2);
+	color: black;
+	border-radius: 0;
+}
+.edit-button {
+	width: 100%;
+	margin-top: 0;
+	box-shadow: 0 0 0.6875rem rgba(33, 33, 33, .2);
+	color: black;
+	border-radius: 0;
+}
+
+
+
+/* ---------------------------------------- Delete Recipe Modal ------------------------------ */
+
+.delete-modal-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.25rem;
+}
+.delete-button-modal {
+	color: black;
+	margin-right: 0.3125rem;
+	border: 0.0625rem solid black;
+	margin-top: 0;
+}
+.modal-dialog {
+	top: 25%;
+}
+.modal-body {
+	padding: 0.9375rem 0.9375rem 0 0.9375rem;
+}
+.modal-open {
+	overflow: visible;
+	padding-right: 0 !important;
+}
+.cancel-button {
+	height: 2.125rem;
+	color: black;
+	opacity: 0.7;
+	font-size: 0.875rem;
+	border: 0.0625rem solid black !important;
+	margin-top: 0;
+	&:hover {
+		background: white;
+	}
+}
+
+
+/* ----------------------------------------- Cancel Update Modal ------------------------- */
+.cancel-update-button {
+	margin-top: 10%;
+	margin-right: 1.25rem;
+	opacity: 1;
+	border: 0.0625rem solid black;
+	color: black;
+	&:hover {
+		border: 0.0625rem solid gray;
+		color: gray;
+		background: white;
+	}
+}
+.reset-modal-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.25rem;
+}
+.reset-button-modal {
+	color: black;
+	margin-top: 0;
+	width: 7.5rem;
+	border: 0.0625rem solid black;
+}
+
+/* ----------------------------------------- Media Queries ----------------------------- */
+
+@media (max-width: 559px) and (min-width: 320px) {
+	.inline {
+		width: 100vw;
+	}
+}
+@media (min-width: 768px) and (max-width: 1000px) {
+	.inline {
+		width: 35vw;
+	}
+}
+@media (max-width: 767px) and (min-width: 560px) {
+	.inline {
+		width: 60vw;
+	}
+}
+@media (min-width: 1001px) {
+	.inline {
+		width: 26.66vw;
+	}
+}
+@media (min-width: 1080px) {
+	.btn {
+		margin-top: 10%;
+	}
+	.reset-progress {
+		margin-top: 0;
+	}
+	.cancel-button {
+		margin-top: 0;
+	}
+	.delete-button-modal {
+		margin-top: 0;
+	}
+}
