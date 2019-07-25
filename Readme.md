@@ -189,15 +189,13 @@ and imports were kept in case of further uses.
 1. A thing can be added to the website is a functionality for saving progress when the user tries to add a recipe.
 2. Another functionality that can be implemented is to allow the admin to approve user recipes in order to add them
 to the database recipes.
-3. Website design can be improved and CSS fixes can also be made.(It's admittable that the website creator is not particularly
-good with colurs, design and CSS.)
+3. Website design can be improved and CSS fixes can also be made.
 4. Pages on screen resizing should look much better, but since the project focused more on functionalities, this aspect was
 neglected. 
 5. The Python code could be better structured with the help of classes.
 6. A comments section (that also contains likes and dislikes) can be added to each recipe so users can post their opinions.
 7. A chat could be added so that users could interact with each other.
 8. A remember me functionality can be added for login, as well as reset password.\
-Note: the creator of the website is planning to implement all these functionalities in the future.
 
 
 
@@ -234,6 +232,7 @@ button when the button was clicked and the parent.parent of the icon when the ic
 recipe forms by disabling the remove button. It is to be agreed that the fix could have been better since the alerts timeout is 
 slightly too fast. jQuery could have been used to prevent it, but only vanilla JS was used for the project.
 * Fixed delete recipe bug caused by the ID of the recipe.
+* Fixed security flaws caused by accessing user specific urls even if the user is not logged in.
 * Fixed rating bug caused by not initialising the rating of a recipe to 0.
 * Fixed bug with cancel update modal not firing up.
 * Fixed average rating bug caused by the instance count of ratings for a certain recipe that also included `0`.
@@ -259,8 +258,7 @@ worth mentioning, and since he tries to be critical about himself, it was the ri
 
 1. **HTML**, **CSS**, **SCSS** and **JavaScript**
     <br>Languages that were used to improve the feel of the Relish website. Pure HTML and CSS was predominantly
-    used for designing the recipe views. Note: no jQuery was used for this project because the intention was to improve 
-    the learning curve with vanilla JavaScript. SCSS was converted into CSS using **pyScss**(https://pypi.org/project/pyScss/).
+    used for designing the recipe views. SCSS was converted into CSS using **pyScss**(https://pypi.org/project/pyScss/).
     The command used for converting SCSS into CSS was *`python3 -mscss < app/static/scss/name_of_scss_file > app/static/css/name_of_css_file`*.
 2. **Bootstrap v3.3.7**(https://getbootstrap.com/docs/3.3/getting-started/#download)
     <br>**Bootstrap** was used to give the project a responsive layout. As previously specified in the
