@@ -468,7 +468,7 @@ def search_results(search_input):
 
 """ Allow logged in user to add recipe """
 
-
+@login_required
 @app.route('/add_recipe', methods=['GET', 'POST'])
 def add_recipe():
     return render_template('add_recipe.html',
@@ -479,7 +479,7 @@ def add_recipe():
 
 """ Allow user to cancel editing a recipe """
 
-
+@login_required
 @app.route('/cancel_edit_recipe/<recipe_id>', methods=['GET'])
 def cancel_edit_recipe(recipe_id):
     recipe = user_recipes.find_one({"_id": ObjectId(recipe_id)})
@@ -487,7 +487,7 @@ def cancel_edit_recipe(recipe_id):
 
 """ Insert a recipe in the user_recipe collection """
 
-
+@login_required
 @app.route("/insert_recipe", methods=["POST"])
 def insert_recipe():
     if request.method == 'POST':
@@ -526,7 +526,7 @@ def insert_recipe():
 
 """ Edit user recipe """
 
-
+@login_required
 @app.route("/edit_recipe/<recipe_id>")
 def edit_recipe(recipe_id):
     the_recipe = user_recipes.find_one({"_id": ObjectId(recipe_id)})
@@ -537,7 +537,7 @@ def edit_recipe(recipe_id):
 
 """ Update user recipe """
 
-
+@login_required
 @app.route("/update_recipe/<recipe_id>", methods=["POST"])
 def update_recipe(recipe_id):
     form = request.form.to_dict()
@@ -572,7 +572,7 @@ def update_recipe(recipe_id):
 
 """ Delete user recipe """
 
-
+@login_required
 @app.route('/delete_recipe/<recipe_id>')
 def delete_recipe(recipe_id):
     user_recipes.remove({'_id': ObjectId(recipe_id)})
@@ -581,7 +581,7 @@ def delete_recipe(recipe_id):
 
 """ View details of a user recipe """
 
-
+@login_required
 @app.route('/get_user_recipe/<recipe_id>', methods=['GET', 'POST'])
 def get_user_recipe(recipe_id):
     user_recipe = user_recipes.find_one({"_id": ObjectId(recipe_id)})
