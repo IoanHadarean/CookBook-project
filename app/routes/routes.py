@@ -471,11 +471,15 @@ def search_results(search_input):
 @login_required
 @app.route('/add_recipe', methods=['GET', 'POST'])
 def add_recipe():
-    return render_template('add_recipe.html',
-                           user_recipes=mongo.db.user_recipes.find(),
-                           courses=mongo.db.courses.find(),
-                           cuisines=mongo.db.cuisines.find(),
-                           allergens=mongo.db.allergens.find())
+    user = session.get('username')
+    if user:
+        return render_template('add_recipe.html',
+                               user_recipes=mongo.db.user_recipes.find(),
+                               courses=mongo.db.courses.find(),
+                               cuisines=mongo.db.cuisines.find(),
+                               allergens=mongo.db.allergens.find())
+    else:
+        return redirect(url_for('login'))
 
 """ Allow user to cancel editing a recipe """
 
@@ -529,55 +533,67 @@ def insert_recipe():
 @login_required
 @app.route("/edit_recipe/<recipe_id>")
 def edit_recipe(recipe_id):
-    the_recipe = user_recipes.find_one({"_id": ObjectId(recipe_id)})
-    return render_template("edit_recipe.html", the_recipe=the_recipe,
+    user = session.get('username')
+    if user:
+        the_recipe = user_recipes.find_one({"_id": ObjectId(recipe_id)})
+        return render_template("edit_recipe.html", the_recipe=the_recipe,
                            cuisines=mongo.db.cuisines.find(),
                            allergens=mongo.db.allergens.find(),
                            courses=mongo.db.courses.find())
+    else:
+        return redirect(url_for('login'))
 
 """ Update user recipe """
 
 @login_required
 @app.route("/update_recipe/<recipe_id>", methods=["POST"])
 def update_recipe(recipe_id):
-    form = request.form.to_dict()
-    instructions = []
-    ingredients = []
-
-    # Loop through the keys in the form
-    # If the key matches instruction append
-    # instruction to instructions list
-    for key in form:
-        regex = re.compile("^instruction")
-        if regex.match(key):
-            instructions.append(form[key])
-
-    # Loop through the keys in the form
-    # If the key matches ingredient append ingredients to ingredients list
-    for key in form:
-        regex = re.compile("^ingredient")
-        if regex.match(key):
-            ingredients.append(form[key])
-    user_recipes.update({'_id': ObjectId(recipe_id)},
-                        {'username': session.get("username"),
-                         'recipe_image': "https://media.self.com/photos/58f7d022feead55f43f7fc78/4:3/w_728,c_limit/Creamy-Sun-Dried-Parmesan-Chicken-cafedelites-1%25202.jpg",
-                         'recipe_name': request.form.get('recipe_name'),
-                         'allergen_name': request.form.get('allergen_name'),
-                         'cuisine_name': request.form.get('cuisine_name'),
-                         'course_name': request.form.get('course_name'),
-                         'instructions': instructions,
-                         'ingredients': ingredients})
-    flash("Your recipe has been updated successfully", "success")
-    return redirect(url_for('get_user_recipe', recipe_id=recipe_id))
+    user = session.get('username')
+    if user:
+        form = request.form.to_dict()
+        instructions = []
+        ingredients = []
+    
+        # Loop through the keys in the form
+        # If the key matches instruction append
+        # instruction to instructions list
+        for key in form:
+            regex = re.compile("^instruction")
+            if regex.match(key):
+                instructions.append(form[key])
+    
+        # Loop through the keys in the form
+        # If the key matches ingredient append ingredients to ingredients list
+        for key in form:
+            regex = re.compile("^ingredient")
+            if regex.match(key):
+                ingredients.append(form[key])
+        user_recipes.update({'_id': ObjectId(recipe_id)},
+                            {'username': session.get("username"),
+                             'recipe_image': "https://media.self.com/photos/58f7d022feead55f43f7fc78/4:3/w_728,c_limit/Creamy-Sun-Dried-Parmesan-Chicken-cafedelites-1%25202.jpg",
+                             'recipe_name': request.form.get('recipe_name'),
+                             'allergen_name': request.form.get('allergen_name'),
+                             'cuisine_name': request.form.get('cuisine_name'),
+                             'course_name': request.form.get('course_name'),
+                             'instructions': instructions,
+                             'ingredients': ingredients})
+        flash("Your recipe has been updated successfully", "success")
+        return redirect(url_for('get_user_recipe', recipe_id=recipe_id))
+    else:
+        return redirect(url_for('login'))
 
 """ Delete user recipe """
 
 @login_required
 @app.route('/delete_recipe/<recipe_id>')
 def delete_recipe(recipe_id):
-    user_recipes.remove({'_id': ObjectId(recipe_id)})
-    flash('Your recipe has been deleted successfully', 'success')
-    return redirect(url_for('profile'))
+    user = session.get('username')
+    if user:
+        user_recipes.remove({'_id': ObjectId(recipe_id)})
+        flash('Your recipe has been deleted successfully', 'success')
+        return redirect(url_for('profile'))
+    else:
+        return redirect(url_for('login'))
 
 """ View details of a user recipe """
 
@@ -734,8 +750,11 @@ def like(recipe_id):
         cur.execute("UPDATE userlikes SET liked = '0', unliked = '1', count_liked = 1 WHERE userId = %s AND recipeId = %s;", (user_id, recipe_number,))
         connection.commit()
     cur.close()
-
-    return json.jsonify({'likes': likes, 'dislikes': dislikes, 'recipe_id': recipe_id})
+    
+    if user:
+        return json.jsonify({'likes': likes, 'dislikes': dislikes, 'recipe_id': recipe_id})
+    else:
+        return redirect(url_for('login'))
 
 """ Dislike recipe """
 
@@ -779,7 +798,11 @@ def dislike(recipe_id):
         cur.execute("UPDATE userlikes SET unliked = '0', liked = '1', count_liked = 1 WHERE userId = %s AND recipeId = %s;", (user_id, recipe_number,))
         connection.commit()
     cur.close()
-    return json.jsonify({'likes': likes, 'dislikes': dislikes, 'recipe_id': recipe_id})
+    
+    if user:
+        return json.jsonify({'likes': likes, 'dislikes': dislikes, 'recipe_id': recipe_id})
+    else:
+        return redirect(url_for('login'))
 
 """  Get ratings from users and store them in the database
      then return the average rating for a recipe"""
@@ -821,7 +844,10 @@ def update_rating(recipe_id):
             formatted_average = int(average_rating)
         recipe_collection.update({"_id": ObjectId(recipe_id)},
                                  {"$set": {"rating": formatted_average}})
-    return redirect(url_for('get_recipe', recipe_id=recipe_id))
+    if user:
+        return redirect(url_for('get_recipe', recipe_id=recipe_id))
+    else:
+        return redirect(url_for('login'))
 
 """ Recipe statistics """
 
