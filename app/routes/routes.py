@@ -584,8 +584,11 @@ def delete_recipe(recipe_id):
 @login_required
 @app.route('/get_user_recipe/<recipe_id>', methods=['GET', 'POST'])
 def get_user_recipe(recipe_id):
-    user_recipe = user_recipes.find_one({"_id": ObjectId(recipe_id)})
-    return render_template("get_user_recipe.html", user_recipe=user_recipe)
+    if 'user' in session:
+        user_recipe = user_recipes.find_one({"_id": ObjectId(recipe_id)})
+        return render_template("get_user_recipe.html", user_recipe=user_recipe)
+    else:
+        return redirect(url_for('login'))
 
 """ View details of a database recipe """
 
