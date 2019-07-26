@@ -49,7 +49,7 @@ it turned out that it would take too much time to make everything from scratch. 
 Note: the [run.py](../master/run.py) has been later added for running the application and to ensure a better project structure.
 
 
-#### Website Pages + User Stories
+#### Website Pages
 1. [Register Page](/app/templates/register.html)
 * Consists of a form that allows the user to create an account.
 * It's constructed following a defensive design, each of the fields in the register form
@@ -182,6 +182,25 @@ inline errors and alerts. They can be found [here](/app/templates/includes)).
 * Added SSL certificates and Flask-SSLify that turned out to be no longer needed, but the packages
 and imports were kept in case of further uses.
 * Added timeout after an hour for a logged in user.
+
+### User Stories
+* A user can register to the website with an username and password.
+* A user can login to the website.
+* A user can logout from the website.
+* A user can edit his/her own profile and add a picture to his/her profile.
+* A user can add a recipe to his/her profile.
+* A user can edit/delete his/her own recipes.
+* A user can cancel adding/editing/deleting his/her own recipes.
+* A user can navigate to the statistics page.
+* A user can search recipes based on full-text search.
+* A user can filter recipes based on certain criteria (allergen, cuisine, course).
+* A user can go back to all recipes after filtering/searching recipes.
+* A user can navigate to the recipes page and use the left and right arrows to navigate
+through all the recipes.
+* A user can view the details of a recipe.
+* A user can like/dislike a recipe.
+* A user can rate a recipe
+* A user can edit the rating in case he/she already rated the recipe.
 
 
 ### Features Left To Implement
