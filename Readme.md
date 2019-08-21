@@ -199,7 +199,7 @@ and imports were kept in case of further uses.
 through all the recipes.
 * A user can view the details of a recipe.
 * A user can like/dislike a recipe.
-* A user can rate a recipe
+* A user can rate a recipe.
 * A user can edit the rating in case he/she already rated the recipe.
 
 
@@ -214,7 +214,7 @@ neglected.
 5. The Python code could be better structured with the help of classes.
 6. A comments section (that also contains likes and dislikes) can be added to each recipe so users can post their opinions.
 7. A chat could be added so that users could interact with each other.
-8. A remember me functionality can be added for login, as well as reset password.\
+8. A remember me functionality can be added for login, as well as reset password.
 
 
 

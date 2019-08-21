@@ -13,7 +13,7 @@ MarkupSafe==1.1.1
 Pillow==3.3.2
 PyMySQL==0.9.3
 WTForms==2.2.1
-Werkzeug==0.14.1
+Werkzeug==0.15.3
 acme==0.31.0
 asn1crypto==0.24.0
 autocommand==2.2.1
