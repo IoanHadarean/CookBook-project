@@ -10,13 +10,13 @@ an account by following a defensive design approach (users can not register to t
 reflects, a cooking website, meaning it contains a lot of valuable information in terms of the author, cuisine, allergens, course, ingredients of a certain recipe, 
 instructions, cooking time and preparation time, servings and calories. On top of that, users can also get some interesting facts about recipe statistics in an 
 interactive way. The statistics have been contructed in an easily digestible way, so that website end-users can easily read the graphs and assess the information 
-immediately. Relish is a web page designed with pashion, that also incorporates useful functionalities. Not only does it allows end-users to like/dislike recipes,
+immediately. Relish is a web page designed with passion, that also incorporates useful functionalities. Not only does it allows end-users to like/dislike recipes,
 but it also enables them to add and edit their own recipes. This practice is widely used in a lot of cooking (and not only) websites on the Internet because the consumers
 feel like they can contribute as well to the creation of the website. One can definitely argue that user recipes can't be added to the database recipes,
 which is true. However, the website is contructed in such a way that more and more functionalities can be added along the way so, in the future,
 a lot more functionalities will be added too. Relish has been designed in such a way that users can easily navigate through the website. One example
 of this is allowing users to be redirected back to the page they were visiting upon login or register. The security of the end-users matters, therefore 
-a functionality for loggin them out after one hour of inactivity has been implemented. It is also worth mentioning that users also get logged out of their
+a functionality for logging them out after one hour of inactivity has been implemented. It is also worth mentioning that users also get logged out of their
 accounts if he/she would use different devices to prevent fraudulent activity. The website can be viewed [here](https://relish-cookbook.herokuapp.com/recipes?limit=6&offset=0).
 
 
