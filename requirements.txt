@@ -24,7 +24,7 @@ cffi==1.12.3
 chardet==3.0.4
 colorama==0.2.5
 configobj==5.0.6
-cryptography==2.7
+cryptography==3.2
 future==0.15.2
 html5lib==0.999
 idna==2.8
